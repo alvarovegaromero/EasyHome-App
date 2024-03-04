@@ -24,7 +24,7 @@ function App(): React.JSX.Element {
       <ScrollView>
         <View>
          <Text> hola </Text>
-         <Text> prueba2  hechaaa</Text>
+         <Text> prueba2  hechaaasssa</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
