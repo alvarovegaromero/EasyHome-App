@@ -6,16 +6,13 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
+import LoginPage from './LoginPage';
 
 function App(): React.JSX.Element {
 
@@ -23,8 +20,7 @@ function App(): React.JSX.Element {
     <SafeAreaView>
       <ScrollView>
         <View>
-         <Text> hola </Text>
-         <Text> prueba2  hechaaasssa</Text>
+          <LoginPage/>
         </View>
       </ScrollView>
     </SafeAreaView>
