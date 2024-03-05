@@ -50,3 +50,13 @@
 	<false/>
 </dict>
 </plist>
+
+<!--
+	only iOS
+	TODO: Solve network request fails when calling API
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/>
+</dict>
+-->
