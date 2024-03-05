@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Button, GestureResponderEvent, Text, TextInput, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 const LoginPage: React.FC = () => {
+    const navigation = useNavigation();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = () => {
-        console.log("Username:", username);
-        console.log("Password:", password);
-        /*event.preventDefault();
+    const handleSubmit = (event: GestureResponderEvent) => {
+        event.preventDefault();
 
-        // Send request to localhost:8000/users/api/login with username and password
-        fetch('http://localhost:8000/users/api/login', {
+        fetch('http://10.0.2.2:8000/users/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,13 +21,15 @@ const LoginPage: React.FC = () => {
         })
             .then(response => response.json())
             .then(data => {
-                // Handle response data
                 console.log(data);
+
+                if (data.success) {
+                    navigation.navigate('Home');
+                }
             })
             .catch(error => {
-                // Handle error
                 console.error(error);
-            });*/
+            });
     };
 
     return (
