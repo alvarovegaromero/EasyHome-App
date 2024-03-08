@@ -1,6 +1,7 @@
 import React from 'react';
 import { BASE_URL } from './config';
 import { useNavigation } from '@react-navigation/native';
+import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
 
 const Home: React.FunctionComponent = () => {
     const navigation = useNavigation();
@@ -17,7 +18,7 @@ const Home: React.FunctionComponent = () => {
             response.json() //fix structure
             .then(data => {
                 console.log(data);
-                navigation.navigate('Login'); // Navegar a la página de inicio de sesión después del cierre de sesión
+                navigation.navigate('Login' as never); // Navegar a la página de inicio de sesión después del cierre de sesión
             })
             
         } catch (error) {
@@ -26,10 +27,12 @@ const Home: React.FunctionComponent = () => {
     };
 
     return (
-        <div>
-            <h1>Hola</h1>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
+        <SafeAreaView>
+            <ScrollView>
+                <Text> Hola </Text>
+                <Button title="Logout" onPress={handleLogout} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
