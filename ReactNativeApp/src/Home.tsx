@@ -1,22 +1,25 @@
 import React from 'react';
+import { BASE_URL } from './config';
+import { useNavigation } from '@react-navigation/native';
 
 const Home: React.FunctionComponent = () => {
+    const navigation = useNavigation();
+
     const handleLogout = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:8000/users/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const response = await fetch(BASE_URL+'/users/api/logout', { //URL to be changed when production
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             });
 
-            response.json()
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            response.json() //fix structure
+            .then(data => {
+                console.log(data);
+                navigation.navigate('Login'); // Navegar a la página de inicio de sesión después del cierre de sesión
+            })
+            
         } catch (error) {
             console.error(error);
         }
