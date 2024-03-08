@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Button, GestureResponderEvent, Text, TextInput, View } from 'react-native';
+import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from './config';
 
@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
         })
             .then(response => {
                 if (response.ok) {
-                    navigation.navigate('Home');
+                    navigation.navigate('Home' as never);
                 } else {
                     Alert.alert('Login failed', 'Username or password is incorrect.');
                 }
@@ -32,8 +32,8 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <View>
-            <View>
+        <SafeAreaView>
+            <ScrollView>
                 <Text>Username:</Text>
                 <TextInput
                     value={username}
@@ -45,9 +45,9 @@ const LoginPage: React.FC = () => {
                     value={password}
                     onChangeText={text => setPassword(text)}
                 />
-            </View>
-            <Button title="Login" onPress={handleSubmit} />
-        </View>
+                <Button title="Login" onPress={handleSubmit} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
