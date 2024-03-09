@@ -9,10 +9,10 @@ const LoginScreen: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event: GestureResponderEvent) => {
+    const handleSubmit = (event: GestureResponderEvent) => { //TODO: Fix structure
         event.preventDefault();
 
-        fetch(BASE_URL+'/users/api/login', { //URL to be changed when production
+        fetch(BASE_URL+'/users/api/login', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

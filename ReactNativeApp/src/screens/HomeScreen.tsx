@@ -6,19 +6,19 @@ import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
 const HomeScreen: React.FunctionComponent = () => {
     const navigation = useNavigation();
 
-    const handleLogout = async () => {
+    const handleLogout = async () => { //TODO: Fix structure
         try {
-            const response = await fetch(BASE_URL+'/users/api/logout', { //URL to be changed when production
+            const response = await fetch(BASE_URL+'/users/api/logout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             });
 
-            response.json() //fix structure
+            response.json() 
             .then(data => {
                 console.log(data);
-                navigation.navigate('Login' as never); // Navegar a la página de inicio de sesión después del cierre de sesión
+                navigation.navigate('Login' as never);
             })
             
         } catch (error) {
@@ -29,7 +29,7 @@ const HomeScreen: React.FunctionComponent = () => {
     return (
         <SafeAreaView>
             <ScrollView>
-                <Text> Hola </Text>
+                <Text> Hola, you're logged in!!!! </Text>
                 <Button title="Logout" onPress={handleLogout} />
             </ScrollView>
         </SafeAreaView>
