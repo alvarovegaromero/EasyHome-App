@@ -1,9 +1,9 @@
 import React from 'react';
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config';
 import { useNavigation } from '@react-navigation/native';
 import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
 
-const Home: React.FunctionComponent = () => {
+const HomeScreen: React.FunctionComponent = () => {
     const navigation = useNavigation();
 
     const handleLogout = async () => {
@@ -36,4 +36,4 @@ const Home: React.FunctionComponent = () => {
     );
 };
 
-export default Home;
+export default HomeScreen;

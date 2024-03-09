@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { BASE_URL } from './config';
+import { BASE_URL } from '../config';
 
-const LoginPage: React.FC = () => {
+const LoginScreen: React.FC = () => {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState('');
@@ -51,4 +51,4 @@ const LoginPage: React.FC = () => {
     );
 };
 
-export default LoginPage;
+export default LoginScreen;
