@@ -12,7 +12,7 @@ const LoginScreen: React.FC = () => {
     const handleSubmit = (event: GestureResponderEvent) => { //TODO: Fix structure
         event.preventDefault();
 
-        fetch(BASE_URL+'/users/api/login', { 
+        fetch(BASE_URL+'/api/users/login', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

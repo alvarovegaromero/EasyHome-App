@@ -8,7 +8,7 @@ const HomeScreen: React.FunctionComponent = () => {
 
     const handleLogout = async () => { //TODO: Fix structure
         try {
-            const response = await fetch(BASE_URL+'/users/api/logout', {
+            const response = await fetch(BASE_URL+'/api/users/logout', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
