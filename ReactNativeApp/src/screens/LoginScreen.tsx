@@ -10,7 +10,7 @@ const LoginScreen: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (event: GestureResponderEvent) => { //TODO: Fix structure
+    const handleLoginSubmit = (event: GestureResponderEvent) => { 
         event.preventDefault();
 
         fetch(BASE_URL+'/api/users/login', { 
@@ -52,7 +52,7 @@ const LoginScreen: React.FC = () => {
                     value={password}
                     onChangeText={text => setPassword(text)}
                 />
-                <Button title="Login" onPress={handleSubmit} />
+                <Button title="Login" onPress={handleLoginSubmit} />
             </ScrollView>
         </SafeAreaView>
     );
