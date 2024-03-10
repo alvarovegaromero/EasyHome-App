@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from '../config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen: React.FC = () => {
     const navigation = useNavigation();
@@ -19,16 +20,22 @@ const LoginScreen: React.FC = () => {
             },
             body: JSON.stringify({ username, password }),
         })
-            .then(response => {
-                if (response.ok) {
-                    navigation.navigate('Home' as never);
-                } else {
-                    Alert.alert('Login failed', 'Username or password is incorrect.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        .then(response => {
+            if (response.ok) {
+                navigation.navigate('Home' as never);
+                return response.json();
+            } else {
+                Alert.alert('Login failed', 'Username or password is incorrect.');
+                throw new Error('Login failed');
+            }
+        })
+        .then(data => {
+            const token = data.token;
+            AsyncStorage.setItem('token', token);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     return (
