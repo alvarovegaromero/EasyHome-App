@@ -21,7 +21,7 @@ const HomeScreen: React.FunctionComponent = () => {
     
             if (response.ok) {
                 await AsyncStorage.removeItem('token');
-                navigation.navigate('LoginScreen' as never);
+                navigation.navigate('Login' as never);
             } else {
                 console.error('Logout failed');
             }
