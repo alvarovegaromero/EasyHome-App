@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { View, TextInput, Button, SafeAreaView, ScrollView, Text, GestureResponderEvent, Alert } from 'react-native';
+import { BASE_URL } from '../config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RegisterScreen = () => {
+    const navigation = useNavigation();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -9,46 +14,79 @@ const RegisterScreen = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const handleRegister = () => {
-        console.log('Registering user...');
+    const handleRegisterSubmit = (event: GestureResponderEvent) => { 
+        event.preventDefault();
+
+        if (password !== confirmPassword) {
+            Alert.alert('Password mismatch', 'Passwords do not match. Please enter matching passwords.');
+            throw new Error('Register failed');
+        }
+
+        fetch(BASE_URL+'/api/users/register', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, email, password, confirmPassword, firstName, lastName}),
+        })
+        .then(response => {
+            if (response.ok) {
+                navigation.navigate('Home' as never);
+                return response.json();
+            } else {
+                Alert.alert('Register failed', 'Something went wrong. Please try again.');
+                throw new Error('Register failed');
+            }
+        })
+        .then(data => {
+            const token = data.token;
+            AsyncStorage.setItem('token', token);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     return (
-        <View>
-            <TextInput
-                placeholder="Username"
-                value={username}
-                onChangeText={setUsername}
-            />
-            <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-            />
-            <TextInput
-                placeholder="Password"
-                secureTextEntry
-                value={password}
-                onChangeText={setPassword}
-            />
-            <TextInput
-                placeholder="Confirm Password"
-                secureTextEntry
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-            />
-            <TextInput
-                placeholder="First Name (optional)"
-                value={firstName}
-                onChangeText={setFirstName}
-            />
-            <TextInput
-                placeholder="Last Name (optional)"
-                value={lastName}
-                onChangeText={setLastName}
-            />
-            <Button title="Register" onPress={handleRegister} />
-        </View>
+        <SafeAreaView>
+            <ScrollView>
+                <TextInput
+                    placeholder="Username"
+                    value={username}
+                    onChangeText={setUsername}
+                />
+                <TextInput
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                />
+                <TextInput
+                    placeholder="Password"
+                    secureTextEntry
+                    value={password}
+                    onChangeText={setPassword}
+                />
+                <TextInput
+                    placeholder="Confirm Password"
+                    secureTextEntry
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                />
+                <TextInput
+                    placeholder="First Name (optional)"
+                    value={firstName}
+                    onChangeText={setFirstName}
+                />
+                <TextInput
+                    placeholder="Last Name (optional)"
+                    value={lastName}
+                    onChangeText={setLastName}
+                />
+                <Button title="Register" onPress={handleRegisterSubmit} />
+                <Text>Do you have an account already? Login instead!</Text>
+                <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 

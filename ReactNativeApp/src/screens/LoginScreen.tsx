@@ -53,6 +53,9 @@ const LoginScreen: React.FC = () => {
                     onChangeText={text => setPassword(text)}
                 />
                 <Button title="Login" onPress={handleLoginSubmit} />
+
+                <Text>Don't you have an account? Register now!</Text>
+                <Button title="Register" onPress={() => navigation.navigate('Register' as never)} />
             </ScrollView>
         </SafeAreaView>
     );
