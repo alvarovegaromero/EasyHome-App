@@ -17,17 +17,29 @@ const RegisterScreen = () => {
     const handleRegisterSubmit = (event: GestureResponderEvent) => { 
         event.preventDefault();
 
+        //Validations:
         if (password !== confirmPassword) {
             Alert.alert('Password mismatch', 'Passwords do not match. Please enter matching passwords.');
             throw new Error('Register failed');
         }
+
+
+        //Request:
+        const requestData = {
+            username,
+            email,
+            password,
+            confirmPassword,
+            firstName: firstName || undefined,
+            lastName: lastName || undefined,
+        };
 
         fetch(BASE_URL+'/api/users/register', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, email, password, confirmPassword, firstName, lastName}),
+            body: JSON.stringify(requestData),
         })
         .then(response => {
             if (response.ok) {
