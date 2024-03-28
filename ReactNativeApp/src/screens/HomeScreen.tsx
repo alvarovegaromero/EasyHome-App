@@ -1,7 +1,7 @@
 import React from 'react';
 import { BASE_URL } from '../config';
 import { useNavigation } from '@react-navigation/native';
-import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
+import { Alert, Button, SafeAreaView, ScrollView, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen: React.FunctionComponent = () => {
@@ -18,18 +18,20 @@ const HomeScreen: React.FunctionComponent = () => {
                     'Authorization': `Token ${token}`,
                 },
             });
-    
+
             if (response.ok) {
                 await AsyncStorage.removeItem('token');
                 navigation.navigate('Login' as never);
             } else {
-                console.error('Logout failed');
+                return response.json().then(({ error }) => {
+                    Alert.alert(`Error ${response.status}`, error);
+                    throw new Error(`${response.status} - ${error}`, );
+                });
             }
         } catch (error) {
             console.error('Error:', error);
         }
     };
-    
 
     return (
         <SafeAreaView>
