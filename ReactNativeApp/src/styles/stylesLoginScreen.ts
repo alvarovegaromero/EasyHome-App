@@ -7,6 +7,16 @@ const stylesLoginScreen = StyleSheet.create({
         //height: '40%',
         backgroundColor: 'lightblue', 
     },
+
+    containerInitialImage: {
+        flex: 0.5,
+    },
+    containerLoginInputs: {
+        flex: 0.2,
+    },
+    containerOtherInfo: {
+        flex: 0.3,
+    },
 });
 
 export default stylesLoginScreen;
