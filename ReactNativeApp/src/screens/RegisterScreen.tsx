@@ -23,7 +23,6 @@ const RegisterScreen = () => {
             throw new Error('Register failed');
         }
 
-
         //Request:
         const requestData = {
             username,
@@ -42,13 +41,14 @@ const RegisterScreen = () => {
             body: JSON.stringify(requestData),
         })
         .then(response => {
-            if (response.ok) {
-                navigation.navigate('Home' as never);
-                return response.json();
-            } else {
-                Alert.alert('Register failed', 'Something went wrong. Please try again.');
-                throw new Error('Register failed');
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert(`Error ${response.status}`, error);
+                    throw new Error(`${response.status} - ${error}`, );
+                });
             }
+            navigation.navigate('Home' as never);
+            return response.json();
         })
         .then(data => {
             const token = data.token;
