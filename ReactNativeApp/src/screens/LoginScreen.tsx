@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
+import { Alert, Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -45,20 +45,29 @@ const LoginScreen: React.FC = () => {
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
                 <View style={stylesLoginScreen.containerInitialImage}> 
-                    <Text> Foto </Text>
+                    <Image
+                        source={require('../../assets/images/logoWithTextNoBackground.png')} 
+                        style={stylesLoginScreen.logo}
+                    />
                 </View>
-                <View style={stylesLoginScreen.containerLoginInputs}> 
-                    <Text>Username:</Text>
-                    <TextInput
-                        value={username}
-                        onChangeText={text => setUsername(text)}
-                    />
-                    <Text>Password:</Text>
-                    <TextInput
-                        secureTextEntry
-                        value={password}
-                        onChangeText={text => setPassword(text)}
-                    />
+                <View style={stylesLoginScreen.containerLoginInputs}>
+                    <View style={stylesLoginScreen.containerInputUsername}>
+                        <Text>Username:</Text>
+                        <TextInput
+                            style={stylesLoginScreen.inputUsername}
+                            value={username}
+                            onChangeText={text => setUsername(text)}
+                        />
+                    </View> 
+                    <View style={stylesLoginScreen.containerInputPassword}>
+                        <Text>Password:</Text>
+                        <TextInput
+                            style={stylesLoginScreen.inputPassword}
+                            secureTextEntry
+                            value={password}
+                            onChangeText={text => setPassword(text)}
+                        />
+                    </View>
                     <Button title="Login" onPress={handleLoginSubmit} />
                 </View>
                 <View style={stylesLoginScreen.containerOtherInfo}> 
