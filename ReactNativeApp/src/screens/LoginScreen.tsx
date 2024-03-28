@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { BASE_URL } from '../config';
+import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
@@ -44,10 +44,10 @@ const LoginScreen: React.FC = () => {
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
-                <View style={stylesLoginScreen.container}> 
+                <View style={stylesLoginScreen.containerInitialImage}> 
                     <Text> Foto </Text>
                 </View>
-                <View style={stylesLoginScreen.container}> 
+                <View style={stylesLoginScreen.containerLoginInputs}> 
                     <Text>Username:</Text>
                     <TextInput
                         value={username}
@@ -61,9 +61,12 @@ const LoginScreen: React.FC = () => {
                     />
                     <Button title="Login" onPress={handleLoginSubmit} />
                 </View>
-                <View style={stylesLoginScreen.container}> 
+                <View style={stylesLoginScreen.containerOtherInfo}> 
                     <Text>Don't you have an account? Register now!</Text>
                     <Button title="Register" onPress={() => navigation.navigate('Register' as never)} />
+
+                    <Text>Forgot your password?</Text>
+                    <Text> Version: {APP_VERSION} </Text>
                 </View>
             </ScrollView>
         </SafeAreaView>
