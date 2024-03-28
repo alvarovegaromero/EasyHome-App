@@ -21,13 +21,14 @@ const LoginScreen: React.FC = () => {
             body: JSON.stringify({ username, password }),
         })
         .then(response => {
-            if (response.ok) {
-                navigation.navigate('Home' as never);
-                return response.json();
-            } else {
-                Alert.alert('Login failed', 'Username or password is incorrect.');
-                throw new Error('Login failed');
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert(`Error ${response.status}`, error);
+                    throw new Error(`${response.status} - ${error}`, );
+                });
             }
+            navigation.navigate('Home' as never);
+            return response.json();
         })
         .then(data => {
             const token = data.token;
