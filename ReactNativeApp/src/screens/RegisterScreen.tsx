@@ -64,58 +64,73 @@ const RegisterScreen = () => {
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView style={generalStyles.defaultScrollView}>
-                <View>
-
-                    <View>
-                        <Text>Username:</Text>
-                        <TextInput
-                            value={username}
-                            onChangeText={setUsername}
-                        />
+                <View style={stylesRegisterScreen.containerRegisterInputsAndButton}>
+                    <View style={stylesRegisterScreen.containerRegisterInputs}>
+                        <View>
+                            <Text>Username:</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                value={username}
+                                onChangeText={setUsername}
+                            />
+                        </View>
+                        <View>
+                            <Text>Email:</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                value={email}
+                                onChangeText={setEmail}
+                            />
+                        </View>
+                        <View>
+                            <Text>Password:</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                secureTextEntry
+                                value={password}
+                                onChangeText={setPassword}
+                            />
+                        </View>
+                        <View>
+                            <Text>Confirm Password:</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                secureTextEntry
+                                value={confirmPassword}
+                                onChangeText={setConfirmPassword}
+                            />
+                        </View>
+                        <View> 
+                            <Text>First Name (optional):</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                value={firstName}
+                                onChangeText={setFirstName}
+                            />
+                        </View>
+                        <View>
+                            <Text>Last Name (optional):</Text>
+                            <TextInput
+                                style={generalStyles.defaultInput}
+                                value={lastName}
+                                onChangeText={setLastName}
+                            />
+                        </View>
                     </View>
-                    <View>
-                        <Text>Email:</Text>
-                        <TextInput
-                            value={email}
-                            onChangeText={setEmail}
-                        />
+                    <View style={generalStyles.defaultContainerButton}>
+                        <View style={generalStyles.defaultButton}> 
+                            <Button title="Register" onPress={handleRegisterSubmit} />
+                        </View>
                     </View>
-                    <View>
-                        <Text>Password:</Text>
-                        <TextInput
-                            secureTextEntry
-                            value={password}
-                            onChangeText={setPassword}
-                        />
-                    </View>
-                    <View>
-                        <Text>Confirm Password:</Text>
-                        <TextInput
-                            secureTextEntry
-                            value={confirmPassword}
-                            onChangeText={setConfirmPassword}
-                        />
-                    </View>
-                    <View> 
-                        <Text>First Name (optional):</Text>
-                        <TextInput
-                            value={firstName}
-                            onChangeText={setFirstName}
-                        />
-                    </View>
-                    <View>
-                        <Text>Last Name (optional):</Text>
-                        <TextInput
-                            value={lastName}
-                            onChangeText={setLastName}
-                        />
-                    </View>
-                    <Button title="Register" onPress={handleRegisterSubmit} />
                 </View>
 
-                <View> 
+                <View style={stylesRegisterScreen.containerOtherInfo}> 
                     <Text>Do you have an account already? Login instead!</Text>
-                    <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                    <View style={generalStyles.defaultContainerButton}>
+                        <View style={generalStyles.defaultButton}> 
+                            <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
