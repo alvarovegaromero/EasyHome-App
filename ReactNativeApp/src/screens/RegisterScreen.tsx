@@ -66,7 +66,7 @@ const RegisterScreen = () => {
             <ScrollView style={generalStyles.defaultScrollView}>
                 <View style={stylesRegisterScreen.containerRegisterInputsAndButton}>
                     <View style={stylesRegisterScreen.containerRegisterInputs}>
-                        <View>
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>Username:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -74,7 +74,7 @@ const RegisterScreen = () => {
                                 onChangeText={setUsername}
                             />
                         </View>
-                        <View>
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>Email:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -82,7 +82,7 @@ const RegisterScreen = () => {
                                 onChangeText={setEmail}
                             />
                         </View>
-                        <View>
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -91,7 +91,7 @@ const RegisterScreen = () => {
                                 onChangeText={setPassword}
                             />
                         </View>
-                        <View>
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>Confirm Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -100,7 +100,7 @@ const RegisterScreen = () => {
                                 onChangeText={setConfirmPassword}
                             />
                         </View>
-                        <View> 
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>First Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -108,7 +108,7 @@ const RegisterScreen = () => {
                                 onChangeText={setFirstName}
                             />
                         </View>
-                        <View>
+                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
                             <Text>Last Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}

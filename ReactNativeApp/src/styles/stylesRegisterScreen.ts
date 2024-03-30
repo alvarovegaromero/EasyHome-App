@@ -5,11 +5,11 @@ const stylesLoginScreen = StyleSheet.create({
     containerRegisterInputsAndButton: {
         ...generalStyles.defaultLateralMargins,
         marginTop: 20,
-        marginBottom: 100,
+        marginBottom: 75,
     },
 
     containerRegisterInputs: {
-        marginBottom: 20,
+        marginBottom: 10,
     },
 
     containerOtherInfo: {

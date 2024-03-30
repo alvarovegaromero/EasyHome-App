@@ -24,6 +24,10 @@ const generalStyles = StyleSheet.create({
         marginLeft: 40,
         marginRight: 40,
     },
+
+    defaultdefaultContainerTextAndInput: {
+        marginBottom: 10,
+    },
 });
 
 export default generalStyles;
