@@ -38,6 +38,7 @@ const HomeScreen: React.FunctionComponent = () => {
             <ScrollView>
                 <Text> Hola, you're logged in!!!! </Text>
                 <Button title="Logout" onPress={handleLogout} />
+                <Button title="Go to Profile" onPress={() => navigation.navigate('ProfileScreen' as never)} />
             </ScrollView>
         </SafeAreaView>
     );
