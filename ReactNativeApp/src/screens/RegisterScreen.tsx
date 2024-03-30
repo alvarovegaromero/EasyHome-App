@@ -3,6 +3,8 @@ import { useNavigation } from '@react-navigation/native';
 import { View, TextInput, Button, SafeAreaView, ScrollView, Text, GestureResponderEvent, Alert } from 'react-native';
 import { BASE_URL } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import stylesRegisterScreen from '../styles/stylesRegisterScreen';
+import generalStyles from '../styles/styles';
 
 const RegisterScreen = () => {
     const navigation = useNavigation();
@@ -60,43 +62,61 @@ const RegisterScreen = () => {
     };
 
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <TextInput
-                    placeholder="Username"
-                    value={username}
-                    onChangeText={setUsername}
-                />
-                <TextInput
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-                <TextInput
-                    placeholder="Password"
-                    secureTextEntry
-                    value={password}
-                    onChangeText={setPassword}
-                />
-                <TextInput
-                    placeholder="Confirm Password"
-                    secureTextEntry
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                />
-                <TextInput
-                    placeholder="First Name (optional)"
-                    value={firstName}
-                    onChangeText={setFirstName}
-                />
-                <TextInput
-                    placeholder="Last Name (optional)"
-                    value={lastName}
-                    onChangeText={setLastName}
-                />
-                <Button title="Register" onPress={handleRegisterSubmit} />
-                <Text>Do you have an account already? Login instead!</Text>
-                <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+        <SafeAreaView style={generalStyles.defaultSafeAreaView}>
+            <ScrollView style={generalStyles.defaultScrollView}>
+                <View>
+
+                    <View>
+                        <Text>Username:</Text>
+                        <TextInput
+                            value={username}
+                            onChangeText={setUsername}
+                        />
+                    </View>
+                    <View>
+                        <Text>Email:</Text>
+                        <TextInput
+                            value={email}
+                            onChangeText={setEmail}
+                        />
+                    </View>
+                    <View>
+                        <Text>Password:</Text>
+                        <TextInput
+                            secureTextEntry
+                            value={password}
+                            onChangeText={setPassword}
+                        />
+                    </View>
+                    <View>
+                        <Text>Confirm Password:</Text>
+                        <TextInput
+                            secureTextEntry
+                            value={confirmPassword}
+                            onChangeText={setConfirmPassword}
+                        />
+                    </View>
+                    <View> 
+                        <Text>First Name (optional):</Text>
+                        <TextInput
+                            value={firstName}
+                            onChangeText={setFirstName}
+                        />
+                    </View>
+                    <View>
+                        <Text>Last Name (optional):</Text>
+                        <TextInput
+                            value={lastName}
+                            onChangeText={setLastName}
+                        />
+                    </View>
+                    <Button title="Register" onPress={handleRegisterSubmit} />
+                </View>
+
+                <View> 
+                    <Text>Do you have an account already? Login instead!</Text>
+                    <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
