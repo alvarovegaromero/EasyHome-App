@@ -16,6 +16,16 @@ const stylesLoginScreen = StyleSheet.create({
         ...generalStyles.defaultLateralMargins,
     },
 
+    containerLogin: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    containerResetPassword: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
 });
 
 export default stylesLoginScreen;

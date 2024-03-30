@@ -124,11 +124,26 @@ const RegisterScreen = () => {
                     </View>
                 </View>
 
-                <View style={stylesRegisterScreen.containerOtherInfo}> 
-                    <Text>Do you have an account already? Login instead!</Text>
-                    <View style={generalStyles.defaultContainerButton}>
-                        <View style={generalStyles.defaultButton}> 
-                            <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                <View style={stylesRegisterScreen.containerOtherInfo}>
+                    <View style={stylesRegisterScreen.containerLogin}>
+                        <Text>Do you have an account already? Login instead!</Text>
+                        <View style={generalStyles.defaultContainerButton}>
+                            <View style={generalStyles.defaultButton}> 
+                                <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                            </View>
+                        </View>
+                    </View> 
+
+                    <View style={stylesRegisterScreen.containerResetPassword}>
+                        <Text accessibilityLabel="Forgot your password?">Forgot your password?</Text>
+                        <View style={generalStyles.defaultContainerButton}>
+                            <View style={generalStyles.defaultButton}> 
+                                <Button 
+                                    title="Reset Password" 
+                                    onPress={() => {}} 
+                                    accessibilityLabel="Button for redirection to reset password page"
+                                />
+                            </View>
                         </View>
                     </View>
                 </View>
