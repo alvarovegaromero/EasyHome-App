@@ -1,47 +1,50 @@
 import { StyleSheet } from 'react-native';
+import generalStyles from './styles';
 
 const stylesLoginScreen = StyleSheet.create({
     containerInitialImage: {
-        flex: 0.2,
+        flex: 0.3,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
     },
     logo: {
         width: 250,
-        height: 250,
+        height: 254, //as image is not a perfect square, height is not equal to width
     },
 
     containerLoginInputs: {
-        backgroundColor: 'yellow',
-        marginLeft: 40,
-        marginRight: 40,
-        flex: 0.2,
-        //justifyContent: 'center',
-        //alignItems: 'center',
+        ...generalStyles.defaultLateralMargins,
+        flex: 0.3,
     },
     containerInputUsername: {
-        //backgroundColor: 'blue',
         marginBottom: 20,
     },
     containerInputPassword: {
-        //backgroundColor: 'green',
-        marginBottom: 30,
+        marginBottom: 20,
     },
-    inputUsername: {
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
-    },
-    inputPassword: {
-        borderColor: 'black',
-        borderWidth: 1,
-        borderRadius: 10,
+    containerOtherInfo: {
+        ...generalStyles.defaultLateralMargins,
+        flex: 0.4,
     },
 
-    containerOtherInfo: {
-        flex: 0.6,
-        backgroundColor: 'green',
+    containerRegister: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    containerResetPassword: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    containerRegisterAndResetPassword: {
+        flex: 0.3,
+    },
+
+    containerVersion: {
+        flex: 0.7,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

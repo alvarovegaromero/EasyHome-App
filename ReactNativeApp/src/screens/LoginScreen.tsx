@@ -50,11 +50,13 @@ const LoginScreen: React.FC = () => {
                         style={stylesLoginScreen.logo}
                     />
                 </View>
+
+
                 <View style={stylesLoginScreen.containerLoginInputs}>
                     <View style={stylesLoginScreen.containerInputUsername}>
                         <Text>Username:</Text>
                         <TextInput
-                            style={stylesLoginScreen.inputUsername}
+                            style={generalStyles.defaultInput}
                             value={username}
                             onChangeText={text => setUsername(text)}
                         />
@@ -62,20 +64,44 @@ const LoginScreen: React.FC = () => {
                     <View style={stylesLoginScreen.containerInputPassword}>
                         <Text>Password:</Text>
                         <TextInput
-                            style={stylesLoginScreen.inputPassword}
+                            style={generalStyles.defaultInput}
                             secureTextEntry
                             value={password}
                             onChangeText={text => setPassword(text)}
                         />
                     </View>
-                    <Button title="Login" onPress={handleLoginSubmit} />
+                    <View style={generalStyles.defaultContainerButton}>
+                        <View style={generalStyles.defaultButton}> 
+                            <Button title="Login" onPress={handleLoginSubmit}/> 
+                        </View>
+                    </View>
                 </View>
-                <View style={stylesLoginScreen.containerOtherInfo}> 
-                    <Text>Don't you have an account? Register now!</Text>
-                    <Button title="Register" onPress={() => navigation.navigate('Register' as never)} />
 
-                    <Text>Forgot your password?</Text>
-                    <Text> Version: {APP_VERSION} </Text>
+
+                <View style={stylesLoginScreen.containerOtherInfo}>
+                    <View style={stylesLoginScreen.containerRegisterAndResetPassword}>
+                        <View style={stylesLoginScreen.containerRegister}>
+                            <Text>Don't you have an account? Register now!</Text>
+                            <View style={generalStyles.defaultContainerButton}>
+                                <View style={generalStyles.defaultButton}> 
+                                    <Button title="Register" onPress={() => navigation.navigate('Register' as never)} />
+                                </View>
+                            </View>
+                        </View>
+                        
+                        <View style={stylesLoginScreen.containerResetPassword}>
+                            <Text>Forgot your password?</Text>
+                            <View style={generalStyles.defaultContainerButton}>
+                                <View style={generalStyles.defaultButton}> 
+                                    <Button title="Reset Password" onPress={() => {}} />
+                                </View>
+                            </View>
+                        </View>
+                    </View>     
+
+                    <View style={stylesLoginScreen.containerVersion}>
+                        <Text> Version: {APP_VERSION} </Text>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>

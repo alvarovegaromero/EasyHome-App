@@ -7,6 +7,23 @@ const generalStyles = StyleSheet.create({
     defaultScrollView: {
         flexGrow: 1, // Allow vertical expansion (for scrolling) if needed
     },
+
+    defaultContainerButton: {
+        alignItems: 'center',
+    },
+    defaultButton: {
+        width: 200,
+    },
+    defaultInput: {
+        borderColor: 'black',
+        borderWidth: 1,
+        borderRadius: 10,
+    },
+
+    defaultLateralMargins: {
+        marginLeft: 40,
+        marginRight: 40,
+    },
 });
 
 export default generalStyles;
