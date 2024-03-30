@@ -48,31 +48,38 @@ const LoginScreen: React.FC = () => {
                     <Image
                         source={require('../../assets/images/logoWithTextNoBackground.png')} 
                         style={stylesLoginScreen.logo}
+                        accessibilityLabel="EasyHome logo"
                     />
                 </View>
 
 
                 <View style={stylesLoginScreen.containerLoginInputs}>
                     <View style={stylesLoginScreen.containerInputUsername}>
-                        <Text>Username:</Text>
+                        <Text accessibilityLabel="Username">Username:</Text>
                         <TextInput
                             style={generalStyles.defaultInput}
                             value={username}
                             onChangeText={text => setUsername(text)}
+                            accessibilityLabel="Input for the username"
                         />
                     </View> 
                     <View style={stylesLoginScreen.containerInputPassword}>
-                        <Text>Password:</Text>
+                        <Text accessibilityLabel='Username'>Password:</Text>
                         <TextInput
                             style={generalStyles.defaultInput}
                             secureTextEntry
                             value={password}
                             onChangeText={text => setPassword(text)}
+                            accessibilityLabel="Input for the password"
                         />
                     </View>
                     <View style={generalStyles.defaultContainerButton}>
                         <View style={generalStyles.defaultButton}> 
-                            <Button title="Login" onPress={handleLoginSubmit}/> 
+                            <Button 
+                                title='Login' 
+                                onPress={handleLoginSubmit} 
+                                accessibilityLabel="Login"
+                            /> 
                         </View>
                     </View>
                 </View>
@@ -81,26 +88,34 @@ const LoginScreen: React.FC = () => {
                 <View style={stylesLoginScreen.containerOtherInfo}>
                     <View style={stylesLoginScreen.containerRegisterAndResetPassword}>
                         <View style={stylesLoginScreen.containerRegister}>
-                            <Text>Don't you have an account? Register now!</Text>
+                            <Text accessibilityLabel="Don't you have an account? Register now!">Don't you have an account? Register now!</Text>
                             <View style={generalStyles.defaultContainerButton}>
                                 <View style={generalStyles.defaultButton}> 
-                                    <Button title="Register" onPress={() => navigation.navigate('Register' as never)} />
+                                    <Button 
+                                        title="Register" 
+                                        onPress={() => navigation.navigate('Register' as never)} 
+                                        accessibilityLabel="Button for redirection to register page"
+                                    />
                                 </View>
                             </View>
                         </View>
                         
                         <View style={stylesLoginScreen.containerResetPassword}>
-                            <Text>Forgot your password?</Text>
+                            <Text accessibilityLabel="Forgot your password?">Forgot your password?</Text>
                             <View style={generalStyles.defaultContainerButton}>
                                 <View style={generalStyles.defaultButton}> 
-                                    <Button title="Reset Password" onPress={() => {}} />
+                                    <Button 
+                                        title="Reset Password" 
+                                        onPress={() => {}} 
+                                        accessibilityLabel="Button for redirection to reset password page"
+                                    />
                                 </View>
                             </View>
                         </View>
                     </View>     
 
                     <View style={stylesLoginScreen.containerVersion}>
-                        <Text> Version: {APP_VERSION} </Text>
+                        <Text accessibilityLabel={"Version: "+ {APP_VERSION}}> Version: {APP_VERSION} </Text>
                     </View>
                 </View>
             </ScrollView>
