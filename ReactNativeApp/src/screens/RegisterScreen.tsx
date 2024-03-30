@@ -67,66 +67,78 @@ const RegisterScreen = () => {
                 <View style={stylesRegisterScreen.containerRegisterInputsAndButton}>
                     <View style={stylesRegisterScreen.containerRegisterInputs}>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>Username:</Text>
+                            <Text accessibilityLabel='Username:'>Username:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 value={username}
                                 onChangeText={setUsername}
+                                accessibilityLabel='Username input field'
                             />
                         </View>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>Email:</Text>
+                            <Text accessibilityLabel='Email:'>Email:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 value={email}
                                 onChangeText={setEmail}
+                                accessibilityLabel='Email input field'
                             />
                         </View>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>Password:</Text>
+                            <Text accessibilityLabel='Password:'>Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 secureTextEntry
                                 value={password}
                                 onChangeText={setPassword}
+                                accessibilityLabel='Password input field'
                             />
                         </View>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>Confirm Password:</Text>
+                            <Text accessibilityLabel='Confirm Password:'>Confirm Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 secureTextEntry
                                 value={confirmPassword}
                                 onChangeText={setConfirmPassword}
+                                accessibilityLabel='Confirm Password input field'
                             />
                         </View>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>First Name (optional):</Text>
+                            <Text accessibilityLabel='First Name (optional):'>First Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 value={firstName}
                                 onChangeText={setFirstName}
+                                accessibilityLabel='First Name input field'
                             />
                         </View>
                         <View style={generalStyles.defaultdefaultContainerTextAndInput}>
-                            <Text>Last Name (optional):</Text>
+                            <Text accessibilityLabel='Last Name (optional):'>Last Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 value={lastName}
                                 onChangeText={setLastName}
+                                accessibilityLabel='Last Name input field'
                             />
                         </View>
                     </View>
                     <View style={generalStyles.defaultContainerButton}>
                         <View style={generalStyles.defaultButton}> 
-                            <Button title="Register" onPress={handleRegisterSubmit} />
+                            <Button 
+                                title="Register" 
+                                onPress={handleRegisterSubmit} 
+                                accessibilityLabel='Register button'
+                            />
                         </View>
                     </View>
                 </View>
 
                 <View style={stylesRegisterScreen.containerOtherInfo}>
                     <View style={stylesRegisterScreen.containerLogin}>
-                        <Text>Do you have an account already? Login instead!</Text>
+                        <Text accessibilityLabel='Do you have an account already? Login instead!'>
+                            Do you have an account already? Login instead!
+                        </Text>
                         <View style={generalStyles.defaultContainerButton}>
                             <View style={generalStyles.defaultButton}> 
                                 <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
@@ -135,7 +147,9 @@ const RegisterScreen = () => {
                     </View> 
 
                     <View style={stylesRegisterScreen.containerResetPassword}>
-                        <Text accessibilityLabel="Forgot your password?">Forgot your password?</Text>
+                        <Text accessibilityLabel="Forgot your password?">
+                            Forgot your password?
+                        </Text>
                         <View style={generalStyles.defaultContainerButton}>
                             <View style={generalStyles.defaultButton}> 
                                 <Button 
