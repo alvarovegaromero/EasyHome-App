@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
 
-const LoginScreen: React.FC = () => {
+const LoginScreen: React.FunctionComponent = () => {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState('');
@@ -29,12 +29,12 @@ const LoginScreen: React.FC = () => {
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            navigation.navigate('Home' as never);
             return response.json();
         })
         .then(data => {
             const token = data.token;
             AsyncStorage.setItem('token', token);
+            navigation.navigate('Home' as never);
         })
         .catch(error => {
             console.error('Error:', error);

@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesRegisterScreen from '../styles/stylesRegisterScreen';
 import generalStyles from '../styles/styles';
 
-const RegisterScreen = () => {
+const RegisterScreen : React.FunctionComponent = () => {
     const navigation = useNavigation();
 
     const [username, setUsername] = useState('');
