@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BASE_URL } from '../config';
 import { useNavigation } from '@react-navigation/native';
 import { Alert, Button, SafeAreaView, ScrollView, Text } from 'react-native';
@@ -38,7 +38,7 @@ const HomeScreen: React.FunctionComponent = () => {
             <ScrollView>
                 <Text> Hola, you're logged in!!!! </Text>
                 <Button title="Logout" onPress={handleLogout} />
-                <Button title="Go to Profile" onPress={() => navigation.navigate('ProfileScreen' as never)} />
+                <Button title="Go to Profile" onPress={() => navigation.navigate('Profile' as never)} />
             </ScrollView>
         </SafeAreaView>
     );
