@@ -56,12 +56,12 @@ const ProfileScreen: React.FunctionComponent = () => {
 
     return (
         <View>
-            <Text>My Profile: </Text>
-            <Text>Username: {username}</Text>
-            <Text>Email: {email}</Text>
-            <Text>First Name: {firstName} </Text>
-            <Text>Last Name: {lastName} </Text>
-            <Button title="Go Back" onPress={handleGoBack} /> 
+            <Text accessibilityLabel='My Profile:'>My Profile: </Text>
+            <Text accessibilityLabel={`Username: ${username}`}>Username: {username}</Text>
+            <Text accessibilityLabel={`Email: ${email}`}>Email: {email}</Text>
+            <Text accessibilityLabel={`First name: ${firstName}`}>First Name: {firstName} </Text>
+            <Text accessibilityLabel={`Last name: ${lastName}`}>Last Name: {lastName} </Text>
+            <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
         </View>
     );
 };
