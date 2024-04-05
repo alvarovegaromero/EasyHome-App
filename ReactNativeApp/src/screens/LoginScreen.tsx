@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Alert, Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
 
+export type RootStackParamList = {
+    Home: { username: string };
+};
+
 const LoginScreen: React.FunctionComponent = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -32,9 +37,11 @@ const LoginScreen: React.FunctionComponent = () => {
             return response.json();
         })
         .then(data => {
-            const token = data.token;
+            const { token, username }: { token: string; username: string } = data; 
+           
             AsyncStorage.setItem('token', token);
-            navigation.navigate('Home' as never);
+
+            navigation.navigate('Home', { username }); 
         })
         .catch(error => {
             console.error('Error:', error);
