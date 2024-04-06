@@ -66,7 +66,7 @@ const RegisterScreen : React.FunctionComponent = () => {
             <ScrollView style={generalStyles.defaultScrollView}>
                 <View style={stylesRegisterScreen.containerRegisterInputsAndButton}>
                     <View style={stylesRegisterScreen.containerRegisterInputs}>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Username:'>Username:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -75,7 +75,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 accessibilityLabel='Username input field'
                             />
                         </View>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Email:'>Email:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -84,7 +84,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 accessibilityLabel='Email input field'
                             />
                         </View>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Password:'>Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -94,7 +94,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 accessibilityLabel='Password input field'
                             />
                         </View>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Confirm Password:'>Confirm Password:</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -104,7 +104,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 accessibilityLabel='Confirm Password input field'
                             />
                         </View>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='First Name (optional):'>First Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
@@ -113,7 +113,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 accessibilityLabel='First Name input field'
                             />
                         </View>
-                        <View style={generalStyles.defaultdefaultContainerTextAndInput}>
+                        <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Last Name (optional):'>Last Name (optional):</Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
