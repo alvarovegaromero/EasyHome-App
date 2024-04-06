@@ -6,11 +6,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import generalStyles from '../styles/styles';
 import stylesProfileScreen from '../styles/stylesProfileScreens';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { EditProfileStackParamList  } from '../components/types';
+import { EditProfileStackParamList, HomeStackParamList  } from '../components/types';
 
 const ProfileScreen: React.FunctionComponent = () => {
     const navigation = useNavigation<StackNavigationProp<EditProfileStackParamList>>();
-    
+    const navigation_back = useNavigation<StackNavigationProp<HomeStackParamList>>();
+
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [firstName, setFirstName] = useState<string>('');
@@ -54,7 +55,7 @@ const ProfileScreen: React.FunctionComponent = () => {
     }, [navigation]);
 
     const handleGoBack = () => {
-        navigation.goBack();
+        navigation_back.navigate('HomeScreen', { username }); // send the name because it could have been changed        
     };
 
     return (
