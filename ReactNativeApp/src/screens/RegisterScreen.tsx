@@ -154,7 +154,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                             <View style={generalStyles.defaultButton}> 
                                 <Button 
                                     title="Reset Password" 
-                                    onPress={() => {}} 
+                                    onPress={() => navigation.navigate('ResetPasswordScreen' as never)} 
                                     accessibilityLabel="Button for redirection to reset password page"
                                 />
                             </View>
