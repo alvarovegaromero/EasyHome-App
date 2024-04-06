@@ -23,6 +23,14 @@ const stylesProfileScreen = StyleSheet.create({
         marginTop: 20,
     },
 
+    containerGoBackButton: {
+        marginTop: 20,
+    },
+
+    containerEditProfileButton: {
+        marginTop: 20,
+    },
+
 });
 
 export default stylesProfileScreen;
