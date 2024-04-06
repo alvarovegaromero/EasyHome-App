@@ -68,7 +68,7 @@ const LoginScreen: React.FunctionComponent = () => {
                         />
                     </View> 
                     <View style={stylesLoginScreen.containerInputPassword}>
-                        <Text accessibilityLabel='Username'>Password:</Text>
+                        <Text accessibilityLabel='Password'>Password:</Text>
                         <TextInput
                             style={generalStyles.defaultInput}
                             secureTextEntry
