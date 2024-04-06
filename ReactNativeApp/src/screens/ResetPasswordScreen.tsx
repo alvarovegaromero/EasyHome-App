@@ -28,7 +28,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            navigation.navigate('LoginScreen' as never); 
+            Alert.alert('Success', 'Reset password request sent successfully');
             return response.json();
         })
         .catch(error => {
