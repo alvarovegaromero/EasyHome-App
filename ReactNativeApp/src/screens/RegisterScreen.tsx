@@ -49,7 +49,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            navigation.navigate('Home' as never);
+            navigation.navigate('HomeScreen' as never);
             return response.json();
         })
         .then(data => {
@@ -141,7 +141,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         </Text>
                         <View style={generalStyles.defaultContainerButton}>
                             <View style={generalStyles.defaultButton}> 
-                                <Button title="Login" onPress={() => navigation.navigate('Login' as never)} />
+                                <Button title="Login" onPress={() => navigation.navigate('LoginScreen' as never)} />
                             </View>
                         </View>
                     </View> 

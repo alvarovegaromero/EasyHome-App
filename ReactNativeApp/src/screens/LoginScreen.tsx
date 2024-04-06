@@ -6,9 +6,10 @@ import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
+import { MyStackParamList } from '../components/types';
 
 export type RootStackParamList = {
-    Home: { username: string };
+    HomeScreen: { username: string };
 };
 
 const LoginScreen: React.FunctionComponent = () => {
@@ -41,7 +42,7 @@ const LoginScreen: React.FunctionComponent = () => {
            
             AsyncStorage.setItem('token', token);
 
-            navigation.navigate('Home', { username }); 
+            navigation.navigate('HomeScreen', { username }); 
         })
         .catch(error => {
             console.error('Error:', error);
@@ -100,7 +101,7 @@ const LoginScreen: React.FunctionComponent = () => {
                                 <View style={generalStyles.defaultButton}> 
                                     <Button 
                                         title="Register" 
-                                        onPress={() => navigation.navigate('Register' as never)} 
+                                        onPress={() => navigation.navigate('RegisterScreen' as never)} 
                                         accessibilityLabel="Button for redirection to register page"
                                     />
                                 </View>

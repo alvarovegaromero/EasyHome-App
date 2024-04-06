@@ -28,7 +28,7 @@ const HomeScreen: React.FunctionComponent<Props> = ({navigation, route}: StackSc
 
             if (response.ok) {
                 await AsyncStorage.removeItem('token');
-                navigation.navigate('Login' as never);
+                navigation.navigate('LoginScreen' as never);
             } else {
                 return response.json().then(({ error }) => {
                     Alert.alert(`Error ${response.status}`, error);
@@ -45,7 +45,7 @@ const HomeScreen: React.FunctionComponent<Props> = ({navigation, route}: StackSc
             <ScrollView>
                 <Text> Hola {username}, you're logged in!!!! </Text>
                 <Button title="Logout" onPress={handleLogout} />
-                <Button title="Go to Profile" onPress={() => navigation.navigate('Profile' as never)} />
+                <Button title="Go to Profile" onPress={() => navigation.navigate('ProfileScreen' as never)} />
             </ScrollView>
         </SafeAreaView>
     );
