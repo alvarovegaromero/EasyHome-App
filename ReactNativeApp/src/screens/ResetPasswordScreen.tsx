@@ -1,8 +1,9 @@
-import { Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { Alert, Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
 import stylesResetPasswordScreen from "../styles/stylesResetPasswordScreen"; //reuse styles from login screen
 import generalStyles from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { BASE_URL } from "../config";
 
 
 const ResetPasswordScreen: React.FunctionComponent = () => {
@@ -11,7 +12,28 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
     const [email, setEmail] = useState('');
 
     const handleResetPasswordSubmit = (event: GestureResponderEvent) => { 
+        event.preventDefault();
 
+        fetch(BASE_URL+'/api/users/reset-password', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert(`Error ${response.status}`, error);
+                    throw new Error(`${response.status} - ${error}`, );
+                });
+            }
+            navigation.navigate('LoginScreen' as never); 
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     return (
