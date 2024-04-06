@@ -25,7 +25,7 @@ const generalStyles = StyleSheet.create({
         marginRight: 40,
     },
 
-    defaultdefaultContainerTextAndInput: {
+    defaultContainerTextAndInput: {
         marginBottom: 10,
     },
 });
