@@ -5,9 +5,14 @@ import { BASE_URL } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesRegisterScreen from '../styles/stylesRegisterScreen';
 import generalStyles from '../styles/styles';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+export type RootStackParamList = {
+    HomeScreen: { username: string };
+};
 
 const RegisterScreen : React.FunctionComponent = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -49,12 +54,14 @@ const RegisterScreen : React.FunctionComponent = () => {
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            navigation.navigate('HomeScreen' as never);
             return response.json();
         })
         .then(data => {
-            const token = data.token;
+            const { token, username }: { token: string; username: string } = data; 
+           
             AsyncStorage.setItem('token', token);
+
+            navigation.navigate('HomeScreen', { username }); 
         })
         .catch(error => {
             console.error('Error:', error);
