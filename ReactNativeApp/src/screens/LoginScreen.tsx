@@ -6,13 +6,10 @@ import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
-
-export type RootStackParamList = {
-    HomeScreen: { username: string };
-};
+import { HomeStackParamList  } from '../components/types';
 
 const LoginScreen: React.FunctionComponent = () => {
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

@@ -6,13 +6,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesRegisterScreen from '../styles/stylesRegisterScreen';
 import generalStyles from '../styles/styles';
 import { StackNavigationProp } from '@react-navigation/stack';
-
-export type RootStackParamList = {
-    HomeScreen: { username: string };
-};
+import { HomeStackParamList  } from '../components/types';
 
 const RegisterScreen : React.FunctionComponent = () => {
-    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

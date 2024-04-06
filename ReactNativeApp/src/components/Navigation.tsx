@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { MyStackParamList } from './types';
+import { MyStackParamsList } from './types';
 
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -8,7 +8,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
-const Stack = createNativeStackNavigator<MyStackParamList>()
+const Stack = createNativeStackNavigator<MyStackParamsList>()
 
 const AuthStack = () => {
   return (
