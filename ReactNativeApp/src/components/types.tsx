@@ -1,0 +1,1 @@
+export type MyStackParamList = { LoginScreen: undefined, RegisterScreen: undefined, HomeScreen: { username: string }, ProfileScreen: undefined }

@@ -5,15 +5,13 @@ import { Alert, Button, SafeAreaView, ScrollView, Text } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RootStackParamList } from './LoginScreen';
+import { StackScreenProps } from '@react-navigation/stack';
 
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+import { MyStackParamList } from '../components/types';
 
-type Props = {
-    route: ProfileScreenRouteProp;
-};
+type Props = StackScreenProps<MyStackParamList, 'HomeScreen'>;
 
-const HomeScreen: React.FunctionComponent<Props> = ({route}) => {
-    const navigation = useNavigation();
+const HomeScreen: React.FunctionComponent<Props> = ({navigation, route}: StackScreenProps<MyStackParamList, 'HomeScreen'>) => {
     const username = route.params.username;
 
     const handleLogout = async () => {
