@@ -9,4 +9,5 @@ export type MyStackParamsList = {
     ResetPasswordScreen: undefined; 
     HomeScreen: HomeStackParamList['HomeScreen']; 
     ProfileScreen: undefined;
+    EditProfileScreen : undefined;
 }

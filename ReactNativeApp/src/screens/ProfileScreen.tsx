@@ -68,6 +68,7 @@ const ProfileScreen: React.FunctionComponent = () => {
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
                     <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
+                    <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen' as never)}} /> 
                 </View>
             </ScrollView>
         </SafeAreaView>
