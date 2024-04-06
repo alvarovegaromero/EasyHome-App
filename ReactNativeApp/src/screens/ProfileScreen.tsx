@@ -16,35 +16,42 @@ const ProfileScreen: React.FunctionComponent = () => {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const token = await AsyncStorage.getItem('token');
+    const fetchProfileData = async () => {
+        try {
+          const token = await AsyncStorage.getItem('token');
+    
+          const response = await fetch(BASE_URL + '/api/users/profile', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Token ${token}`,
+            },
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            setUsername(data.username);
+            setEmail(data.email);
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+          } else {
+            return response.json().then(({ error }) => {
+              Alert.alert(`Error ${response.status}`, error);
+              throw new Error(`${response.status} - ${error}`, );
+            });
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+    };
 
-                const response = await fetch(BASE_URL + '/api/users/profile', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Token ${token}`,
-                    },
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setUsername(data.username);
-                    setEmail(data.email);
-                    setFirstName(data.firstName);
-                    setLastName(data.lastName);
-                } else {
-                    return response.json().then(({ error }) => {
-                        Alert.alert(`Error ${response.status}`, error);
-                        throw new Error(`${response.status} - ${error}`, );
-                    });
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        })();
-    }, []);
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            fetchProfileData(); 
+        });
+    
+        return unsubscribe;
+    }, [navigation]);
 
     const handleGoBack = () => {
         navigation.goBack();
