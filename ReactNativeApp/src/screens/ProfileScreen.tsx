@@ -5,9 +5,11 @@ import { BASE_URL } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import generalStyles from '../styles/styles';
 import stylesProfileScreen from '../styles/stylesProfileScreens';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { EditProfileStackParamList  } from '../components/types';
 
 const ProfileScreen: React.FunctionComponent = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<EditProfileStackParamList>>();
     
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -70,7 +72,7 @@ const ProfileScreen: React.FunctionComponent = () => {
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
                     <View style={stylesProfileScreen.containerEditProfileButton}>
-                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen' as never)}} /> 
+                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen', { username, email, firstName, lastName })}} /> 
                     </View>
                     <View style={stylesProfileScreen.containerGoBackButton}>
                         <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
