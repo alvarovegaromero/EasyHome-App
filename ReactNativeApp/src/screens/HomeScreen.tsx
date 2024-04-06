@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BASE_URL } from '../config';
-import { useNavigation } from '@react-navigation/native';
 import { Alert, Button, SafeAreaView, ScrollView, Text } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RootStackParamList } from './LoginScreen';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { MyStackParamList } from '../components/types';

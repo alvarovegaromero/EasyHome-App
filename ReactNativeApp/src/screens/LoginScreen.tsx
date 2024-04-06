@@ -6,7 +6,6 @@ import { BASE_URL, APP_VERSION } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import stylesLoginScreen from '../styles/stylesLoginScreen';
 import generalStyles from '../styles/styles';
-import { MyStackParamList } from '../components/types';
 
 export type RootStackParamList = {
     HomeScreen: { username: string };
