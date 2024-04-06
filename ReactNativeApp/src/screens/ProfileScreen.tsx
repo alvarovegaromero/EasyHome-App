@@ -4,7 +4,7 @@ import { Alert, View, Text, Button, SafeAreaView, ScrollView } from 'react-nativ
 import { BASE_URL } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import generalStyles from '../styles/styles';
-import stylesProfileScreen from '../styles/stylesProfileScreen';
+import stylesProfileScreen from '../styles/stylesProfileScreens';
 
 const ProfileScreen: React.FunctionComponent = () => {
     const navigation = useNavigation();
@@ -30,16 +30,8 @@ const ProfileScreen: React.FunctionComponent = () => {
                     const data = await response.json();
                     setUsername(data.username);
                     setEmail(data.email);
-
-                    if(data.firstName == "") 
-                        setFirstName("No first name provided");
-                    else
-                        setFirstName(data.firstName);
-
-                    if(data.lastName == "")
-                        setLastName("No last name provided");   
-                    else
-                        setLastName(data.lastName);
+                    setFirstName(data.firstName);
+                    setLastName(data.lastName);
                 } else {
                     return response.json().then(({ error }) => {
                         Alert.alert(`Error ${response.status}`, error);
@@ -63,12 +55,26 @@ const ProfileScreen: React.FunctionComponent = () => {
                     <Text accessibilityLabel='My Profile:' style={stylesProfileScreen.headerMyProfile}>My Profile: </Text>
                     <Text accessibilityLabel={`Username: ${username}`} style={stylesProfileScreen.textsMyProfile}>Username: {username}</Text>
                     <Text accessibilityLabel={`Email: ${email}`} style={stylesProfileScreen.textsMyProfile}>Email: {email}</Text>
-                    <Text accessibilityLabel={`First name: ${firstName}`} style={stylesProfileScreen.textsMyProfile}>First Name: {firstName} </Text>
-                    <Text accessibilityLabel={`Last name: ${lastName}`} style={stylesProfileScreen.textsMyProfile}>Last Name: {lastName} </Text>
+                    <Text
+                        accessibilityLabel={`First name: ${firstName ? firstName : 'No name provided'}`}
+                        style={stylesProfileScreen.textsMyProfile}
+                    >
+                        First Name: {firstName ? firstName : <Text style={{ color: '#FF9999' }}>No name provided</Text>}
+                    </Text>                    
+                    <Text
+                    accessibilityLabel={`Last name: ${lastName ? lastName : 'No last name provided'}`}
+                    style={stylesProfileScreen.textsMyProfile}
+                    >
+                    Last Name: {lastName ? lastName : <Text style={{ color: '#FF9999' }}>No last name provided</Text>}
+                    </Text>                
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
-                    <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
-                    <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen' as never)}} /> 
+                    <View style={stylesProfileScreen.containerEditProfileButton}>
+                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen' as never)}} /> 
+                    </View>
+                    <View style={stylesProfileScreen.containerGoBackButton}>
+                        <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
