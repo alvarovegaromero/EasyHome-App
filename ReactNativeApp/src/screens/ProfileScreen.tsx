@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
-import { Alert, View, Text, Button } from 'react-native';
+import { Alert, View, Text, Button, SafeAreaView, ScrollView } from 'react-native';
 import { BASE_URL } from '../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import generalStyles from '../styles/styles';
+import stylesProfileScreen from '../styles/stylesProfileScreen';
 
 const ProfileScreen: React.FunctionComponent = () => {
     const navigation = useNavigation();
@@ -55,14 +57,20 @@ const ProfileScreen: React.FunctionComponent = () => {
     };
 
     return (
-        <View>
-            <Text accessibilityLabel='My Profile:'>My Profile: </Text>
-            <Text accessibilityLabel={`Username: ${username}`}>Username: {username}</Text>
-            <Text accessibilityLabel={`Email: ${email}`}>Email: {email}</Text>
-            <Text accessibilityLabel={`First name: ${firstName}`}>First Name: {firstName} </Text>
-            <Text accessibilityLabel={`Last name: ${lastName}`}>Last Name: {lastName} </Text>
-            <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
-        </View>
+        <SafeAreaView style={generalStyles.defaultSafeAreaView}>
+            <ScrollView style={generalStyles.defaultScrollView}>
+                <View style={stylesProfileScreen.containerProfile}>
+                    <Text accessibilityLabel='My Profile:' style={stylesProfileScreen.headerMyProfile}>My Profile: </Text>
+                    <Text accessibilityLabel={`Username: ${username}`} style={stylesProfileScreen.textsMyProfile}>Username: {username}</Text>
+                    <Text accessibilityLabel={`Email: ${email}`} style={stylesProfileScreen.textsMyProfile}>Email: {email}</Text>
+                    <Text accessibilityLabel={`First name: ${firstName}`} style={stylesProfileScreen.textsMyProfile}>First Name: {firstName} </Text>
+                    <Text accessibilityLabel={`Last name: ${lastName}`} style={stylesProfileScreen.textsMyProfile}>Last Name: {lastName} </Text>
+                </View>
+                <View style={stylesProfileScreen.containerButtonsProfile}>
+                    <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 };
 
