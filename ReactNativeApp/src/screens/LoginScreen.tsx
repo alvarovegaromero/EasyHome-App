@@ -17,6 +17,11 @@ const LoginScreen: React.FunctionComponent = () => {
     const handleLoginSubmit = (event: GestureResponderEvent) => { 
         event.preventDefault();
 
+        if (username === '' || password === '') {
+            Alert.alert('Error', 'Username and password must be filled');
+            return;
+        }
+
         fetch(BASE_URL+'/api/users/login', { 
             method: 'POST',
             headers: {
@@ -27,7 +32,7 @@ const LoginScreen: React.FunctionComponent = () => {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
