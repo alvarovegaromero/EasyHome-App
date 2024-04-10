@@ -70,6 +70,7 @@ const LoginScreen: React.FunctionComponent = () => {
                             value={username}
                             onChangeText={text => setUsername(text)}
                             accessibilityLabel="Input for the username"
+                            autoCapitalize="none"
                         />
                     </View> 
                     <View style={stylesLoginScreen.containerInputPassword}>
@@ -80,6 +81,7 @@ const LoginScreen: React.FunctionComponent = () => {
                             value={password}
                             onChangeText={text => setPassword(text)}
                             accessibilityLabel="Input for the password"
+                            autoCapitalize='none'
                         />
                     </View>
                     <View style={generalStyles.defaultContainerButton}>
