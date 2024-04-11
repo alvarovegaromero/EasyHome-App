@@ -19,7 +19,8 @@ const LoginScreen: React.FunctionComponent = () => {
 
         if (username === '' || password === '') {
             Alert.alert('Error', 'Username and password must be filled');
-            throw new Error('Login Failed - Username and password must be filled');
+            console.error('Login Failed - Username and password must be filled');
+            return;
         }
 
         fetch(BASE_URL+'/api/users/login', { 

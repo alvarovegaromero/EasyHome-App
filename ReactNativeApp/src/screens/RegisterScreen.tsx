@@ -24,11 +24,13 @@ const RegisterScreen : React.FunctionComponent = () => {
         //Validations:
         if (username === '' || password === '' || email === '' || confirmPassword === '') {
             Alert.alert('Error', 'Username, email, password and confirmation password must be filled');
-            throw new Error('Register Failed - Username, email password must be filled');
+            console.error('Register Failed - Username, email, password and confirmation password must be filled');
+            return;
         }
         if (password !== confirmPassword) {
             Alert.alert('Error', 'Passwords do not match. Please enter matching passwords.');
-            throw new Error('Register Failed - Passwords do not match');
+            console.error('Register Failed - Passwords do not match')
+            return;
         }
 
         //Request:
