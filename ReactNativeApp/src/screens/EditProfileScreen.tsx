@@ -17,6 +17,13 @@ const EditProfileScreen: React.FunctionComponent<props> = ({navigation, route}: 
     const [lastName, setLastName] = useState<string>(route.params.lastName);
 
     const handleEditProfileSubmit = async (event: GestureResponderEvent) => {
+
+        if (username === '' || email === '') {
+            Alert.alert('Error', 'Username and email must be filled');
+            console.error('Edit profile Failed - Username and email must be filled');
+            return;
+        }
+
         const token = await AsyncStorage.getItem('token');
 
         fetch(BASE_URL+'/api/users/profile', { 
@@ -30,7 +37,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({navigation, route}: 
         .then(response => {
             if (!response.ok) {
                 return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
