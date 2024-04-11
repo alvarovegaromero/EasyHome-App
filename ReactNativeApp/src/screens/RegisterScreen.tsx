@@ -22,9 +22,13 @@ const RegisterScreen : React.FunctionComponent = () => {
         event.preventDefault();
 
         //Validations:
+        if (username === '' || password === '' || email === '' || confirmPassword === '') {
+            Alert.alert('Error', 'Username, email, password and confirmation password must be filled');
+            throw new Error('Register Failed - Username, email password must be filled');
+        }
         if (password !== confirmPassword) {
-            Alert.alert('Password mismatch', 'Passwords do not match. Please enter matching passwords.');
-            throw new Error('Register failed');
+            Alert.alert('Error', 'Passwords do not match. Please enter matching passwords.');
+            throw new Error('Register Failed - Passwords do not match');
         }
 
         //Request:
@@ -47,7 +51,7 @@ const RegisterScreen : React.FunctionComponent = () => {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
