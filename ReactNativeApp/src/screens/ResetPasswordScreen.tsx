@@ -1,41 +1,11 @@
-import { Alert, Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { Button, Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
 import stylesResetPasswordScreen from "../styles/stylesResetPasswordScreen"; //reuse styles from login screen
 import generalStyles from "../styles/styles";
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
-import { BASE_URL } from "../config";
-
+import useResetPasswordController from "./hooks/useResetPasswordController";
 
 const ResetPasswordScreen: React.FunctionComponent = () => {
-    const navigation = useNavigation();
-
-    const [email, setEmail] = useState('');
-
-    const handleResetPasswordSubmit = (event: GestureResponderEvent) => { 
-        event.preventDefault();
-
-        fetch(BASE_URL+'/api/users/reset-password', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-            Alert.alert('Success', 'Reset password request sent successfully');
-            return response.json();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
-
+    const { email, setEmail, handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen } = useResetPasswordController();
+    
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
@@ -82,7 +52,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                                 <View style={generalStyles.defaultButton}> 
                                     <Button 
                                         title="Login" 
-                                        onPress={() => navigation.navigate('LoginScreen' as never)} 
+                                        onPress={navigateLoginScreen} 
                                         accessibilityLabel="Button for redirection to login page"
                                     />
                                 </View>
@@ -95,7 +65,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                                 <View style={generalStyles.defaultButton}> 
                                     <Button 
                                         title="Register" 
-                                        onPress={() => navigation.navigate('RegisterScreen' as never)} 
+                                        onPress={navigateRegisterScreen} 
                                         accessibilityLabel="Button for redirection to register page"
                                     />
                                 </View>
