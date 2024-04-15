@@ -1,62 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
-import { Alert, View, Text, Button, SafeAreaView, ScrollView } from 'react-native';
-import { BASE_URL } from '../config';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { View, Text, Button, SafeAreaView, ScrollView } from 'react-native';
 import generalStyles from '../styles/styles';
 import stylesProfileScreen from '../styles/stylesProfileScreens';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { EditProfileStackParamList, HomeStackParamList  } from '../components/types';
+import useProfileController from './hooks/useProfileController';
 
 const ProfileScreen: React.FunctionComponent = () => {
-    const navigation = useNavigation<StackNavigationProp<EditProfileStackParamList>>();
-    const navigation_back = useNavigation<StackNavigationProp<HomeStackParamList>>();
-
-    const [username, setUsername] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [firstName, setFirstName] = useState<string>('');
-    const [lastName, setLastName] = useState<string>('');
-
-    const fetchProfileData = async () => {
-        try {
-          const token = await AsyncStorage.getItem('token');
-    
-          const response = await fetch(BASE_URL + '/api/users/profile', {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-                },
-            });
-        
-            if (response.ok) {
-                const data = await response.json();
-                setUsername(data.username);
-                setEmail(data.email);
-                setFirstName(data.firstName);
-                setLastName(data.lastName);
-            } else {
-                return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-    useEffect(() => { 
-        const unsubscribe = navigation.addListener('focus', () => { // fetch Data everytime the screen is focused
-            fetchProfileData(); 
-        });
-    
-        return unsubscribe;
-    }, [navigation]);
-
-    const handleGoBack = () => {
-        navigation_back.navigate('HomeScreen', { username }); // send the name because it could have been changed        
-    };
+    const { username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen } = useProfileController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -80,7 +29,7 @@ const ProfileScreen: React.FunctionComponent = () => {
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
                     <View style={stylesProfileScreen.containerEditProfileButton}>
-                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={() => {navigation.navigate('EditProfileScreen', { username, email, firstName, lastName })}} /> 
+                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={navigateEditProfileScreen} /> 
                     </View>
                     <View style={stylesProfileScreen.containerGoBackButton}>
                         <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
