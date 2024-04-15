@@ -1,58 +1,15 @@
-import { useNavigation } from "@react-navigation/native";
-import { Alert, Button, GestureResponderEvent, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
+import { Button, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
 import generalStyles from "../styles/styles";
 import stylesProfileScreen from "../styles/stylesProfileScreens";
 import { StackScreenProps } from "@react-navigation/stack";
 import { MyStackParamsList } from "../components/types";
-import { BASE_URL } from "../config";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
+import useEditProfileController from "./hooks/useEditProfileController";
 
 type props = StackScreenProps<MyStackParamsList, 'EditProfileScreen'>;
 
-const EditProfileScreen: React.FunctionComponent<props> = ({navigation, route}: props) => {
-    const [username, setUsername] = useState<string>(route.params.username);
-    const [email, setEmail] = useState<string>(route.params.email);
-    const [firstName, setFirstName] = useState<string>(route.params.firstName);
-    const [lastName, setLastName] = useState<string>(route.params.lastName);
+const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
 
-    const handleEditProfileSubmit = async (event: GestureResponderEvent) => {
-
-        if (username === '' || email === '') {
-            Alert.alert('Error', 'Username and email must be filled');
-            console.error('Edit profile Failed - Username and email must be filled');
-            return;
-        }
-
-        const token = await AsyncStorage.getItem('token');
-
-        fetch(BASE_URL+'/api/users/profile', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-            },
-            body: JSON.stringify({ username, email, firstName, lastName}),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-            navigation.navigate('ProfileScreen' as never); 
-            return response.json();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
-
-    const handleGoBack = () => {
-        navigation.goBack();
-    };
-
+    const { username, setUsername, email, setEmail, firstName, setFirstName, lastName, setLastName, handleEditProfileSubmit, handleGoBack } = useEditProfileController(route.params.username, route.params.email, route.params.firstName, route.params.lastName);
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView style={generalStyles.defaultScrollView}>
