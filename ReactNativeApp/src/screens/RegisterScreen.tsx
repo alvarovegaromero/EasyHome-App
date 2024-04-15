@@ -1,75 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { View, TextInput, Button, SafeAreaView, ScrollView, Text, GestureResponderEvent, Alert } from 'react-native';
-import { BASE_URL } from '../config';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { View, TextInput, Button, SafeAreaView, ScrollView, Text } from 'react-native';
 import stylesRegisterScreen from '../styles/stylesRegisterScreen';
 import generalStyles from '../styles/styles';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList  } from '../components/types';
+import useRegisterController from './hooks/useRegisterController';
 
 const RegisterScreen : React.FunctionComponent = () => {
-    const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
-
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-
-    const handleRegisterSubmit = (event: GestureResponderEvent) => { 
-        event.preventDefault();
-
-        //Validations:
-        if (username === '' || password === '' || email === '' || confirmPassword === '') {
-            Alert.alert('Error', 'Username, email, password and confirmation password must be filled');
-            console.error('Register Failed - Username, email, password and confirmation password must be filled');
-            return;
-        }
-        if (password !== confirmPassword) {
-            Alert.alert('Error', 'Passwords do not match. Please enter matching passwords.');
-            console.error('Register Failed - Passwords do not match')
-            return;
-        }
-
-        //Request:
-        const requestData = {
-            username,
-            email,
-            password,
-            confirmPassword,
-            firstName: firstName || undefined,
-            lastName: lastName || undefined,
-        };
-
-        fetch(BASE_URL+'/api/users/register', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            const { token, username }: { token: string; username: string } = data; 
-           
-            AsyncStorage.setItem('token', token);
-
-            navigation.navigate('HomeScreen', { username }); 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
+    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen } = useRegisterController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -151,7 +87,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         </Text>
                         <View style={generalStyles.defaultContainerButton}>
                             <View style={generalStyles.defaultButton}> 
-                                <Button title="Login" onPress={() => navigation.navigate('LoginScreen' as never)} />
+                                <Button title="Login" onPress={navigateLoginScreen} />
                             </View>
                         </View>
                     </View> 
@@ -164,7 +100,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                             <View style={generalStyles.defaultButton}> 
                                 <Button 
                                     title="Reset Password" 
-                                    onPress={() => navigation.navigate('ResetPasswordScreen' as never)} 
+                                    onPress={navigateResetPasswordScreen} 
                                     accessibilityLabel="Button for redirection to reset password page"
                                 />
                             </View>
