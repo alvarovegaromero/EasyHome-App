@@ -18,7 +18,6 @@ const TestComponent = () => {
     );
 };
 
-
 const renderTestComponent = () => {
     return render(
         <NavigationContainer>
