@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { BASE_URL } from '../../config';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
-    setItem: jest.fn(() => Promise.resolve()),
+    setItem: jest.fn(),
 }));
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
@@ -13,13 +13,16 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
 }));
 
 const TestComponent = () => {
-    const { username, setUsername, password, setPassword, handleLoginSubmit } = useLoginController();
+    const { username, setUsername, password, setPassword, handleLoginSubmit, navigateRegisterScreen, navigateResetPasswordScreen } = useLoginController();
 
     return (
         <View>
             <TextInput testID="usernameInput" value={username} onChangeText={setUsername} />
             <TextInput testID="passwordInput" value={password} onChangeText={setPassword} />
             <Button testID="submitButton" onPress={handleLoginSubmit} title="Submit" />
+            <Button testID="registerButton" onPress={navigateRegisterScreen} title="Register" />
+            <Button testID="resetPasswordButton" onPress={navigateResetPasswordScreen
+            } title="Reset Password" />
         </View>
     );
 };
@@ -91,5 +94,28 @@ describe('useLoginController', () => {
                 body: JSON.stringify({ username: 'newUsername', password: 'newPassword' }),
             })
         );
+    });
+
+    it('should display alert when response is not ok', async () => {
+        const errorResponse = {
+            ok: false,
+            status: 400,
+            json: jest.fn().mockResolvedValue({ error: 'Invalid credentials' }),
+        };
+    
+        global.fetch = jest.fn().mockResolvedValue(errorResponse);
+    
+        const alertSpy = jest.spyOn(Alert, 'alert');
+    
+        const { getByTestId } = renderTestComponent();
+    
+        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
+        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
+    
+        await act(async () => {
+            fireEvent.press(getByTestId('submitButton'));
+        });
+    
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
     });
 });
