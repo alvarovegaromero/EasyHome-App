@@ -2,6 +2,7 @@ import { render, fireEvent, act } from '@testing-library/react-native';
 import useLoginController from './useLoginController';
 import { Alert, Button, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { BASE_URL } from '../../config';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     setItem: jest.fn(() => Promise.resolve()),
@@ -51,25 +52,35 @@ describe('useLoginController', () => {
 
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Username and password must be filled');
     });
-    /*
 
     it('should handle login submit with valid username and password', async () => {
-        global.fetch = jest.fn(() =>
+          global.fetch = jest.fn().mockImplementation(() => // mock fetch
             Promise.resolve({
                 ok: true,
                 json: () => Promise.resolve({ token: 'dummy_token', username: 'newUsername' }),
+                headers: new Headers(), // Needed for the fetch but not "used". Follow response's interface
+                status: 200,
+                statusText: 'OK',
+                type: 'basic',
+                clone: jest.fn(),
+                body: null,
+                bodyUsed: false,
+                arrayBuffer: jest.fn(),
+                blob: jest.fn(),
+                formData: jest.fn(),
+                text: jest.fn()
             })
         );
-
+    
         const { getByTestId } = renderTestComponent();
-
+    
         fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
         fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-
+    
         await act(async () => {
             fireEvent.press(getByTestId('submitButton'));
         });
-
+    
         expect(fetch).toHaveBeenCalledWith(
             `${BASE_URL}/api/users/login`,
             expect.objectContaining({
@@ -81,5 +92,4 @@ describe('useLoginController', () => {
             })
         );
     });
-    */
 });
