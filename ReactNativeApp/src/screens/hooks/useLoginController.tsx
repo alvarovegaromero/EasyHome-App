@@ -13,7 +13,7 @@ const useLoginController = () => {
     const [password, setPassword] = useState('');
 
     const handleLoginSubmit = (event: GestureResponderEvent) => { 
-        event.preventDefault();
+       // event.preventDefault();
 
         if (username === '' || password === '') {
             Alert.alert('Error', 'Username and password must be filled');
