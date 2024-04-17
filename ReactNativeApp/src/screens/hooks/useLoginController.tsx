@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, Button, GestureResponderEvent, Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
+import { Alert, GestureResponderEvent } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BASE_URL } from '../../config';
