@@ -24,9 +24,10 @@ const useResetPasswordController = () => {
                     Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
+            } else {
+                Alert.alert('Success', 'Reset password request sent successfully');
+                return response.json();
             }
-            Alert.alert('Success', 'Reset password request sent successfully');
-            return response.json();
         })
         .catch(error => {
             console.error('Error:', error);
