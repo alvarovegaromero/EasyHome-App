@@ -3,7 +3,6 @@ import useEditProfileController from './useEditProfileController';
 import { Button, TextInput, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-// Mock AsyncStorage
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn()
 }));
@@ -19,14 +18,18 @@ const TestComponent = () => {
     );
 };
 
+
+const renderTestComponent = () => {
+    return render(
+        <NavigationContainer>
+            <TestComponent/>
+        </NavigationContainer>
+    );
+};
+
 describe('useEditProfileController', () => {
     it('should update username state', () => {
-        const { getByTestId } = render(
-            <NavigationContainer>
-                <TestComponent/>
-            </NavigationContainer>
-        );
-
+        const { getByTestId } = renderTestComponent();
         fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
 
         expect(getByTestId('usernameInput').props.value).toBe('newUsername');
