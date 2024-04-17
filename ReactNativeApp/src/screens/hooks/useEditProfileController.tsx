@@ -37,8 +37,10 @@ const useEditProfileController = (initialUsername: string, initialEmail: string,
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            navigation.navigate('ProfileScreen' as never); 
-            return response.json();
+            else{
+                navigation.navigate('ProfileScreen' as never); 
+                return response.json();
+            }
         })
         .catch(error => {
             console.error('Error:', error);

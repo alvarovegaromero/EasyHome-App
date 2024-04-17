@@ -43,7 +43,7 @@ const useProfileController = () => {
                 setLastName(data.lastName);
             } else {
                 return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }

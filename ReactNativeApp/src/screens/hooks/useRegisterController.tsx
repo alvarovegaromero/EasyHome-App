@@ -55,7 +55,8 @@ const useRegisterController = () => {
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
-            return response.json();
+            else
+                return response.json();
         })
         .then(data => {
             const { token, username }: { token: string; username: string } = data; 
