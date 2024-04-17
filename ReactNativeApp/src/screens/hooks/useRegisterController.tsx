@@ -17,7 +17,7 @@ const useRegisterController = () => {
     const [lastName, setLastName] = useState('');
 
     const handleRegisterSubmit = (event: GestureResponderEvent) => { 
-        event.preventDefault();
+        //event.preventDefault();
 
         //Validations:
         if (username === '' || password === '' || email === '' || confirmPassword === '') {
