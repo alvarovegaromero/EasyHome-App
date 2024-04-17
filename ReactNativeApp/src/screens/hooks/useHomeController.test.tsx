@@ -73,22 +73,25 @@ describe('useHomeController', () => {
     });
 
     it('should handle logout failure', async () => {
+        // Mock the AsyncStorage.getItem function to return a dummy token
+        AsyncStorage.getItem = jest.fn().mockResolvedValue('dummy_token');
+    
+        // Mock the fetch function to return a response with ok: false
         const errorResponse = {
             ok: false,
             status: 400,
             json: jest.fn().mockResolvedValue({ error: 'Logout failed' }),
         };
-    
         global.fetch = jest.fn().mockResolvedValue(errorResponse);
     
         const alertSpy = jest.spyOn(Alert, 'alert');
     
         const { getByTestId } = renderTestComponent();
-    
+
         await act(async () => {
             fireEvent.press(getByTestId('logoutButton'));
-        });
-    
+        });    
+
         expect(fetch).toHaveBeenCalledWith(
             `${BASE_URL}/api/users/logout`,
             expect.objectContaining({
@@ -101,6 +104,6 @@ describe('useHomeController', () => {
         );
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Logout failed');
-        // Token is removed even if the request fails
+        //expect(AsyncStorage.removeItem).not.toHaveBeenCalled();
     });
 });
