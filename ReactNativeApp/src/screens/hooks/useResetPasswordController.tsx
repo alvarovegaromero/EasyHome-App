@@ -9,7 +9,7 @@ const useResetPasswordController = () => {
     const [email, setEmail] = useState('');
 
     const handleResetPasswordSubmit = (event: GestureResponderEvent) => { 
-        event.preventDefault();
+        //event.preventDefault();
 
         fetch(BASE_URL+'/api/users/reset-password', { 
             method: 'POST',
@@ -21,7 +21,7 @@ const useResetPasswordController = () => {
         .then(response => {
             if (!response.ok) {
                 return response.json().then(({ error }) => {
-                    Alert.alert(`Error ${response.status}`, error);
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`, );
                 });
             }
