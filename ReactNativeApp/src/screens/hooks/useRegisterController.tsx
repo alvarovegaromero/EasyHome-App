@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, GestureResponderEvent } from 'react-native';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from '../../config';
@@ -16,8 +16,7 @@ const useRegisterController = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const handleRegisterSubmit = (event: GestureResponderEvent) => { 
-        //event.preventDefault();
+    const handleRegisterSubmit = () => { 
 
         //Validations:
         if (username === '' || password === '' || email === '' || confirmPassword === '') {

@@ -2,7 +2,7 @@ import { BASE_URL } from "../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { Alert, GestureResponderEvent } from "react-native";
+import { Alert } from "react-native";
 
 const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {
     const navigation = useNavigation();
@@ -12,7 +12,7 @@ const useEditProfileController = (initialUsername: string, initialEmail: string,
     const [firstName, setFirstName] = useState<string>(initialFirstName);
     const [lastName, setLastName] = useState<string>(initialLastName);
 
-    const handleEditProfileSubmit = async (event: GestureResponderEvent) => {
+    const handleEditProfileSubmit = async () => {
 
         if (username === '' || email === '') {
             Alert.alert('Error', 'Username and email must be filled');

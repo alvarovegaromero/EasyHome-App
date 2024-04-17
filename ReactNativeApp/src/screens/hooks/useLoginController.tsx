@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Alert, GestureResponderEvent } from 'react-native';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BASE_URL } from '../../config';
@@ -12,8 +12,7 @@ const useLoginController = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLoginSubmit = (event: GestureResponderEvent) => { 
-       // event.preventDefault();
+    const handleLoginSubmit = () => { 
 
         if (username === '' || password === '') {
             Alert.alert('Error', 'Username and password must be filled');
