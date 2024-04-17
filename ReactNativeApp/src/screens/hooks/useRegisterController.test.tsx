@@ -13,7 +13,7 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
 }));
 
 const TestComponent = () => {
-    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen } = useRegisterController();
+    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit} = useRegisterController();
 
     return (
         <View>
@@ -24,8 +24,6 @@ const TestComponent = () => {
             <TextInput testID="firstNameInput" value={firstName} onChangeText={setFirstName} />
             <TextInput testID="lastNameInput" value={lastName} onChangeText={setLastName} />
             <Button testID="submitButton" onPress={handleRegisterSubmit} title="Submit" />
-            <Button testID="loginButton" onPress={navigateLoginScreen} title="Login" />
-            <Button testID="resetPasswordButton" onPress={navigateResetPasswordScreen} title="Reset Password" />
         </View>
     );
 };
