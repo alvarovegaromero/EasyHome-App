@@ -35,6 +35,7 @@ const useHomeController = () => {
     const navigateProfileScreen = () => {
         navigation.navigate('ProfileScreen' as never);
     }; 
+    
     return { handleLogout, navigateProfileScreen };
 
 };
