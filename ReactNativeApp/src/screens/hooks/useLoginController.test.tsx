@@ -31,7 +31,7 @@ const renderTestHookTest = () => {
 
 
 describe('useLoginController', () => {
-    it('should update username and password state', () => {
+    it('should update username and password states', () => {
         const { result } = renderTestHookTest();
     
         act(() => {
@@ -118,7 +118,7 @@ describe('useLoginController', () => {
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
     });
 
-    it('should navigate to register screen', async () => {
+    it('should navigate to RegisterScreen', async () => {
         const { result } = renderTestHookTest();
 
         await act(async () => {
@@ -128,7 +128,7 @@ describe('useLoginController', () => {
         expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
     });
 
-    it('should navigate to reset password screen', async () => {
+    it('should navigate to ResetPasswordScreen', async () => {
         const { result } = renderTestHookTest();
 
         await act(async () => {

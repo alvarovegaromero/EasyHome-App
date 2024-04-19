@@ -30,7 +30,7 @@ const renderTestHookTest = () => {
 
 
 describe('useLoginController', () => {
-    it('should be undefined while fetchData has not been done yet', () => {
+    it('should be undefined while fetchData has not been done', () => {
         const { result } = renderTestHookTest();
 
         expect(result.current.username).toBe("");

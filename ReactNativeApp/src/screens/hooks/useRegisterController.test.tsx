@@ -31,7 +31,7 @@ const renderTestHookTest = () => {
 
 
 describe('useRegisterController', () => {
-    it('should update state', () => {
+    it('should update states', () => {
         const { result } = renderTestHookTest();
 
         act(() => {
@@ -167,7 +167,7 @@ describe('useRegisterController', () => {
         expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
     });
 
-    it('should navigate to  ResetPasswordScreen', async () => {
+    it('should navigate to ResetPasswordScreen', async () => {
         const { result } = renderTestHookTest();
     
         act(() => {
