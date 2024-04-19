@@ -1,6 +1,4 @@
-import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react-native';
-import { Button, View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import useProfileController from './useProfileController';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
