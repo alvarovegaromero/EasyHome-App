@@ -70,6 +70,10 @@ const mockSuccesfulFetch = (response: ResponseObject) => {
 };
 
 describe('useHomeController', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+    
     it('should handle logout', async () => {
         mockSuccesfulFetch({ message: 'Logged out successfully' });
 
@@ -123,7 +127,7 @@ describe('useHomeController', () => {
         );
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Logout failed');
-        //expect(AsyncStorage.removeItem).not.toHaveBeenCalled(); //Other mocks of the fetch affect this
+        expect(AsyncStorage.removeItem).not.toHaveBeenCalled(); //Other mocks of the fetch affect this
     });
 
     it('should navigate to LoginScreen when logout is succesful', async () => {
