@@ -14,12 +14,25 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
+const mockedNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+    const actualNav = jest.requireActual('@react-navigation/native');
+    return {
+        ...actualNav,
+        useNavigation: () => ({
+            navigate: mockedNavigate,
+        }),
+    };
+});
+
 const TestComponent = () => {
-    const { handleLogout } = useHomeController();
+    const { handleLogout, navigateProfileScreen } = useHomeController();
 
     return (
         <View>
             <Button testID="logoutButton" onPress={handleLogout} title="Logout" />
+            <Button testID="profileButton" onPress={navigateProfileScreen} title="Profile" />
         </View>
     );
 };
@@ -32,25 +45,33 @@ const renderTestComponent = () => {
     );
 };
 
+interface ResponseObject {
+    message: string;
+}
+
+const mockSuccesfulFetch = (response: ResponseObject) => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(response),
+            headers: new Headers(),
+            status: 200,
+            statusText: 'OK',
+            type: 'basic',
+            clone: jest.fn(),
+            body: null,
+            bodyUsed: false,
+            arrayBuffer: jest.fn(),
+            blob: jest.fn(),
+            formData: jest.fn(),
+            text: jest.fn()
+        })
+    );
+};
+
 describe('useHomeController', () => {
     it('should handle logout', async () => {
-        global.fetch = jest.fn().mockImplementation(() =>
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve({ message: 'Logged out successfully' }),
-                headers: new Headers(),
-                status: 200,
-                statusText: 'OK',
-                type: 'basic',
-                clone: jest.fn(),
-                body: null,
-                bodyUsed: false,
-                arrayBuffer: jest.fn(),
-                blob: jest.fn(),
-                formData: jest.fn(),
-                text: jest.fn()
-            })
-        );
+        mockSuccesfulFetch({ message: 'Logged out successfully' });
 
         const { getByTestId } = renderTestComponent();
 
@@ -73,10 +94,8 @@ describe('useHomeController', () => {
     });
 
     it('should handle logout failure', async () => {
-        // Mock the AsyncStorage.getItem function to return a dummy token
         AsyncStorage.getItem = jest.fn().mockResolvedValue('dummy_token');
     
-        // Mock the fetch function to return a response with ok: false
         const errorResponse = {
             ok: false,
             status: 400,
@@ -105,5 +124,27 @@ describe('useHomeController', () => {
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Logout failed');
         //expect(AsyncStorage.removeItem).not.toHaveBeenCalled();
+    });
+
+    it('should navigate to LoginScreen when logout is succesful', async () => {
+        mockSuccesfulFetch({ message: 'Logged out successfully' });
+
+        const { getByTestId } = renderTestComponent();
+
+        await act(async () => {
+            fireEvent.press(getByTestId('logoutButton'));
+        });
+
+        expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
+    });
+
+    it('should navigate to ProfileScreen', async () => {
+        const { getByTestId } = renderTestComponent();
+
+        await act(async () => {
+            fireEvent.press(getByTestId('profileButton'));
+        });
+
+        expect(mockedNavigate).toHaveBeenCalledWith('ProfileScreen');
     });
 });

@@ -6,30 +6,34 @@ import { useNavigation } from '@react-navigation/native';
 const useHomeController = () => {
     const navigation = useNavigation();
 
-    const handleLogout = async () => {
-        try {
-            const token = await AsyncStorage.getItem('token');
-    
-            const response = await fetch(BASE_URL+'/api/users/logout', {
+    const handleLogout = () => {
+        AsyncStorage.getItem('token')
+        .then(token => {
+            return fetch(BASE_URL+'/api/users/logout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,
                 },
             });
-
-            if (response.ok) {
-                await AsyncStorage.removeItem('token');
-                navigation.navigate('LoginScreen' as never);
-            } else {
+        })
+        .then(response => {
+            if (!response.ok) {
                 return response.json().then(({ error }) => {
                     Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
+                    throw new Error(`${response.status} - ${error}`);
                 });
             }
-        } catch (error) {
+            else
+                return response;
+        })
+        .then(() => {
+            AsyncStorage.removeItem('token');
+            navigation.navigate('LoginScreen' as never);
+        })
+        .catch(error => {
             console.error('Error:', error);
-        }
+        });
     };
 
     const navigateProfileScreen = () => {
