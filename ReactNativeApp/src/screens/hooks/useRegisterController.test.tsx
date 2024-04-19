@@ -1,7 +1,6 @@
-import { render, fireEvent, act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 import useRegisterController from './useRegisterController';
-import { Alert, Button, TextInput, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -24,86 +23,65 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
-const TestComponent = () => {
-    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen} = useRegisterController();
-
-    return (
-        <View>
-            <TextInput testID="usernameInput" value={username} onChangeText={setUsername} />
-            <TextInput testID="emailInput" value={email} onChangeText={setEmail} />
-            <TextInput testID="passwordInput" value={password} onChangeText={setPassword} />
-            <TextInput testID="confirmPasswordInput" value={confirmPassword} onChangeText={setConfirmPassword} />
-            <TextInput testID="firstNameInput" value={firstName} onChangeText={setFirstName} />
-            <TextInput testID="lastNameInput" value={lastName} onChangeText={setLastName} />
-            <Button testID="submitButton" onPress={handleRegisterSubmit} title="Submit" />
-            <Button testID="loginButton" onPress={navigateLoginScreen} title="Login" />
-            <Button testID="resetPasswordButton" onPress={navigateResetPasswordScreen} title="Reset Password" />
-        </View>
-    );
+const renderTestHookTest = () => {
+    return renderHook(() => useRegisterController());
 };
 
-const renderTestComponent = () => {
-    return render(
-        <NavigationContainer>
-            <TestComponent/>
-        </NavigationContainer>
-    );
-};
-
-interface ResponseObject {
-    token: string;
-    username: string;
-}
-
-const mockSuccesfulFetch = (response: ResponseObject) => {
+const mockSuccesfulFetch = (response: {token: string, username: string}) => {
     global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
             ok: true,
-            json: () => Promise.resolve(response),
-            headers: new Headers(),
             status: 200,
-            statusText: 'OK',
-            type: 'basic',
-            clone: jest.fn(),
-            body: null,
-            bodyUsed: false,
-            arrayBuffer: jest.fn(),
-            blob: jest.fn(),
-            formData: jest.fn(),
-            text: jest.fn()
+            json: () => Promise.resolve(response),
         })
     );
 }
 
+const mockFailedFetch = (errorMessage: string) => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: false,
+            status: 400,
+            json: () => Promise.resolve({ error: errorMessage }),
+        })
+    );
+};
+
 describe('useRegisterController', () => {
     it('should update state', () => {
-        const { getByTestId } = renderTestComponent();
-        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
-        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('firstNameInput'), 'newFirstName');
-        fireEvent.changeText(getByTestId('lastNameInput'), 'newLastName');
+        const { result } = renderTestHookTest();
 
-        expect(getByTestId('usernameInput').props.value).toBe('newUsername');
-        expect(getByTestId('emailInput').props.value).toBe('newEmail');
-        expect(getByTestId('passwordInput').props.value).toBe('newPassword');
-        expect(getByTestId('confirmPasswordInput').props.value).toBe('newPassword');
-        expect(getByTestId('firstNameInput').props.value).toBe('newFirstName');
-        expect(getByTestId('lastNameInput').props.value).toBe('newLastName');
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+            result.current.setFirstName('newFirstName');
+            result.current.setLastName('newLastName');
+        });
+
+        expect(result.current.username).toBe('newUsername');
+        expect(result.current.email).toBe('newEmail');
+        expect(result.current.password).toBe('newPassword');
+        expect(result.current.confirmPassword).toBe('newPassword');
+        expect(result.current.firstName).toBe('newFirstName');
+        expect(result.current.lastName).toBe('newLastName');
     });
 
     it('should display an alert when username, email, password, or confirmPassword are empty', async () => {
         const alertSpy = jest.spyOn(Alert, 'alert');
-        const { getByTestId } = renderTestComponent();
+
+        const { result } = renderTestHookTest();
     
-        fireEvent.changeText(getByTestId('usernameInput'), '');
-        fireEvent.changeText(getByTestId('emailInput'), '');
-        fireEvent.changeText(getByTestId('passwordInput'), '');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), '');
+        act(() => {
+            result.current.setUsername('');
+            result.current.setEmail('');
+            result.current.setPassword('');
+            result.current.setConfirmPassword('');
+        });
     
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            await result.current.handleRegisterSubmit();
         });
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Username, email, password and confirmation password must be filled');
@@ -111,15 +89,18 @@ describe('useRegisterController', () => {
     
     it('should display an alert when passwords do not match', async () => {
         const alertSpy = jest.spyOn(Alert, 'alert');
-        const { getByTestId } = renderTestComponent();
+
+        const { result } = renderTestHookTest();
     
-        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
-        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'differentPassword');
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('differentPassword');
+        });
     
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            await result.current.handleRegisterSubmit();
         });
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Passwords do not match. Please enter matching passwords.');
@@ -127,16 +108,18 @@ describe('useRegisterController', () => {
 
     it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
         mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
+
+        const { result } = renderTestHookTest();
     
-        const { getByTestId } = renderTestComponent();
-    
-        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
-        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'newPassword');
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+        });
     
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            await result.current.handleRegisterSubmit();
         });
     
         expect(fetch).toHaveBeenCalledWith(
@@ -153,62 +136,59 @@ describe('useRegisterController', () => {
 
     it('should navigate to HomeSCreen when response is ok', async () => {
         mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
-
-        const { getByTestId } = renderTestComponent();
     
-        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
-        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'newPassword');
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+        });
     
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            await result.current.handleRegisterSubmit();
         });
-
+    
         expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: 'newUsername' }); 
     });
 
     
     it('should display alert when response is not ok', async () => {
-        const errorResponse = {
-            ok: false,
-            status: 400,
-            json: jest.fn().mockResolvedValue({ error: 'Invalid credentials' }),
-        };
-    
-        global.fetch = jest.fn().mockResolvedValue(errorResponse);
-    
+        mockFailedFetch('Invalid credentials');
         const alertSpy = jest.spyOn(Alert, 'alert');
     
-        const { getByTestId } = renderTestComponent();
+        const { result } = renderTestHookTest();
     
-        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
-        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
-        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'newPassword');
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+        });
     
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            await result.current.handleRegisterSubmit();
         });
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
     });
 
-    it('should navigate to login screen', async () => {
-        const { getByTestId } = renderTestComponent();
+    it('should navigate to LoginScreen', async () => {
+        const { result } = renderTestHookTest();
     
-        await act(async () => {
-            fireEvent.press(getByTestId('loginButton'));
+        act(() => {
+            result.current.navigateLoginScreen();
         });
     
         expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
     });
 
-    it('should navigate to reset password screen', async () => {
-        const { getByTestId } = renderTestComponent();
+    it('should navigate to  ResetPasswordScreen', async () => {
+        const { result } = renderTestHookTest();
     
-        await act(async () => {
-            fireEvent.press(getByTestId('resetPasswordButton'));
+        act(() => {
+            result.current.navigateResetPasswordScreen();
         });
     
         expect(mockedNavigate).toHaveBeenCalledWith('ResetPasswordScreen');
