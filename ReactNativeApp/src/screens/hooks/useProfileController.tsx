@@ -23,33 +23,36 @@ const useProfileController = () => {
         return unsubscribe;
     }, [navigation]);
 
-    const fetchProfileData = async () => {
-        try {
-          const token = await AsyncStorage.getItem('token');
-    
-          const response = await fetch(BASE_URL + '/api/users/profile', {
+    const fetchProfileData = () => {    
+        AsyncStorage.getItem('token')
+        .then(token => {
+            return fetch(BASE_URL + '/api/users/profile', {
                 method: 'GET',
                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`,
                 },
             });
-        
-            if (response.ok) {
-                const data = await response.json();
-                setUsername(data.username);
-                setEmail(data.email);
-                setFirstName(data.firstName);
-                setLastName(data.lastName);
-            } else {
+        })
+        .then(response => {
+            if (!response.ok) {
                 return response.json().then(({ error }) => {
                     Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
+                    throw new Error(`${response.status} - ${error}`);
                 });
+            } else {
+                return response.json();
             }
-        } catch (error) {
+        })
+        .then(data => {
+            setUsername(data.username);
+            setEmail(data.email);
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+        })
+        .catch(error => {
             console.error('Error:', error);
-        }
+        })
     };
 
     const navigateEditProfileScreen = () => {
