@@ -1,8 +1,6 @@
-import { render, fireEvent, act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 import useEditProfileController from './useEditProfileController';
-import { Alert, Button, TextInput, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { Text } from 'react-native-reanimated/lib/typescript/Animated';
+import { Alert} from 'react-native';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn()
@@ -22,28 +20,8 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
-const TestComponent = () => {
-    const { username, setUsername, email, setEmail, firstName, setFirstName, lastName, setLastName, handleEditProfileSubmit, handleGoBack } = useEditProfileController('initialUsername', 'initialEmail', 'initialFirstName', 'initialLastName');
-
-    return (
-        <View>
-            <TextInput testID="usernameInput" value={username} onChangeText={setUsername} />
-            <TextInput testID="emailInput" value={email} onChangeText={setEmail} />
-            <TextInput testID="firstNameInput" value={firstName} onChangeText={setFirstName} />
-            <TextInput testID="lastNameInput" value={lastName} onChangeText={setLastName} />
-            <Button testID="submitButton" onPress={handleEditProfileSubmit} title="Submit" />
-            <Button testID="goBackButton" onPress={handleGoBack} title="Go Back" />
-            <Button testID="editProfileButton" onPress={() => {}} title="Edit Profile" />
-        </View>
-    );
-};
-
-const renderTestComponent = () => {
-    return render(
-        <NavigationContainer>
-            <TestComponent/>
-        </NavigationContainer>
-    );
+const renderTestHookTest = () => {
+    return renderHook(() => useEditProfileController('initialUsername', 'initialEmail', 'initialFirstName', 'initialLastName'));
 };
 
 describe('useEditProfileController', () => {
@@ -52,36 +30,33 @@ describe('useEditProfileController', () => {
     });
 
     it('should render initial states', () => {
-        const { getByTestId } = renderTestComponent();
+        const { result } = renderTestHookTest();
 
-        expect(getByTestId('usernameInput').props.value).toBe('initialUsername');
-        expect(getByTestId('emailInput').props.value).toBe('initialEmail');
-        expect(getByTestId('firstNameInput').props.value).toBe('initialFirstName');
-        expect(getByTestId('lastNameInput').props.value).toBe('initialLastName');
+        expect(result.current.username).toBe('initialUsername');
+        expect(result.current.email).toBe('initialEmail');
+        expect(result.current.firstName).toBe('initialFirstName');
+        expect(result.current.lastName).toBe('initialLastName');
     });
 
     it('should update states', () => {
-        const { getByTestId } = renderTestComponent();
-
-        const usernameInput = getByTestId('usernameInput');
-        const emailInput = getByTestId('emailInput');
-        const firstNameInput = getByTestId('firstNameInput');
-        const lastNameInput = getByTestId('lastNameInput');
-
-        fireEvent.changeText(usernameInput, 'newUsername');
-        fireEvent.changeText(emailInput, 'newEmail');
-        fireEvent.changeText(firstNameInput, 'newFirstName');
-        fireEvent.changeText(lastNameInput, 'newLastName');
-
-        expect(usernameInput.props.value).toBe('newUsername');
-        expect(emailInput.props.value).toBe('newEmail');
-        expect(firstNameInput.props.value).toBe('newFirstName');
-        expect(lastNameInput.props.value).toBe('newLastName');
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setFirstName('newFirstName');
+            result.current.setLastName('newLastName');
+        });
+    
+        expect(result.current.username).toBe('newUsername');
+        expect(result.current.email).toBe('newEmail');
+        expect(result.current.firstName).toBe('newFirstName');
+        expect(result.current.lastName).toBe('newLastName');
     });
-
+    
     it('should handle successful edit profile submit', async () => {
-        const { getByTestId } = renderTestComponent();
-
+        const { result } = renderTestHookTest();
+    
         global.fetch = jest.fn(() =>
             Promise.resolve(
                 new Response(JSON.stringify({}), {
@@ -92,21 +67,19 @@ describe('useEditProfileController', () => {
                 })
             )
         );
-
-        fireEvent.press(getByTestId('submitButton'));
-
+    
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            result.current.handleEditProfileSubmit();
         });
-        
+    
         expect(mockedNavigate).toHaveBeenCalledWith('ProfileScreen');
     });
-
+    
     it('should handle failed edit profile submit', async () => {
-        const { getByTestId } = renderTestComponent();
-        
+        const { result } = renderTestHookTest();
+    
         const alertSpy = jest.spyOn(Alert, 'alert');
-
+    
         global.fetch = jest.fn(() =>
             Promise.resolve(
                 new Response(JSON.stringify({ error: 'Failed' }), {
@@ -117,21 +90,22 @@ describe('useEditProfileController', () => {
                 })
             )
         );
-
+    
         await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+            result.current.handleEditProfileSubmit();
         });
-
+    
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Failed');
         expect(mockedNavigate).not.toHaveBeenCalledWith('ProfileScreen');
     });
-
     
-    it('should go back when goBackButton is pressed', () => {
-        const { getByTestId } = renderTestComponent();
-
-        fireEvent.press(getByTestId('goBackButton'));
-
+    it('should go back when handleGoBack is called', () => {
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.handleGoBack();
+        });
+    
         expect(mockedGoBack).toHaveBeenCalled();
     });
 });
