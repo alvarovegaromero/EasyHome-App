@@ -5,6 +5,7 @@ import { BASE_URL } from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
+
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve('dummy_token')),
     removeItem: jest.fn(() => Promise.resolve()),
@@ -29,6 +30,7 @@ jest.mock('@react-navigation/native', () => {
 const renderTestHookTest = () => {
     return renderHook(() => useHomeController());
 };
+
 
 describe('useHomeController', () => {
     beforeEach(() => {

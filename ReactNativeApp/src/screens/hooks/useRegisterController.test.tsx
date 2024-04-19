@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
+
 jest.mock('@react-native-async-storage/async-storage', () => ({
     setItem: jest.fn(),
 }));
@@ -27,6 +28,7 @@ jest.mock('@react-navigation/native', () => {
 const renderTestHookTest = () => {
     return renderHook(() => useRegisterController());
 };
+
 
 describe('useRegisterController', () => {
     it('should update state', () => {

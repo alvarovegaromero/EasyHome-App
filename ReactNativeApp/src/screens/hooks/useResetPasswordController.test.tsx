@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
+
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
@@ -23,6 +24,7 @@ jest.mock('@react-navigation/native', () => {
 const renderTestHookTest = () => {
     return renderHook(() => useResetPasswordController());
 };
+
 
 describe('useResetPasswordController', () => {
     it('should update email state', () => {
