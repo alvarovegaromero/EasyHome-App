@@ -24,6 +24,26 @@ const renderTestHookTest = () => {
     return renderHook(() => useEditProfileController('initialUsername', 'initialEmail', 'initialFirstName', 'initialLastName'));
 };
 
+const mockSuccesfulFetch = () => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: true,
+            status: 200,
+            json: () => Promise.resolve(),
+        })
+    );
+};
+
+const mockFailedFetch = (errorMessage: string) => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: false,
+            status: 400,
+            json: () => Promise.resolve({ error: errorMessage }),
+        })
+    );
+};
+
 describe('useEditProfileController', () => {
     beforeEach(() => {
         jest.clearAllMocks();
@@ -57,16 +77,7 @@ describe('useEditProfileController', () => {
     it('should handle successful edit profile submit', async () => {
         const { result } = renderTestHookTest();
     
-        global.fetch = jest.fn(() =>
-            Promise.resolve(
-                new Response(JSON.stringify({}), {
-                    status: 200,
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                })
-            )
-        );
+        mockSuccesfulFetch();
     
         await act(async () => {
             result.current.handleEditProfileSubmit();
@@ -80,16 +91,7 @@ describe('useEditProfileController', () => {
     
         const alertSpy = jest.spyOn(Alert, 'alert');
     
-        global.fetch = jest.fn(() =>
-            Promise.resolve(
-                new Response(JSON.stringify({ error: 'Failed' }), {
-                    status: 400,
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                })
-            )
-        );
+        mockFailedFetch('Failed');
     
         await act(async () => {
             result.current.handleEditProfileSubmit();
