@@ -1,7 +1,6 @@
-import { render, fireEvent, act } from '@testing-library/react-native';
+import { act, renderHook } from '@testing-library/react-native';
 import useResetPasswordController from './useResetPasswordController';
-import { Alert, Button, TextInput, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
@@ -20,72 +19,54 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
-
-
-const TestComponent = () => {
-    const { email, setEmail, handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen } = useResetPasswordController();
-
-    return (
-        <View>
-            <TextInput testID="emailInput" value={email} onChangeText={setEmail} />
-            <Button testID="submitButton" onPress={handleResetPasswordSubmit} title="Submit" />
-            <Button testID="loginButton" onPress={navigateLoginScreen} title="Login" />
-            <Button testID="registerButton" onPress={navigateRegisterScreen} title="Register" />
-        </View>
-    );
+const renderTestHookTest = () => {
+    return renderHook(() => useResetPasswordController());
 };
 
-const renderTestComponent = () => {
-    return render(
-        <NavigationContainer>
-            <TestComponent/>
-        </NavigationContainer>
-    );
-};
-
-interface ResponseObject {
-    message: string;
-}
-
-const mockSuccesfulFetch = (response: ResponseObject) => {
+const mockSuccesfulFetch = (response: {message: string}) => {
     global.fetch = jest.fn().mockImplementation(() =>
         Promise.resolve({
             ok: true,
-            json: () => Promise.resolve(response),
-            headers: new Headers(),
             status: 200,
-            statusText: 'OK',
-            type: 'basic',
-            clone: jest.fn(),
-            body: null,
-            bodyUsed: false,
-            arrayBuffer: jest.fn(),
-            blob: jest.fn(),
-            formData: jest.fn(),
-            text: jest.fn()
+            json: () => Promise.resolve(response),
+        })
+    );
+}
+
+const mockFailedFetch = (errorMessage: string) => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: false,
+            status: 400,
+            json: () => Promise.resolve({ error: errorMessage }),
         })
     );
 }
 
 describe('useResetPasswordController', () => {
     it('should update email state', () => {
-        const { getByTestId } = renderTestComponent();
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
+        const { result } = renderTestHookTest();
 
-        expect(getByTestId('emailInput').props.value).toBe('newEmail');
+        act(() => {
+            result.current.setEmail('newEmail');
+        });
+
+        expect(result.current.email).toBe('newEmail');
     });
 
     it('should handle reset password submit with valid email', async () => {
         mockSuccesfulFetch({ message: 'Reset password request sent successfully' });
-    
-        const { getByTestId } = renderTestComponent();
-    
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail@example.com');
-    
-        await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setEmail('newEmail@example.com');
         });
-    
+
+        await act(async () => {
+            await result.current.handleResetPasswordSubmit();
+        });
+
         expect(fetch).toHaveBeenCalledWith(
             `${BASE_URL}/api/users/reset-password`,
             expect.objectContaining({
@@ -99,37 +80,38 @@ describe('useResetPasswordController', () => {
     });
     
     it('should display alert when response is not ok', async () => {
-        const errorResponse = {
-            ok: false,
-            status: 400,
-            json: jest.fn().mockResolvedValue({ error: 'Invalid email' }),
-        };
-    
-        global.fetch = jest.fn().mockResolvedValue(errorResponse);
-    
+        mockFailedFetch('Invalid email');
         const alertSpy = jest.spyOn(Alert, 'alert');
-    
-        const { getByTestId } = renderTestComponent();
-    
-        fireEvent.changeText(getByTestId('emailInput'), 'newEmail@example.com');
-    
-        await act(async () => {
-            fireEvent.press(getByTestId('submitButton'));
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setEmail('newEmail@example.com');
         });
-    
+
+        await act(async () => {
+            await result.current.handleResetPasswordSubmit();
+        });
+
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email');
     });
 
-    it('should navigate to login screen', () => {
-        const { getByTestId } = renderTestComponent();
-        fireEvent.press(getByTestId('loginButton'));
+    it('should navigate to LoginScreen', () => {
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.navigateLoginScreen();
+        });
 
         expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
     });
 
-    it('should navigate to register screen', () => {
-        const { getByTestId } = renderTestComponent();
-        fireEvent.press(getByTestId('registerButton'));
+    it('should navigate to RegisterScreen', () => {
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.navigateRegisterScreen();
+        });
 
         expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
     });
