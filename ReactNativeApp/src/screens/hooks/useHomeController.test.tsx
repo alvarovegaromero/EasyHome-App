@@ -79,9 +79,7 @@ describe('useHomeController', () => {
 
     it('should handle logout failure', async () => {
         AsyncStorage.getItem = jest.fn().mockResolvedValue('dummy_token');
-    
         mockFailedFetch('Logout failed');
-
         const alertSpy = jest.spyOn(Alert, 'alert');
     
         const { result } = renderTestHookTest();

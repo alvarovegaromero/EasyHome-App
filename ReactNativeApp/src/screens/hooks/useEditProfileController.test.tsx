@@ -75,9 +75,9 @@ describe('useEditProfileController', () => {
     });
     
     it('should handle successful edit profile submit', async () => {
-        const { result } = renderTestHookTest();
-    
         mockSuccesfulFetch();
+
+        const { result } = renderTestHookTest();    
     
         await act(async () => {
             result.current.handleEditProfileSubmit();
@@ -87,11 +87,10 @@ describe('useEditProfileController', () => {
     });
     
     it('should handle failed edit profile submit', async () => {
-        const { result } = renderTestHookTest();
-    
+        mockFailedFetch('Failed');
         const alertSpy = jest.spyOn(Alert, 'alert');
     
-        mockFailedFetch('Failed');
+        const { result } = renderTestHookTest();
     
         await act(async () => {
             result.current.handleEditProfileSubmit();

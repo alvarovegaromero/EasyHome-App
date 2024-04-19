@@ -62,6 +62,7 @@ describe('useLoginController', () => {
 
     it('should handle login submit with empty username or password', async () => {
         const alertSpy = jest.spyOn(Alert, 'alert');
+        
         const { result } = renderTestHookTest();
 
         await act(async () => {
@@ -118,7 +119,6 @@ describe('useLoginController', () => {
 
     it('should display alert when response is not ok', async () => {
         mockFailedFetch('Invalid credentials');
-
         const alertSpy = jest.spyOn(Alert, 'alert');
     
         const { result } = renderTestHookTest();
