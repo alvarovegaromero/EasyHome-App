@@ -8,9 +8,7 @@ const useResetPasswordController = () => {
 
     const [email, setEmail] = useState('');
 
-    const handleResetPasswordSubmit = (event: GestureResponderEvent) => { 
-        //event.preventDefault();
-
+    const handleResetPasswordSubmit = () => { 
         fetch(BASE_URL+'/api/users/reset-password', { 
             method: 'POST',
             headers: {
