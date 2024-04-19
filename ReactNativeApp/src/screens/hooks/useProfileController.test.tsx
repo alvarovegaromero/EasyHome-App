@@ -1,5 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import useProfileController from './useProfileController';
+import { mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve('dummy_token')),
@@ -26,24 +27,6 @@ const renderTestHookTest = () => {
     return renderHook(() => useProfileController());
 };
 
-const testData = {
-    username: 'username',
-    email: 'email@example.com',
-    firstName: 'John',
-    lastName: 'Doe',
-};
-
-global.fetch = jest.fn(() =>
-    Promise.resolve(
-        new Response(JSON.stringify(testData), {
-            status: 200,
-            headers: {
-                'Content-type': 'application/json'
-            },
-        })
-    )
-);
-
 
 describe('useLoginController', () => {
     it('should be undefined while fetchData has not been done yet', () => {
@@ -55,7 +38,16 @@ describe('useLoginController', () => {
         expect(result.current.lastName).toBe("");
     });
 
-    it('should render the fetched data', async () => {
+    it('should render the fetched data', async () => {  
+        const testData = {
+            username: 'username',
+            email: 'email@example.com',
+            firstName: 'John',
+            lastName: 'Doe',
+        };
+
+        mockSuccesfulFetch(testData);
+
         const { result } = renderTestHookTest();
     
         await waitFor(() => {
