@@ -3,6 +3,7 @@ import useHomeController from './useHomeController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve('dummy_token')),
@@ -27,26 +28,6 @@ jest.mock('@react-navigation/native', () => {
 
 const renderTestHookTest = () => {
     return renderHook(() => useHomeController());
-};
-
-const mockSuccesfulFetch = (response: {message: string;}) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(response),
-        })
-    );
-};
-
-const mockFailedFetch = (errorMessage: string) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: false,
-            status: 400,
-            json: () => Promise.resolve({ error: errorMessage }),
-        })
-    );
 };
 
 describe('useHomeController', () => {

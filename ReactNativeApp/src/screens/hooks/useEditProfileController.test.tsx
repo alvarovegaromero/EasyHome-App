@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useEditProfileController from './useEditProfileController';
 import { Alert} from 'react-native';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn()
@@ -24,25 +25,6 @@ const renderTestHookTest = () => {
     return renderHook(() => useEditProfileController('initialUsername', 'initialEmail', 'initialFirstName', 'initialLastName'));
 };
 
-const mockSuccesfulFetch = () => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(),
-        })
-    );
-};
-
-const mockFailedFetch = (errorMessage: string) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: false,
-            status: 400,
-            json: () => Promise.resolve({ error: errorMessage }),
-        })
-    );
-};
 
 describe('useEditProfileController', () => {
     beforeEach(() => {
@@ -75,7 +57,7 @@ describe('useEditProfileController', () => {
     });
     
     it('should handle successful edit profile submit', async () => {
-        mockSuccesfulFetch();
+        mockSuccesfulFetch({});
 
         const { result } = renderTestHookTest();    
     

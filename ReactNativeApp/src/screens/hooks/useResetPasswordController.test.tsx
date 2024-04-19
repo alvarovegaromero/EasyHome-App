@@ -2,6 +2,7 @@ import { act, renderHook } from '@testing-library/react-native';
 import useResetPasswordController from './useResetPasswordController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
@@ -22,26 +23,6 @@ jest.mock('@react-navigation/native', () => {
 const renderTestHookTest = () => {
     return renderHook(() => useResetPasswordController());
 };
-
-const mockSuccesfulFetch = (response: {message: string}) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(response),
-        })
-    );
-}
-
-const mockFailedFetch = (errorMessage: string) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: false,
-            status: 400,
-            json: () => Promise.resolve({ error: errorMessage }),
-        })
-    );
-}
 
 describe('useResetPasswordController', () => {
     it('should update email state', () => {

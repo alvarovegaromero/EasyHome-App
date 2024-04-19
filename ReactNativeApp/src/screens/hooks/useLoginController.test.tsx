@@ -2,6 +2,7 @@ import { act, renderHook } from '@testing-library/react-native';
 import useLoginController from './useLoginController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     setItem: jest.fn(),
@@ -27,25 +28,6 @@ const renderTestHookTest = () => {
     return renderHook(() => useLoginController());
 };
 
-const mockSuccesfulFetch = (response: {token: string, username: string}) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(response),
-        })
-    );
-}
-
-const mockFailedFetch = (errorMessage: string) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: false,
-            status: 400,
-            json: () => Promise.resolve({ error: errorMessage }),
-        })
-    );
-};
 
 describe('useLoginController', () => {
     it('should update username and password state', () => {

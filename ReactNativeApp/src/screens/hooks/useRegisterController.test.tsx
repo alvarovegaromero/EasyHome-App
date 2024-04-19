@@ -2,6 +2,7 @@ import { act, renderHook } from '@testing-library/react-native';
 import useRegisterController from './useRegisterController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     setItem: jest.fn(),
@@ -25,26 +26,6 @@ jest.mock('@react-navigation/native', () => {
 
 const renderTestHookTest = () => {
     return renderHook(() => useRegisterController());
-};
-
-const mockSuccesfulFetch = (response: {token: string, username: string}) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: true,
-            status: 200,
-            json: () => Promise.resolve(response),
-        })
-    );
-}
-
-const mockFailedFetch = (errorMessage: string) => {
-    global.fetch = jest.fn().mockImplementation(() =>
-        Promise.resolve({
-            ok: false,
-            status: 400,
-            json: () => Promise.resolve({ error: errorMessage }),
-        })
-    );
 };
 
 describe('useRegisterController', () => {
