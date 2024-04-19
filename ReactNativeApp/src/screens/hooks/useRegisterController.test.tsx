@@ -12,8 +12,20 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
+const mockedNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+    const actualNav = jest.requireActual('@react-navigation/native');
+    return {
+        ...actualNav,
+        useNavigation: () => ({
+            navigate: mockedNavigate,
+        }),
+    };
+});
+
 const TestComponent = () => {
-    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit} = useRegisterController();
+    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen} = useRegisterController();
 
     return (
         <View>
@@ -24,6 +36,8 @@ const TestComponent = () => {
             <TextInput testID="firstNameInput" value={firstName} onChangeText={setFirstName} />
             <TextInput testID="lastNameInput" value={lastName} onChangeText={setLastName} />
             <Button testID="submitButton" onPress={handleRegisterSubmit} title="Submit" />
+            <Button testID="loginButton" onPress={navigateLoginScreen} title="Login" />
+            <Button testID="resetPasswordButton" onPress={navigateResetPasswordScreen} title="Reset Password" />
         </View>
     );
 };
@@ -35,6 +49,31 @@ const renderTestComponent = () => {
         </NavigationContainer>
     );
 };
+
+interface ResponseObject {
+    token: string;
+    username: string;
+}
+
+const mockSuccesfulFetch = (response: ResponseObject) => {
+    global.fetch = jest.fn().mockImplementation(() =>
+        Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve(response),
+            headers: new Headers(),
+            status: 200,
+            statusText: 'OK',
+            type: 'basic',
+            clone: jest.fn(),
+            body: null,
+            bodyUsed: false,
+            arrayBuffer: jest.fn(),
+            blob: jest.fn(),
+            formData: jest.fn(),
+            text: jest.fn()
+        })
+    );
+}
 
 describe('useRegisterController', () => {
     it('should update state', () => {
@@ -87,23 +126,7 @@ describe('useRegisterController', () => {
     });
 
     it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
-        global.fetch = jest.fn().mockImplementation(() =>
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve({ token: 'dummy_token', username: 'newUsername' }),
-                headers: new Headers(),
-                status: 200,
-                statusText: 'OK',
-                type: 'basic',
-                clone: jest.fn(),
-                body: null,
-                bodyUsed: false,
-                arrayBuffer: jest.fn(),
-                blob: jest.fn(),
-                formData: jest.fn(),
-                text: jest.fn()
-            })
-        );
+        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
     
         const { getByTestId } = renderTestComponent();
     
@@ -127,6 +150,24 @@ describe('useRegisterController', () => {
             })
         );
     });
+
+    it('should navigate to HomeSCreen when response is ok', async () => {
+        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
+
+        const { getByTestId } = renderTestComponent();
+    
+        fireEvent.changeText(getByTestId('usernameInput'), 'newUsername');
+        fireEvent.changeText(getByTestId('emailInput'), 'newEmail');
+        fireEvent.changeText(getByTestId('passwordInput'), 'newPassword');
+        fireEvent.changeText(getByTestId('confirmPasswordInput'), 'newPassword');
+    
+        await act(async () => {
+            fireEvent.press(getByTestId('submitButton'));
+        });
+
+        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: 'newUsername' }); 
+    });
+
     
     it('should display alert when response is not ok', async () => {
         const errorResponse = {
@@ -151,5 +192,25 @@ describe('useRegisterController', () => {
         });
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
+    });
+
+    it('should navigate to login screen', async () => {
+        const { getByTestId } = renderTestComponent();
+    
+        await act(async () => {
+            fireEvent.press(getByTestId('loginButton'));
+        });
+    
+        expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
+    });
+
+    it('should navigate to reset password screen', async () => {
+        const { getByTestId } = renderTestComponent();
+    
+        await act(async () => {
+            fireEvent.press(getByTestId('resetPasswordButton'));
+        });
+    
+        expect(mockedNavigate).toHaveBeenCalledWith('ResetPasswordScreen');
     });
 });
