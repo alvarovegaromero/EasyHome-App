@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import useProfileController from './useProfileController';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
-    setItem: jest.fn(),
+    getItem: jest.fn(() => Promise.resolve('dummy_token')),
 }));
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
@@ -23,6 +23,26 @@ jest.mock('@react-navigation/native', () => {
         }),
     };
 });
+
+const testData = {
+    username: 'username',
+    email: 'email@example.com',
+    firstName: 'John',
+    lastName: 'Doe',
+};
+
+global.fetch = jest.fn(() =>
+    Promise.resolve(
+        new Response(JSON.stringify(testData), {
+            status: 200,
+            headers: {
+                'Content-type': 'application/json'
+            },
+        })
+    )
+);
+
+
 
 const TestComponent = () => {
     const { username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen } = useProfileController();
@@ -55,6 +75,20 @@ describe('useLoginController', () => {
         expect(getByTestId('emailText').props.value).toBe(undefined);
         expect(getByTestId('firstNameText').props.value).toBe(undefined);
         expect(getByTestId('lastNameText').props.value).toBe(undefined);
+    });
+
+    it('should render the fetched data', async () => {
+        const { findByTestId } = renderTestComponent();
+
+        const usernameText = await waitFor(() => findByTestId('usernameText'));
+        const emailText = await waitFor(() => findByTestId('emailText'));
+        const firstNameText = await waitFor(() => findByTestId('firstNameText'));
+        const lastNameText = await waitFor(() => findByTestId('lastNameText'));
+
+        expect(usernameText.props.children).toBe(testData.username);
+        expect(emailText.props.children).toBe(testData.email);
+        expect(firstNameText.props.children).toBe(testData.firstName);
+        expect(lastNameText.props.children).toBe(testData.lastName);
     });
 
     it('should navigate to EditProfileScreen', () => {
