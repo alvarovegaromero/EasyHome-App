@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react-native';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import useProfileController from './useProfileController';
@@ -24,6 +24,10 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
+const renderTestHookTest = () => {
+    return renderHook(() => useProfileController());
+};
+
 const testData = {
     username: 'username',
     email: 'email@example.com',
@@ -43,65 +47,44 @@ global.fetch = jest.fn(() =>
 );
 
 
-
-const TestComponent = () => {
-    const { username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen } = useProfileController();
-    return (
-        <View>
-            <Text testID="usernameText">{username}</Text>
-            <Text testID="emailText">{email}</Text>
-            <Text testID="firstNameText">{firstName}</Text>
-            <Text testID="lastNameText">{lastName}</Text>
-            <Button testID="goBackButton" onPress={handleGoBack} title="Go Back" />
-            <Button testID="editProfileButton" onPress={navigateEditProfileScreen} title="Edit Profile" />
-        </View>
-    );
-};
-
-const renderTestComponent = () => {
-    return render(
-        <NavigationContainer>
-            <TestComponent/>
-        </NavigationContainer>
-    );
-};
-
-
 describe('useLoginController', () => {
     it('should be undefined while fetchData has not been done yet', () => {
-        const { getByTestId } = renderTestComponent();
+        const { result } = renderTestHookTest();
 
-        expect(getByTestId('usernameText').props.value).toBe(undefined);
-        expect(getByTestId('emailText').props.value).toBe(undefined);
-        expect(getByTestId('firstNameText').props.value).toBe(undefined);
-        expect(getByTestId('lastNameText').props.value).toBe(undefined);
+        expect(result.current.username).toBe("");
+        expect(result.current.email).toBe("");
+        expect(result.current.firstName).toBe("");
+        expect(result.current.lastName).toBe("");
     });
 
     it('should render the fetched data', async () => {
-        const { findByTestId } = renderTestComponent();
-
-        const usernameText = await waitFor(() => findByTestId('usernameText'));
-        const emailText = await waitFor(() => findByTestId('emailText'));
-        const firstNameText = await waitFor(() => findByTestId('firstNameText'));
-        const lastNameText = await waitFor(() => findByTestId('lastNameText'));
-
-        expect(usernameText.props.children).toBe(testData.username);
-        expect(emailText.props.children).toBe(testData.email);
-        expect(firstNameText.props.children).toBe(testData.firstName);
-        expect(lastNameText.props.children).toBe(testData.lastName);
+        const { result } = renderTestHookTest();
+    
+        await waitFor(() => {
+            expect(result.current.username).toBe(testData.username);
+            expect(result.current.email).toBe(testData.email);
+            expect(result.current.firstName).toBe(testData.firstName);
+            expect(result.current.lastName).toBe(testData.lastName);
+        });
     });
 
     it('should navigate to EditProfileScreen', () => {
-        const { getByTestId } = renderTestComponent();
+        const { result } = renderTestHookTest();
 
-        fireEvent.press(getByTestId('editProfileButton'));
+        act(() => {
+            result.current.navigateEditProfileScreen();
+        });
+
         expect(mockedNavigate).toHaveBeenCalledWith('EditProfileScreen', { username: '', email: '', firstName: '', lastName: '' });
     });
     
     it('should navigate to HomeScreen', () => {
-        const { getByTestId } = renderTestComponent();
+        const { result } = renderTestHookTest();
 
-        fireEvent.press(getByTestId('goBackButton'));
+        act(() => {
+            result.current.handleGoBack();
+        });
+
         expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: '' });
     });
 });
