@@ -68,6 +68,10 @@ describe('LoginScreen', () => {
     
         const { handleLoginSubmit, navigateRegisterScreen, navigateResetPasswordScreen } = useLoginController();
 
+        expect(handleLoginSubmit).not.toHaveBeenCalled();
+        expect(navigateRegisterScreen).not.toHaveBeenCalled();
+        expect(navigateResetPasswordScreen).not.toHaveBeenCalled();
+
         fireEvent.press(getByTestId('LoginButton'));
         fireEvent.press(getByTestId('RegisterButton'));
         fireEvent.press(getByTestId('ResetPasswordButton'));
