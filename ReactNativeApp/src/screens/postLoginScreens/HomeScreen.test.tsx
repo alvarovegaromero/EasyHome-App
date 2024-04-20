@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import HomeScreen from './HomeScreen';
 import useHomeController from './hooks/useHomeController';
 import { RouteProp } from '@react-navigation/native';
-import { MyStackParamsList } from '../components/types';
+import { MyStackParamsList } from '../../components/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 jest.mock('./hooks/useHomeController', () => {

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 

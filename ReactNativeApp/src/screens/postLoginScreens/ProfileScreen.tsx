@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button, SafeAreaView, ScrollView } from 'react-native';
-import generalStyles from '../styles/styles';
-import stylesProfileScreen from '../styles/stylesProfileScreens';
+import generalStyles from '../../styles/styles';
+import stylesProfileScreen from '../../styles/stylesProfileScreens';
 import useProfileController from './hooks/useProfileController';
 
 const ProfileScreen: React.FunctionComponent = () => {

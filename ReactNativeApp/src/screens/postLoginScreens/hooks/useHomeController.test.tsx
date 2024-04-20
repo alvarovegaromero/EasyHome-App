@@ -1,9 +1,9 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useHomeController from './useHomeController';
 import { Alert } from 'react-native';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

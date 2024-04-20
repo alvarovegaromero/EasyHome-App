@@ -1,4 +1,4 @@
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";

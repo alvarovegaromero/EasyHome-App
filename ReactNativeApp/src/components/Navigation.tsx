@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MyStackParamsList } from './types';
 
 import LoginScreen from '../screens/LoginScreen';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/postLoginScreens/HomeScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import ProfileScreen from '../screens/postLoginScreens/ProfileScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
-import EditProfileScreen from '../screens/EditProfileScreen';
+import EditProfileScreen from '../screens/postLoginScreens/EditProfileScreen';
 
 const Stack = createNativeStackNavigator<MyStackParamsList>()
 

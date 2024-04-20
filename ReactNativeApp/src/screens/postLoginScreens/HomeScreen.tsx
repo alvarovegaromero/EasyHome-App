@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { MyStackParamsList } from '../components/types';
+import { MyStackParamsList } from '../../components/types';
 import useHomeController from './hooks/useHomeController';
 
 type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
