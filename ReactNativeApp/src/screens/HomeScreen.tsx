@@ -16,8 +16,18 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
         <SafeAreaView>
             <ScrollView>
                 <Text> Hola {username}, you're logged in!!!! </Text>
-                <Button title="Logout" onPress={handleLogout} />
-                <Button title="Go to Profile" onPress={navigateProfileScreen} />
+                <Button 
+                    title="Logout" 
+                    onPress={handleLogout} 
+                    accessibilityLabel='Logout button'
+                    testID='LogoutButton'
+                />
+                <Button 
+                    title="Go to Profile" 
+                    onPress={navigateProfileScreen} 
+                    accessibilityLabel='Go to Profile button'
+                    testID='ProfileButton'
+                />
             </ScrollView>
         </SafeAreaView>
     );
