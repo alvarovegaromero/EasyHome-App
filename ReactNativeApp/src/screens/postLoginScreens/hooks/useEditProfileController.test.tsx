@@ -22,7 +22,7 @@ jest.mock('@react-navigation/native', () => {
 });
 
 const renderTestHookTest = () => {
-    return renderHook(() => useEditProfileController('initialUsername', 'initialEmail', 'initialFirstName', 'initialLastName'));
+    return renderHook(() => useEditProfileController('initialUsername', 'newEmail@email.com', 'initialFirstName', 'initialLastName'));
 };
 
 
@@ -35,7 +35,7 @@ describe('useEditProfileController', () => {
         const { result } = renderTestHookTest();
 
         expect(result.current.username).toBe('initialUsername');
-        expect(result.current.email).toBe('initialEmail');
+        expect(result.current.email).toBe('newEmail@email.com');
         expect(result.current.firstName).toBe('initialFirstName');
         expect(result.current.lastName).toBe('initialLastName');
     });
@@ -54,6 +54,22 @@ describe('useEditProfileController', () => {
         expect(result.current.email).toBe('newEmail');
         expect(result.current.firstName).toBe('newFirstName');
         expect(result.current.lastName).toBe('newLastName');
+    });
+
+    it('should display an alert when email format is not valid', async () => {
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.setEmail('newEmail');
+        });
+    
+        await act(async () => {
+            await result.current.handleEditProfileSubmit();
+        });
+    
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
     });
     
     it('should handle successful edit profile submit', async () => {

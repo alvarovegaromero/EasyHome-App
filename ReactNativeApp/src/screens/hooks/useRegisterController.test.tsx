@@ -89,6 +89,25 @@ describe('useRegisterController', () => {
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Passwords do not match. Please enter matching passwords.');
     });
 
+    it('should display an alert when email format is not valid', async () => {
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+        });
+    
+        await act(async () => {
+            await result.current.handleRegisterSubmit();
+        });
+    
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
+    });
+
     it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
         mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
 
@@ -96,7 +115,7 @@ describe('useRegisterController', () => {
     
         act(() => {
             result.current.setUsername('newUsername');
-            result.current.setEmail('newEmail');
+            result.current.setEmail('newEmail@email.com');
             result.current.setPassword('newPassword');
             result.current.setConfirmPassword('newPassword');
         });
@@ -112,7 +131,7 @@ describe('useRegisterController', () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username: 'newUsername', email: 'newEmail', password: 'newPassword', confirmPassword: 'newPassword'}),
+                body: JSON.stringify({ username: 'newUsername', email: 'newEmail@email.com', password: 'newPassword', confirmPassword: 'newPassword'}),
             })
         );
     });
@@ -124,7 +143,7 @@ describe('useRegisterController', () => {
     
         act(() => {
             result.current.setUsername('newUsername');
-            result.current.setEmail('newEmail');
+            result.current.setEmail('newEmail@email.com');
             result.current.setPassword('newPassword');
             result.current.setConfirmPassword('newPassword');
         });
@@ -145,7 +164,7 @@ describe('useRegisterController', () => {
     
         act(() => {
             result.current.setUsername('newUsername');
-            result.current.setEmail('newEmail');
+            result.current.setEmail('newEmail@email.com');
             result.current.setPassword('newPassword');
             result.current.setConfirmPassword('newPassword');
         });

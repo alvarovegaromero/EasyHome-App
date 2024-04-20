@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from '../../config';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeStackParamList  } from '../../components/types';
+import { validateEmail } from '../../utils/utilHooks';
 
 const useRegisterController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
@@ -27,6 +28,12 @@ const useRegisterController = () => {
         if (password !== confirmPassword) {
             Alert.alert('Error', 'Passwords do not match. Please enter matching passwords.');
             console.error('Register Failed - Passwords do not match')
+            return;
+        }
+
+        if(!validateEmail(email)){
+            Alert.alert('Error', 'Invalid email format');
+            console.error('Edit profile Failed - Invalid email format');
             return;
         }
 

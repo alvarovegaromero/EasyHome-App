@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
+import { validateEmail } from "../../../utils/utilHooks";
 
 const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {
     const navigation = useNavigation();
@@ -17,6 +18,12 @@ const useEditProfileController = (initialUsername: string, initialEmail: string,
         if (username === '' || email === '') {
             Alert.alert('Error', 'Username and email must be filled');
             console.error('Edit profile Failed - Username and email must be filled');
+            return;
+        }
+
+        if(!validateEmail(email)){
+            Alert.alert('Error', 'Invalid email format');
+            console.error('Edit profile Failed - Invalid email format');
             return;
         }
 

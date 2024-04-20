@@ -37,6 +37,22 @@ describe('useResetPasswordController', () => {
         expect(result.current.email).toBe('newEmail');
     });
 
+    it('should display an alert when email format is not valid', async () => {
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+    
+        act(() => {
+            result.current.setEmail('newEmail');
+        });
+    
+        await act(async () => {
+            await result.current.handleResetPasswordSubmit();
+        });
+    
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
+    });
+
     it('should handle reset password submit with valid email', async () => {
         mockSuccesfulFetch({ message: 'Reset password request sent successfully' });
 
