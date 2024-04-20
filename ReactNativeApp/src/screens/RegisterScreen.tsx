@@ -19,6 +19,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={username}
                                 onChangeText={setUsername}
                                 accessibilityLabel='Username input field'
+                                testID='UsernameInput'
                             />
                         </View>
                         <View style={generalStyles.defaultContainerTextAndInput}>
@@ -28,6 +29,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={email}
                                 onChangeText={setEmail}
                                 accessibilityLabel='Email input field'
+                                testID='EmailInput'
                             />
                         </View>
                         <View style={generalStyles.defaultContainerTextAndInput}>
@@ -38,6 +40,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={password}
                                 onChangeText={setPassword}
                                 accessibilityLabel='Password input field'
+                                testID='PasswordInput'
                             />
                         </View>
                         <View style={generalStyles.defaultContainerTextAndInput}>
@@ -48,6 +51,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={confirmPassword}
                                 onChangeText={setConfirmPassword}
                                 accessibilityLabel='Confirm Password input field'
+                                testID='ConfirmPasswordInput'
                             />
                         </View>
                         <View style={generalStyles.defaultContainerTextAndInput}>
@@ -57,6 +61,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={firstName}
                                 onChangeText={setFirstName}
                                 accessibilityLabel='First Name input field'
+                                testID='FirstNameInput'
                             />
                         </View>
                         <View style={generalStyles.defaultContainerTextAndInput}>
@@ -66,6 +71,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 value={lastName}
                                 onChangeText={setLastName}
                                 accessibilityLabel='Last Name input field'
+                                testID='LastNameInput'
                             />
                         </View>
                     </View>
@@ -75,6 +81,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 title="Register" 
                                 onPress={handleRegisterSubmit} 
                                 accessibilityLabel='Register button'
+                                testID='RegisterButton'
                             />
                         </View>
                     </View>
@@ -87,7 +94,12 @@ const RegisterScreen : React.FunctionComponent = () => {
                         </Text>
                         <View style={generalStyles.defaultContainerButton}>
                             <View style={generalStyles.defaultButton}> 
-                                <Button title="Login" onPress={navigateLoginScreen} />
+                                <Button 
+                                    title="Login" 
+                                    onPress={navigateLoginScreen} 
+                                    accessibilityLabel='Button for redirection to login page'
+                                    testID='LoginButton' 
+                                />
                             </View>
                         </View>
                     </View> 
@@ -102,6 +114,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                     title="Reset Password" 
                                     onPress={navigateResetPasswordScreen} 
                                     accessibilityLabel="Button for redirection to reset password page"
+                                    testID='ResetPasswordButton'
                                 />
                             </View>
                         </View>
