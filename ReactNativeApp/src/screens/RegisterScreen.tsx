@@ -18,6 +18,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 style={generalStyles.defaultInput}
                                 value={username}
                                 onChangeText={setUsername}
+                                autoCapitalize="none"
                                 accessibilityLabel='Username input field'
                                 testID='UsernameInput'
                             />
@@ -28,6 +29,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 style={generalStyles.defaultInput}
                                 value={email}
                                 onChangeText={setEmail}
+                                autoCapitalize="none"
                                 accessibilityLabel='Email input field'
                                 testID='EmailInput'
                             />
@@ -39,6 +41,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 secureTextEntry
                                 value={password}
                                 onChangeText={setPassword}
+                                autoCapitalize="none"
                                 accessibilityLabel='Password input field'
                                 testID='PasswordInput'
                             />
@@ -60,6 +63,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 style={generalStyles.defaultInput}
                                 value={firstName}
                                 onChangeText={setFirstName}
+                                autoCapitalize="none"
                                 accessibilityLabel='First Name input field'
                                 testID='FirstNameInput'
                             />
@@ -70,6 +74,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                                 style={generalStyles.defaultInput}
                                 value={lastName}
                                 onChangeText={setLastName}
+                                autoCapitalize="none"
                                 accessibilityLabel='Last Name input field'
                                 testID='LastNameInput'
                             />

@@ -27,7 +27,7 @@ const LoginScreen: React.FunctionComponent = () => {
                         <TextInput
                             style={generalStyles.defaultInput}
                             value={username}
-                            onChangeText={text => setUsername(text)}
+                            onChangeText={setUsername}
                             accessibilityLabel="Input for the username"
                             autoCapitalize="none"
                             testID='UsernameInput'
@@ -39,7 +39,7 @@ const LoginScreen: React.FunctionComponent = () => {
                             style={generalStyles.defaultInput}
                             secureTextEntry
                             value={password}
-                            onChangeText={text => setPassword(text)}
+                            onChangeText={setPassword}
                             accessibilityLabel="Input for the password"
                             autoCapitalize='none'
                             testID='PasswordInput'

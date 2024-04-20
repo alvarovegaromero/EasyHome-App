@@ -30,7 +30,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                         <TextInput
                             style={generalStyles.defaultInput}
                             value={email}
-                            onChangeText={text => setEmail(text)}
+                            onChangeText={setEmail}
+                            autoCapitalize="none"
                             accessibilityLabel="Input for the username"
                             testID="EmailInput"
                         />
