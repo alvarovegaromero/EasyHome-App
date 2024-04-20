@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import RegisterScreen from './RegisterScreen';
 import useRegisterController from './hooks/useRegisterController';
 
@@ -35,14 +34,12 @@ jest.mock('./hooks/useRegisterController', () => {
 
 const renderScreen = () => {
     return render(
-        <NavigationContainer>
-            <RegisterScreen />
-        </NavigationContainer>
+        <RegisterScreen />
     );
 };
 
 
-describe('ResetPasswordScreen', () => {
+describe('RegisterScreen', () => {
     it('should render all components', () => {
         const { getByTestId } = renderScreen();
     

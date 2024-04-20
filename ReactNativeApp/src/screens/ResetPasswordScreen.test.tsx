@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import ResetPasswordScreen from './ResetPasswordScreen';
 import useResetPasswordController from './hooks/useResetPasswordController';
 
@@ -20,9 +19,7 @@ jest.mock('./hooks/useResetPasswordController', () => {
 
 const renderScreen = () => {
     return render(
-        <NavigationContainer>
-            <ResetPasswordScreen />
-        </NavigationContainer>
+        <ResetPasswordScreen />
     );
 };
 

@@ -1,6 +1,5 @@
 import { render, fireEvent } from '@testing-library/react-native';
 import LoginScreen from './LoginScreen';
-import { NavigationContainer } from '@react-navigation/native';
 import useLoginController from './hooks/useLoginController';
 
 jest.mock('./hooks/useLoginController', () => {
@@ -23,9 +22,7 @@ jest.mock('./hooks/useLoginController', () => {
 
 const renderScreen = () => {
     return render(
-        <NavigationContainer>
-            <LoginScreen />
-        </NavigationContainer>
+        <LoginScreen />
     );
 };
 
