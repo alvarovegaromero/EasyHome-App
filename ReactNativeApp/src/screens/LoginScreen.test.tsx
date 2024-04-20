@@ -3,10 +3,6 @@ import LoginScreen from './LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import useLoginController from './hooks/useLoginController';
 
-jest.mock('@react-native-async-storage/async-storage', () => ({
-    setItem: jest.fn(),
-}));
-
 jest.mock('./hooks/useLoginController', () => {
     const setUsername = jest.fn();
     const setPassword = jest.fn();
