@@ -8,8 +8,8 @@ import useEditProfileController from "./hooks/useEditProfileController";
 type props = StackScreenProps<MyStackParamsList, 'EditProfileScreen'>;
 
 const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
-
     const { username, setUsername, email, setEmail, firstName, setFirstName, lastName, setLastName, handleEditProfileSubmit, handleGoBack } = useEditProfileController(route.params.username, route.params.email, route.params.firstName, route.params.lastName);
+    
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView style={generalStyles.defaultScrollView}>
@@ -23,6 +23,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
                             value={username}
                             onChangeText={setUsername}
                             accessibilityLabel={`Username input field. Value ${username}`}
+                            testID="UsernameInput"
                         />
                     </View>
                     <View style={generalStyles.defaultContainerTextAndInput}>
@@ -32,6 +33,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
                             value={email}
                             onChangeText={setEmail}
                             accessibilityLabel={`Email input field. Value ${email}`}
+                            testID="EmailInput"
                         />
                     </View>
                     <View style={generalStyles.defaultContainerTextAndInput}>
@@ -41,6 +43,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
                             value={firstName}
                             onChangeText={setFirstName}
                             accessibilityLabel={`First Name input field. Value ${firstName}`}
+                            testID="FirstNameInput"
                         />
                     </View>
                     <View style={generalStyles.defaultContainerTextAndInput}>
@@ -50,15 +53,26 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
                             value={lastName}
                             onChangeText={setLastName}
                             accessibilityLabel={`Last Name input field. Value ${lastName}`}
+                            testID="LastNameInput"
                         />
                     </View>
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
                     <View style={stylesProfileScreen.containerEditProfileButton}>
-                        <Button accessibilityLabel='Save changes button' title="Save changes" onPress={handleEditProfileSubmit} /> 
+                        <Button 
+                            title="Save changes" 
+                            onPress={handleEditProfileSubmit} 
+                            accessibilityLabel='Save changes button' 
+                            testID="SaveChangesButton"    
+                        /> 
                     </View>
                     <View style={stylesProfileScreen.containerGoBackButton}>
-                        <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
+                        <Button 
+                            title="Go Back" 
+                            onPress={handleGoBack}
+                            accessibilityLabel='Go back button' 
+                            testID="GoBackButton"
+                        /> 
                     </View>
                 </View>
             </ScrollView>
