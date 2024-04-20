@@ -29,10 +29,20 @@ const ProfileScreen: React.FunctionComponent = () => {
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
                     <View style={stylesProfileScreen.containerEditProfileButton}>
-                        <Button accessibilityLabel='Edit profile data button' title="Edit profile data" onPress={navigateEditProfileScreen} /> 
+                        <Button 
+                            title="Edit profile data"
+                            onPress={navigateEditProfileScreen} 
+                            accessibilityLabel='Edit profile data button' 
+                            testID='EditProfileButton'
+                        /> 
                     </View>
                     <View style={stylesProfileScreen.containerGoBackButton}>
-                        <Button accessibilityLabel='Go back button' title="Go Back" onPress={handleGoBack} /> 
+                        <Button 
+                            title="Go Back"
+                            onPress={handleGoBack} 
+                            accessibilityLabel='Go back button'
+                            testID='GoBackButton'  
+                        /> 
                     </View>
                 </View>
             </ScrollView>
