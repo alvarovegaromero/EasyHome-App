@@ -14,6 +14,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                         source={require('../../assets/images/logoWithTextNoBackground.png')} 
                         style={stylesResetPasswordScreen.logo}
                         accessibilityLabel="EasyHome logo"
+                        testID="Logo"
                     />
                 </View>
 
@@ -31,6 +32,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                             value={email}
                             onChangeText={text => setEmail(text)}
                             accessibilityLabel="Input for the username"
+                            testID="EmailInput"
                         />
                     </View> 
                     <View style={generalStyles.defaultContainerButton}>
@@ -39,6 +41,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                                 title='Send email' 
                                 onPress={handleResetPasswordSubmit} 
                                 accessibilityLabel="Send email to reset password"
+                                testID="ResetPasswordButton"
                             /> 
                         </View>
                     </View>
@@ -54,6 +57,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                                         title="Login" 
                                         onPress={navigateLoginScreen} 
                                         accessibilityLabel="Button for redirection to login page"
+                                        testID="LoginButton"
                                     />
                                 </View>
                             </View>
@@ -67,6 +71,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
                                         title="Register" 
                                         onPress={navigateRegisterScreen} 
                                         accessibilityLabel="Button for redirection to register page"
+                                        testID="RegisterButton"
                                     />
                                 </View>
                             </View>
