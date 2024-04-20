@@ -26,6 +26,11 @@ const stylesLoginScreen = StyleSheet.create({
         marginBottom: 20,
     },
 
+    registerInputs: {
+        ...generalStyles.defaultInput,
+        height: 40,
+    },
+
 });
 
 export default stylesLoginScreen;

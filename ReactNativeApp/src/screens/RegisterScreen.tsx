@@ -15,7 +15,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Username:'>Username:</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 value={username}
                                 onChangeText={setUsername}
                                 autoCapitalize="none"
@@ -26,7 +26,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Email:'>Email:</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 value={email}
                                 onChangeText={setEmail}
                                 autoCapitalize="none"
@@ -37,7 +37,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Password:'>Password:</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 secureTextEntry
                                 value={password}
                                 onChangeText={setPassword}
@@ -49,10 +49,11 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Confirm Password:'>Confirm Password:</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 secureTextEntry
                                 value={confirmPassword}
                                 onChangeText={setConfirmPassword}
+                                autoCapitalize="none"
                                 accessibilityLabel='Confirm Password input field'
                                 testID='ConfirmPasswordInput'
                             />
@@ -60,7 +61,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='First Name (optional):'>First Name (optional):</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 value={firstName}
                                 onChangeText={setFirstName}
                                 autoCapitalize="none"
@@ -71,7 +72,7 @@ const RegisterScreen : React.FunctionComponent = () => {
                         <View style={generalStyles.defaultContainerTextAndInput}>
                             <Text accessibilityLabel='Last Name (optional):'>Last Name (optional):</Text>
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesRegisterScreen.registerInputs}
                                 value={lastName}
                                 onChangeText={setLastName}
                                 autoCapitalize="none"
