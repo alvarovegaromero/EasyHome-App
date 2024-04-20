@@ -16,6 +16,7 @@ const LoginScreen: React.FunctionComponent = () => {
                         source={require('../../assets/images/logoWithTextNoBackground.png')} 
                         style={stylesLoginScreen.logo}
                         accessibilityLabel="EasyHome logo"
+                        testID='Logo'
                     />
                 </View>
 
@@ -29,6 +30,7 @@ const LoginScreen: React.FunctionComponent = () => {
                             onChangeText={text => setUsername(text)}
                             accessibilityLabel="Input for the username"
                             autoCapitalize="none"
+                            testID='UsernameInput'
                         />
                     </View> 
                     <View style={stylesLoginScreen.containerInputPassword}>
@@ -40,6 +42,7 @@ const LoginScreen: React.FunctionComponent = () => {
                             onChangeText={text => setPassword(text)}
                             accessibilityLabel="Input for the password"
                             autoCapitalize='none'
+                            testID='PasswordInput'
                         />
                     </View>
                     <View style={generalStyles.defaultContainerButton}>
@@ -48,6 +51,7 @@ const LoginScreen: React.FunctionComponent = () => {
                                 title='Login' 
                                 onPress={handleLoginSubmit} 
                                 accessibilityLabel="Login"
+                                testID='LoginButton'
                             /> 
                         </View>
                     </View>
@@ -64,6 +68,7 @@ const LoginScreen: React.FunctionComponent = () => {
                                         title="Register" 
                                         onPress={navigateRegisterScreen} 
                                         accessibilityLabel="Button for redirection to register page"
+                                        testID='RegisterButton'
                                     />
                                 </View>
                             </View>
@@ -77,6 +82,7 @@ const LoginScreen: React.FunctionComponent = () => {
                                         title="Reset Password" 
                                         onPress={navigateResetPasswordScreen} 
                                         accessibilityLabel="Button for redirection to reset password page"
+                                        testID='ResetPasswordButton'
                                     />
                                 </View>
                             </View>
