@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, SafeAreaView, ScrollView, Text } from 'react-native';
+import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyStackParamsList } from '../../../components/types';
 import useHomeController from './hooks/useHomeController';
@@ -16,17 +16,33 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
         <SafeAreaView>
             <ScrollView>
                 <Text> Hola {username}, you're logged in!!!! </Text>
-                <Button 
-                    title="Logout" 
-                    onPress={handleLogout} 
-                    accessibilityLabel='Logout button'
-                    testID='LogoutButton'
+                <Text> Select the group you want to see: </Text>
+                <View>
+                    
+                </View>
+                <Button
+                    title="Create a Group"
+                    onPress={() => {}}
+                    accessibilityLabel='Create a Group button'
+                    testID='CreateGroupButton'
+                />
+                <Button
+                    title="Join a Group"
+                    onPress={() => {}}
+                    accessibilityLabel='Join a Group button'
+                    testID='JoinGroupButton'
                 />
                 <Button 
                     title="Go to Profile" 
                     onPress={navigateProfileScreen} 
                     accessibilityLabel='Go to Profile button'
                     testID='ProfileButton'
+                />
+                <Button 
+                    title="Logout" 
+                    onPress={handleLogout} 
+                    accessibilityLabel='Logout button'
+                    testID='LogoutButton'
                 />
             </ScrollView>
         </SafeAreaView>
