@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, Button, SafeAreaView, ScrollView, Text } from 'react-native';
-import stylesRegisterScreen from '../styles/stylesRegisterScreen';
-import generalStyles from '../styles/styles';
+import stylesRegisterScreen from '../../styles/stylesRegisterScreen';
+import generalStyles from '../../styles/styles';
 import useRegisterController from './hooks/useRegisterController';
 
 const RegisterScreen : React.FunctionComponent = () => {

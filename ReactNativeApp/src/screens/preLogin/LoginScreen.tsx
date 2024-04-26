@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Image, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
-import { APP_VERSION } from '../config';
-import stylesLoginScreen from '../styles/stylesLoginScreen';
-import generalStyles from '../styles/styles';
+import { APP_VERSION } from '../../config';
+import stylesLoginScreen from '../../styles/stylesLoginScreen';
+import generalStyles from '../../styles/styles';
 import useLoginController from './hooks/useLoginController';
 
 const LoginScreen: React.FunctionComponent = () => {
@@ -13,7 +13,7 @@ const LoginScreen: React.FunctionComponent = () => {
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
                 <View style={stylesLoginScreen.containerInitialImage}> 
                     <Image
-                        source={require('../../assets/images/logoWithTextNoBackground.png')} 
+                        source={require('../../../assets/images/logoWithTextNoBackground.png')} 
                         style={stylesLoginScreen.logo}
                         accessibilityLabel="EasyHome logo"
                         testID='Logo'

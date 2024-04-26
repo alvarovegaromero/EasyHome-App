@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useResetPasswordController from './useResetPasswordController';
 import { Alert } from 'react-native';
-import { BASE_URL } from '../../config';
-import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
+import { BASE_URL } from '../../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
 
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({

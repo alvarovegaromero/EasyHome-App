@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { HomeStackParamList  } from '../../components/types';
+import { HomeStackParamList  } from '../../../components/types';
 
 const useLoginController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();

@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useLoginController from './useLoginController';
 import { Alert } from 'react-native';
-import { BASE_URL } from '../../config';
-import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
+import { BASE_URL } from '../../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

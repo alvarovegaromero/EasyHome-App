@@ -2,11 +2,11 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MyStackParamsList } from './types';
 
-import LoginScreen from '../screens/LoginScreen';
+import LoginScreen from '../screens/preLogin/LoginScreen';
 import HomeScreen from '../screens/postLoginScreens/User/HomeScreen';
-import RegisterScreen from '../screens/RegisterScreen';
+import RegisterScreen from '../screens/preLogin/RegisterScreen';
 import ProfileScreen from '../screens/postLoginScreens/User/ProfileScreen';
-import ResetPasswordScreen from '../screens/ResetPasswordScreen';
+import ResetPasswordScreen from '../screens/preLogin/ResetPasswordScreen';
 import EditProfileScreen from '../screens/postLoginScreens/User/EditProfileScreen';
 
 const Stack = createNativeStackNavigator<MyStackParamsList>()

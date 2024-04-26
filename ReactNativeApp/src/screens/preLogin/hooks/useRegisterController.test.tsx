@@ -1,8 +1,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useRegisterController from './useRegisterController';
 import { Alert } from 'react-native';
-import { BASE_URL } from '../../config';
-import { mockFailedFetch, mockSuccesfulFetch } from '../../utils/utilsTestingHooks';
+import { BASE_URL } from '../../../config';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

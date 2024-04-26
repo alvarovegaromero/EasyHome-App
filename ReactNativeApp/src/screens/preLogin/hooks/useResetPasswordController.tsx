@@ -1,8 +1,8 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { BASE_URL } from "../../config";
+import { BASE_URL } from "../../../config";
 import { Alert, GestureResponderEvent } from "react-native";
-import { validateEmail } from "../../utils/utilHooks";
+import { validateEmail } from "../../../utils/utilHooks";
 
 const useResetPasswordController = () => {
     const navigation = useNavigation();

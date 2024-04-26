@@ -1,6 +1,6 @@
 import { Button, Image, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
-import stylesResetPasswordScreen from "../styles/stylesResetPasswordScreen"; //reuse styles from login screen
-import generalStyles from "../styles/styles";
+import stylesResetPasswordScreen from "../../styles/stylesResetPasswordScreen"; //reuse styles from login screen
+import generalStyles from "../../styles/styles";
 import useResetPasswordController from "./hooks/useResetPasswordController";
 
 const ResetPasswordScreen: React.FunctionComponent = () => {
@@ -11,7 +11,7 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
                 <View style={stylesResetPasswordScreen.containerInitialImage}> 
                     <Image
-                        source={require('../../assets/images/logoWithTextNoBackground.png')} 
+                        source={require('../../../assets/images/logoWithTextNoBackground.png')} 
                         style={stylesResetPasswordScreen.logo}
                         accessibilityLabel="EasyHome logo"
                         testID="Logo"

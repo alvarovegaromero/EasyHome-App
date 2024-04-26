@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { BASE_URL } from '../../config';
+import { BASE_URL } from '../../../config';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList  } from '../../components/types';
-import { validateEmail } from '../../utils/utilHooks';
+import { HomeStackParamList  } from '../../../components/types';
+import { validateEmail } from '../../../utils/utilHooks';
 
 const useRegisterController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
