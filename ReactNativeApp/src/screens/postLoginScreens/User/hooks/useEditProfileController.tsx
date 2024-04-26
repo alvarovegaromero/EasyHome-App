@@ -1,9 +1,9 @@
-import { BASE_URL } from "../../../config";
+import { BASE_URL } from "../../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
-import { validateEmail } from "../../../utils/utilHooks";
+import { validateEmail } from "../../../../utils/utilHooks";
 
 const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {
     const navigation = useNavigation();

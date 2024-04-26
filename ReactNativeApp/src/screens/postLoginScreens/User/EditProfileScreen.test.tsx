@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import EditProfileScreen from './EditProfileScreen';
 import useEditProfileController from './hooks/useEditProfileController';
 import { RouteProp } from '@react-navigation/native';
-import { MyStackParamsList } from '../../components/types';
+import { MyStackParamsList } from '../../../components/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const initialUsername = 'myUsername'

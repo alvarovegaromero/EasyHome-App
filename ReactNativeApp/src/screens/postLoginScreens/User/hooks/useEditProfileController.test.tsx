@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react-native';
 import useEditProfileController from './useEditProfileController';
 import { Alert} from 'react-native';
-import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn()

@@ -1,6 +1,6 @@
-import { BASE_URL } from '../../../config';
+import { BASE_URL } from '../../../../config';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { EditProfileStackParamList, HomeStackParamList  } from '../../../components/types';
+import { EditProfileStackParamList, HomeStackParamList  } from '../../../../components/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';

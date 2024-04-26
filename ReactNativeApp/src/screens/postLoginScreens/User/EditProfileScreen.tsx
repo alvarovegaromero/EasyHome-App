@@ -1,8 +1,8 @@
 import { Button, SafeAreaView, ScrollView, Text, TextInput, View } from "react-native";
-import generalStyles from "../../styles/styles";
-import stylesProfileScreen from "../../styles/stylesProfileScreens";
+import generalStyles from "../../../styles/styles";
+import stylesProfileScreen from "../../../styles/stylesProfileScreens";
 import { StackScreenProps } from "@react-navigation/stack";
-import { MyStackParamsList } from "../../components/types";
+import { MyStackParamsList } from "../../../components/types";
 import useEditProfileController from "./hooks/useEditProfileController";
 
 type props = StackScreenProps<MyStackParamsList, 'EditProfileScreen'>;
