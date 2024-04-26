@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { BASE_URL } from '../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HomeStackParamList  } from '../../../components/types';
+import { UserContext } from '../../../utils/UserContext';
+
 
 const useLoginController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
+
+    const { id, setId } = useContext(UserContext);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -40,6 +44,7 @@ const useLoginController = () => {
         .then(data => {
             const { token, username }: { token: string; username: string } = data; 
            
+            setId(username);
             AsyncStorage.setItem('token', token);
 
             navigation.navigate('HomeScreen', { username }); 
