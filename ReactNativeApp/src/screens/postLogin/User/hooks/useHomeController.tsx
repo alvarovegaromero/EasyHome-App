@@ -3,7 +3,7 @@ import { BASE_URL } from '../../../../config';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useContext } from 'react';
-import { UserContext } from '../../../../utils/UserContext';
+import { UserContext } from '../../../../contexts/UserContext';
 
 
 const useHomeController = () => {

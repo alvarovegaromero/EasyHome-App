@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Navigation from './components/Navigation';
-import useUserIdContext from './utils/useUserIdContext';
-import { UserContext } from './utils/UserContext';
+import useUserIdContext from './hooks/useUserIdContext';
+import { UserContext } from './contexts/UserContext';
 
 function App(): React.JSX.Element {
   const { id, setId } = useUserIdContext();

@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { BASE_URL } from '../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { HomeStackParamList  } from '../../../components/types';
-import { UserContext } from '../../../utils/UserContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 
 const useLoginController = () => {
