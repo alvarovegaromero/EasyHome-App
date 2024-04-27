@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-interface UseUserIdHook {
+interface UseUserHook {
     id: string;
     setId: (id: string) => void;
 }
 
-const useUserId = (): UseUserIdHook => {
+const useUser = (): UseUserHook => {
     const [id, setId] = useState('');
 
     return { id, setId };
 };
 
-export default useUserId;
+export default useUser;
