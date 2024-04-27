@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import Navigation from './components/Navigation';
-import useUserIdContext from './useUserIdContext';
+import useUserIdContext from './utils/useUserIdContext';
 import { UserContext } from './utils/UserContext';
 
 function App(): React.JSX.Element {
