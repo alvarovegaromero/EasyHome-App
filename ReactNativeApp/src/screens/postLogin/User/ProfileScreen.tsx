@@ -21,10 +21,10 @@ const ProfileScreen: React.FunctionComponent = () => {
                         First Name: {firstName ? firstName : <Text style={{ color: '#FF9999' }}>No name provided</Text>}
                     </Text>                    
                     <Text
-                    accessibilityLabel={`Last name: ${lastName ? lastName : 'No last name provided'}`}
-                    style={stylesProfileScreen.textsMyProfile}
-                    >
-                    Last Name: {lastName ? lastName : <Text style={{ color: '#FF9999' }}>No last name provided</Text>}
+                        accessibilityLabel={`Last name: ${lastName ? lastName : 'No last name provided'}`}
+                        style={stylesProfileScreen.textsMyProfile}
+                        >
+                        Last Name: {lastName ? lastName : <Text style={{ color: '#FF9999' }}>No last name provided</Text>}
                     </Text>                
                 </View>
                 <View style={stylesProfileScreen.containerButtonsProfile}>
