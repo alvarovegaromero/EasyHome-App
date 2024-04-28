@@ -10,7 +10,7 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
     //we can use also use: {navigation, route} : props
     const username = route.params.username; //Could be done with the context
 
-    const { handleLogout, navigateProfileScreen } = useHomeController();
+    const { handleLogout, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
 
     return (
         <SafeAreaView>
@@ -22,7 +22,7 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
                 </View>
                 <Button
                     title="Create a Group"
-                    onPress={() => {}}
+                    onPress={navigateCreateGroupScreen}
                     accessibilityLabel='Create a Group button'
                     testID='CreateGroupButton'
                 />

@@ -8,6 +8,7 @@ import RegisterScreen from '../screens/preLogin/RegisterScreen';
 import ProfileScreen from '../screens/postLogin/User/ProfileScreen';
 import ResetPasswordScreen from '../screens/preLogin/ResetPasswordScreen';
 import EditProfileScreen from '../screens/postLogin/User/EditProfileScreen';
+import CreateGroupScreen from '../screens/postLogin/User/CreateGroupScreen';
 
 const Stack = createNativeStackNavigator<MyStackParamsList>()
 
@@ -20,6 +21,7 @@ const AuthStack = () => {
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <Stack.Screen name="CreateGroupScreen" component={CreateGroupScreen} />
     </Stack.Navigator>
   );
 };

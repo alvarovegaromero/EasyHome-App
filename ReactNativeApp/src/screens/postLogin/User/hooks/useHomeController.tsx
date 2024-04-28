@@ -47,8 +47,12 @@ const useHomeController = () => {
     const navigateProfileScreen = () => {
         navigation.navigate('ProfileScreen' as never);
     }; 
+
+    const navigateCreateGroupScreen = () => {
+        navigation.navigate('CreateGroupScreen' as never);
+    }
     
-    return { handleLogout, navigateProfileScreen };
+    return { handleLogout, navigateProfileScreen, navigateCreateGroupScreen };
 
 };
 
