@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
+import Picker from 'react-native-picker-select';
 
 
 const CreateGroupScreen: React.FunctionComponent = () => {
@@ -27,15 +28,14 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                         testID='DescriptionInput'
                     />
                     <Text> Currency: </Text>
-
                     <Picker
-                        selectedValue={selectedCurrency}
-                        onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
-                    >
-                        {currencies.map((currencyOption) => 
-                            <Picker.Item key={currencyOption[0]} label={currencyOption[1]} value={currencyOption[0]} />
-                        )}
-                    </Picker>
+                        value={currency}
+                        onValueChange={(itemValue) => setCurrency(itemValue)}
+                        items={currencies.map((currencyOption) => ({
+                            label: currencyOption[1],
+                            value: currencyOption[0],
+                        }))}
+                    />
                 </View>
             </ScrollView>
         </SafeAreaView>
