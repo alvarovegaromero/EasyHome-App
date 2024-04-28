@@ -5,7 +5,7 @@ import useCreateGroupController from './hooks/useCreateGroupController';
 
 
 const CreateGroupScreen: React.FunctionComponent = () => {
-    const { groupname, setGroupname, description, setDescription } = useCreateGroupController();
+    const { groupname, setGroupname, description, setDescription, currency, setCurrency, currencies, setCurrencies } = useCreateGroupController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -26,17 +26,20 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                         accessibilityLabel='Description input'
                         testID='DescriptionInput'
                     />
+                    <Text> Currency: </Text>
+
+                    <Picker
+                        selectedValue={selectedCurrency}
+                        onValueChange={(itemValue) => setSelectedCurrency(itemValue)}
+                    >
+                        {currencies.map((currencyOption) => 
+                            <Picker.Item key={currencyOption[0]} label={currencyOption[1]} value={currencyOption[0]} />
+                        )}
+                    </Picker>
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 };
-
-
-/*
-        name = request.data.get('name')
-        description = request.data.get('description', '') #empty string if not provided
-        currency = request.data.get('currency')
-*/
 
 export default CreateGroupScreen;
