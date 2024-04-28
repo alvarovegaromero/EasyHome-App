@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -6,9 +6,12 @@ import { BASE_URL } from '../../../config';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeStackParamList  } from '../../../components/types';
 import { validateEmail } from '../../../utils/utilHooks';
+import { UserContext } from '../../../contexts/UserContext';
 
 const useRegisterController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
+
+    const { setId } = useContext(UserContext);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -65,8 +68,9 @@ const useRegisterController = () => {
                 return response.json();
         })
         .then(data => {
-            const { token, username }: { token: string; username: string } = data; 
+            const { token, username, id }: { token: string; username: string, id: string } = data; 
            
+            setId(id);
             AsyncStorage.setItem('token', token);
 
             navigation.navigate('HomeScreen', { username }); 
