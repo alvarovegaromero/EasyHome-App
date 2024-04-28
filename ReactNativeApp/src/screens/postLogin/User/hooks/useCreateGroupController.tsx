@@ -6,7 +6,7 @@ import { Alert } from "react-native";
 const useCreateGroupController = () => {
     const [groupname, setGroupname] = useState('');
     const [description, setDescription] = useState('');
-    const [currency, setCurrency] = useState('EUR'); //Initial value
+    const [currency, setCurrency] = useState('')
     const [currencies, setCurrencies] = useState([]);
 
     useEffect(() => {
