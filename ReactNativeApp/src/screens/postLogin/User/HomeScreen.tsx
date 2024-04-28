@@ -8,7 +8,7 @@ type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
                                                 
 const HomeScreen: React.FunctionComponent<props> = ({route}: props) => { 
     //we can use also use: {navigation, route} : props
-    const username = route.params.username;
+    const username = route.params.username; //Could be done with the context
 
     const { handleLogout, navigateProfileScreen } = useHomeController();
 
