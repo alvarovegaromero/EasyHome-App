@@ -72,7 +72,7 @@ const useCreateGroupController = () => {
     return { name, setName, 
         description, setDescription, 
         currency, setCurrency, 
-        currencies, setCurrencies,
+        currencies,
         handleCreateGroupSubmit
     };
 }

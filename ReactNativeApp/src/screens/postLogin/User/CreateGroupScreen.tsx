@@ -7,7 +7,7 @@ import Picker from 'react-native-picker-select';
 
 const CreateGroupScreen: React.FunctionComponent = () => {
     const { name, setName, description, setDescription, currency, setCurrency, 
-            currencies, setCurrencies, handleCreateGroupSubmit } = useCreateGroupController();
+            currencies, handleCreateGroupSubmit } = useCreateGroupController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
