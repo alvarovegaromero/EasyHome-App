@@ -1,12 +1,13 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
+import { Button, SafeAreaView, ScrollView, Text, TextInput, View } from 'react-native';
 import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
 
 
 const CreateGroupScreen: React.FunctionComponent = () => {
-    const { groupname, setGroupname, description, setDescription, currency, setCurrency, currencies, setCurrencies } = useCreateGroupController();
+    const { name, setName, description, setDescription, currency, setCurrency, 
+            currencies, setCurrencies, handleCreateGroupSubmit } = useCreateGroupController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -15,10 +16,10 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                     <Text>CreateGroupScreen</Text>
                     <Text> Group name: </Text>
                     <TextInput
-                        value={groupname}
-                        onChangeText={setGroupname}
+                        value={name}
+                        onChangeText={setName}
                         accessibilityLabel='Group name input'
-                        testID='GroupnameInput'
+                        testID='NameInput'
                     />
                     <Text> Description: </Text>
                     <TextInput
@@ -36,6 +37,12 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                             value: currencyOption[0],
                         }))}
                     />
+                    <Button 
+                        title='Create group' 
+                        onPress={handleCreateGroupSubmit} 
+                        accessibilityLabel="Create group button"
+                        testID='CreateGroupButton'
+                    /> 
                 </View>
             </ScrollView>
         </SafeAreaView>
