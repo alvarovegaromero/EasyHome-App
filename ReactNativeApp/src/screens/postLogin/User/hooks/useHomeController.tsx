@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '../../../../config';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../../../../contexts/UserContext';
 
 
@@ -11,10 +11,15 @@ const useHomeController = () => {
 
     const { id } = useContext(UserContext);
 
+    useEffect(() => {
+        fetchGroups();
+    }, []);
+
+    const fetchGroups = () => {
+        
+    };
+
     const handleLogout = () => {
-        console.log("Logout");
-        console.log(id);
-        console.log("Logout");
         AsyncStorage.getItem('token')
         .then(token => {
             return fetch(BASE_URL+'/api/users/logout', {
