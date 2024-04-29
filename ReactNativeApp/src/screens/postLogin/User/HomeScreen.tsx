@@ -3,15 +3,10 @@ import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MyStackParamsList } from '../../../components/types';
 import useHomeController from './hooks/useHomeController';
+import { Group } from './types';
 
 type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
                        
-type Group = {
-    group_id: number;
-    group_name: string;
-    group_owner: string;
-};
-
 const HomeScreen: React.FunctionComponent<props> = ({route}: props) => { 
     //we can use also use: {navigation, route} : props
     const username = route.params.username; //Could be done with the context
