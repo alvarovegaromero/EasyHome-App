@@ -2,21 +2,45 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '../../../../config';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useEffect } from 'react';
-import { UserContext } from '../../../../contexts/UserContext';
+import { useEffect, useState } from 'react';
 
 
 const useHomeController = () => {
     const navigation = useNavigation();
 
-    const { id } = useContext(UserContext);
+    const [groups, setGroups] = useState([]);
 
     useEffect(() => {
         fetchGroups();
+        console.log
     }, []);
 
-    const fetchGroups = () => {
-        
+    const fetchGroups = async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL+'/api/groups', { 
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then(data => {
+            setGroups(data.groups);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
 
     const handleLogout = () => {
@@ -57,7 +81,7 @@ const useHomeController = () => {
         navigation.navigate('CreateGroupScreen' as never);
     }
     
-    return { handleLogout, navigateProfileScreen, navigateCreateGroupScreen };
+    return { groups, handleLogout, navigateProfileScreen, navigateCreateGroupScreen };
 
 };
 
