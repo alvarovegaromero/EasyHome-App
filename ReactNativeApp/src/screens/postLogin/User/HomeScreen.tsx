@@ -5,12 +5,18 @@ import { MyStackParamsList } from '../../../components/types';
 import useHomeController from './hooks/useHomeController';
 
 type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
-                                                
+                       
+type Group = {
+    group_id: number;
+    group_name: string;
+    group_owner: string;
+};
+
 const HomeScreen: React.FunctionComponent<props> = ({route}: props) => { 
     //we can use also use: {navigation, route} : props
     const username = route.params.username; //Could be done with the context
 
-    const { handleLogout, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
+    const { groups, handleLogout, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
 
     return (
         <SafeAreaView>
@@ -18,7 +24,13 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
                 <Text> Hola {username}, you're logged in!!!! </Text>
                 <Text> Select the group you want to see: </Text>
                 <View>
-                    
+                {groups.map((group: Group) => (
+                    <Button 
+                        key={group.group_id} 
+                        title={group.group_name} 
+                        onPress={() => console.log('Group selected: ', group.group_name)}
+                    />
+                ))}
                 </View>
                 <Button
                     title="Create a Group"
