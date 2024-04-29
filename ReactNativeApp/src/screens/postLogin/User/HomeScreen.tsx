@@ -18,15 +18,15 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
             <ScrollView>
                 <Text> Hola {username}, you're logged in!!!! </Text>
                 <Text> Select the group you want to see: </Text>
-                <View>
-                {groups.map((group: Group) => (
-                    <Button 
-                        key={group.group_id} 
-                        title={group.group_name} 
-                        onPress={() => console.log('Group selected: ', group.group_name)}
-                    />
-                ))}
-                </View>
+                <ScrollView>
+                    {groups.map((group: Group) => (
+                        <Button 
+                            key={group.group_id} 
+                            title={group.group_name} 
+                            onPress={() => console.log('Group selected: ', group.group_name)}
+                        />
+                    ))}
+                </ScrollView>
                 <Button
                     title="Create a Group"
                     onPress={navigateCreateGroupScreen}
