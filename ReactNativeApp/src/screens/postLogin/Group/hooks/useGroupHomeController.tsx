@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import { GroupContext } from "../../../../contexts/GroupContext";
 import { BASE_URL } from "../../../../config";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Alert } from "react-native";
 
 const useGroupHomeController = () => {
 
@@ -10,16 +12,20 @@ const useGroupHomeController = () => {
         fetchGroupData();
     }, []);
 
-    const fetchGroupData = () => {
+    const fetchGroupData = async () => {
+        const token = await AsyncStorage.getItem('token');
+        
         fetch(BASE_URL+'/api/groups/'+groupId, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
             },
         })
         .then(response => {
             if (!response.ok) {
                 return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
                     throw new Error(`${response.status} - ${error}`);
                 });
             }
