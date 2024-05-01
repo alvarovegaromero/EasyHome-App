@@ -7,7 +7,7 @@ import Dialog from "react-native-dialog";
 
 const HomeScreen: React.FunctionComponent = () => { 
     const { username, groups, handleLogout, showDialog, closeDialog, 
-        dialogVisible, setJoinCode, joinCode, joinGroup, navigateGroupHomeScreen, navigateProfileScreen, 
+        dialogVisible, setJoinCode, joinGroup, navigateGroupHomeScreen, navigateProfileScreen, 
         navigateCreateGroupScreen } = useHomeController();
 
     return (
@@ -18,9 +18,9 @@ const HomeScreen: React.FunctionComponent = () => {
                 <ScrollView>
                     {groups.map((group: Group) => (
                         <Button 
-                            key={group.group_id} 
-                            title={group.group_name} 
-                            onPress={() => navigateGroupHomeScreen(group.group_id)}
+                            key={group.id} 
+                            title={group.name} 
+                            onPress={() => navigateGroupHomeScreen(group.id)}
                         />
                     ))}
                 </ScrollView>

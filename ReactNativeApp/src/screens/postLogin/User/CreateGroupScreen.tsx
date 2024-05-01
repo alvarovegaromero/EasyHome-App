@@ -4,7 +4,7 @@ import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
 import stylesCreateGroupScreen from '../../../styles/stylesCreateGroupScreen';
-import { create } from 'react-test-renderer';
+
 
 const CreateGroupScreen: React.FunctionComponent = () => {
     const { name, setName, description, setDescription, currency, setCurrency, 

@@ -135,7 +135,7 @@ const useHomeController = () => {
     }
     
     return { username: contextUsername, groups, handleLogout, showDialog, closeDialog, 
-        dialogVisible, setJoinCode, joinCode, joinGroup, navigateGroupHomeScreen, navigateProfileScreen, 
+        dialogVisible, setJoinCode, joinGroup, navigateGroupHomeScreen, navigateProfileScreen, 
         navigateCreateGroupScreen };
 
 };
