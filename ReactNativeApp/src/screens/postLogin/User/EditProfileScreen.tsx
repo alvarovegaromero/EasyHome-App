@@ -8,6 +8,7 @@ import useEditProfileController from "./hooks/useEditProfileController";
 type props = StackScreenProps<MyStackParamsList, 'EditProfileScreen'>;
 
 const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
+    //we can use also use: {navigation, route} : props
     const { username, setUsername, email, setEmail, firstName, setFirstName, lastName, setLastName, handleEditProfileSubmit, handleGoBack } = useEditProfileController(route.params.username, route.params.email, route.params.firstName, route.params.lastName);
     
     return (
