@@ -4,6 +4,7 @@ import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
 import stylesCreateGroupScreen from '../../../styles/stylesCreateGroupScreen';
+import { create } from 'react-test-renderer';
 
 const CreateGroupScreen: React.FunctionComponent = () => {
     const { name, setName, description, setDescription, currency, setCurrency, 
@@ -27,17 +28,19 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                                 testID='NameInput'
                             />
                         </View>
-                        <View>
+                        <View style={stylesCreateGroupScreen.containerInputDescription}>
                             <Text> Description: </Text> 
                             <TextInput
-                                style={generalStyles.defaultInput}
+                                style={stylesCreateGroupScreen.InputDescription}
                                 value={description}
                                 onChangeText={setDescription}
                                 accessibilityLabel='Description input'
                                 testID='DescriptionInput'
+                                multiline
+                                numberOfLines={5}
                             />
                         </View>
-                        <View>
+                        <View style={stylesCreateGroupScreen.containerInputCurrency}>
                             <Text> Currency: </Text>
                             <View style={generalStyles.defaultInput}>
                                 <Picker

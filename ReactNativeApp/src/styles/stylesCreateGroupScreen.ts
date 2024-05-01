@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import generalStyles from './styles';
+
 
 const stylesCreateGroupScreen = StyleSheet.create({
     containerScreen: {
@@ -19,6 +21,11 @@ const stylesCreateGroupScreen = StyleSheet.create({
     containerInputName: {
     },
     containerInputDescription: {
+    },
+    InputDescription: {
+        ...generalStyles.defaultInput,
+        textAlignVertical: 'top', 
+        textAlign: 'left',
     },
     containerInputCurrency: {
     },
