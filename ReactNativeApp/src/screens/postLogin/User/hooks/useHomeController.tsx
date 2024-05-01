@@ -2,17 +2,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '../../../../config';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { GroupContext } from '../../../../contexts/GroupContext';
 
 
 const useHomeController = () => {
     const navigation = useNavigation();
 
+    const { setGroupId } = useContext(GroupContext);
+
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
         fetchGroups();
-        console.log
     }, []);
 
     const fetchGroups = async () => {
@@ -74,6 +76,7 @@ const useHomeController = () => {
     };
 
     const navigateGroupHomeScreen = (id : string) => {
+        setGroupId(id); //context - alternative to passing the id as a parameter
         navigation.navigate('GroupHomeScreen' as never);
     };
 
