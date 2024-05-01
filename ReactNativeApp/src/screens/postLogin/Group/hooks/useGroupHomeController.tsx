@@ -58,7 +58,7 @@ const useGroupHomeController = () => {
                 },
                 { 
                     text: "OK", 
-                    onPress: () => leaveGroup()
+                    onPress: leaveGroup
                 }
             ]
         );
