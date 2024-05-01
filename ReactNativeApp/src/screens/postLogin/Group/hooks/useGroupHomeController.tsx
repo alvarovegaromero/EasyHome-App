@@ -87,14 +87,57 @@ const useGroupHomeController = () => {
         });
     }
 
+    const confirmAndDeleteGroup = async () => {
+        Alert.alert(
+            "Confirmation",
+            "Are you sure you want to delete the group?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                { 
+                    text: "OK", 
+                    onPress: () => deleteGroup()
+                }
+            ]
+        );
+    }
 
+    const deleteGroup = async () => {
+        const token = await AsyncStorage.getItem('token');
+    
+        fetch(BASE_URL+'/api/groups/'+groupId, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then(data => {
+            navigateHome();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     const navigateHome = () => {
         setGroupId('');
         navigation.navigate('HomeScreen' as never);
     }
 
-    return {confirmAndLeaveGroup, navigateHome};
+    return {confirmAndLeaveGroup, confirmAndDeleteGroup, navigateHome};
 };
 
 export default useGroupHomeController;
