@@ -5,7 +5,9 @@ import generalStyles from '../../styles/styles';
 import useRegisterController from './hooks/useRegisterController';
 
 const RegisterScreen : React.FunctionComponent = () => {
-    const { username, setUsername, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen } = useRegisterController();
+    const { username, setUsername, email, setEmail, password, setPassword, 
+            confirmPassword, setConfirmPassword, firstName, setFirstName, lastName, setLastName, 
+            handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen } = useRegisterController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>

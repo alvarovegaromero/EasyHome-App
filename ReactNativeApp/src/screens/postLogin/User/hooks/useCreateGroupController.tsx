@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BASE_URL } from '../../../../config';
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import { GroupContext } from "../../../../contexts/GroupContext";
 
 
 const useCreateGroupController = () => {
+    const navigation = useNavigation();
+    
+    const { setGroupId } = useContext(GroupContext);
+
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [currency, setCurrency] = useState('')
@@ -58,16 +64,17 @@ const useCreateGroupController = () => {
                 });
             }
             else{
-                console.log('Group created successfully');
-                //navigation.navigate('GroupScreen' as never); 
                 return response.json();
             }
+        })
+        .then(data => {
+            setGroupId(data.group_id);
+            navigation.navigate('GroupHomeScreen' as never);
         })
         .catch(error => {
             console.error('Error:', error);
         });
     };
-
 
     return { name, setName, 
         description, setDescription, 
