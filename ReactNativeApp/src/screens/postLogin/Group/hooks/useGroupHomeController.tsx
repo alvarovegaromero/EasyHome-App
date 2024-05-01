@@ -1,14 +1,19 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GroupContext } from "../../../../contexts/GroupContext";
 import { BASE_URL } from "../../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Clipboard from '@react-native-clipboard/clipboard';
+
 
 const useGroupHomeController = () => {
     const navigation = useNavigation();
 
     const { groupId, setGroupId } = useContext(GroupContext)
+
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const [joinCode, setJoinCode] = useState('');
 
     useEffect(() => {
         fetchGroupData();
@@ -135,8 +140,8 @@ const useGroupHomeController = () => {
     const generateJoinCode = async () => {
         const token = await AsyncStorage.getItem('token');
     
-        fetch(BASE_URL+'/api/groups/'+groupId+'/generate_join_code', {
-            method: 'POST',
+        fetch(BASE_URL+'/api/groups/'+groupId+'/generate_code', {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
@@ -153,19 +158,30 @@ const useGroupHomeController = () => {
                 return response.json();
         })
         .then(data => {
-            console.log(data);
+            setJoinCode(data.join_code);
+            setDialogVisible(true);        
         })
         .catch(error => {
             console.error('Error:', error);
         });
     }
 
+    const closeDialog = () => {
+        setDialogVisible(false);
+    };
+
+    const copyJoinCodeToClipboard = () => {
+        Clipboard.setString(joinCode);
+        setDialogVisible(false);
+    };
+
     const navigateHome = () => {
         setGroupId('');
         navigation.navigate('HomeScreen' as never);
     }
 
-    return {confirmAndLeaveGroup, confirmAndDeleteGroup, navigateHome};
+    return {confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
+        closeDialog, joinCode, copyJoinCodeToClipboard, navigateHome};
 };
 
 export default useGroupHomeController;

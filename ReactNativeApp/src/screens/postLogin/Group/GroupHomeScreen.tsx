@@ -1,8 +1,11 @@
 import { Button, Text, View } from "react-native";
 import useGroupHomeController from "./hooks/useGroupHomeController";
+import Dialog from "react-native-dialog";
+
 
 const GroupHomeScreen: React.FunctionComponent = () => {
-    const { confirmAndLeaveGroup, confirmAndDeleteGroup, navigateHome } = useGroupHomeController();
+    const { confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
+        closeDialog, joinCode, copyJoinCodeToClipboard, navigateHome } = useGroupHomeController();
 
     return (
         <View>
@@ -27,10 +30,18 @@ const GroupHomeScreen: React.FunctionComponent = () => {
             />
             <Button 
                 title="Generate join code"
-                onPress={() => {}}
+                onPress={generateJoinCode}
                 accessibilityLabel='Generate join code button'
                 testID='GenerateJoinCodeButton'
             />
+            <Dialog.Container visible={dialogVisible}>
+                <Dialog.Title>Join Code</Dialog.Title>
+                <Dialog.Description>
+                    {joinCode}
+                </Dialog.Description>
+                <Dialog.Button label="Close" onPress={closeDialog} />
+                <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} />
+            </Dialog.Container>
         </View>
     );
 };
