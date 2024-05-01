@@ -7,10 +7,6 @@ export type EditProfileStackParamList  = {
     EditProfileScreen: { username: string, email: string, firstName: string, lastName: string};
 };
 
-export type GroupStackParamList  = {
-    GroupHomeScreen: { groupId: string };
-};
-
 export type MyStackParamsList = { 
     LoginScreen: undefined;
     RegisterScreen: undefined; 
@@ -19,5 +15,5 @@ export type MyStackParamsList = {
     ProfileScreen: undefined;
     EditProfileScreen : EditProfileStackParamList['EditProfileScreen'];
     CreateGroupScreen: undefined;
-    GroupHomeScreen: GroupStackParamList['GroupHomeScreen'];
+    GroupHomeScreen: undefined;
 }
