@@ -10,14 +10,14 @@ import { UserContext } from '../../../../contexts/UserContext';
 const useHomeController = () => {
     const navigation = useNavigation();
 
-    const { setGroupId } = useContext(GroupContext);
+    const { groupId, setGroupId } = useContext(GroupContext);
     const { contextUsername } = useContext(UserContext);
 
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
         fetchGroups();
-    }, []);
+    }, [groupId]);
 
     const fetchGroups = async () => {
         const token = await AsyncStorage.getItem('token');
