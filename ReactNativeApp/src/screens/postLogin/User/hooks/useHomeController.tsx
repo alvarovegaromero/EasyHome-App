@@ -14,10 +14,20 @@ const useHomeController = () => {
     const { contextUsername } = useContext(UserContext);
 
     const [groups, setGroups] = useState([]);
+    const [dialogVisible, setDialogVisible] = useState(false);
+    const [joinCode, setJoinCode] = useState('');
 
     useEffect(() => {
         fetchGroups();
     }, [groupId]);
+
+    const showDialog = () => {
+        setDialogVisible(true);
+    };
+    
+    const closeDialog = () => {
+        setDialogVisible(false);
+    };
 
     const fetchGroups = async () => {
         const token = await AsyncStorage.getItem('token');
@@ -77,7 +87,8 @@ const useHomeController = () => {
         });
     };
 
-    const joinGroup = async (joinCode : string) => {
+    const joinGroup = async () => {
+        console.log("join code: ", joinCode)
         const token = await AsyncStorage.getItem('token');
 
         fetch(BASE_URL+'/api/groups/join', {
@@ -86,7 +97,7 @@ const useHomeController = () => {
                 'Content-Type': 'application/json',
                 'Authorization': `Token ${token}`,
             },
-            body: JSON.stringify({ join_code: joinCode }),
+            body: JSON.stringify({ joinCode: joinCode }),
         })
         .then(response => {
             if (!response.ok) {
@@ -99,7 +110,7 @@ const useHomeController = () => {
                 return response.json();
         })
         .then(data => {
-            navigateGroupHomeScreen(data.group_id);
+            navigateGroupHomeScreen(data.id);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -119,8 +130,9 @@ const useHomeController = () => {
         navigation.navigate('CreateGroupScreen' as never);
     }
     
-    return { username: contextUsername, groups, handleLogout,
-            navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
+    return { username: contextUsername, groups, handleLogout, showDialog, closeDialog, 
+        dialogVisible, setJoinCode, joinCode, joinGroup, navigateGroupHomeScreen, navigateProfileScreen, 
+        navigateCreateGroupScreen };
 
 };
 
