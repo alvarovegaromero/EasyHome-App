@@ -77,6 +77,35 @@ const useHomeController = () => {
         });
     };
 
+    const joinGroup = async (joinCode : string) => {
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL+'/api/groups/join', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify({ join_code: joinCode }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then(data => {
+            navigateGroupHomeScreen(data.group_id);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
     const navigateGroupHomeScreen = (id : string) => {
         setGroupId(id);
         navigation.navigate('GroupHomeScreen' as never);
@@ -90,7 +119,8 @@ const useHomeController = () => {
         navigation.navigate('CreateGroupScreen' as never);
     }
     
-    return { username: contextUsername, groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
+    return { username: contextUsername, groups, handleLogout,
+            navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
 
 };
 

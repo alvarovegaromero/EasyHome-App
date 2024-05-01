@@ -1,16 +1,11 @@
 import React from 'react';
 import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { StackScreenProps } from '@react-navigation/stack';
-import { MyStackParamsList } from '../../../components/types';
 import useHomeController from './hooks/useHomeController';
 import { Group } from './types';
-
-type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
                        
 const HomeScreen: React.FunctionComponent = () => { 
-    //we can use also use: {navigation, route} : props
-
-    const { username, groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
+    const { username, groups, handleLogout, 
+            navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
 
     return (
         <SafeAreaView>
