@@ -39,6 +39,9 @@ const useGroupHomeController = () => {
             else
                 return response.json();
         })
+        .then(data => {
+            console.log(data); //to be defined later
+        })
         .catch(error => {
             console.error('Error:', error);
         });
