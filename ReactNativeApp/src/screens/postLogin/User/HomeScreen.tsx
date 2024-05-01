@@ -11,7 +11,7 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
     //we can use also use: {navigation, route} : props
     const username = route.params.username; //Could be done with the context
 
-    const { groups, handleLogout, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
+    const { groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
 
     return (
         <SafeAreaView>
@@ -23,7 +23,7 @@ const HomeScreen: React.FunctionComponent<props> = ({route}: props) => {
                         <Button 
                             key={group.group_id} 
                             title={group.group_name} 
-                            onPress={() => console.log('Group selected: ', group.group_name)}
+                            onPress={() => navigateGroupHomeScreen(group.group_id)}
                         />
                     ))}
                 </ScrollView>

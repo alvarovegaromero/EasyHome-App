@@ -73,6 +73,10 @@ const useHomeController = () => {
         });
     };
 
+    const navigateGroupHomeScreen = (id : string) => {
+        navigation.navigate('GroupHomeScreen' as never);
+    };
+
     const navigateProfileScreen = () => {
         navigation.navigate('ProfileScreen' as never);
     }; 
@@ -81,7 +85,7 @@ const useHomeController = () => {
         navigation.navigate('CreateGroupScreen' as never);
     }
     
-    return { groups, handleLogout, navigateProfileScreen, navigateCreateGroupScreen };
+    return { groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
 
 };
 
