@@ -3,6 +3,7 @@ import stylesResetPasswordScreen from "../../styles/stylesResetPasswordScreen"; 
 import generalStyles from "../../styles/styles";
 import useResetPasswordController from "./hooks/useResetPasswordController";
 
+
 const ResetPasswordScreen: React.FunctionComponent = () => {
     const { email, setEmail, handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen } = useResetPasswordController();
     

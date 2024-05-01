@@ -89,4 +89,3 @@ const useRegisterController = () => {
 };
 
 export default useRegisterController;
-

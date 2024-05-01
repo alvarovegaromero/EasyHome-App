@@ -5,6 +5,7 @@ import stylesLoginScreen from '../../styles/stylesLoginScreen';
 import generalStyles from '../../styles/styles';
 import useLoginController from './hooks/useLoginController';
 
+
 const LoginScreen: React.FunctionComponent = () => {
     const { username, setUsername, password, setPassword, handleLoginSubmit, navigateRegisterScreen, navigateResetPasswordScreen } = useLoginController();
 
