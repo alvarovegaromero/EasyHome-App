@@ -11,7 +11,7 @@ import { UserContext } from '../../../contexts/UserContext';
 const useLoginController = () => {
     const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
 
-    const { setId } = useContext(UserContext);
+    const { setId, setContextUsername } = useContext(UserContext);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -45,6 +45,8 @@ const useLoginController = () => {
             const { token, username, id }: { token: string; username: string, id: string } = data; 
            
             setId(id);
+            setContextUsername(username);
+            
             AsyncStorage.setItem('token', token);
 
             navigation.navigate('HomeScreen', { username }); 
