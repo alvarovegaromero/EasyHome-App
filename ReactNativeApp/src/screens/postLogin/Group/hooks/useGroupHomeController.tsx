@@ -42,16 +42,16 @@ const useGroupHomeController = () => {
         });
     };
 
-    const navigateBack = () => {
+    const navigateHome = () => {
         setGroupId('');
-        navigation.goBack();
+        navigation.navigate('HomeScreen' as never);
     }
 
     const leaveGroup = async () => {
     
     }
 
-    return {navigateBack};
+    return {navigateHome};
 };
 
 export default useGroupHomeController;
