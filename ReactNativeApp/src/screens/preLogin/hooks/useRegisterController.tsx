@@ -3,14 +3,12 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from '../../../config';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList  } from '../../../components/types';
 import { validateEmail } from '../../../utils/utilHooks';
 import { UserContext } from '../../../contexts/UserContext';
 
 const useRegisterController = () => {
-    const navigation = useNavigation<StackNavigationProp<HomeStackParamList>>();
-
+    const navigation = useNavigation();
+    
     const { setId, setContextUsername } = useContext(UserContext);
 
     const [username, setUsername] = useState('');
@@ -75,7 +73,7 @@ const useRegisterController = () => {
 
             AsyncStorage.setItem('token', token);
 
-            navigation.navigate('HomeScreen', { username }); 
+            navigation.navigate('HomeScreen' as never); 
         })
         .catch(error => {
             console.error('Error:', error);

@@ -1,12 +1,15 @@
 import { BASE_URL } from "../../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
 import { validateEmail } from "../../../../utils/utilHooks";
+import { UserContext } from "../../../../contexts/UserContext";
 
 const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {
     const navigation = useNavigation();
+
+    const { setContextUsername } = useContext(UserContext);
 
     const [username, setUsername] = useState<string>(initialUsername);
     const [email, setEmail] = useState<string>(initialEmail);
@@ -45,9 +48,12 @@ const useEditProfileController = (initialUsername: string, initialEmail: string,
                 });
             }
             else{
-                navigation.navigate('ProfileScreen' as never); 
                 return response.json();
             }
+        })
+        .then(() => {
+            setContextUsername(username);
+            navigation.navigate('ProfileScreen' as never); 
         })
         .catch(error => {
             console.error('Error:', error);

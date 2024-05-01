@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../../../config';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { EditProfileStackParamList, HomeStackParamList  } from '../../../../components/types';
+import { EditProfileStackParamList } from '../../../../components/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
@@ -8,7 +8,6 @@ import { useState, useEffect } from 'react';
 
 const useProfileController = () => {
     const navigation = useNavigation<StackNavigationProp<EditProfileStackParamList>>();
-    const navigation_back = useNavigation<StackNavigationProp<HomeStackParamList>>();
 
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -60,7 +59,7 @@ const useProfileController = () => {
     }
 
     const handleGoBack = () => {
-        navigation_back.navigate('HomeScreen', { username }); // send the name because it could have been changed        
+        navigation.navigate('HomeScreen' as never); 
     };
 
     return { username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen };

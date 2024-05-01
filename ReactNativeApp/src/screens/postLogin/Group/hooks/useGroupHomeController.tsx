@@ -47,6 +47,10 @@ const useGroupHomeController = () => {
         navigation.goBack();
     }
 
+    const leaveGroup = async () => {
+    
+    }
+
     return {navigateBack};
 };
 

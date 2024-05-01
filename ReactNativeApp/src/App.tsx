@@ -7,11 +7,11 @@ import { GroupContext } from './contexts/GroupContext';
 import useGroupContext from './hooks/useGroupContext';
 
 function App(): React.JSX.Element {
-  const { id, setId } = useUserContext();
+  const { id, setId, contextUsername, setContextUsername } = useUserContext();
   const { groupId, setGroupId } = useGroupContext();
 
   return (
-    <UserContext.Provider value={{ id, setId }}>
+    <UserContext.Provider value={{ id, setId, contextUsername, setContextUsername }}>
       <GroupContext.Provider value={{ groupId, setGroupId }}>
         <NavigationContainer>
           <Navigation />

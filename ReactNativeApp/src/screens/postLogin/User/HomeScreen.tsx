@@ -7,11 +7,10 @@ import { Group } from './types';
 
 type props = StackScreenProps<MyStackParamsList, 'HomeScreen'>;
                        
-const HomeScreen: React.FunctionComponent<props> = ({route}: props) => { 
+const HomeScreen: React.FunctionComponent = () => { 
     //we can use also use: {navigation, route} : props
-    const username = route.params.username; //Could be done with the context
 
-    const { groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
+    const { username, groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen } = useHomeController();
 
     return (
         <SafeAreaView>

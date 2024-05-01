@@ -4,12 +4,14 @@ import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useContext, useEffect, useState } from 'react';
 import { GroupContext } from '../../../../contexts/GroupContext';
+import { UserContext } from '../../../../contexts/UserContext';
 
 
 const useHomeController = () => {
     const navigation = useNavigation();
 
     const { setGroupId } = useContext(GroupContext);
+    const { contextUsername } = useContext(UserContext);
 
     const [groups, setGroups] = useState([]);
 
@@ -64,7 +66,7 @@ const useHomeController = () => {
                 });
             }
             else
-                return response;
+                return response.json();
         })
         .then(() => {
             AsyncStorage.removeItem('token');
@@ -88,7 +90,7 @@ const useHomeController = () => {
         navigation.navigate('CreateGroupScreen' as never);
     }
     
-    return { groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
+    return { username: contextUsername, groups, handleLogout, navigateGroupHomeScreen, navigateProfileScreen, navigateCreateGroupScreen };
 
 };
 
