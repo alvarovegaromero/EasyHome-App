@@ -68,7 +68,7 @@ const useCreateGroupController = () => {
             }
         })
         .then(data => {
-            setGroupId(data.group_id);
+            setGroupId(data.id);
             navigation.navigate('GroupHomeScreen' as never);
         })
         .catch(error => {
