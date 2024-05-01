@@ -3,10 +3,12 @@ import { GroupContext } from "../../../../contexts/GroupContext";
 import { BASE_URL } from "../../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const useGroupHomeController = () => {
+    const navigation = useNavigation();
 
-    const { groupId } = useContext(GroupContext)
+    const { groupId, setGroupId } = useContext(GroupContext)
 
     useEffect(() => {
         fetchGroupData();
@@ -40,8 +42,12 @@ const useGroupHomeController = () => {
         });
     };
 
+    const navigateBack = () => {
+        setGroupId('');
+        navigation.goBack();
+    }
 
-    return {};
+    return {navigateBack};
 };
 
 export default useGroupHomeController;
