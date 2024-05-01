@@ -25,6 +25,12 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel='Delete group button'
                 testID='DeleteGroupButton'
             />
+            <Button 
+                title="Generate join code"
+                onPress={() => {}}
+                accessibilityLabel='Generate join code button'
+                testID='GenerateJoinCodeButton'
+            />
         </View>
     );
 };

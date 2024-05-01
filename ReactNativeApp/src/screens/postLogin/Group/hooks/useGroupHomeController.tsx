@@ -132,6 +132,34 @@ const useGroupHomeController = () => {
         });
     }
 
+    const generateJoinCode = async () => {
+        const token = await AsyncStorage.getItem('token');
+    
+        fetch(BASE_URL+'/api/groups/'+groupId+'/generate_join_code', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
     const navigateHome = () => {
         setGroupId('');
         navigation.navigate('HomeScreen' as never);
