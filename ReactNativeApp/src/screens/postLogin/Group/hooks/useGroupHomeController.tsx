@@ -39,9 +39,6 @@ const useGroupHomeController = () => {
             else
                 return response.json();
         })
-        .then(data => {
-            console.log(data);
-        })
         .catch(error => {
             console.error('Error:', error);
         });
@@ -82,10 +79,8 @@ const useGroupHomeController = () => {
                 });
             }
             else
-                return response.json();
-        })
-        .then(data => {
-            navigateHome();
+                navigateHome();
+            
         })
         .catch(error => {
             console.error('Error:', error);
