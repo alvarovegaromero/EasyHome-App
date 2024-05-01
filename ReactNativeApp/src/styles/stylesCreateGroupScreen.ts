@@ -19,8 +19,10 @@ const stylesCreateGroupScreen = StyleSheet.create({
         marginBottom: 20,
     },
     containerInputName: {
+        marginBottom: 10,
     },
     containerInputDescription: {
+        marginBottom: 10,
     },
     InputDescription: {
         ...generalStyles.defaultInput,
@@ -28,6 +30,7 @@ const stylesCreateGroupScreen = StyleSheet.create({
         textAlign: 'left',
     },
     containerInputCurrency: {
+        marginBottom: 10,
     },
 
 });
