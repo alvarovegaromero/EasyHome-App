@@ -40,12 +40,9 @@ const useLoginController = () => {
                 return response.json();
         })
         .then(data => {
-            const { token, username, id }: { token: string; username: string, id: string } = data; 
-           
-            setId(id);
-            setContextUsername(username);
-            
-            AsyncStorage.setItem('token', token);
+            setId(data.id);
+            setContextUsername(data.username); 
+            AsyncStorage.setItem('token', data.token);
 
             navigation.navigate('HomeScreen' as never); 
         })

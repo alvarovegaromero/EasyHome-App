@@ -75,12 +75,10 @@ const useHomeController = () => {
                     throw new Error(`${response.status} - ${error}`);
                 });
             }
-            else
-                return response.json();
-        })
-        .then(() => {
-            AsyncStorage.removeItem('token');
-            navigation.navigate('LoginScreen' as never);
+            else{
+                AsyncStorage.removeItem('token');
+                navigation.navigate('LoginScreen' as never);
+            }
         })
         .catch(error => {
             console.error('Error:', error);

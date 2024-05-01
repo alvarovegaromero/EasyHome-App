@@ -125,10 +125,7 @@ const useGroupHomeController = () => {
                 });
             }
             else
-                return response.json();
-        })
-        .then(data => {
-            navigateHome();
+                navigateHome();
         })
         .catch(error => {
             console.error('Error:', error);
