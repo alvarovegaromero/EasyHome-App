@@ -2,7 +2,7 @@ import { Button, Text, View } from "react-native";
 import useGroupHomeController from "./hooks/useGroupHomeController";
 
 const GroupHomeScreen: React.FunctionComponent = () => {
-    const { navigateHome } = useGroupHomeController();
+    const { confirmAndLeaveGroup, navigateHome } = useGroupHomeController();
 
     return (
         <View>
@@ -12,6 +12,12 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 onPress={navigateHome}
                 accessibilityLabel='Go back to Home button'
                 testID='GoBackToHomeButton'
+            />
+            <Button 
+                title="Leave group"
+                onPress={confirmAndLeaveGroup}
+                accessibilityLabel='Leave group button'
+                testID='LeaveGroupButton'
             />
         </View>
     );

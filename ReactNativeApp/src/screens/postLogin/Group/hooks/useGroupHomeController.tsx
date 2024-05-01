@@ -42,16 +42,59 @@ const useGroupHomeController = () => {
         });
     };
 
+    const confirmAndLeaveGroup = async () => {
+        Alert.alert(
+            "Confirmation",
+            "Are you sure you want to leave the group?",
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                { 
+                    text: "OK", 
+                    onPress: () => leaveGroup()
+                }
+            ]
+        );
+    }
+
+    const leaveGroup = async () => {
+        const token = await AsyncStorage.getItem('token');
+    
+        fetch(BASE_URL+'/api/groups/'+groupId+'/leave', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then(data => {
+            navigateHome();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+
+
     const navigateHome = () => {
         setGroupId('');
         navigation.navigate('HomeScreen' as never);
     }
 
-    const leaveGroup = async () => {
-    
-    }
-
-    return {navigateHome};
+    return {confirmAndLeaveGroup, navigateHome};
 };
 
 export default useGroupHomeController;
