@@ -88,7 +88,13 @@ const useHomeController = () => {
     };
 
     const joinGroup = async () => {
-        console.log("join code: ", joinCode)
+
+        if (joinCode === '') {
+            Alert.alert('Error', 'Join code must be filled');
+            console.error('Join group Failed - Join code must be filled');
+            return;
+        }
+
         const token = await AsyncStorage.getItem('token');
 
         fetch(BASE_URL+'/api/groups/join', {
