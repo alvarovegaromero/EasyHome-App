@@ -78,7 +78,7 @@ const useHomeController = () => {
     };
 
     const navigateGroupHomeScreen = (id : string) => {
-        setGroupId(id); //context - alternative to passing the id as a parameter
+        setGroupId(id);
         navigation.navigate('GroupHomeScreen' as never);
     };
 
