@@ -120,8 +120,6 @@ describe('useLoginController', () => {
     
         expect(mockSetId).toHaveBeenCalledWith('dummy');
         expect(mockSetContextUsername).toHaveBeenCalledWith('newUsername');
-    
-        useContextSpy.mockRestore();
     });
 
     it('should display alert when response is not ok', async () => {
