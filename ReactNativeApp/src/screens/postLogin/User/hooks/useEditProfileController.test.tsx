@@ -103,7 +103,6 @@ describe('useEditProfileController', () => {
         );
     });
 
-
     it('should navigate to ProfileScreen after submit', async () => {
         mockSuccesfulFetch({});
 
