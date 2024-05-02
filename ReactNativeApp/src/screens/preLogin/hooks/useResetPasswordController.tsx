@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { BASE_URL } from "../../../config";
 import { Alert } from "react-native";
-import { validateEmail } from "../../../utils/utilHooks";
+import { validateEmail } from "../../../utils/utils";
 
 
 const useResetPasswordController = () => {

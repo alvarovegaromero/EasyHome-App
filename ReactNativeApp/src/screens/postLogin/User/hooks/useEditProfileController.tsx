@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Alert } from "react-native";
-import { validateEmail } from "../../../../utils/utilHooks";
+import { validateEmail } from "../../../../utils/utils";
 import { UserContext } from "../../../../contexts/UserContext";
 
 const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {

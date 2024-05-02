@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { BASE_URL } from '../../../config';
-import { validateEmail } from '../../../utils/utilHooks';
+import { validateEmail } from '../../../utils/utils';
 import { UserContext } from '../../../contexts/UserContext';
 
 const useRegisterController = () => {
