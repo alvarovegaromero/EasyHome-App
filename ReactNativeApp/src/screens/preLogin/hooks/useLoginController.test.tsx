@@ -56,8 +56,8 @@ describe('useLoginController', () => {
     });
 
     it('should handle login submit with valid username and password', async () => {
-        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
-    
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+            
         const { result } = renderTestHookTest();
 
         act(() => {
@@ -81,9 +81,9 @@ describe('useLoginController', () => {
         );
     });
 
-    it('Should navigate to HomeScreen when login is successful', async () => {
-        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
-    
+    it('Should navigate to HomeScreen when login is successful', async () => {    
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+
         const { result } = renderTestHookTest();
     
         act(() => {
@@ -99,6 +99,8 @@ describe('useLoginController', () => {
     });
 
     it('should update UserContext with id and username when login is successful', async () => {
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        
         const mockSetId = jest.fn();
         const mockSetContextUsername = jest.fn();
     
@@ -106,8 +108,6 @@ describe('useLoginController', () => {
         useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
     
         const { result } = renderHook(() => useLoginController());
-    
-        mockSuccesfulFetch({ id: 'dummy', username: 'newUsername', token: 'dummy_token' });
     
         act(() => {
             result.current.setUsername('newUsername');
