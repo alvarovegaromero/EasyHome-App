@@ -20,6 +20,11 @@ const stylesCreateGroupScreen = StyleSheet.create({
     containerInputCurrency: {
         marginBottom: 10,
     },
+    containerButton: {
+        ...generalStyles.defaultContainerButton,
+        marginTop: 5,
+        marginBottom: 10,
+    },
 
 });
 

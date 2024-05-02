@@ -46,6 +46,13 @@ const useCreateGroupController = () => {
     };
 
     const handleCreateGroupSubmit = async () => {
+
+        if (name === '' || !currency) {
+            Alert.alert('Error', 'Name and currency are required');
+            console.error('Error: Name and currency are required');
+            return;
+        }
+
         const token = await AsyncStorage.getItem('token');
 
         fetch(BASE_URL+'/api/groups/create', { 

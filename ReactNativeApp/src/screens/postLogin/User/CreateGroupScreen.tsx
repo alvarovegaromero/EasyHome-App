@@ -54,7 +54,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                             </View>
                         </View>
                     </View>
-                    <View style={generalStyles.defaultContainerButton}>
+                    <View style={stylesCreateGroupScreen.containerButton}>
                         <View style={generalStyles.defaultButton}>
                             <Button 
                                 title='Create group' 
@@ -64,7 +64,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                             /> 
                         </View>
                     </View>
-                    <View style={generalStyles.defaultContainerButton}>
+                    <View style={stylesCreateGroupScreen.containerButton}>
                         <View style={generalStyles.defaultButton}>
                             <Button 
                                 title='Go back' 
