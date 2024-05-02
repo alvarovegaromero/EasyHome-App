@@ -3,6 +3,7 @@ import useRegisterController from './useRegisterController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../../config';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
+import React from 'react';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -109,7 +110,7 @@ describe('useRegisterController', () => {
     });
 
     it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
-        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
 
         const { result } = renderTestHookTest();
     
@@ -137,7 +138,7 @@ describe('useRegisterController', () => {
     });
 
     it('should navigate to HomeSCreen when response is ok', async () => {
-        mockSuccesfulFetch({ token: 'dummy_token', username: 'newUsername' });
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
     
         const { result } = renderTestHookTest();
     
@@ -153,6 +154,34 @@ describe('useRegisterController', () => {
         });
     
         expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen'); 
+    });
+
+    it('should update UserContext with id and username when login is successful', async () => {
+        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        
+        const mockSetId = jest.fn();
+        const mockSetContextUsername = jest.fn();
+    
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
+    
+        const { result } = renderHook(() => useRegisterController());
+    
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setEmail('newEmail@email.com');
+            result.current.setPassword('newPassword');
+            result.current.setConfirmPassword('newPassword');
+        });
+    
+        await act(async () => {
+            result.current.handleRegisterSubmit();
+        });
+    
+        expect(mockSetId).toHaveBeenCalledWith('dummy');
+        expect(mockSetContextUsername).toHaveBeenCalledWith('newUsername');
+    
+        useContextSpy.mockRestore();
     });
 
     
