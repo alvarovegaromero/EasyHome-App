@@ -152,7 +152,7 @@ describe('useRegisterController', () => {
             await result.current.handleRegisterSubmit();
         });
     
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: 'newUsername' }); 
+        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen'); 
     });
 
     

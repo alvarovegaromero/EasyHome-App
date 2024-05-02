@@ -3,7 +3,7 @@ import useLoginController from './useLoginController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../../config';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../../utils/utilsTestingHooks';
-
+import React from 'react';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     setItem: jest.fn(),
@@ -79,8 +79,6 @@ describe('useLoginController', () => {
                 body: JSON.stringify({ username: 'newUsername', password: 'newPassword' }),
             })
         );
-
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: 'newUsername' });
     });
 
     it('Should navigate to HomeScreen when login is successful', async () => {
@@ -97,7 +95,33 @@ describe('useLoginController', () => {
             result.current.handleLoginSubmit();
         });
     
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: 'newUsername' });
+        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
+    });
+
+    it('should update UserContext with id and username when login is successful', async () => {
+        const mockSetId = jest.fn();
+        const mockSetContextUsername = jest.fn();
+    
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
+    
+        const { result } = renderHook(() => useLoginController());
+    
+        mockSuccesfulFetch({ id: 'dummy', username: 'newUsername', token: 'dummy_token' });
+    
+        act(() => {
+            result.current.setUsername('newUsername');
+            result.current.setPassword('newPassword');
+        });
+    
+        await act(async () => {
+            result.current.handleLoginSubmit();
+        });
+    
+        expect(mockSetId).toHaveBeenCalledWith('dummy');
+        expect(mockSetContextUsername).toHaveBeenCalledWith('newUsername');
+    
+        useContextSpy.mockRestore();
     });
 
     it('should display alert when response is not ok', async () => {
