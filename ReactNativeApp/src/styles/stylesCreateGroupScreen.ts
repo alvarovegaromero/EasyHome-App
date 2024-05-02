@@ -7,10 +7,6 @@ const stylesCreateGroupScreen = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
     },
-    containerHeader: {
-        marginTop: 20,
-        marginBottom: 20,
-    },
     containerInputs: {
         marginBottom: 20,
     },
