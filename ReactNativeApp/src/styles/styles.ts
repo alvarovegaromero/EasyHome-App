@@ -31,7 +31,7 @@ const generalStyles = StyleSheet.create({
     defaultHeader: {
         fontSize: 24,
         fontWeight: 'bold',
-    }
+    },
     defaultContainerHeader: {
         marginTop: 20,
         marginBottom: 20,
