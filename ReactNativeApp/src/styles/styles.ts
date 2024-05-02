@@ -29,14 +29,20 @@ const generalStyles = StyleSheet.create({
         marginBottom: 10,
     },
     defaultHeader: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
+    },
+    defaultSubHeader: {
+        marginBottom: 5,
+        marginTop: 5,
+        fontSize: 20,
     },
     defaultContainerHeader: {
         marginTop: 20,
         marginBottom: 20,
     },
     defaultContainerScreen: {
+        flex: 1,
         marginLeft: 15,
         marginRight: 15,
     },

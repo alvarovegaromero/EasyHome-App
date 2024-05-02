@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Button, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import useHomeController from './hooks/useHomeController';
 import { Group } from './types';
 import Dialog from "react-native-dialog";
@@ -19,42 +19,60 @@ const HomeScreen: React.FunctionComponent = () => {
 
                     <View style={stylesHomeScreen.containerHeaders}>
                         <Text style={generalStyles.defaultHeader}> Hello {username}! </Text>
-                        <View></View>
-                        <Text> Select the group you want to see: </Text>
+                        <Text style={generalStyles.defaultSubHeader}> Select the group you want to see: </Text>
                     </View>
 
-
-                    <View style={stylesHomeScreen.containerGroups}>           
-                        {
-                            groups.length === 0 ? (
-                                <Text> You are not part of any group yet. </Text>
-                            ) : (
-                                groups.map((group: Group) => (
-                                <Button 
-                                    key={group.id} 
-                                    title={group.name} 
-                                    onPress={() => navigateGroupHomeScreen(group.id)}
-                                />
-                                ))
-                            )
-                        }
+                    <View style={stylesHomeScreen.containerGroups}>
+                        <ScrollView >           
+                            {
+                                groups.length === 0 ? (
+                                    <View style={stylesHomeScreen.containerNoGroups}>
+                                        <Text style={stylesHomeScreen.textNoGroups}> You are not part of any group yet :( </Text>
+                                        <Text style={stylesHomeScreen.textNoGroups}> Join or create a Group to see them here </Text>
+                                    </View>
+                                ) : (
+                                    <>
+                                    <Text style={stylesHomeScreen.listTitle}> Your Groups: </Text>
+                                    {
+                                        groups.map((group: Group) => (
+                                            <TouchableOpacity 
+                                                key={group.id} 
+                                                onPress={() => navigateGroupHomeScreen(group.id)}
+                                                style={stylesHomeScreen.listButton}
+                                            >
+                                                <Text>{group.name}</Text>
+                                            </TouchableOpacity>
+                                        ))
+                                    }
+                                </>
+                                )
+                            }
+                        </ScrollView>
                     </View>
 
 
                     <View style={stylesHomeScreen.containerButtons}>
-                        <Text> a </Text>
-                        <Button
-                            title="Create a Group"
-                            onPress={navigateCreateGroupScreen}
-                            accessibilityLabel='Create a Group button'
-                            testID='CreateGroupButton'
-                        />
-                        <Button
-                            title="Join a Group"
-                            onPress={showDialog}
-                            accessibilityLabel='Join a Group button'
-                            testID='JoinGroupButton'
-                        />
+                        <View style={stylesHomeScreen.containerButton}>
+                            <View style={generalStyles.defaultButton}>
+                                <Button
+                                    title="Create a Group"
+                                    onPress={navigateCreateGroupScreen}
+                                    accessibilityLabel='Create a Group button'
+                                    testID='CreateGroupButton'
+                                />
+                            </View>
+                        </View>
+                        <View style={stylesHomeScreen.containerButton}>
+                            <View style={generalStyles.defaultButton}>
+                                <Button
+                                    title="Join a Group"
+                                    onPress={showDialog}
+                                    accessibilityLabel='Join a Group button'
+                                    testID='JoinGroupButton'
+                                />
+                            </View>
+                        </View>
+
                         <Dialog.Container visible={dialogVisible}>
                             <Dialog.Title>Join Group</Dialog.Title>
                             <Dialog.Description>
@@ -64,21 +82,28 @@ const HomeScreen: React.FunctionComponent = () => {
                             <Dialog.Button label="Cancel" onPress={closeDialog} />
                             <Dialog.Button label="Join" onPress={joinGroup} />
                         </Dialog.Container>
-                        <Button 
-                            title="Go to Profile" 
-                            onPress={navigateProfileScreen} 
-                            accessibilityLabel='Go to Profile button'
-                            testID='ProfileButton'
-                        />
-                        <Button 
-                            title="Logout" 
-                            onPress={handleLogout} 
-                            accessibilityLabel='Logout button'
-                            testID='LogoutButton'
-                        />
-                        <Text> b </Text>
-                    </View>
 
+                        <View style={stylesHomeScreen.containerButton}>
+                            <View style={generalStyles.defaultButton}>
+                                <Button 
+                                    title="Go to Profile" 
+                                    onPress={navigateProfileScreen} 
+                                    accessibilityLabel='Go to Profile button'
+                                    testID='ProfileButton'
+                                />
+                            </View>
+                        </View>
+                        <View style={stylesHomeScreen.containerButton}>
+                            <View style={generalStyles.defaultButton}>
+                                <Button 
+                                    title="Logout" 
+                                    onPress={handleLogout} 
+                                    accessibilityLabel='Logout button'
+                                    testID='LogoutButton'
+                                />
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaView>
