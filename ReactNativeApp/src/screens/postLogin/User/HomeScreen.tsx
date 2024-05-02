@@ -16,13 +16,19 @@ const HomeScreen: React.FunctionComponent = () => {
                 <Text> Hola {username}, you're logged in!!!! </Text>
                 <Text> Select the group you want to see: </Text>
                 <ScrollView>
-                    {groups.map((group: Group) => (
-                        <Button 
-                            key={group.id} 
-                            title={group.name} 
-                            onPress={() => navigateGroupHomeScreen(group.id)}
-                        />
-                    ))}
+                    {
+                        groups.length === 0 ? (
+                            <Text> You are not part of any group yet. </Text>
+                        ) : (
+                            groups.map((group: Group) => (
+                            <Button 
+                                key={group.id} 
+                                title={group.name} 
+                                onPress={() => navigateGroupHomeScreen(group.id)}
+                            />
+                            ))
+                        )
+                    }
                 </ScrollView>
                 <Button
                     title="Create a Group"
