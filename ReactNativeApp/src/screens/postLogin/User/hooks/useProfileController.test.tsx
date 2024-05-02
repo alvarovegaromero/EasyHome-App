@@ -1,6 +1,8 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import useProfileController from './useProfileController';
-import { mockSuccesfulFetch } from '../../../../utils/utilsTestingHooks';
+import { mockFailedFetch, mockSuccesfulFetch } from '../../../../utils/utilsTestingHooks';
+import { Alert } from 'react-native';
+import { BASE_URL } from '../../../../config';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -28,7 +30,6 @@ const renderTestHookTest = () => {
     return renderHook(() => useProfileController());
 };
 
-
 describe('useLoginController', () => {
     it('should be undefined while fetchData has not been done', () => {
         const { result } = renderTestHookTest();
@@ -37,6 +38,23 @@ describe('useLoginController', () => {
         expect(result.current.email).toBe("");
         expect(result.current.firstName).toBe("");
         expect(result.current.lastName).toBe("");
+    });
+
+    it('should call proper endpoint for retrieving profile data', async () => {
+        mockSuccesfulFetch({});
+
+        const { result } = renderTestHookTest();
+
+        await waitFor(() => {
+            expect(fetch).toHaveBeenCalledWith(
+            `${BASE_URL}/api/users/profile`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token dummy_token',
+                },
+            });
+        });
     });
 
     it('should render the fetched data', async () => {  
@@ -59,6 +77,17 @@ describe('useLoginController', () => {
         });
     });
 
+    it('should handle fetch error', async () => {
+        mockFailedFetch('Error');
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+        
+        await waitFor(() => {
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
+        });
+    });
+
     it('should navigate to EditProfileScreen', () => {
         const { result } = renderTestHookTest();
 
@@ -76,6 +105,6 @@ describe('useLoginController', () => {
             result.current.handleGoBack();
         });
 
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen', { username: '' });
+        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
     });
 });
