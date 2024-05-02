@@ -11,10 +11,6 @@ const stylesCreateGroupScreen = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
     },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
     containerInputs: {
         marginBottom: 20,
     },

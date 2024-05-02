@@ -28,6 +28,10 @@ const generalStyles = StyleSheet.create({
     defaultContainerTextAndInput: {
         marginBottom: 10,
     },
+    defaultHeader: {
+        fontSize: 24,
+        fontWeight: 'bold',
+    }
 });
 
 export default generalStyles;

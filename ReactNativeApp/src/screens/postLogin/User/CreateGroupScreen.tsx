@@ -15,7 +15,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
                 <View style={stylesCreateGroupScreen.containerScreen}>
                     <View style={stylesCreateGroupScreen.containerHeader}> 
-                        <Text style={stylesCreateGroupScreen.header}>Create a Group form</Text>
+                        <Text style={generalStyles.defaultHeader}>Create a Group form</Text>
                     </View>
                     <View style={stylesCreateGroupScreen.containerInputs}>
                         <View style={stylesCreateGroupScreen.containerInputName}>
