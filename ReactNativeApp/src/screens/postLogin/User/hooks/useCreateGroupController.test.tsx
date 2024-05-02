@@ -67,6 +67,24 @@ describe('useCreateGroupController', () => {
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Name and currency are required');
     });
 
+    it('should call proper endpoint for retrieving currencies', async () => {
+        mockSuccesfulFetch({ });
+
+        const { result } = renderTestHookTest();
+
+        await waitFor(() => {
+            expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/currencies`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token dummy_token',
+                    },
+                }
+            );
+        });
+    });
+
     it('should update currencies when fetchCurrencies is called', async () => {
         const mockCurrencies = ['USD', 'EUR', 'GBP'];
         mockSuccesfulFetch(mockCurrencies);
