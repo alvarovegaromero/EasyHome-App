@@ -3,10 +3,6 @@ import generalStyles from './styles';
 
 
 const stylesCreateGroupScreen = StyleSheet.create({
-    containerScreen: {
-        marginLeft: 15,
-        marginRight: 15,
-    },
     containerInputs: {
         marginBottom: 20,
     },

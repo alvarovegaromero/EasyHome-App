@@ -36,6 +36,10 @@ const generalStyles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
     },
+    defaultContainerScreen: {
+        marginLeft: 15,
+        marginRight: 15,
+    },
 });
 
 export default generalStyles;

@@ -76,11 +76,15 @@ const useCreateGroupController = () => {
         });
     };
 
+    const handleGoBack = () => {
+        navigation.goBack();
+    };
+
     return { name, setName, 
         description, setDescription, 
         currency, setCurrency, 
         currencies,
-        handleCreateGroupSubmit
+        handleCreateGroupSubmit, handleGoBack
     };
 }
 

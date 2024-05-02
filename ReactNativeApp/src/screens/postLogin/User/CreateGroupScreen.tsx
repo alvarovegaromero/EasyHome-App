@@ -8,12 +8,12 @@ import stylesCreateGroupScreen from '../../../styles/stylesCreateGroupScreen';
 
 const CreateGroupScreen: React.FunctionComponent = () => {
     const { name, setName, description, setDescription, currency, setCurrency, 
-            currencies, handleCreateGroupSubmit } = useCreateGroupController();
+            currencies, handleCreateGroupSubmit, handleGoBack } = useCreateGroupController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
-                <View style={stylesCreateGroupScreen.containerScreen}>
+                <View style={generalStyles.defaultContainerScreen}>
                     <View style={generalStyles.defaultContainerHeader}> 
                         <Text style={generalStyles.defaultHeader}>Create a Group form</Text>
                     </View>
@@ -61,6 +61,16 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                                 onPress={handleCreateGroupSubmit} 
                                 accessibilityLabel="Create group button"
                                 testID='CreateGroupButton'
+                            /> 
+                        </View>
+                    </View>
+                    <View style={generalStyles.defaultContainerButton}>
+                        <View style={generalStyles.defaultButton}>
+                            <Button 
+                                title='Go back' 
+                                onPress={handleGoBack} 
+                                accessibilityLabel='Go back button'
+                                testID='GoBackButton'    
                             /> 
                         </View>
                     </View>
