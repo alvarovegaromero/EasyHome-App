@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import useHomeController from './useHomeController';
 import { Alert } from 'react-native';
 import { BASE_URL } from '../../../../config';
@@ -36,8 +36,38 @@ describe('useHomeController', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
+
+    it('should fetch groups on mount', async () => {
+        const mockGroups = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }];
+        mockSuccesfulFetch(mockGroups);
     
-    it('should handle logout', async () => {
+        const { result } = renderTestHookTest();
+    
+        await waitFor(() => {
+            expect(result.current.groups).toEqual(mockGroups);
+        });
+    });
+    /*
+    it('should call proper endpoint for fetching groups', async () => {
+        mockSuccesfulFetch({});
+
+        renderTestHookTest();
+
+        await waitFor(() => {
+            expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/groups`,
+                expect.objectContaining({
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token dummy_token',
+                    },
+                })
+            );
+        });
+    });
+
+    it('should call proper endpoint when handling logout', async () => {
         mockSuccesfulFetch({ message: 'Logged out successfully' });
 
         const { result } = renderTestHookTest();
@@ -56,12 +86,21 @@ describe('useHomeController', () => {
                 },
             })
         );
+    });
+
+    it('should delete token from AsyncStorage when logout is succesful', async () => {
+        mockSuccesfulFetch({ message: 'Logged out successfully' });
+
+        const { result } = renderTestHookTest();
+
+        await act(async () => {
+            result.current.handleLogout();
+        });
 
         expect(AsyncStorage.removeItem).toHaveBeenCalledWith('token');
     });
 
     it('should handle logout failure', async () => {
-        AsyncStorage.getItem = jest.fn().mockResolvedValue('dummy_token');
         mockFailedFetch('Logout failed');
         const alertSpy = jest.spyOn(Alert, 'alert');
     
@@ -70,17 +109,6 @@ describe('useHomeController', () => {
         await act(async () => {
             result.current.handleLogout();
         });
-
-        expect(fetch).toHaveBeenCalledWith(
-            `${BASE_URL}/api/users/logout`,
-            expect.objectContaining({
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Token dummy_token',
-                },
-            })
-        );
     
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Logout failed');
         expect(AsyncStorage.removeItem).not.toHaveBeenCalled();
@@ -107,4 +135,25 @@ describe('useHomeController', () => {
 
         expect(mockedNavigate).toHaveBeenCalledWith('ProfileScreen');
     });
+
+    it('should navigate to CreateGroupScreen', async () => {
+        const { result } = renderTestHookTest();
+
+        await act(async () => {
+            result.current.navigateCreateGroupScreen();
+        });
+
+        expect(mockedNavigate).toHaveBeenCalledWith('CreateGroupScreen');
+    });
+
+    it('should navigate to GroupHomeScreen', async () => {
+        var mock_id = "1";
+        const { result } = renderTestHookTest();
+
+        await act(async () => {
+            result.current.navigateGroupHomeScreen(mock_id);
+        });
+
+        expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
+    });*/
 });

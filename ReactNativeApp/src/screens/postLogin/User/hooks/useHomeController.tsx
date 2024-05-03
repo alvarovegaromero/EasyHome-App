@@ -11,7 +11,7 @@ const useHomeController = () => {
     const navigation = useNavigation();
 
     const { groupId, setGroupId } = useContext(GroupContext);
-    const { contextUsername } = useContext(UserContext);
+    const { contextUsername, setContextUsername } = useContext(UserContext);
 
     const [groups, setGroups] = useState([]);
     const [dialogVisible, setDialogVisible] = useState(false);
@@ -77,6 +77,7 @@ const useHomeController = () => {
             }
             else{
                 AsyncStorage.removeItem('token');
+                setContextUsername('');
                 navigation.navigate('LoginScreen' as never);
             }
         })
