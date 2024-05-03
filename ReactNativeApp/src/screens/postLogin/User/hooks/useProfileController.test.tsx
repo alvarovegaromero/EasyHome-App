@@ -43,7 +43,7 @@ describe('useLoginController', () => {
     it('should call proper endpoint for retrieving profile data', async () => {
         mockSuccesfulFetch({});
 
-        const { result } = renderTestHookTest();
+        renderTestHookTest();
 
         await waitFor(() => {
             expect(fetch).toHaveBeenCalledWith(
@@ -81,7 +81,7 @@ describe('useLoginController', () => {
         mockFailedFetch('Error');
         const alertSpy = jest.spyOn(Alert, 'alert');
 
-        const { result } = renderTestHookTest();
+        renderTestHookTest();
         
         await waitFor(() => {
             expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
