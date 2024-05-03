@@ -166,7 +166,7 @@ describe('useRegisterController', () => {
         const useContextSpy = jest.spyOn(React, 'useContext');
         useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
     
-        const { result } = renderHook(() => useRegisterController());
+        const { result } = renderTestHookTest();
     
         act(() => {
             result.current.setUsername('newUsername');
