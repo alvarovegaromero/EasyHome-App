@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 import { BASE_URL } from '../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { mockFailedFetch, mockSuccesfulFetch } from '../../../../utils/utilsTestingHooks';
+import React from 'react';
 
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -37,17 +38,39 @@ describe('useHomeController', () => {
         jest.clearAllMocks();
     });
 
-    it('should fetch groups on mount', async () => {
-        const mockGroups = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }];
-        mockSuccesfulFetch(mockGroups);
-    
-        const { result } = renderTestHookTest();
-    
-        await waitFor(() => {
-            expect(result.current.groups).toEqual(mockGroups);
-        });
-    });
     /*
+    it('should update states properly', () => {
+        const { result } = renderTestHookTest();
+
+        act
+    });*/
+
+    it('dialogVisible should be false on mount', () => {
+        const { result } = renderTestHookTest();
+
+        expect(result.current.dialogVisible).toBe(false);
+    });
+
+    it('should set dialogVisible to true', () => {
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.showDialog();
+        });
+
+        expect(result.current.dialogVisible).toBe(true);
+    });
+
+    it('should set dialogVisible to false', () => {
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.closeDialog();
+        });
+
+        expect(result.current.dialogVisible).toBe(false);
+    });
+
     it('should call proper endpoint for fetching groups', async () => {
         mockSuccesfulFetch({});
 
@@ -65,6 +88,53 @@ describe('useHomeController', () => {
                 })
             );
         });
+    });
+
+    it('should fetch groups on mount', async () => {
+        const mockGroups = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }];
+        mockSuccesfulFetch({groups : mockGroups});
+
+        const { result } = renderTestHookTest();
+    
+        await waitFor(() => expect(result.current.groups).toEqual(mockGroups)); //on mount
+    });
+
+    it('should fetch groups on mount and when groupId is changed', async () => {
+        const mockGroups = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }];
+        mockSuccesfulFetch({groups : mockGroups});
+
+        const { result, rerender } = renderHook(() => useHomeController());
+
+        await waitFor(() => expect(result.current.groups).toEqual(mockGroups)); //on mount
+
+        let mockGroupId = 1;
+        const mockSetGroupId = jest.fn().mockImplementation(newGroupId => {
+            mockGroupId = newGroupId;
+        });
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockImplementation(() => ({ groupId: mockGroupId, setGroupId: mockSetGroupId }));
+
+        const mockGroupsChanged = [{ id: 3, name: 'group3' }, { id: 4, name: 'group4' }];
+        mockSuccesfulFetch({groups : mockGroupsChanged});
+
+        mockSetGroupId('2');
+
+        rerender({});
+
+        await waitFor(() => expect(result.current.groups).toEqual(mockGroupsChanged)); //changed
+    
+        useContextSpy.mockRestore(); 
+    });
+
+    it('should handle fetch groups failure', async () => {
+        mockFailedFetch('Fetch groups failed');
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+
+        await waitFor(() => expect(result.current.groups).toEqual([]));
+
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Fetch groups failed');
     });
 
     it('should call proper endpoint when handling logout', async () => {
@@ -126,6 +196,64 @@ describe('useHomeController', () => {
         expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
     });
 
+    it('should fail when trying to join group without code', async () => {
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.joinGroup();
+        });
+
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Join code must be filled');
+    });
+
+    it('should call proper endpoint when joining group', async () => {
+        let mockJoinCode = '1234';
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setJoinCode(mockJoinCode);
+        });
+        act(() => {
+            result.current.joinGroup();
+        });
+
+        await waitFor(() => {
+            expect(fetch).toHaveBeenNthCalledWith(
+                2,
+                `${BASE_URL}/api/groups/join`,
+                expect.objectContaining({
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token dummy_token',
+                    },
+                    body: JSON.stringify({ joinCode: mockJoinCode }),
+                })
+            );
+        });
+    });
+
+    /*
+    it('should call navigateGroupHomeScreen when joining group is succesful', async () => {
+        mockSuccesfulFetch({ id: 1 });
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setJoinCode('1234');
+        });
+        act(() => {
+            result.current.joinGroup();
+        });
+
+        await waitFor(() => {
+            expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen', { id: 1 });
+        });
+    });*/
+
     it('should navigate to ProfileScreen', async () => {
         const { result } = renderTestHookTest();
 
@@ -155,5 +283,5 @@ describe('useHomeController', () => {
         });
 
         expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
-    });*/
+    });
 });
