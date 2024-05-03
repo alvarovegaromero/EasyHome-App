@@ -110,7 +110,8 @@ describe('useRegisterController', () => {
     });
 
     it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
-        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        //mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        mockSuccesfulFetch({});
 
         const { result } = renderTestHookTest();
     
@@ -138,7 +139,7 @@ describe('useRegisterController', () => {
     });
 
     it('should navigate to HomeSCreen when response is ok', async () => {
-        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        mockSuccesfulFetch({});
     
         const { result } = renderTestHookTest();
     
@@ -157,7 +158,7 @@ describe('useRegisterController', () => {
     });
 
     it('should update UserContext with id and username when login is successful', async () => {
-        mockSuccesfulFetch({ id: 'dummy', token: 'dummy_token', username: 'newUsername' });
+        mockSuccesfulFetch({ id: 'dummy', username: 'newUsername'});
         
         const mockSetId = jest.fn();
         const mockSetContextUsername = jest.fn();
