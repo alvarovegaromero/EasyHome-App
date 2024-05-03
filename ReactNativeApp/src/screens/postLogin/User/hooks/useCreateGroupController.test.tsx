@@ -32,11 +32,8 @@ const renderTestHookTest = () => {
     return renderHook(() => useCreateGroupController());
 };
 
-describe('useCreateGroupController', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
 
+describe('useCreateGroupController', () => {
     it('should update name, description and currency states', () => {
         const { result } = renderTestHookTest();
     
@@ -68,17 +65,16 @@ describe('useCreateGroupController', () => {
     });
 
     it('should call proper endpoint for retrieving currencies', async () => {
-        mockSuccesfulFetch({ });
+        mockSuccesfulFetch({});
 
-        const { result } = renderTestHookTest();
+        renderTestHookTest();
 
         await waitFor(() => {
             expect(fetch).toHaveBeenCalledWith(
-                `${BASE_URL}/api/currencies`, {
+                `${BASE_URL}/api/groups/currencies`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Token dummy_token',
                     },
                 }
             );
@@ -101,7 +97,7 @@ describe('useCreateGroupController', () => {
 
         const alertSpy = jest.spyOn(Alert, 'alert');
 
-        const { result } = renderTestHookTest();
+        renderTestHookTest();
         
         await waitFor(() => {
             expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
