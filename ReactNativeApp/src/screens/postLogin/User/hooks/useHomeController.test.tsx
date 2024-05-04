@@ -38,13 +38,6 @@ describe('useHomeController', () => {
         jest.clearAllMocks();
     });
 
-    /*
-    it('should update states properly', () => {
-        const { result } = renderTestHookTest();
-
-        act
-    });*/
-
     it('dialogVisible should be false on mount', () => {
         const { result } = renderTestHookTest();
 
@@ -216,27 +209,26 @@ describe('useHomeController', () => {
         act(() => {
             result.current.setJoinCode(mockJoinCode);
         });
-        act(() => {
+
+        await act(async () => {
             result.current.joinGroup();
         });
 
-        await waitFor(() => {
-            expect(fetch).toHaveBeenNthCalledWith(
-                2,
-                `${BASE_URL}/api/groups/join`,
-                expect.objectContaining({
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token dummy_token',
-                    },
-                    body: JSON.stringify({ joinCode: mockJoinCode }),
-                })
-            );
-        });
+        expect(fetch).toHaveBeenNthCalledWith(
+            2,
+            `${BASE_URL}/api/groups/join`,
+            expect.objectContaining({
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Token dummy_token',
+                },
+                body: JSON.stringify({ joinCode: mockJoinCode }),
+            })
+        );
     });
 
-    /*
+    //Maybe good idea to test if navigateGroupHomeScreen is called. This and next test
     it('should call navigateGroupHomeScreen when joining group is succesful', async () => {
         mockSuccesfulFetch({ id: 1 });
 
@@ -245,14 +237,49 @@ describe('useHomeController', () => {
         act(() => {
             result.current.setJoinCode('1234');
         });
-        act(() => {
+        await act(async () => {
             result.current.joinGroup();
         });
 
-        await waitFor(() => {
-            expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen', { id: 1 });
+        expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
+    });
+
+    it('should set groupId context when joining a group', async () => {
+        const mockSetGroupId = jest.fn();
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
+        
+        mockSuccesfulFetch({ id: 'dummy' });
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setJoinCode('1234');
         });
-    });*/
+
+        await act(async () => {
+            result.current.joinGroup();
+        });
+
+        expect(mockSetGroupId).toHaveBeenCalledWith('dummy');    
+    });
+
+    it('should handle join group failure', async () => {
+        mockFailedFetch('Join group failed');
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        const { result } = renderTestHookTest();
+
+        act(() => {
+            result.current.setJoinCode('1234');
+        });
+
+        await act(async () => {
+            result.current.joinGroup();
+        });
+
+        expect(alertSpy).toHaveBeenCalledWith('Error', 'Join group failed');
+    });
 
     it('should navigate to ProfileScreen', async () => {
         const { result } = renderTestHookTest();
@@ -283,5 +310,20 @@ describe('useHomeController', () => {
         });
 
         expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
+    });
+
+    it('should update groupId when navigating to GroupHomeScreen', async () => {
+        const mockSetGroupId = jest.fn();
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
+        
+        const mock_id = "1";
+        const { result } = renderTestHookTest();
+
+        await act(async () => {
+            result.current.navigateGroupHomeScreen(mock_id);
+        });
+
+        expect(mockSetGroupId).toHaveBeenCalledWith(mock_id);
     });
 });
