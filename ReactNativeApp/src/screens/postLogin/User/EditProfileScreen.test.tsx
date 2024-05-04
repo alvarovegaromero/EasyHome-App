@@ -30,8 +30,8 @@ jest.mock('./hooks/useEditProfileController', () => {
         handleEditProfileSubmit,
         handleGoBack,
     });
-
 });
+
 
 const renderScreen = () => {
     const [route, navigation] = [{
