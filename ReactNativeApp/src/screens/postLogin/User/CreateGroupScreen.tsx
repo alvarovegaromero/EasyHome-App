@@ -19,7 +19,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                     </View>
                     <View style={stylesCreateGroupScreen.containerInputs}>
                         <View style={stylesCreateGroupScreen.containerInputName}>
-                            <Text> Group name: </Text>
+                            <Text accessibilityLabel='Group name:'> Group name: </Text>
                             <TextInput
                                 style={generalStyles.defaultInput}
                                 value={name}
@@ -29,7 +29,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                             />
                         </View>
                         <View style={stylesCreateGroupScreen.containerInputDescription}>
-                            <Text> Description: </Text> 
+                            <Text accessibilityLabel='Description:'> Description: </Text> 
                             <TextInput
                                 style={stylesCreateGroupScreen.InputDescription}
                                 value={description}
@@ -41,7 +41,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                             />
                         </View>
                         <View style={stylesCreateGroupScreen.containerInputCurrency}>
-                            <Text> Currency: </Text>
+                            <Text accessibilityLabel='Currency:'> Currency: </Text>
                             <View style={generalStyles.defaultInput}>
                                 <Picker
                                     value={currency}
@@ -50,6 +50,7 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                                         label: currencyOption[1],
                                         value: currencyOption[0],
                                     }))}
+                                    textInputProps={{ accessibilityLabel: 'Currency picker', testID: 'CurrencyPicker' }}
                                 />
                             </View>
                         </View>
