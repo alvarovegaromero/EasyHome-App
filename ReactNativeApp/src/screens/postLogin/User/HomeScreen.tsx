@@ -18,8 +18,8 @@ const HomeScreen: React.FunctionComponent = () => {
                 <View style={generalStyles.defaultContainerScreen}>
 
                     <View style={stylesHomeScreen.containerHeaders}>
-                        <Text style={generalStyles.defaultHeader}> Hello {username}! </Text>
-                        <Text style={generalStyles.defaultSubHeader}> Select the group you want to see: </Text>
+                        <Text accessibilityLabel={`Hello ${username}`} style={generalStyles.defaultHeader}> Hello {username}! </Text>
+                        <Text accessibilityLabel='Select the group you want to see:' style={generalStyles.defaultSubHeader}> Select the group you want to see: </Text>
                     </View>
 
                     <View style={stylesHomeScreen.containerGroups}>
@@ -27,8 +27,8 @@ const HomeScreen: React.FunctionComponent = () => {
                             {
                                 groups.length === 0 ? (
                                     <View style={stylesHomeScreen.containerNoGroups}>
-                                        <Text style={stylesHomeScreen.textNoGroups}> You are not part of any group yet :( </Text>
-                                        <Text style={stylesHomeScreen.textNoGroups}> Join or create a Group to see them here </Text>
+                                        <Text accessibilityLabel='You are not part of any group' style={stylesHomeScreen.textNoGroups}> You are not part of any group yet :( </Text>
+                                        <Text accessibilityLabel='Join or Create a Group to see them here' style={stylesHomeScreen.textNoGroups}> Join or Create a Group to see them here </Text>
                                     </View>
                                 ) : (
                                     <>
@@ -40,7 +40,7 @@ const HomeScreen: React.FunctionComponent = () => {
                                                 onPress={() => navigateGroupHomeScreen(group.id)}
                                                 style={stylesHomeScreen.listButton}
                                             >
-                                                <Text>{group.name}</Text>
+                                                <Text accessibilityLabel={`Group name: ${group.name}`}>{group.name}</Text>
                                             </TouchableOpacity>
                                         ))
                                     }
@@ -78,9 +78,20 @@ const HomeScreen: React.FunctionComponent = () => {
                             <Dialog.Description>
                                 Enter the join code for the group you want to join.
                             </Dialog.Description>
-                            <Dialog.Input onChangeText={setJoinCode} />
-                            <Dialog.Button label="Cancel" onPress={closeDialog} />
-                            <Dialog.Button label="Join" onPress={joinGroup} />
+                            <Dialog.Input 
+                                onChangeText={setJoinCode} 
+                                accessibilityLabel="Input for entering the join code"
+                            />
+                            <Dialog.Button 
+                                label="Cancel" 
+                                onPress={closeDialog} 
+                                accessibilityLabel="Cancel button"
+                            />
+                            <Dialog.Button 
+                                label="Join" 
+                                onPress={joinGroup} 
+                                accessibilityLabel="Join button"
+                            />
                         </Dialog.Container>
 
                         <View style={stylesHomeScreen.containerButton}>
