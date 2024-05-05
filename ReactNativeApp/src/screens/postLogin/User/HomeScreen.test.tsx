@@ -4,6 +4,8 @@ import useHomeController from './hooks/useHomeController';
 
 var mockDialogVisible = false;
 
+var mockGroups = [{ id: '1', name: 'Group 1' }, { id: '2', name: 'Group 2' }];
+
 jest.mock('./hooks/useHomeController', () => {
     const handleLogout = jest.fn();
     const navigateProfileScreen = jest.fn();
@@ -16,7 +18,7 @@ jest.mock('./hooks/useHomeController', () => {
 
     return () => ({
         username: 'myUsername',
-        groups: [{ id: '1', name: 'Group 1' }, { id: '2', name: 'Group 2' }],
+        groups: mockGroups,
         handleLogout,
         showDialog,
         closeDialog,
@@ -49,6 +51,14 @@ describe('HomeScreen', () => {
         expect(getByTestId('ProfileButton')).toBeTruthy();
         expect(getByTestId('JoinGroupButton')).toBeTruthy();
         expect(getByTestId('CreateGroupButton')).toBeTruthy();
+    });
+
+    it('if there are no groups, it should render the correct message', () => {
+        mockGroups = [];
+        const { getByText } = renderScreen();
+
+        expect(getByText("You are not part of any group yet :(")).toBeTruthy();
+        expect(getByText("Join or Create a Group to see them here")).toBeTruthy();
     });
 
     it('should call the correct functions when buttons are pressed', () => {
