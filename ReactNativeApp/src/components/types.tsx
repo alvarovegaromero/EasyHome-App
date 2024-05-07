@@ -12,4 +12,5 @@ export type MyStackParamsList = {
     EditProfileScreen : EditProfileStackParamList['EditProfileScreen'];
     CreateGroupScreen: undefined;
     GroupHomeScreen: undefined;
+    GroupSettingsScreen: undefined;
 }
