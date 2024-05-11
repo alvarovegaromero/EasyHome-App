@@ -5,21 +5,18 @@ const stylesHomeScreen = StyleSheet.create({
     containerHeaders: {
         ...generalStyles.defaultContainerHeader,
         flex: 0.2,
-        //backgroundColor: 'blue',
         justifyContent: 'center',
     },
     containerGroups: {
         borderColor: 'black',
         borderWidth: 1,
         borderRadius: 10,        
-        //backgroundColor: 'red',
         flex: 2,
         marginBottom: 30,
         height: 300,
     },
     containerButtons: {
         flex: 0.4,
-        //backgroundColor: 'green',
     },
     containerButton: {
         ...generalStyles.defaultContainerButton,
