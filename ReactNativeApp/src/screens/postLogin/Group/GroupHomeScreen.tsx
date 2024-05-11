@@ -42,6 +42,44 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 <Dialog.Button label="Close" onPress={closeDialog} />
                 <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} />
             </Dialog.Container>
+
+            <Text> What do you want to do today?</Text>
+            <Button
+                title = "Distribute Expenses"
+                onPress={() => {}}
+                accessibilityLabel='Distribute expenses button'
+                testID='DistributeExpensesButton'
+            />
+            <Button
+                title="Manage Shopping Lists"
+                onPress={() => {}}
+                accessibilityLabel='Manage shopping lists button'
+                testID='ManageShoppingListsButton'
+            />
+            <Button 
+                title="Distribute household chores"
+                onPress={() => {}}
+                accessibilityLabel='Distribute household chores button'
+                testID='DistributeHouseholdChoresButton'
+            />
+            <Button
+                title="View the pantry"
+                onPress={() => {}}
+                accessibilityLabel='View the pantry button'
+                testID='ViewThePantryButton'
+            />
+            <Button 
+                title="Group Board"
+                onPress={() => {}}
+                accessibilityLabel='Group Board button'
+                testID='GroupBoardButton'
+            />
+            <Button 
+                title="Group Settings"
+                onPress={() => {}}
+                accessibilityLabel='Group Settings button'
+                testID='GroupSettingsButton'
+            />
         </View>
     );
 };
