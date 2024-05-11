@@ -43,12 +43,16 @@ const useGroupHomeController = () => {
         });
     };
 
+    const navigateSettings = () => {
+        navigation.navigate('GroupSettingsScreen' as never);
+    }
+
     const navigateHome = () => {
         setGroupId('');
         navigation.navigate('HomeScreen' as never);
     }
 
-    return {navigateHome};
+    return {navigateSettings, navigateHome};
 };
 
 export default useGroupHomeController;
