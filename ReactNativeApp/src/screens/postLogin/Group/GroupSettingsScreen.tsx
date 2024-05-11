@@ -1,4 +1,4 @@
-import { Button, SafeAreaView, ScrollView, Text } from "react-native";
+import { Button, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import generalStyles from "../../../styles/styles";
 import useGroupSettingsController from "./hooks/useGroupSettingsController";
 import Dialog from "react-native-dialog";
@@ -6,7 +6,7 @@ import Dialog from "react-native-dialog";
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
     const {confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
-        closeDialog, joinCode, copyJoinCodeToClipboard, isOwner, navigateGroupHome} = useGroupSettingsController();
+        closeDialog, joinCode, copyJoinCodeToClipboard, groupUsers, isOwner, navigateGroupHome} = useGroupSettingsController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -37,6 +37,18 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     accessibilityLabel='Go back to Group Home button'
                     testID='GoBackToGroupHomeButton'
                 />
+                
+                <View>
+                    {groupUsers.map((user, index) => (
+                        <TouchableOpacity 
+                            key={user.id} 
+                            onPress={() => console.log('User pressed:', user.username)}
+                        >
+                            <Text>{user.username}</Text>
+                        </TouchableOpacity>
+                    ))}   
+                </View>
+
                 <Dialog.Container visible={dialogVisible}>
                     <Dialog.Title>Join Code</Dialog.Title>
                     <Dialog.Description>

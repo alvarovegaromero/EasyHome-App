@@ -190,7 +190,7 @@ const useGroupSettingsController = () => {
     }
 
     return {confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
-        closeDialog, joinCode, isOwner, copyJoinCodeToClipboard, navigateGroupHome};
+        closeDialog, joinCode, groupUsers, isOwner, copyJoinCodeToClipboard, navigateGroupHome};
 };
 
 export default useGroupSettingsController;
