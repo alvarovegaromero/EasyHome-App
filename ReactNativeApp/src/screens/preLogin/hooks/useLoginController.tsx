@@ -40,7 +40,7 @@ const useLoginController = () => {
                 return response.json();
         })
         .then(data => {
-            setId(data.id);
+            setId(data.id.toString());
             setContextUsername(data.username); 
             AsyncStorage.setItem('token', data.token);
 
