@@ -47,11 +47,10 @@ const useGroupSettingsController = () => {
         .then((data: {users: User[]}) => {
             setGroupUsers(data.users);
 
-
             if (data.users.some(user => (user.id.toString() === id 
-                && user.is_owner === true))) {
+                                        && user.is_owner === true))) 
                 setIsOwner(true);
-            }             
+                       
         })
         .catch(error => {
             console.error('Error:', error);
