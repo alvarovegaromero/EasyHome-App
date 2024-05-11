@@ -22,6 +22,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     onPress={confirmAndDeleteGroup}
                     accessibilityLabel='Delete group button'
                     testID='DeleteGroupButton'
+                    /*disabled={isOwner}*/
                 />
                 <Button 
                     title="Generate join code"
