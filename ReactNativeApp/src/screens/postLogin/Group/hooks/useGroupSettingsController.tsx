@@ -17,7 +17,7 @@ const useGroupSettingsController = () => {
 
     const [dialogVisible, setDialogVisible] = useState(false);
     const [joinCode, setJoinCode] = useState('');
-    const [groupUsers, setGroupUsers] = useState<any[]>([]);    
+    const [groupUsers, setGroupUsers] = useState<User[]>([]);    
     const [isOwner, setIsOwner] = useState(false);
 
     useEffect(() => {
