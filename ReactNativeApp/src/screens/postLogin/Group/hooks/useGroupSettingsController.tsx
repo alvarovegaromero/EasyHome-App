@@ -1,20 +1,62 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GroupContext } from "../../../../contexts/GroupContext";
 import { useNavigation } from "@react-navigation/native";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "../../../../config";
+import { UserContext } from "../../../../contexts/UserContext";
+import { User } from "../types";
 
 
 const useGroupSettingsController = () => {
     const navigation = useNavigation();
 
+    const { id } = useContext(UserContext);
     const { groupId, setGroupId } = useContext(GroupContext)
 
     const [dialogVisible, setDialogVisible] = useState(false);
     const [joinCode, setJoinCode] = useState('');
-    
+    const [groupUsers, setGroupUsers] = useState<any[]>([]);    
+    const [isOwner, setIsOwner] = useState(false);
+
+    useEffect(() => {
+        fetchGroupUsersData();
+    }, []);
+
+    const fetchGroupUsersData = async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL+'/api/groups/'+groupId+'/users', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        .then((data: {users: User[]}) => {
+            setGroupUsers(data.users);
+
+
+            if (data.users.some(user => (user.id.toString() === id 
+                && user.is_owner === true))) {
+                setIsOwner(true);
+            }             
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
     const confirmAndLeaveGroup = async () => {
         Alert.alert(
@@ -149,7 +191,7 @@ const useGroupSettingsController = () => {
     }
 
     return {confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
-        closeDialog, joinCode, copyJoinCodeToClipboard, navigateGroupHome};
+        closeDialog, joinCode, isOwner, copyJoinCodeToClipboard, navigateGroupHome};
 };
 
 export default useGroupSettingsController;

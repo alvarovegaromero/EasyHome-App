@@ -6,7 +6,7 @@ import Dialog from "react-native-dialog";
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
     const {confirmAndLeaveGroup, confirmAndDeleteGroup, generateJoinCode, dialogVisible, 
-        closeDialog, joinCode, copyJoinCodeToClipboard, navigateGroupHome} = useGroupSettingsController();
+        closeDialog, joinCode, copyJoinCodeToClipboard, isOwner, navigateGroupHome} = useGroupSettingsController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -17,13 +17,14 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     accessibilityLabel='Leave group button'
                     testID='LeaveGroupButton'
                 />
-                <Button 
-                    title="Delete group"
-                    onPress={confirmAndDeleteGroup}
-                    accessibilityLabel='Delete group button'
-                    testID='DeleteGroupButton'
-                    /*disabled={isOwner}*/
-                />
+                {isOwner && (
+                    <Button 
+                        title="Delete group"
+                        onPress={confirmAndDeleteGroup}
+                        accessibilityLabel='Delete group button'
+                        testID='DeleteGroupButton'
+                    />
+                )}
                 <Button 
                     title="Generate join code"
                     onPress={generateJoinCode}
