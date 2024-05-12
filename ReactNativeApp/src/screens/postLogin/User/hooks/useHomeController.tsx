@@ -116,7 +116,7 @@ const useHomeController = () => {
                 return response.json();
         })
         .then(data => {
-            navigateGroupHomeScreen(data.id.toString());
+            navigateGroupHomeScreen(String(data.id));
         })
         .catch(error => {
             console.error('Error:', error);
