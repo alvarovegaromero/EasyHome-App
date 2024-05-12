@@ -52,151 +52,157 @@ describe('useCreateGroupController', () => {
         expect(result.current.currency).toBe('newCurrency');
     });
 
-    it('should handle create group submit with empty name or currency', async () => {
-        const alertSpy = jest.spyOn(Alert, 'alert');
-        
-        const { result } = renderTestHookTest();
+    describe('fetchCurrencies', () => {
+        it('should call proper endpoint for retrieving currencies', async () => {
+            mockSuccesfulFetch({});
 
-        await act(async () => {
-            result.current.handleCreateGroupSubmit();
+            renderTestHookTest();
+
+            await waitFor(() => {
+                expect(fetch).toHaveBeenCalledWith(
+                    `${BASE_URL}/api/groups/currencies`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+            });
         });
 
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Name and currency are required');
+        it('should update currencies when fetchCurrencies is called', async () => {
+            const mockCurrencies = ['USD', 'EUR', 'GBP'];
+            mockSuccesfulFetch(mockCurrencies);
+
+            const { result } = renderTestHookTest();
+            
+            await waitFor(() => {
+                expect(result.current.currencies).toEqual(mockCurrencies);
+            });
+        });
+
+        it('should display alert when fetchCurrencies fails', async () => {
+            mockFailedFetch('Error');
+
+            const alertSpy = jest.spyOn(Alert, 'alert');
+
+            renderTestHookTest();
+            
+            await waitFor(() => {
+                expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
+            });
+        });
     });
 
-    it('should call proper endpoint for retrieving currencies', async () => {
-        mockSuccesfulFetch({});
+    describe('handleCreateGroupSubmit', () => {
+        it('should handle create group submit with empty name or currency', async () => {
+            const alertSpy = jest.spyOn(Alert, 'alert');
+            
+            const { result } = renderTestHookTest();
 
-        renderTestHookTest();
+            await act(async () => {
+                result.current.handleCreateGroupSubmit();
+            });
 
-        await waitFor(() => {
-            expect(fetch).toHaveBeenCalledWith(
-                `${BASE_URL}/api/groups/currencies`, {
-                    method: 'GET',
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Name and currency are required');
+        });
+
+        it('should handle create group submit with valid name and currency', async () => {
+            mockSuccesfulFetch({ });
+        
+            const { result } = renderTestHookTest();
+        
+            act(() => {
+                result.current.setName('newName');
+                result.current.setDescription('newDescription');
+                result.current.setCurrency('USD');
+            });
+        
+            await act(async () => {
+                result.current.handleCreateGroupSubmit();
+            });
+        
+            expect(fetch).toHaveBeenNthCalledWith( //first call is for currencies
+                2,
+                `${BASE_URL}/api/groups/create`,
+                expect.objectContaining({
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Token dummy_token`,
                     },
-                }
+                    body: JSON.stringify({ name: 'newName', description: 'newDescription', currency: 'USD' }),
+                })
             );
         });
-    });
 
-    it('should update currencies when fetchCurrencies is called', async () => {
-        const mockCurrencies = ['USD', 'EUR', 'GBP'];
-        mockSuccesfulFetch(mockCurrencies);
+        it('should navigate to GroupHomeScreen when creation is successful', async () => {
+            mockSuccesfulFetch({});
 
-        const { result } = renderTestHookTest();
-        
-        await waitFor(() => {
-            expect(result.current.currencies).toEqual(mockCurrencies);
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.setName('newName');
+                result.current.setCurrency('USD');
+            });
+
+            await act(async () => {
+                result.current.handleCreateGroupSubmit();
+            });
+
+            expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
         });
-    });
 
-    it('should display alert when fetchCurrencies fails', async () => {
-        mockFailedFetch('Error');
+        it('should update groupId when creation is successful', async () => {
+            const mockSetGroupId = jest.fn();
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
+            
+            mockSuccesfulFetch({ id: 'dummy' });
 
-        const alertSpy = jest.spyOn(Alert, 'alert');
+            const { result } = renderTestHookTest();
 
-        renderTestHookTest();
-        
-        await waitFor(() => {
+            act(() => {
+                result.current.setName('newName');
+                result.current.setCurrency('USD');
+            });
+
+            await act(async () => {
+                result.current.handleCreateGroupSubmit();
+            });
+
+            expect(mockSetGroupId).toHaveBeenCalledWith('dummy');
+        });
+
+        it('should display alert when response is not ok', async () => {
+            mockFailedFetch('Error');
+
+            const alertSpy = jest.spyOn(Alert, 'alert');
+
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.setName('newName');
+                result.current.setCurrency('USD');
+            });
+
+            await act(async () => {
+                result.current.handleCreateGroupSubmit();
+            });
+
             expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
         });
     });
-
-    it('should handle create group submit with valid name and currency', async () => {
-        mockSuccesfulFetch({ });
     
-        const { result } = renderTestHookTest();
-    
-        act(() => {
-            result.current.setName('newName');
-            result.current.setDescription('newDescription');
-            result.current.setCurrency('USD');
+    describe('navigate', () => {
+        it('should navigate back to HomeScreen', () => {
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.handleGoBack();
+            });
+
+            expect(mockedGoBack).toHaveBeenCalled();
         });
-    
-        await act(async () => {
-            result.current.handleCreateGroupSubmit();
-        });
-    
-        expect(fetch).toHaveBeenNthCalledWith(
-            2,
-            `${BASE_URL}/api/groups/create`,
-            expect.objectContaining({
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token dummy_token`,
-                },
-                body: JSON.stringify({ name: 'newName', description: 'newDescription', currency: 'USD' }),
-            })
-        );
-    });
-
-    it('should navigate to GroupHomeScreen when creation is successful', async () => {
-        mockSuccesfulFetch({});
-
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.setName('newName');
-            result.current.setCurrency('USD');
-        });
-
-        await act(async () => {
-            result.current.handleCreateGroupSubmit();
-        });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
-    });
-
-    it('should update groupId when creation is successful', async () => {
-        const mockSetGroupId = jest.fn();
-        const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
-        
-        mockSuccesfulFetch({ id: 'dummy' });
-
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.setName('newName');
-            result.current.setCurrency('USD');
-        });
-
-        await act(async () => {
-            result.current.handleCreateGroupSubmit();
-        });
-
-        expect(mockSetGroupId).toHaveBeenCalledWith('dummy');
-    });
-
-    it('should display alert when response is not ok', async () => {
-        mockFailedFetch('Error');
-
-        const alertSpy = jest.spyOn(Alert, 'alert');
-
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.setName('newName');
-            result.current.setCurrency('USD');
-        });
-
-        await act(async () => {
-            result.current.handleCreateGroupSubmit();
-        });
-
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
-    });
-
-    it('should navigate back to HomeScreen', () => {
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.handleGoBack();
-        });
-
-        expect(mockedGoBack).toHaveBeenCalled();
     });
 });
