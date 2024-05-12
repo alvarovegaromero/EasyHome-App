@@ -30,81 +30,87 @@ const renderTestHookTest = () => {
     return renderHook(() => useProfileController());
 };
 
-describe('useLoginController', () => {
-    it('should be undefined while fetchData has not been done', () => {
-        const { result } = renderTestHookTest();
 
-        expect(result.current.username).toBe("");
-        expect(result.current.email).toBe("");
-        expect(result.current.firstName).toBe("");
-        expect(result.current.lastName).toBe("");
-    });
+    describe('useLoginController', () => {
+        it('should be undefined while fetchData has not been done', () => {
+            const { result } = renderTestHookTest();
 
-    it('should call proper endpoint for retrieving profile data', async () => {
-        mockSuccesfulFetch({});
+            expect(result.current.username).toBe("");
+            expect(result.current.email).toBe("");
+            expect(result.current.firstName).toBe("");
+            expect(result.current.lastName).toBe("");
+        });
 
-        renderTestHookTest();
+        describe('fetchData', () => {
 
-        await waitFor(() => {
-            expect(fetch).toHaveBeenCalledWith(
-            `${BASE_URL}/api/users/profile`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Token dummy_token',
-                },
+        it('should call proper endpoint for retrieving profile data', async () => {
+            mockSuccesfulFetch({});
+
+            renderTestHookTest();
+
+            await waitFor(() => {
+                expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/users/profile`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token dummy_token',
+                    },
+                });
+            });
+        });
+
+        it('should render the fetched data', async () => {  
+            const testData = {
+                username: 'username',
+                email: 'email@example.com',
+                firstName: 'John',
+                lastName: 'Doe',
+            };
+
+            mockSuccesfulFetch(testData);
+
+            const { result } = renderTestHookTest();
+        
+            await waitFor(() => {
+                expect(result.current.username).toBe(testData.username);
+                expect(result.current.email).toBe(testData.email);
+                expect(result.current.firstName).toBe(testData.firstName);
+                expect(result.current.lastName).toBe(testData.lastName);
+            });
+        });
+
+        it('should handle fetch error', async () => {
+            mockFailedFetch('Error');
+            const alertSpy = jest.spyOn(Alert, 'alert');
+
+            renderTestHookTest();
+            
+            await waitFor(() => {
+                expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
             });
         });
     });
 
-    it('should render the fetched data', async () => {  
-        const testData = {
-            username: 'username',
-            email: 'email@example.com',
-            firstName: 'John',
-            lastName: 'Doe',
-        };
+    describe('navigate' , () => {
+        it('should navigate to EditProfileScreen', () => {
+            const { result } = renderTestHookTest();
 
-        mockSuccesfulFetch(testData);
+            act(() => {
+                result.current.navigateEditProfileScreen();
+            });
 
-        const { result } = renderTestHookTest();
-    
-        await waitFor(() => {
-            expect(result.current.username).toBe(testData.username);
-            expect(result.current.email).toBe(testData.email);
-            expect(result.current.firstName).toBe(testData.firstName);
-            expect(result.current.lastName).toBe(testData.lastName);
+            expect(mockedNavigate).toHaveBeenCalledWith('EditProfileScreen', { username: '', email: '', firstName: '', lastName: '' });
         });
-    });
-
-    it('should handle fetch error', async () => {
-        mockFailedFetch('Error');
-        const alertSpy = jest.spyOn(Alert, 'alert');
-
-        renderTestHookTest();
         
-        await waitFor(() => {
-            expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
+        it('should navigate to HomeScreen', () => {
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.handleGoBack();
+            });
+
+            expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
         });
-    });
-
-    it('should navigate to EditProfileScreen', () => {
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.navigateEditProfileScreen();
-        });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('EditProfileScreen', { username: '', email: '', firstName: '', lastName: '' });
-    });
-    
-    it('should navigate to HomeScreen', () => {
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.handleGoBack();
-        });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
     });
 });
