@@ -1,15 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GroupContext } from "../../../../contexts/GroupContext";
 import { BASE_URL } from "../../../../config";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Group } from "../types";
 
 
 const useGroupHomeController = () => {
     const navigation = useNavigation();
 
     const { groupId, setGroupId } = useContext(GroupContext)
+
+    const [groupName, setGroupName] = useState(''); //could be added in groupContext
 
     useEffect(() => {
         fetchGroupData();
@@ -35,8 +38,8 @@ const useGroupHomeController = () => {
             else
                 return response.json();
         })
-        .then(data => {
-            console.log(data); //to be defined later
+        .then((data : Group) => {
+            setGroupName(data.name);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -52,7 +55,7 @@ const useGroupHomeController = () => {
         navigation.navigate('HomeScreen' as never);
     }
 
-    return {navigateSettings, navigateHome};
+    return {groupName, navigateSettings, navigateHome};
 };
 
 export default useGroupHomeController;

@@ -4,12 +4,12 @@ import generalStyles from "../../../styles/styles";
 
 
 const GroupHomeScreen: React.FunctionComponent = () => {
-    const { navigateSettings, navigateHome } = useGroupHomeController();
+    const { groupName, navigateSettings, navigateHome } = useGroupHomeController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
             <ScrollView style={generalStyles.defaultScrollView}>
-                <Text>Group Name</Text>
+                <Text>{groupName}</Text>
                 <Text> What do you want to do today?</Text>
                 <Button
                     title = "Distribute Expenses"
