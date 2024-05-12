@@ -1,8 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react-native";
 import useGroupHomeController from "./useGroupHomeController";
 import React from "react";
-import { mockSuccesfulFetch } from "../../../../utils/utilsTestingHooks";
+import { mockFailedFetch, mockSuccesfulFetch } from "../../../../utils/utilsTestingHooks";
 import { BASE_URL } from "../../../../config";
+import { Alert } from "react-native";
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve('dummy_token')),
@@ -61,15 +62,27 @@ describe('useGroupHomeController', () => {
         });
 
         it('should fetch proper group data', async () => {
+            const { result } = renderTestHookTest();
+            expect(result.current.groupName).toBe('');
+            
             const mockGroupData = { id: 1, name: 'dummy_name', 
                                 description: 'dummy_description', currency: 'dummy_currency', 
                                 creation_date: 'dummy_creation_date', owner: 'dummy_owner'};
     
             mockSuccesfulFetch(mockGroupData);
     
-            const { result } = renderTestHookTest();
-            
+            //setGroupName is tested as it is used in the hook
             await waitFor(() => expect(result.current.groupName).toBe(mockGroupData.name));
+        });
+
+        it('should display error alert when fetch fails', async () => {
+            const mockErrorMessage = "Fetch group's data failed"
+            mockFailedFetch(mockErrorMessage);
+    
+            jest.spyOn(Alert, 'alert');
+            renderTestHookTest();  
+    
+            await waitFor(() => expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage));
         });
     });
 
