@@ -18,45 +18,47 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     <View style={stylesGroupSettingsController.containerUsersPart}>
                         <Text style={generalStyles.defaultHeader}>Members:</Text>
                         <View style={stylesGroupSettingsController.containerUsers}>
-                            {groupUsers.map((user : User) => (
-                                <View style={stylesGroupSettingsController.listElement}>
-                                    <View style={stylesGroupSettingsController.containerRow}>
-                                        <Text style={stylesGroupSettingsController.textList}>{user.username}</Text>
-                                        {user.is_owner && (
-                                            <Image 
-                                                source={require('../../../../assets/images/crownIcon.png')} 
-                                                style={stylesGroupSettingsController.crownIconListElement}
-                                            />
+                            <ScrollView>
+                                {groupUsers.map((user : User) => (
+                                    <View style={stylesGroupSettingsController.listElement}>
+                                        <View style={stylesGroupSettingsController.containerRow}>
+                                            <Text style={stylesGroupSettingsController.textList}>{user.username}</Text>
+                                            {user.is_owner && (
+                                                <Image 
+                                                    source={require('../../../../assets/images/crownIcon.png')} 
+                                                    style={stylesGroupSettingsController.crownIconListElement}
+                                                />
+                                            )}
+                                        </View>
+                                        {isOwner && (
+                                            <View style={stylesGroupSettingsController.containerRow}>
+                                                {!user.is_owner && (
+                                                <>
+                                                    <TouchableOpacity 
+                                                        onPress={() => confirmAndPromoteUser(user.id.toString())}
+                                                    >
+                                                        <Image 
+                                                            source={require('../../../../assets/images/crownIcon.png')} 
+                                                            style={stylesGroupSettingsController.crownIconListElement}
+                                                        />   
+                                                    </TouchableOpacity>
+
+                                                    <TouchableOpacity
+                                                        onPress={() => confirmAndKickUser(user.id.toString())}
+                                                    >
+                                                        <Image 
+                                                            source={require('../../../../assets/images/crossIcon.png')} 
+                                                            style={stylesGroupSettingsController.crossIconList}
+                                                        /> 
+                                                    </TouchableOpacity>
+
+                                                </>  
+                                                )}
+                                            </View>
                                         )}
                                     </View>
-                                    {isOwner && (
-                                        <View style={stylesGroupSettingsController.containerRow}>
-                                            {!user.is_owner && (
-                                            <>
-                                                <TouchableOpacity 
-                                                    onPress={() => confirmAndPromoteUser(user.id.toString())}
-                                                >
-                                                    <Image 
-                                                        source={require('../../../../assets/images/crownIcon.png')} 
-                                                        style={stylesGroupSettingsController.crownIconListElement}
-                                                    />   
-                                                </TouchableOpacity>
-
-                                                <TouchableOpacity
-                                                    onPress={() => confirmAndKickUser(user.id.toString())}
-                                                >
-                                                    <Image 
-                                                        source={require('../../../../assets/images/crossIcon.png')} 
-                                                        style={stylesGroupSettingsController.crossIconList}
-                                                    /> 
-                                                </TouchableOpacity>
-
-                                            </>  
-                                            )}                                             
-                                        </View>
-                                    )}
-                                </View>
-                            ))}   
+                                ))}   
+                            </ScrollView>
                         </View>
                     </View>
 
