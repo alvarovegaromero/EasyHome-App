@@ -33,66 +33,68 @@ const renderTestHookTest = () => {
 };
 
 describe('useGroupHomeController', () => {
-    it('should call proper endpoint for fetching groups', async () => {
-        mockSuccesfulFetch({});
-
-        const mockGroupId = 'dummy_id';
-
-        const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({ groupId: mockGroupId });
-
-        renderTestHookTest();
-
-        await waitFor(() => {
-            expect(fetch).toHaveBeenCalledWith(
-                `${BASE_URL}/api/groups/${mockGroupId}`,
-                expect.objectContaining({
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token dummy_token',
-                    },
-                })
-            );
+    describe('fetchGroupData', () => {
+        it('should call proper endpoint for fetching groups', async () => {
+            mockSuccesfulFetch({});
+    
+            const mockGroupId = 'dummy_id';
+    
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ groupId: mockGroupId });
+    
+            renderTestHookTest();
+    
+            await waitFor(() => {
+                expect(fetch).toHaveBeenCalledWith(
+                    `${BASE_URL}/api/groups/${mockGroupId}`,
+                    expect.objectContaining({
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Token dummy_token',
+                        },
+                    })
+                );
+            });
+    
+            useContextSpy.mockRestore(); 
         });
 
-        useContextSpy.mockRestore(); 
-    });
-
-    it('should fetch group data', async () => {
-        const mockGroupData = { id: 1, name: 'dummy_name', 
-                            description: 'dummy_description', currency: 'dummy_currency', 
-                            creation_date: 'dummy_creation_date', owner: 'dummy_owner'};
-
-        mockSuccesfulFetch(mockGroupData);
-
-        const { result } = renderTestHookTest();
-        
-        await waitFor(() => expect(result.current.groupName).toBe(mockGroupData.name));
+        it('should fetch proper group data', async () => {
+            const mockGroupData = { id: 1, name: 'dummy_name', 
+                                description: 'dummy_description', currency: 'dummy_currency', 
+                                creation_date: 'dummy_creation_date', owner: 'dummy_owner'};
     
-        
+            mockSuccesfulFetch(mockGroupData);
+    
+            const { result } = renderTestHookTest();
+            
+            await waitFor(() => expect(result.current.groupName).toBe(mockGroupData.name));
+        });
     });
 
-    it('should navigate to GroupSettingsScreen', () => {
-        const { result } = renderTestHookTest();
-        result.current.navigateSettings();
-        expect(mockedNavigate).toHaveBeenCalledWith('GroupSettingsScreen');
-    });
+    describe('navigation', () => {
+        it('should navigate to GroupSettingsScreen', () => {
+            const { result } = renderTestHookTest();
+            result.current.navigateSettings();
+            expect(mockedNavigate).toHaveBeenCalledWith('GroupSettingsScreen');
+        });
 
-    it('should navigate to HomeScreen', () => {
-        const { result } = renderTestHookTest();
-        result.current.navigateHome();
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
-    });
+        it('should navigate to HomeScreen', () => {
+            const { result } = renderTestHookTest();
+            result.current.navigateHome();
+            expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
+        });
+    
+        it('should update groupId when navigating to HomeScreen', () => {
+            const mockSetGroupId = jest.fn();
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
 
-    it('should update groupId when navigating to HomeScreen', () => {
-        const mockSetGroupId = jest.fn();
-        const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({ setGroupId: mockSetGroupId });
+            const { result } = renderTestHookTest();
+            result.current.navigateHome();
 
-        const { result } = renderTestHookTest();
-        result.current.navigateHome();
-
-        expect(mockSetGroupId).toHaveBeenCalledWith('');
+            expect(mockSetGroupId).toHaveBeenCalledWith('');
+        });
     });
 });
