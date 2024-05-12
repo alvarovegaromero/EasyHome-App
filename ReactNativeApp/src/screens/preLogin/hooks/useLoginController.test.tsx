@@ -44,120 +44,124 @@ describe('useLoginController', () => {
         expect(result.current.password).toBe('newPassword');
     });
 
-    it('should handle login submit with empty username or password', async () => {
-        const alertSpy = jest.spyOn(Alert, 'alert');
-        
-        const { result } = renderTestHookTest();
-
-        await act(async () => {
-            result.current.handleLoginSubmit();
-        });
-
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Username and password must be filled');
-    });
-
-    it('should handle login submit with valid username and password', async () => {
-        mockSuccesfulFetch({});
+    describe('handleLoginSubmit', () => {
+        it('should provide error when login submit with empty username or password', async () => {
+            const alertSpy = jest.spyOn(Alert, 'alert');
             
-        const { result } = renderTestHookTest();
+            const { result } = renderTestHookTest();
 
-        act(() => {
-            result.current.setUsername('newUsername');
-            result.current.setPassword('newPassword');
+            await act(async () => {
+                result.current.handleLoginSubmit();
+            });
+
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Username and password must be filled');
         });
 
-        await act(async () => {
-            result.current.handleLoginSubmit();
+        it('should call proper endpoint when login submit with valid username and password', async () => {
+            mockSuccesfulFetch({});
+                
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.setUsername('newUsername');
+                result.current.setPassword('newPassword');
+            });
+
+            await act(async () => {
+                result.current.handleLoginSubmit();
+            });
+
+            expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/users/login`,
+                expect.objectContaining({
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username: 'newUsername', password: 'newPassword' }),
+                })
+            );
         });
 
-        expect(fetch).toHaveBeenCalledWith(
-            `${BASE_URL}/api/users/login`,
-            expect.objectContaining({
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: 'newUsername', password: 'newPassword' }),
-            })
-        );
-    });
+        it('Should navigate to HomeScreen when login is successful', async () => {    
+            mockSuccesfulFetch({});
 
-    it('Should navigate to HomeScreen when login is successful', async () => {    
-        mockSuccesfulFetch({});
-
-        const { result } = renderTestHookTest();
-    
-        act(() => {
-            result.current.setUsername('newUsername');
-            result.current.setPassword('newPassword');
-        });
-    
-        await act(async () => {
-            result.current.handleLoginSubmit();
-        });
-    
-        expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
-    });
-
-    it('should update UserContext with id and username when login is successful', async () => {
-        mockSuccesfulFetch({ id: 'dummy', username: 'newUsername' });
+            const { result } = renderTestHookTest();
         
-        const mockSetId = jest.fn();
-        const mockSetContextUsername = jest.fn();
-    
-        const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
-    
-        const { result } = renderTestHookTest();
-    
-        act(() => {
-            result.current.setUsername('newUsername');
-            result.current.setPassword('newPassword');
+            act(() => {
+                result.current.setUsername('newUsername');
+                result.current.setPassword('newPassword');
+            });
+        
+            await act(async () => {
+                result.current.handleLoginSubmit();
+            });
+        
+            expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
         });
-    
-        await act(async () => {
-            result.current.handleLoginSubmit();
+
+        it('should update UserContext with id and username when login is successful', async () => {
+            mockSuccesfulFetch({ id: 'dummy', username: 'newUsername' });
+            
+            const mockSetId = jest.fn();
+            const mockSetContextUsername = jest.fn();
+        
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ setId: mockSetId, setContextUsername: mockSetContextUsername });
+        
+            const { result } = renderTestHookTest();
+        
+            act(() => {
+                result.current.setUsername('newUsername');
+                result.current.setPassword('newPassword');
+            });
+        
+            await act(async () => {
+                result.current.handleLoginSubmit();
+            });
+        
+            expect(mockSetId).toHaveBeenCalledWith('dummy');
+            expect(mockSetContextUsername).toHaveBeenCalledWith('newUsername');
         });
-    
-        expect(mockSetId).toHaveBeenCalledWith('dummy');
-        expect(mockSetContextUsername).toHaveBeenCalledWith('newUsername');
+
+        it('should display alert when response is not ok', async () => {
+            mockFailedFetch('Invalid credentials');
+            const alertSpy = jest.spyOn(Alert, 'alert');
+        
+            const { result } = renderTestHookTest();
+        
+            act(() => {
+                result.current.setUsername('newUsername');
+                result.current.setPassword('newPassword');
+            });
+        
+            await act(async () => {
+                result.current.handleLoginSubmit();
+            });
+        
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
+        });
     });
 
-    it('should display alert when response is not ok', async () => {
-        mockFailedFetch('Invalid credentials');
-        const alertSpy = jest.spyOn(Alert, 'alert');
-    
-        const { result } = renderTestHookTest();
-    
-        act(() => {
-            result.current.setUsername('newUsername');
-            result.current.setPassword('newPassword');
-        });
-    
-        await act(async () => {
-            result.current.handleLoginSubmit();
-        });
-    
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid credentials');
-    });
+    describe('navigate', () => {       
+        it('should navigate to RegisterScreen', async () => {
+            const { result } = renderTestHookTest();
 
-    it('should navigate to RegisterScreen', async () => {
-        const { result } = renderTestHookTest();
+            await act(async () => {
+                result.current.navigateRegisterScreen();
+            });
 
-        await act(async () => {
-            result.current.navigateRegisterScreen();
+            expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
         });
 
-        expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
-    });
+        it('should navigate to ResetPasswordScreen', async () => {
+            const { result } = renderTestHookTest();
 
-    it('should navigate to ResetPasswordScreen', async () => {
-        const { result } = renderTestHookTest();
+            await act(async () => {
+                result.current.navigateResetPasswordScreen();
+            });
 
-        await act(async () => {
-            result.current.navigateResetPasswordScreen();
+            expect(mockedNavigate).toHaveBeenCalledWith('ResetPasswordScreen');
         });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('ResetPasswordScreen');
     });
 });
