@@ -73,7 +73,7 @@ describe('useGroupHomeController', () => {
     
             mockSuccesfulFetch(mockGroupData);
     
-            //setGroupName is tested as it is used in the hook
+            //setGroupName is also tested as it is used in the hook
             await waitFor(() => expect(result.current.groupName).toBe(mockGroupData.name));
         });
 

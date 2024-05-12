@@ -219,7 +219,6 @@ describe('useHomeController', () => {
         });
     });
 
-
     describe('joinGroup', () => {
         it('should fail when trying to join group without code', async () => {
             const alertSpy = jest.spyOn(Alert, 'alert');

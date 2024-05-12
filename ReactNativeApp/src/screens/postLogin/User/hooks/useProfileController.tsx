@@ -16,7 +16,7 @@ const useProfileController = () => {
 
     useEffect(() => { 
         const unsubscribe = navigation.addListener('focus', () => { // fetch Data everytime the screen is focused
-            fetchProfileData(); 
+            fetchProfileData();
         });
     
         return unsubscribe;
