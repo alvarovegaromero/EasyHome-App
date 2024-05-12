@@ -20,28 +20,31 @@ const stylesGroupSettingsController = StyleSheet.create({
         marginTop: 5,
         marginBottom: 10,
     },
-    listButton: {
-        padding: 2,
+    listElement: {
+        padding: 5,
         marginLeft: 10,
         marginRight: 10,
         borderRadius: 10,
         height: 40,
-    },
-    contentListButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    ownerCrownIconList: {
+    crownIconListElement: {
         height: 25,
         width: 25,
     },
     crossIconList: {
         height: 20,
         width: 20,
+        marginLeft: 10,
+        marginTop: 2,
     },
     textList: {
         fontSize: 20,
         marginRight: 10,
+    },
+    containerRow: {
+        flexDirection: 'row',
     },
 });
 
