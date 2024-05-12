@@ -66,7 +66,7 @@ const useRegisterController = () => {
                 return response.json();
         })
         .then(data => {           
-            setId(data.id.toString());
+            setId(String(data.id));
             setContextUsername(data.username);
             AsyncStorage.setItem('token', data.token);
 

@@ -138,7 +138,7 @@ describe('useRegisterController', () => {
         );
     });
 
-    it('should navigate to HomeSCreen when response is ok', async () => {
+    it('should navigate to HomeScreen when response is ok', async () => {
         mockSuccesfulFetch({});
     
         const { result } = renderTestHookTest();
