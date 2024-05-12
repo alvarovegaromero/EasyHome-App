@@ -91,7 +91,7 @@ describe('useHomeController', () => {
         });
 
         it('should fetch groups on mount', async () => {
-            const mockGroups = [{ id: 1, name: 'group1' }, { id: 2, name: 'group2' }];
+            const mockGroups = [{ id: '1', name: 'group1' }, { id: '2', name: 'group2' }];
             mockSuccesfulFetch({groups : mockGroups});
 
             const { result } = renderTestHookTest();
@@ -261,7 +261,7 @@ describe('useHomeController', () => {
         });
 
         it('should call navigateGroupHomeScreen when joining group is succesful', async () => {
-            mockSuccesfulFetch({ id: 1 });
+            mockSuccesfulFetch({ id: '1' });
 
             const { result } = renderTestHookTest();
 

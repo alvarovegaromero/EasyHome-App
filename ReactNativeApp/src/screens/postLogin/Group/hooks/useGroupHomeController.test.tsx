@@ -67,7 +67,7 @@ describe('useGroupHomeController', () => {
             const { result } = renderTestHookTest();
             expect(result.current.groupName).toBe('');
             
-            const mockGroupData = { id: 1, name: 'dummy_name', 
+            const mockGroupData = { id: '1', name: 'dummy_name', 
                                 description: 'dummy_description', currency: 'dummy_currency', 
                                 creation_date: 'dummy_creation_date', owner: 'dummy_owner'};
     
