@@ -30,14 +30,14 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
+    alert: jest.fn(),
+}));
+
 const renderTestHookTest = () => {
     return renderHook(() => useGroupSettingsController());
 };
 
-const mockGroupId = 'dummy_id';
-    
-const useContextSpy = jest.spyOn(React, 'useContext');
-useContextSpy.mockReturnValue({ groupId: mockGroupId });
 
 describe('useGroupSettingsController', () => {
     describe('dialog', () => {
@@ -105,11 +105,26 @@ describe('useGroupSettingsController', () => {
         it('should fetch proper group users data', async () => {
             const { result } = renderTestHookTest();
             expect(result.current.groupUsers).toStrictEqual([]);
+            expect(result.current.isOwner).toBe(false); // default value - can't be tested in next test
 
-            const mockGroupUsersData = { users: [{ id: 1, name: 'dummy_name', email: 'dummy_email', is_owner: true }] };
+            const mockGroupUsersData = { users: [{ id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true }] };
             mockSuccesfulFetch(mockGroupUsersData);
-                
+            
             await waitFor(() => expect(result.current.groupUsers).toStrictEqual(mockGroupUsersData.users));
+        });
+
+        it('should setIsOwner to true if user is owner', async () => {
+            const mockId = '1';
+    
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ id: mockId });
+
+            const mockGroupUsersData = { users: [{ id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true }] };
+            mockSuccesfulFetch(mockGroupUsersData);
+            
+            const { result } = renderTestHookTest();
+
+            await waitFor(() => expect(result.current.isOwner).toBe(true));
         });
 
         it('should show error alert on fetch users error', async () => {
@@ -125,5 +140,32 @@ describe('useGroupSettingsController', () => {
     });
 
     describe('confirmAndLeaveGroup', () => {
+        it('should call Alert.alert with correct arguments', async () => {
+            const { result } = renderHook(() => useGroupSettingsController());
+        
+            const alertSpy = jest.spyOn(Alert, 'alert');
+        
+            result.current.confirmAndLeaveGroup();
+        
+            expect(alertSpy).toHaveBeenCalledWith(
+                "Confirmation",
+                "Are you sure you want to leave the group?",
+                [
+                    {
+                    text: "Cancel",
+                    style: "cancel"
+                    },
+                    { 
+                    text: "OK", 
+                    onPress: expect.any(Function)  // verify a function is passed
+                    }
+                ]
+            );
+        });      
+    });
+
+    describe('leaveGroup', () => {
     });
 });
+
+  
