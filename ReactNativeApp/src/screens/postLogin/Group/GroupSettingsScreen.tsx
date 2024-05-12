@@ -2,7 +2,7 @@ import { Button, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View }
 import generalStyles from "../../../styles/styles";
 import useGroupSettingsController from "./hooks/useGroupSettingsController";
 import Dialog from "react-native-dialog";
-import stylesGroupSettingsController from "../../../styles/stylesGroupSettingsController";
+import stylesGroupSettingsScreen from "../../../styles/stylesGroupSettingsScreen";
 import { User } from "./types";
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
@@ -15,23 +15,23 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
             <ScrollView style={generalStyles.defaultScrollView}>
                 <View style={generalStyles.defaultContainerScreen}>
                     
-                    <View style={stylesGroupSettingsController.containerUsersPart}>
+                    <View style={stylesGroupSettingsScreen.containerUsersPart}>
                         <Text style={generalStyles.defaultHeader}>Members:</Text>
-                        <View style={stylesGroupSettingsController.containerUsers}>
+                        <View style={stylesGroupSettingsScreen.containerUsers}>
                             <ScrollView>
                                 {groupUsers.map((user : User) => (
-                                    <View style={stylesGroupSettingsController.listElement}>
-                                        <View style={stylesGroupSettingsController.containerRow}>
-                                            <Text style={stylesGroupSettingsController.textList}>{user.username}</Text>
+                                    <View style={stylesGroupSettingsScreen.listElement}>
+                                        <View style={stylesGroupSettingsScreen.containerRow}>
+                                            <Text style={stylesGroupSettingsScreen.textList}>{user.username}</Text>
                                             {user.is_owner && (
                                                 <Image 
                                                     source={require('../../../../assets/images/crownIcon.png')} 
-                                                    style={stylesGroupSettingsController.crownIconListElement}
+                                                    style={stylesGroupSettingsScreen.crownIconListElement}
                                                 />
                                             )}
                                         </View>
                                         {isOwner && (
-                                            <View style={stylesGroupSettingsController.containerRow}>
+                                            <View style={stylesGroupSettingsScreen.containerRow}>
                                                 {!user.is_owner && (
                                                 <>
                                                     <TouchableOpacity 
@@ -39,7 +39,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                                     >
                                                         <Image 
                                                             source={require('../../../../assets/images/crownIcon.png')} 
-                                                            style={stylesGroupSettingsController.crownIconListElement}
+                                                            style={stylesGroupSettingsScreen.crownIconListElement}
                                                         />   
                                                     </TouchableOpacity>
 
@@ -48,7 +48,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                                     >
                                                         <Image 
                                                             source={require('../../../../assets/images/crossIcon.png')} 
-                                                            style={stylesGroupSettingsController.crossIconList}
+                                                            style={stylesGroupSettingsScreen.crossIconList}
                                                         /> 
                                                     </TouchableOpacity>
 
@@ -62,8 +62,8 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                         </View>
                     </View>
 
-                    <View style={stylesGroupSettingsController.containerButtons}>
-                        <View style={stylesGroupSettingsController.containerButton}>
+                    <View style={stylesGroupSettingsScreen.containerButtons}>
+                        <View style={stylesGroupSettingsScreen.containerButton}>
                             <View style={generalStyles.defaultButton}>
                                 <Button 
                                     title="Leave group"
@@ -74,7 +74,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                             </View>
                         </View>
                         {isOwner && (
-                        <View style={stylesGroupSettingsController.containerButton}>
+                        <View style={stylesGroupSettingsScreen.containerButton}>
                             <View style={generalStyles.defaultButton}>
                                 <Button 
                                     title="Delete group"
@@ -85,7 +85,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                             </View>
                         </View>
                         )}
-                        <View style={stylesGroupSettingsController.containerButton}>
+                        <View style={stylesGroupSettingsScreen.containerButton}>
                             <View style={generalStyles.defaultButton}>
                                 <Button 
                                     title="Get join code"
@@ -95,7 +95,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                 />
                             </View>
                         </View>
-                        <View style={stylesGroupSettingsController.containerButton}>
+                        <View style={stylesGroupSettingsScreen.containerButton}>
                             <View style={generalStyles.defaultButton}>
                                 <Button
                                     title="Go back to Group Home"
