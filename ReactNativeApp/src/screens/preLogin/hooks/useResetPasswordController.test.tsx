@@ -37,81 +37,85 @@ describe('useResetPasswordController', () => {
         expect(result.current.email).toBe('newEmail');
     });
 
-    it('should display an alert when email format is not valid', async () => {
-        const alertSpy = jest.spyOn(Alert, 'alert');
+    describe('handleResetPasswordSubmit', () => {
+        it('should display an alert when email format is not valid', async () => {
+            const alertSpy = jest.spyOn(Alert, 'alert');
 
-        const { result } = renderTestHookTest();
-    
-        act(() => {
-            result.current.setEmail('newEmail');
+            const { result } = renderTestHookTest();
+        
+            act(() => {
+                result.current.setEmail('newEmail');
+            });
+        
+            await act(() => {
+                result.current.handleResetPasswordSubmit();
+            });
+        
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
         });
-    
-        await act(async () => {
-            await result.current.handleResetPasswordSubmit();
+
+        it('should handle reset password submit with valid email', async () => {
+            mockSuccesfulFetch({ message: 'Reset password request sent successfully' });
+
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.setEmail('newEmail@example.com');
+            });
+
+            await act(() => {
+                result.current.handleResetPasswordSubmit();
+            });
+
+            expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/users/reset-password`,
+                expect.objectContaining({
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: 'newEmail@example.com' }),
+                })
+            );
         });
-    
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
+        
+        it('should display alert when response is not ok', async () => {
+            mockFailedFetch('Invalid email');
+            const alertSpy = jest.spyOn(Alert, 'alert');
+
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.setEmail('newEmail@example.com');
+            });
+
+            await act(() => {
+                result.current.handleResetPasswordSubmit();
+            });
+
+            expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email');
+        });
     });
 
-    it('should handle reset password submit with valid email', async () => {
-        mockSuccesfulFetch({ message: 'Reset password request sent successfully' });
+    describe('navigation', () => {
+        it('should navigate to LoginScreen', () => {
+            const { result } = renderTestHookTest();
 
-        const { result } = renderTestHookTest();
+            act(() => {
+                result.current.navigateLoginScreen();
+            });
 
-        act(() => {
-            result.current.setEmail('newEmail@example.com');
+            expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
         });
 
-        await act(async () => {
-            await result.current.handleResetPasswordSubmit();
+        it('should navigate to RegisterScreen', () => {
+            const { result } = renderTestHookTest();
+
+            act(() => {
+                result.current.navigateRegisterScreen();
+            });
+
+            expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
         });
-
-        expect(fetch).toHaveBeenCalledWith(
-            `${BASE_URL}/api/users/reset-password`,
-            expect.objectContaining({
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email: 'newEmail@example.com' }),
-            })
-        );
-    });
-    
-    it('should display alert when response is not ok', async () => {
-        mockFailedFetch('Invalid email');
-        const alertSpy = jest.spyOn(Alert, 'alert');
-
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.setEmail('newEmail@example.com');
-        });
-
-        await act(async () => {
-            await result.current.handleResetPasswordSubmit();
-        });
-
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email');
-    });
-
-    it('should navigate to LoginScreen', () => {
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.navigateLoginScreen();
-        });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('LoginScreen');
-    });
-
-    it('should navigate to RegisterScreen', () => {
-        const { result } = renderTestHookTest();
-
-        act(() => {
-            result.current.navigateRegisterScreen();
-        });
-
-        expect(mockedNavigate).toHaveBeenCalledWith('RegisterScreen');
     });
 });
