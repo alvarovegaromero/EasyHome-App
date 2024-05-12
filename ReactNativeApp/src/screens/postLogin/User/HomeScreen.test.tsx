@@ -2,8 +2,8 @@ import { render, fireEvent } from '@testing-library/react-native';
 import HomeScreen from './HomeScreen';
 import useHomeController from './hooks/useHomeController';
 
-var mockDialogVisible = false;
 
+var mockDialogVisible = false;
 var mockGroups = [{ id: '1', name: 'Group 1' }, { id: '2', name: 'Group 2' }];
 
 jest.mock('./hooks/useHomeController', () => {
@@ -36,6 +36,7 @@ const renderScreen = () => {
         <HomeScreen/>
     );
 };
+
 
 describe('HomeScreen', () => {
     it('should render all components', () => {
