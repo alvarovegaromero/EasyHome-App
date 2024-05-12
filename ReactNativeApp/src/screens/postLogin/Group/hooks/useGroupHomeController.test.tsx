@@ -5,6 +5,7 @@ import { mockFailedFetch, mockSuccesfulFetch } from "../../../../utils/utilsTest
 import { BASE_URL } from "../../../../config";
 import { Alert } from "react-native";
 
+
 jest.mock('@react-native-async-storage/async-storage', () => ({
     getItem: jest.fn(() => Promise.resolve('dummy_token')),
 }));
@@ -32,6 +33,7 @@ jest.mock('@react-navigation/native', () => {
 const renderTestHookTest = () => {
     return renderHook(() => useGroupHomeController());
 };
+
 
 describe('useGroupHomeController', () => {
     describe('fetchGroupData', () => {
