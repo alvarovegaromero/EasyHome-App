@@ -57,16 +57,15 @@ const useHomeController = () => {
         });
     };
 
-    const handleLogout = () => {
-        AsyncStorage.getItem('token')
-        .then(token => {
-            return fetch(BASE_URL+'/api/users/logout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${token}`,
-                },
-            });
+    const handleLogout = async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL+'/api/users/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
         })
         .then(response => {
             if (!response.ok) {

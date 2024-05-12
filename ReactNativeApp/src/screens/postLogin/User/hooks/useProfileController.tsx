@@ -22,16 +22,15 @@ const useProfileController = () => {
         return unsubscribe;
     }, [navigation]);
 
-    const fetchProfileData = () => {    
-        AsyncStorage.getItem('token')
-        .then(token => {
-            return fetch(BASE_URL + '/api/users/profile', {
+    const fetchProfileData = async () => {    
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL + '/api/users/profile', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,
                 },
-            });
         })
         .then(response => {
             if (!response.ok) {
