@@ -18,6 +18,7 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
+/*
 const mockResponse = (body: any, status = 200) => {
     return new Response(JSON.stringify(body), {
         status,
@@ -29,7 +30,7 @@ const mockResponse = (body: any, status = 200) => {
   
 global.fetch = jest.fn(() =>
     Promise.resolve(mockResponse({ data: 'dummy data' }))
-);
+);*/
 
 const mockedNavigate = jest.fn();
 
@@ -176,35 +177,84 @@ describe('useGroupSettingsController', () => {
             );
         });
 
-        it('should call leaveGroup when OK is pressed', async () => {
-            mockSuccesfulFetch({});
+        describe('leaveGroup', () => {
+            it('should call leaveGroup when OK is pressed', async () => {
+                mockSuccesfulFetch({});
 
-            const mockGroupId = 'dummy_id';
-    
-            const useContextSpy = jest.spyOn(React, 'useContext');
-            useContextSpy.mockReturnValue({ groupId: mockGroupId });
-            
-            const { result } = renderTestHookTest();
+                const mockGroupId = 'dummy_id';
         
-            const alertSpy = jest.spyOn(Alert, 'alert');
-            const fetchSpy = jest.spyOn(global, 'fetch');
-
-            result.current.confirmAndLeaveGroup();
+                const useContextSpy = jest.spyOn(React, 'useContext');
+                useContextSpy.mockReturnValue({ groupId: mockGroupId });
                 
-            pressSecondOptionAlert(alertSpy); // simulate OK press
+                const { result } = renderTestHookTest();
+            
+                const alertSpy = jest.spyOn(Alert, 'alert');
 
-            await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(2));
+                result.current.confirmAndLeaveGroup();
+                    
+                await waitFor(() => pressSecondOptionAlert(alertSpy)); // simulate OK press
 
-            expect(fetch).toHaveBeenCalledWith(
-                `${BASE_URL}/api/groups/${mockGroupId}/leave`,
-                expect.objectContaining({
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Token dummy_token',
-                    },
-                })
-            );
+                expect(fetch).toHaveBeenCalledWith(
+                    `${BASE_URL}/api/groups/${mockGroupId}/leave`,
+                    expect.objectContaining({
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Token dummy_token',
+                        },
+                    })
+                );
+
+                useContextSpy.mockRestore();
+            });
+
+            it('should navigate to home after successful leave', async () => {
+                mockSuccesfulFetch({});
+                
+                const { result } = renderTestHookTest();
+            
+                const alertSpy = jest.spyOn(Alert, 'alert');
+
+                result.current.confirmAndLeaveGroup();
+                    
+                await waitFor(() => pressSecondOptionAlert(alertSpy)); 
+
+                expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
+            });
+
+            it('should clear groupId when leave is succesful', async () => {
+                mockSuccesfulFetch({});
+                
+                const mockGroupId = 'dummy_id';
+                const mockSetGroupId = jest.fn();
+
+                const useContextSpy = jest.spyOn(React, 'useContext');
+                useContextSpy.mockReturnValue({ groupId: mockGroupId, setGroupId: mockSetGroupId });
+
+                const { result } = renderTestHookTest();
+            
+                const alertSpy = jest.spyOn(Alert, 'alert');
+
+                result.current.confirmAndLeaveGroup();
+                    
+                await waitFor(() => pressSecondOptionAlert(alertSpy));
+
+                expect(mockSetGroupId).toHaveBeenCalledWith('');
+            });
+
+            it('should show error alert on leave group error', async () => {
+                mockFailedFetch("Leave group failed");
+                
+                const { result } = renderTestHookTest();
+            
+                const alertSpy = jest.spyOn(Alert, 'alert');
+
+                result.current.confirmAndLeaveGroup();
+                    
+                await waitFor(() => pressSecondOptionAlert(alertSpy));
+
+                expect(alertSpy).toHaveBeenCalledWith('Error', 'Leave group failed');
+            });
         });
     });
 });
