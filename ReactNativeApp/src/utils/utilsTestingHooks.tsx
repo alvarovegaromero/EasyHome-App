@@ -17,3 +17,9 @@ export const mockSuccesfulFetch = (response: any) => {
         })
     );
 }
+
+export const pressSecondOptionAlert = (alertSpy: jest.SpyInstance) => {
+    // get first alert, second option, and onPress function
+    const onPress = alertSpy.mock.calls?.[0]?.[2]?.[1]?.onPress;
+    onPress(); 
+}

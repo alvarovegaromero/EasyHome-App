@@ -1,9 +1,9 @@
 import { act, renderHook, waitFor } from "@testing-library/react-native";
 import useGroupSettingsController from "./useGroupSettingsController";
-import React from "react";
-import { mockFailedFetch, mockSuccesfulFetch } from "../../../../utils/utilsTestingHooks";
+import { mockFailedFetch, mockSuccesfulFetch, pressSecondOptionAlert } from "../../../../utils/utilsTestingHooks";
 import { BASE_URL } from "../../../../config";
 import { Alert } from "react-native";
+import React from "react";
 
 
 jest.mock('@react-native-clipboard/clipboard', () => ({
@@ -18,6 +18,19 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
+const mockResponse = (body: any, status = 200) => {
+    return new Response(JSON.stringify(body), {
+        status,
+        headers: {
+            'Content-type': 'application/json'
+        }
+    });
+};
+  
+global.fetch = jest.fn(() =>
+    Promise.resolve(mockResponse({ data: 'dummy data' }))
+);
+
 const mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
@@ -30,23 +43,23 @@ jest.mock('@react-navigation/native', () => {
     };
 });
 
-jest.mock('react-native/Libraries/Alert/Alert', () => ({
-    alert: jest.fn(),
-}));
-
 const renderTestHookTest = () => {
     return renderHook(() => useGroupSettingsController());
 };
 
 
 describe('useGroupSettingsController', () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe('dialog', () => {
         it('dialogVisible should be false on mount', () => {
             const { result } = renderTestHookTest();
     
             expect(result.current.dialogVisible).toBe(false);
         });
-    
+
         it('should set dialogVisible to true', async () => {
             mockSuccesfulFetch({});
     
@@ -141,7 +154,7 @@ describe('useGroupSettingsController', () => {
 
     describe('confirmAndLeaveGroup', () => {
         it('should call Alert.alert with correct arguments', async () => {
-            const { result } = renderHook(() => useGroupSettingsController());
+            const { result } = renderTestHookTest();
         
             const alertSpy = jest.spyOn(Alert, 'alert');
         
@@ -161,11 +174,37 @@ describe('useGroupSettingsController', () => {
                     }
                 ]
             );
-        });      
-    });
+        });
 
-    describe('leaveGroup', () => {
+        it('should call leaveGroup when OK is pressed', async () => {
+            mockSuccesfulFetch({});
+
+            const mockGroupId = 'dummy_id';
+    
+            const useContextSpy = jest.spyOn(React, 'useContext');
+            useContextSpy.mockReturnValue({ groupId: mockGroupId });
+            
+            const { result } = renderTestHookTest();
+        
+            const alertSpy = jest.spyOn(Alert, 'alert');
+            const fetchSpy = jest.spyOn(global, 'fetch');
+
+            result.current.confirmAndLeaveGroup();
+                
+            pressSecondOptionAlert(alertSpy); // simulate OK press
+
+            await waitFor(() => expect(fetchSpy).toHaveBeenCalledTimes(2));
+
+            expect(fetch).toHaveBeenCalledWith(
+                `${BASE_URL}/api/groups/${mockGroupId}/leave`,
+                expect.objectContaining({
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Token dummy_token',
+                    },
+                })
+            );
+        });
     });
 });
-
-  
