@@ -18,7 +18,6 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
-/*
 const mockResponse = (body: any, status = 200) => {
     return new Response(JSON.stringify(body), {
         status,
@@ -30,7 +29,7 @@ const mockResponse = (body: any, status = 200) => {
   
 global.fetch = jest.fn(() =>
     Promise.resolve(mockResponse({ data: 'dummy data' }))
-);*/
+);
 
 const mockedNavigate = jest.fn();
 
