@@ -51,17 +51,6 @@ const GroupHomeScreen: React.FunctionComponent = () => {
 
                         <View style={stylesGroupHomeScreen.containerButton}>
                             <View style={generalStyles.defaultButton}>
-                                <Button 
-                                    title="Distribute household chores"
-                                    onPress={() => {}}
-                                    accessibilityLabel='Distribute household chores button'
-                                    testID='DistributeHouseholdChoresButton'
-                                />
-                            </View>
-                        </View>
-
-                        <View style={stylesGroupHomeScreen.containerButton}>
-                            <View style={generalStyles.defaultButton}>
                                 <Button
                                     title="View the pantry"
                                     onPress={() => {}}
