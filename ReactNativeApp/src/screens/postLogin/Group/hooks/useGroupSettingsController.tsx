@@ -220,7 +220,6 @@ const useGroupSettingsController = () => {
             }
             else{
                 fetchGroupUsersData();
-                setIsOwner(false);
             }
         })
         .catch(error => {
