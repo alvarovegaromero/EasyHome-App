@@ -117,8 +117,8 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                         <Dialog.Description accessibilityLabel={`Join Code: ${joinCode}`}>
                             {joinCode}
                         </Dialog.Description>
-                        <Dialog.Button label="Close" onPress={closeDialog} accessibilityLabel="Close Button" testID="CloseButton" />
-                        <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} accessibilityLabel="Copy Button" testID="CopyButton" />
+                        <Dialog.Button label="Close" onPress={closeDialog} accessibilityLabel="Close Dialog Button" testID="CloseDialogutton" />
+                        <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} accessibilityLabel="Copy Join Code Button" testID="CopyJoinCodeButton" />
                     </Dialog.Container>
                 </View>
             </ScrollView>
