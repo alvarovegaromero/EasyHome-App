@@ -27,6 +27,8 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                                 <Image 
                                                     source={require('../../../../assets/images/crownIcon.png')} 
                                                     style={stylesGroupSettingsScreen.crownIconListElement}
+                                                    testID="CrownIconOwner"
+                                                    accessibilityLabel="Crown Icon for owner"
                                                 />
                                             )}
                                         </View>
@@ -40,6 +42,8 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                                         <Image 
                                                             source={require('../../../../assets/images/crownIcon.png')} 
                                                             style={stylesGroupSettingsScreen.crownIconListElement}
+                                                            testID={`PromoteUserIcon-${user.username}`}
+                                                            accessibilityLabel={`Promote User Icon for ${user.username}`}
                                                         />   
                                                     </TouchableOpacity>
 
@@ -49,9 +53,10 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                                                         <Image 
                                                             source={require('../../../../assets/images/crossIcon.png')} 
                                                             style={stylesGroupSettingsScreen.crossIconList}
+                                                            testID={`KickUserIcon-${user.username}`}
+                                                            accessibilityLabel={`Kick User Icon for ${user.username}`}
                                                         /> 
                                                     </TouchableOpacity>
-
                                                 </>  
                                                 )}
                                             </View>
@@ -108,12 +113,12 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     </View>
 
                     <Dialog.Container visible={dialogVisible}>
-                        <Dialog.Title>Join Code</Dialog.Title>
-                        <Dialog.Description>
+                        <Dialog.Title accessibilityLabel="Join Code">Join Code</Dialog.Title>
+                        <Dialog.Description accessibilityLabel={`Join Code: ${joinCode}`}>
                             {joinCode}
                         </Dialog.Description>
-                        <Dialog.Button label="Close" onPress={closeDialog} />
-                        <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} />
+                        <Dialog.Button label="Close" onPress={closeDialog} accessibilityLabel="Close Button" testID="CloseButton" />
+                        <Dialog.Button label="Copy" onPress={copyJoinCodeToClipboard} accessibilityLabel="Copy Button" testID="CopyButton" />
                     </Dialog.Container>
                 </View>
             </ScrollView>
