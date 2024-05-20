@@ -13,4 +13,5 @@ export type MyStackParamsList = {
     CreateGroupScreen: undefined;
     GroupHomeScreen: undefined;
     GroupSettingsScreen: undefined;
+    GroupBoardScreen: undefined;
 }

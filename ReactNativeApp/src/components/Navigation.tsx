@@ -11,6 +11,7 @@ import EditProfileScreen from '../screens/postLogin/User/EditProfileScreen';
 import CreateGroupScreen from '../screens/postLogin/User/CreateGroupScreen';
 import GroupHomeScreen from '../screens/postLogin/Group/GroupHomeScreen';
 import GroupSettingsScreen from '../screens/postLogin/Group/GroupSettingsScreen';
+import GroupBoardScreen from '../screens/postLogin/Group/Board/GroupBoardScreen';
 
 
 const Stack = createNativeStackNavigator<MyStackParamsList>()
@@ -27,6 +28,7 @@ const AuthStack = () => {
       <Stack.Screen name="CreateGroupScreen" component={CreateGroupScreen} />
       <Stack.Screen name="GroupHomeScreen" component={GroupHomeScreen} />
       <Stack.Screen name="GroupSettingsScreen" component={GroupSettingsScreen} />
+      <Stack.Screen name="GroupBoardScreen" component={GroupBoardScreen} />
     </Stack.Navigator>
   );
 };
