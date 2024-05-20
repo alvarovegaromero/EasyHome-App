@@ -5,7 +5,7 @@ import stylesGroupHomeScreen from "../../../styles/stylesGroupHomeScreen";
 
 
 const GroupHomeScreen: React.FunctionComponent = () => {
-    const { groupName, navigateSettings, navigateHome } = useGroupHomeController();
+    const { groupName, navigateBoard, navigateSettings, navigateHome } = useGroupHomeController();
 
     return (
         <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -64,7 +64,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                             <View style={generalStyles.defaultButton}>
                                 <Button 
                                     title="Group Board"
-                                    onPress={() => {}}
+                                    onPress={navigateBoard}
                                     accessibilityLabel='Group Board button'
                                     testID='GroupBoardButton'
                                 />
