@@ -20,7 +20,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                         <View style={stylesGroupSettingsScreen.containerUsers}>
                             <ScrollView>
                                 {groupUsers.map((user : User) => (
-                                    <View style={stylesGroupSettingsScreen.listElement}>
+                                    <View key={user.id} style={stylesGroupSettingsScreen.listElement}>
                                         <View style={stylesGroupSettingsScreen.containerRow}>
                                             <Text style={stylesGroupSettingsScreen.textList}>{user.username}</Text>
                                             {user.is_owner && (
