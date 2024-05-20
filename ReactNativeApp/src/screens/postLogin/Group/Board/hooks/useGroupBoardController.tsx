@@ -38,7 +38,7 @@ const useGroupBoardController = () => {
                 return response.json();
         })
         .then((data) => {
-            setBoardContent(data.content);
+            setBoardContent(data.data);
         })
         .catch(error => {
             console.error('Error:', error);
