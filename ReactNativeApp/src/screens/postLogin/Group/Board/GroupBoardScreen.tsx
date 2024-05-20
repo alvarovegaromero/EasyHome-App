@@ -3,7 +3,7 @@ import generalStyles from '../../../../styles/styles';
 import useGroupBoardController from "./hooks/useGroupBoardController";
 
 const GroupBoardScreen: React.FunctionComponent = () => {
-    const {navigateGroupHome} = useGroupBoardController();
+    const {boardContent, navigateGroupHome} = useGroupBoardController();
 
     return (
         <View>
@@ -14,6 +14,9 @@ const GroupBoardScreen: React.FunctionComponent = () => {
                 accessibilityLabel='Go to Group Home button'
                 testID='GoToGroupHomeButton'
             />
+            <View>
+                <Text> {boardContent} </Text>
+            </View>
         </View>
     );
 };
