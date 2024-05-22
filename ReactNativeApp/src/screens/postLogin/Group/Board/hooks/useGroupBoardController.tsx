@@ -15,10 +15,10 @@ const useGroupBoardController = () => {
     const [isEditable, setIsEditable] = useState(false);
 
     useEffect(() => {
-        fetchGroupContent();
+        fetchGroupBoardContent();
     }, []);
 
-    const fetchGroupContent = async () => {
+    const fetchGroupBoardContent = async () => {
         const token = await AsyncStorage.getItem('token');
 
         fetch(BASE_URL+'/api/shared_board/'+groupId, {

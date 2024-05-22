@@ -28,6 +28,9 @@ const renderTestHookTest = () => {
 
 
 describe('useGroupBoardController', () => {
+    describe('fetchGroupContent', () => {
+        
+
     describe('navigation', () => {
         it('should navigate to GroupHomeScreen', () => {
             const { result } = renderTestHookTest();
