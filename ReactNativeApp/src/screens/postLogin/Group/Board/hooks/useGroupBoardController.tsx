@@ -78,9 +78,9 @@ const useGroupBoardController = () => {
             else
                 return response.json();
         })
-        /*.then((data) => {
-            console.log(data);
-        })*/
+        .then((data) => {
+            Alert.alert('Success', 'Changes saved successfully');
+        })
         .catch(error => {
             console.error('Error:', error);
         });
