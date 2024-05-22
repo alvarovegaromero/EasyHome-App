@@ -1,9 +1,9 @@
-import { Button, Text, View } from "react-native";
+import { Button, Text, TextInput, View } from "react-native";
 import generalStyles from '../../../../styles/styles';
 import useGroupBoardController from "./hooks/useGroupBoardController";
 
 const GroupBoardScreen: React.FunctionComponent = () => {
-    const {boardContent, navigateGroupHome} = useGroupBoardController();
+    const {boardContent, setBoardContent, isEditable, allowEdit, saveChanges, navigateGroupHome} = useGroupBoardController();
 
     return (
         <View>
@@ -14,8 +14,23 @@ const GroupBoardScreen: React.FunctionComponent = () => {
                 accessibilityLabel='Go to Group Home button'
                 testID='GoToGroupHomeButton'
             />
-            <View>
-                <Text> {boardContent} </Text>
+            <View style={{ margin: 30, borderWidth: 1, borderColor: 'black' }}>
+                {isEditable ? (
+                    <>
+                        <TextInput
+                            multiline
+                            value={boardContent}
+                            onChangeText={setBoardContent}
+                        />
+                        <Button 
+                            title="Save" 
+                            onPress={saveChanges} 
+                        />
+                    </>
+                ) : (
+                    <Text> {boardContent} </Text>
+                )}
+                <Button title="Edit" onPress={allowEdit} />
             </View>
         </View>
     );

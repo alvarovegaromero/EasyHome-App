@@ -12,6 +12,7 @@ const useGroupBoardController = () => {
     const { groupId } = useContext(GroupContext)
 
     const [boardContent, setBoardContent] = useState('');
+    const [isEditable, setIsEditable] = useState(false);
 
     useEffect(() => {
         fetchGroupContent();
@@ -45,11 +46,51 @@ const useGroupBoardController = () => {
         });    
     }
 
+    const allowEdit = () => {
+        setIsEditable(true);
+    }
+
+    const saveChanges = async () => {
+        setIsEditable(false);
+        saveChangesRequest();
+    }
+
+    const saveChangesRequest = async () => {
+        const token = await AsyncStorage.getItem('token');
+
+        fetch(BASE_URL+'/api/shared_board/'+groupId, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`,
+            },
+            body: JSON.stringify({
+                content: boardContent
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(({ error }) => {
+                    Alert.alert('Error', error);
+                    throw new Error(`${response.status} - ${error}`);
+                });
+            }
+            else
+                return response.json();
+        })
+        /*.then((data) => {
+            console.log(data);
+        })*/
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
     const navigateGroupHome = () => {
         navigation.navigate('GroupHomeScreen' as never);
     }
 
-    return {boardContent, navigateGroupHome}
+    return {boardContent, setBoardContent, isEditable, allowEdit, saveChanges, navigateGroupHome}
 };
 
 export default useGroupBoardController;
