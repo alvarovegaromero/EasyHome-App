@@ -14,10 +14,6 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
     alert: jest.fn(),
 }));
 
-jest.mock('react-native/Libraries/Alert/Alert', () => ({
-    alert: jest.fn(),
-}));
-
 const mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
