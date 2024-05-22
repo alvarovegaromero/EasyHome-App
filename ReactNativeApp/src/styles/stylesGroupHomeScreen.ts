@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import generalStyles from './styles';
 
 
-const stylesGroupSettingsController = StyleSheet.create({
+const stylesGroupSettingsScreen = StyleSheet.create({
     headerText: {
         ...generalStyles.defaultHeader,
         marginTop: 20,
@@ -18,4 +18,4 @@ const stylesGroupSettingsController = StyleSheet.create({
     },
 });
 
-export default stylesGroupSettingsController;
+export default stylesGroupSettingsScreen;
