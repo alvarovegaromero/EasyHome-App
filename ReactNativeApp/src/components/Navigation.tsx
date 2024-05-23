@@ -1,6 +1,6 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { MyStackParamsList } from './types';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {MyStackParamsList} from './types';
 
 import LoginScreen from '../screens/preLogin/LoginScreen';
 import HomeScreen from '../screens/postLogin/User/HomeScreen';
@@ -13,8 +13,7 @@ import GroupHomeScreen from '../screens/postLogin/Group/GroupHomeScreen';
 import GroupSettingsScreen from '../screens/postLogin/Group/GroupSettingsScreen';
 import GroupBoardScreen from '../screens/postLogin/Group/Board/GroupBoardScreen';
 
-
-const Stack = createNativeStackNavigator<MyStackParamsList>()
+const Stack = createNativeStackNavigator<MyStackParamsList>();
 
 const AuthStack = () => {
   return (

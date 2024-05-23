@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import {useState} from 'react';
 
 interface UseGroupHook {
-    groupId: string;
-    setGroupId: (id: string) => void;
+  groupId: string;
+  setGroupId: (id: string) => void;
 }
 
 const useGroup = (): UseGroupHook => {
-    const [groupId, setGroupId] = useState('');
+  const [groupId, setGroupId] = useState('');
 
-    return { groupId, setGroupId };
+  return {groupId, setGroupId};
 };
 
 export default useGroup;

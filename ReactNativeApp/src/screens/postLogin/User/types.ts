@@ -1,4 +1,5 @@
-export type Group = {  //Group type for the "groups" array
-    id: string;
-    name: string;
+export type Group = {
+  //Group type for the "groups" array
+  id: string;
+  name: string;
 };

@@ -1,17 +1,16 @@
-
-export type EditProfileStackParamList  = {
-    EditProfileScreen: { username: string, email: string, firstName: string, lastName: string};
+export type EditProfileStackParamList = {
+  EditProfileScreen: {username: string; email: string; firstName: string; lastName: string};
 };
 
-export type MyStackParamsList = { 
-    LoginScreen: undefined;
-    RegisterScreen: undefined; 
-    ResetPasswordScreen: undefined; 
-    HomeScreen: undefined; 
-    ProfileScreen: undefined;
-    EditProfileScreen : EditProfileStackParamList['EditProfileScreen'];
-    CreateGroupScreen: undefined;
-    GroupHomeScreen: undefined;
-    GroupSettingsScreen: undefined;
-    GroupBoardScreen: undefined;
-}
+export type MyStackParamsList = {
+  LoginScreen: undefined;
+  RegisterScreen: undefined;
+  ResetPasswordScreen: undefined;
+  HomeScreen: undefined;
+  ProfileScreen: undefined;
+  EditProfileScreen: EditProfileStackParamList['EditProfileScreen'];
+  CreateGroupScreen: undefined;
+  GroupHomeScreen: undefined;
+  GroupSettingsScreen: undefined;
+  GroupBoardScreen: undefined;
+};

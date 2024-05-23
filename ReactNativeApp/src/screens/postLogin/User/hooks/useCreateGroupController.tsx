@@ -1,98 +1,100 @@
-import { useContext, useEffect, useState } from "react";
-import { BASE_URL } from '../../../../config';
-import { Alert } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
-import { GroupContext } from "../../../../contexts/GroupContext";
-
+import {useContext, useEffect, useState} from 'react';
+import {BASE_URL} from '../../../../config';
+import {Alert} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {GroupContext} from '../../../../contexts/GroupContext';
 
 const useCreateGroupController = () => {
-    const navigation = useNavigation();
-    
-    const { setGroupId } = useContext(GroupContext);
+  const navigation = useNavigation();
 
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [currency, setCurrency] = useState('')
-    const [currencies, setCurrencies] = useState([]);
+  const {setGroupId} = useContext(GroupContext);
 
-    useEffect(() => {
-        fetchCurrencies();
-    }, []);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [currency, setCurrency] = useState('');
+  const [currencies, setCurrencies] = useState([]);
 
-    const fetchCurrencies = () => {    
-        fetch(BASE_URL + '/api/groups/currencies', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`);
-                });
-            } else {
-                return response.json();
-            }
-        })
-        .then(data => {
-            setCurrencies(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        })
-    };
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
 
-    const handleCreateGroupSubmit = async () => {
-
-        if (name === '' || !currency) {
-            Alert.alert('Error', 'Name and currency are required');
-            console.error('Error: Name and currency are required');
-            return;
+  const fetchCurrencies = () => {
+    fetch(BASE_URL + '/api/groups/currencies', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
         }
+      })
+      .then(data => {
+        setCurrencies(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
-        const token = await AsyncStorage.getItem('token');
+  const handleCreateGroupSubmit = async () => {
+    if (name === '' || !currency) {
+      Alert.alert('Error', 'Name and currency are required');
+      console.error('Error: Name and currency are required');
+      return;
+    }
 
-        fetch(BASE_URL+'/api/groups/create', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-            },
-            body: JSON.stringify({name, description, currency}),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-            else{
-                return response.json();
-            }
-        })
-        .then(data => {
-            setGroupId(String(data.id));
-            navigation.navigate('GroupHomeScreen' as never);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
+    const token = await AsyncStorage.getItem('token');
 
-    const handleGoBack = () => {
-        navigation.goBack();
-    };
+    fetch(BASE_URL + '/api/groups/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({name, description, currency}),
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
+        }
+      })
+      .then(data => {
+        setGroupId(String(data.id));
+        navigation.navigate('GroupHomeScreen' as never);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
-    return { name, setName, 
-        description, setDescription, 
-        currency, setCurrency, 
-        currencies,
-        handleCreateGroupSubmit, handleGoBack
-    };
-}
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  return {
+    name,
+    setName,
+    description,
+    setDescription,
+    currency,
+    setCurrency,
+    currencies,
+    handleCreateGroupSubmit,
+    handleGoBack,
+  };
+};
 
 export default useCreateGroupController;

@@ -1,70 +1,84 @@
-import { BASE_URL } from "../../../../config";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useContext, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { Alert } from "react-native";
-import { validateEmail } from "../../../../utils/utils";
-import { UserContext } from "../../../../contexts/UserContext";
+import {BASE_URL} from '../../../../config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useContext, useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {Alert} from 'react-native';
+import {validateEmail} from '../../../../utils/utils';
+import {UserContext} from '../../../../contexts/UserContext';
 
-const useEditProfileController = (initialUsername: string, initialEmail: string, initialFirstName: string, initialLastName: string) => {
-    const navigation = useNavigation();
+const useEditProfileController = (
+  initialUsername: string,
+  initialEmail: string,
+  initialFirstName: string,
+  initialLastName: string,
+) => {
+  const navigation = useNavigation();
 
-    const { setContextUsername } = useContext(UserContext);
+  const {setContextUsername} = useContext(UserContext);
 
-    const [username, setUsername] = useState<string>(initialUsername);
-    const [email, setEmail] = useState<string>(initialEmail);
-    const [firstName, setFirstName] = useState<string>(initialFirstName);
-    const [lastName, setLastName] = useState<string>(initialLastName);
+  const [username, setUsername] = useState<string>(initialUsername);
+  const [email, setEmail] = useState<string>(initialEmail);
+  const [firstName, setFirstName] = useState<string>(initialFirstName);
+  const [lastName, setLastName] = useState<string>(initialLastName);
 
-    const handleEditProfileSubmit = async () => {
+  const handleEditProfileSubmit = async () => {
+    if (username === '' || email === '') {
+      Alert.alert('Error', 'Username and email must be filled');
+      console.error('Edit profile Failed - Username and email must be filled');
+      return;
+    }
 
-        if (username === '' || email === '') {
-            Alert.alert('Error', 'Username and email must be filled');
-            console.error('Edit profile Failed - Username and email must be filled');
-            return;
+    if (!validateEmail(email)) {
+      Alert.alert('Error', 'Invalid email format');
+      console.error('Edit profile Failed - Invalid email format');
+      return;
+    }
+
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(BASE_URL + '/api/users/profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({username, email, firstName, lastName}),
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
         }
+      })
+      .then(() => {
+        setContextUsername(username);
+        navigation.navigate('ProfileScreen' as never);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
 
-        if(!validateEmail(email)){
-            Alert.alert('Error', 'Invalid email format');
-            console.error('Edit profile Failed - Invalid email format');
-            return;
-        }
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
-        const token = await AsyncStorage.getItem('token');
-
-        fetch(BASE_URL+'/api/users/profile', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${token}`,
-            },
-            body: JSON.stringify({ username, email, firstName, lastName}),
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(({ error }) => {
-                    Alert.alert('Error', error);
-                    throw new Error(`${response.status} - ${error}`, );
-                });
-            }
-            else{
-                return response.json();
-            }
-        })
-        .then(() => {
-            setContextUsername(username);
-            navigation.navigate('ProfileScreen' as never); 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    };
-
-    const handleGoBack = () => {
-        navigation.goBack();
-    };
-
-    return { username, setUsername, email, setEmail, firstName, setFirstName, lastName, setLastName, handleEditProfileSubmit, handleGoBack };
-}
+  return {
+    username,
+    setUsername,
+    email,
+    setEmail,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    handleEditProfileSubmit,
+    handleGoBack,
+  };
+};
 
 export default useEditProfileController;

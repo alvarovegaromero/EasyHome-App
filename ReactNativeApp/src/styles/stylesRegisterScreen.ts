@@ -1,36 +1,35 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import generalStyles from './styles';
 
 const stylesLoginScreen = StyleSheet.create({
-    containerRegisterInputsAndButton: {
-        ...generalStyles.defaultLateralMargins,
-        marginTop: 20,
-        marginBottom: 75,
-    },
+  containerRegisterInputsAndButton: {
+    ...generalStyles.defaultLateralMargins,
+    marginTop: 20,
+    marginBottom: 75,
+  },
 
-    containerRegisterInputs: {
-        marginBottom: 10,
-    },
+  containerRegisterInputs: {
+    marginBottom: 10,
+  },
 
-    containerOtherInfo: {
-        ...generalStyles.defaultLateralMargins,
-    },
+  containerOtherInfo: {
+    ...generalStyles.defaultLateralMargins,
+  },
 
-    containerLogin: {
-        alignItems: 'center',
-        marginBottom: 20,
-    },
+  containerLogin: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
 
-    containerResetPassword: {
-        alignItems: 'center',
-        marginBottom: 20,
-    },
+  containerResetPassword: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
 
-    registerInputs: {
-        ...generalStyles.defaultInput,
-        height: 40,
-    },
-
+  registerInputs: {
+    ...generalStyles.defaultInput,
+    height: 40,
+  },
 });
 
 export default stylesLoginScreen;

@@ -1,75 +1,73 @@
-import { fireEvent, render } from '@testing-library/react-native';
+import {fireEvent, render} from '@testing-library/react-native';
 import ResetPasswordScreen from './ResetPasswordScreen';
 import useResetPasswordController from './hooks/useResetPasswordController';
 
 jest.mock('./hooks/useResetPasswordController', () => {
-    const setEmail = jest.fn();
-    const handleResetPasswordSubmit = jest.fn();
-    const navigateLoginScreen = jest.fn();
-    const navigateRegisterScreen = jest.fn();
-    
-    return () => ({
-        email: '',
-        setEmail,
-        handleResetPasswordSubmit,
-        navigateLoginScreen,
-        navigateRegisterScreen,
-    });
+  const setEmail = jest.fn();
+  const handleResetPasswordSubmit = jest.fn();
+  const navigateLoginScreen = jest.fn();
+  const navigateRegisterScreen = jest.fn();
+
+  return () => ({
+    email: '',
+    setEmail,
+    handleResetPasswordSubmit,
+    navigateLoginScreen,
+    navigateRegisterScreen,
+  });
 });
 
 const renderScreen = () => {
-    return render(
-        <ResetPasswordScreen />
-    );
+  return render(<ResetPasswordScreen />);
 };
 
-
 describe('ResetPasswordScreen', () => {
-    it('should render all components', () => {
-        const { getByTestId } = renderScreen();
-    
-        expect(getByTestId('Logo')).toBeTruthy();
+  it('should render all components', () => {
+    const {getByTestId} = renderScreen();
 
-        expect(getByTestId('EmailInput')).toBeTruthy();
-    
-        expect(getByTestId('ResetPasswordButton')).toBeTruthy();
-        expect(getByTestId('LoginButton')).toBeTruthy();
-        expect(getByTestId('RegisterButton')).toBeTruthy();
-    });
+    expect(getByTestId('Logo')).toBeTruthy();
 
-    it('input should be empty at beginning', () => {
-        const { getByTestId } = renderScreen();
-    
-        expect(getByTestId('EmailInput').props.value).toBe('');
-    });
+    expect(getByTestId('EmailInput')).toBeTruthy();
 
-    it('should update state when input is changed', () => {
-        const { getByTestId } = renderScreen();
+    expect(getByTestId('ResetPasswordButton')).toBeTruthy();
+    expect(getByTestId('LoginButton')).toBeTruthy();
+    expect(getByTestId('RegisterButton')).toBeTruthy();
+  });
 
-        const { setEmail } = useResetPasswordController();
+  it('input should be empty at beginning', () => {
+    const {getByTestId} = renderScreen();
 
-        expect(setEmail).not.toHaveBeenCalled();
+    expect(getByTestId('EmailInput').props.value).toBe('');
+  });
 
-        fireEvent.changeText(getByTestId('EmailInput'), 'newEmail');
+  it('should update state when input is changed', () => {
+    const {getByTestId} = renderScreen();
 
-        expect(setEmail).toHaveBeenCalledWith('newEmail');
-    });
+    const {setEmail} = useResetPasswordController();
 
-    it('should call the correct functions when buttons are pressed', () => {
-        const { getByTestId } = renderScreen();
+    expect(setEmail).not.toHaveBeenCalled();
 
-        const { handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen } = useResetPasswordController();
+    fireEvent.changeText(getByTestId('EmailInput'), 'newEmail');
 
-        expect(handleResetPasswordSubmit).not.toHaveBeenCalled();
-        expect(navigateLoginScreen).not.toHaveBeenCalled();
-        expect(navigateRegisterScreen).not.toHaveBeenCalled();
+    expect(setEmail).toHaveBeenCalledWith('newEmail');
+  });
 
-        fireEvent.press(getByTestId('ResetPasswordButton'));
-        fireEvent.press(getByTestId('LoginButton'));
-        fireEvent.press(getByTestId('RegisterButton'));
+  it('should call the correct functions when buttons are pressed', () => {
+    const {getByTestId} = renderScreen();
 
-        expect(handleResetPasswordSubmit).toHaveBeenCalled();
-        expect(navigateLoginScreen).toHaveBeenCalled();
-        expect(navigateRegisterScreen).toHaveBeenCalled();
-    });
+    const {handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen} =
+      useResetPasswordController();
+
+    expect(handleResetPasswordSubmit).not.toHaveBeenCalled();
+    expect(navigateLoginScreen).not.toHaveBeenCalled();
+    expect(navigateRegisterScreen).not.toHaveBeenCalled();
+
+    fireEvent.press(getByTestId('ResetPasswordButton'));
+    fireEvent.press(getByTestId('LoginButton'));
+    fireEvent.press(getByTestId('RegisterButton'));
+
+    expect(handleResetPasswordSubmit).toHaveBeenCalled();
+    expect(navigateLoginScreen).toHaveBeenCalled();
+    expect(navigateRegisterScreen).toHaveBeenCalled();
+  });
 });
