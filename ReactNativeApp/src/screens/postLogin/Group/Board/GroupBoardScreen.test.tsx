@@ -1,6 +1,5 @@
 import { fireEvent, render } from "@testing-library/react-native";
 import GroupBoardScreen from "./GroupBoardScreen";
-import useGroup from "../../../../hooks/useGroupContext";
 import useGroupBoardController from "./hooks/useGroupBoardController";
 
 

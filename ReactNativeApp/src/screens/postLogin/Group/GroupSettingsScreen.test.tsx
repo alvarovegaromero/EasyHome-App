@@ -1,5 +1,6 @@
 import { fireEvent, render } from "@testing-library/react-native";
 import GroupSettingsScreen from "./GroupSettingsScreen";
+import useGroupSettingsController from "./hooks/useGroupSettingsController";
 
 let mockDialogVisible = false;
 let mockIsOwner = true;
@@ -101,7 +102,7 @@ describe('GroupSettingsScreen', () => {
             navigateGroupHome,
             confirmAndKickUser,
             confirmAndPromoteUser,
-        } = require('./hooks/useGroupSettingsController')();
+        } = useGroupSettingsController();
 
         expect(confirmAndLeaveGroup).not.toHaveBeenCalled();
         expect(confirmAndDeleteGroup).not.toHaveBeenCalled();
