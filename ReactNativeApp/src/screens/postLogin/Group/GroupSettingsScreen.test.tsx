@@ -2,6 +2,7 @@ import { fireEvent, render } from "@testing-library/react-native";
 import GroupSettingsScreen from "./GroupSettingsScreen";
 import useGroupSettingsController from "./hooks/useGroupSettingsController";
 
+
 let mockDialogVisible = false;
 let mockIsOwner = true;
 
@@ -48,6 +49,7 @@ const renderScreen = () => {
         <GroupSettingsScreen />
     );
 };
+
 
 describe('GroupSettingsScreen', () => {
     beforeEach(() => {
