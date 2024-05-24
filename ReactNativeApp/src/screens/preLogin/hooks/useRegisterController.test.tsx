@@ -54,7 +54,7 @@ describe('useRegisterController', () => {
   });
 
   describe('handleRegisterSubmit', () => {
-    it('should display an alert when username, email, password, or confirmPassword are empty', async () => {
+    it('should display an alert when username, email or passwords are empty', async () => {
       const alertSpy = jest.spyOn(Alert, 'alert');
 
       const {result} = renderTestHookTest();
@@ -117,7 +117,7 @@ describe('useRegisterController', () => {
       expect(alertSpy).toHaveBeenCalledWith('Error', 'Invalid email format');
     });
 
-    it('should handle register submit with valid username, email, password, and confirmPassword', async () => {
+    it('should handle register submit with valid username, email and passwords', async () => {
       mockSuccesfulFetch({});
 
       const {result} = renderTestHookTest();

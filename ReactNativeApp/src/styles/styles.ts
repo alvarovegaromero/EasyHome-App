@@ -46,6 +46,9 @@ const generalStyles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
   },
+  redColor: {
+    color: '#FF9999',
+  },
 });
 
 export default generalStyles;

@@ -61,7 +61,7 @@ describe('useLoginController', () => {
       );
     });
 
-    it('should call proper endpoint when login submit with valid username and password', async () => {
+    it('should call proper endpoint when submit with valid username and password', async () => {
       mockSuccesfulFetch({});
 
       const {result} = renderTestHookTest();

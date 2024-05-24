@@ -7,7 +7,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import stylesResetPasswordScreen from '../../styles/stylesResetPasswordScreen'; //reuse styles from login screen
+import stylesResetPasswordScreen from '../../styles/stylesResetPasswordScreen';
 import generalStyles from '../../styles/styles';
 import useResetPasswordController from './hooks/useResetPasswordController';
 
@@ -34,7 +34,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
 
         <View style={stylesResetPasswordScreen.containerInputs}>
           <Text
-            accessibilityLabel="Write your email so we can send you an email for resetting your password"
+            accessibilityLabel="Write your email so we can send you an email 
+                                for resetting your password"
             style={stylesResetPasswordScreen.textHeaderResetPassword}>
             Write your email so we can send you an email for resetting your
             password

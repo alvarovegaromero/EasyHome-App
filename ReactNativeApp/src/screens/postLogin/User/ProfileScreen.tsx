@@ -40,7 +40,7 @@ const ProfileScreen: React.FunctionComponent = () => {
             {firstName ? (
               firstName
             ) : (
-              <Text style={{color: '#FF9999'}}>No name provided</Text>
+              <Text style={generalStyles.redColor}>No name provided</Text>
             )}
           </Text>
           <Text
@@ -50,7 +50,7 @@ const ProfileScreen: React.FunctionComponent = () => {
             {lastName ? (
               lastName
             ) : (
-              <Text style={{color: '#FF9999'}}>No last name provided</Text>
+              <Text style={generalStyles.redColor}>No last name provided</Text>
             )}
           </Text>
         </View>
