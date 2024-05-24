@@ -24,7 +24,7 @@ const stylesGroupBoardScreen = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 15,
-    height: screenHeight * 0.4, //30% of the screen height. Relative to the screen height.
+    height: screenHeight * 0.6, //60% of the screen height. Relative to the screen height.
   },
 });
 
