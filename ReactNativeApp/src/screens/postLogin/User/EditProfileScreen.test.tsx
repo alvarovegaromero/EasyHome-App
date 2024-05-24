@@ -53,7 +53,10 @@ const renderScreen = () => {
     <EditProfileScreen
       route={route as RouteProp<MyStackParamsList, 'EditProfileScreen'>}
       navigation={
-        navigation as unknown as StackNavigationProp<MyStackParamsList, 'EditProfileScreen'>
+        navigation as unknown as StackNavigationProp<
+          MyStackParamsList,
+          'EditProfileScreen'
+        >
       }
     />,
   );
@@ -86,12 +89,13 @@ describe('ProfileScreen', () => {
   it('should update states when inputs are changed', () => {
     const {getByTestId} = renderScreen();
 
-    const {setUsername, setEmail, setFirstName, setLastName} = useEditProfileController(
-      initialUsername,
-      initialEmail,
-      initialFirstName,
-      initialLastName,
-    );
+    const {setUsername, setEmail, setFirstName, setLastName} =
+      useEditProfileController(
+        initialUsername,
+        initialEmail,
+        initialFirstName,
+        initialLastName,
+      );
 
     expect(setUsername).not.toHaveBeenCalledWith();
     expect(setEmail).not.toHaveBeenCalledWith();

@@ -63,8 +63,11 @@ describe('LoginScreen', () => {
   it('should call the correct functions when buttons are pressed', () => {
     const {getByTestId} = renderScreen();
 
-    const {handleLoginSubmit, navigateRegisterScreen, navigateResetPasswordScreen} =
-      useLoginController();
+    const {
+      handleLoginSubmit,
+      navigateRegisterScreen,
+      navigateResetPasswordScreen,
+    } = useLoginController();
 
     expect(handleLoginSubmit).not.toHaveBeenCalled();
     expect(navigateRegisterScreen).not.toHaveBeenCalled();

@@ -1,11 +1,24 @@
-import {Button, SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import generalStyles from '../../../../styles/styles';
 import useGroupBoardController from './hooks/useGroupBoardController';
 import stylesGroupBoardScreen from '../../../../styles/stylesGroupBoardScreen';
 
 const GroupBoardScreen: React.FunctionComponent = () => {
-  const {boardContent, setBoardContent, isEditable, allowEdit, saveChanges, navigateGroupHome} =
-    useGroupBoardController();
+  const {
+    boardContent,
+    setBoardContent,
+    isEditable,
+    allowEdit,
+    saveChanges,
+    navigateGroupHome,
+  } = useGroupBoardController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -27,7 +40,9 @@ const GroupBoardScreen: React.FunctionComponent = () => {
                     testID="BoardContentInput"
                   />
                 ) : (
-                  <Text accessibilityLabel={`Board Content ${boardContent}`}>{boardContent}</Text>
+                  <Text accessibilityLabel={`Board Content ${boardContent}`}>
+                    {boardContent}
+                  </Text>
                 )}
               </ScrollView>
             </View>

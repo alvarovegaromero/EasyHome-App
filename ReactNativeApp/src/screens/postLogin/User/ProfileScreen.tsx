@@ -5,14 +5,22 @@ import stylesProfileScreen from '../../../styles/stylesProfileScreens';
 import useProfileController from './hooks/useProfileController';
 
 const ProfileScreen: React.FunctionComponent = () => {
-  const {username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen} =
-    useProfileController();
+  const {
+    username,
+    email,
+    firstName,
+    lastName,
+    handleGoBack,
+    navigateEditProfileScreen,
+  } = useProfileController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={stylesProfileScreen.containerProfile}>
-          <Text accessibilityLabel="My Profile:" style={stylesProfileScreen.headerMyProfile}>
+          <Text
+            accessibilityLabel="My Profile:"
+            style={stylesProfileScreen.headerMyProfile}>
             My Profile:{' '}
           </Text>
           <Text
@@ -20,20 +28,30 @@ const ProfileScreen: React.FunctionComponent = () => {
             style={stylesProfileScreen.textsMyProfile}>
             Username: {username}
           </Text>
-          <Text accessibilityLabel={`Email: ${email}`} style={stylesProfileScreen.textsMyProfile}>
+          <Text
+            accessibilityLabel={`Email: ${email}`}
+            style={stylesProfileScreen.textsMyProfile}>
             Email: {email}
           </Text>
           <Text
             accessibilityLabel={`First name: ${firstName ? firstName : 'No name provided'}`}
             style={stylesProfileScreen.textsMyProfile}>
             First Name:{' '}
-            {firstName ? firstName : <Text style={{color: '#FF9999'}}>No name provided</Text>}
+            {firstName ? (
+              firstName
+            ) : (
+              <Text style={{color: '#FF9999'}}>No name provided</Text>
+            )}
           </Text>
           <Text
             accessibilityLabel={`Last name: ${lastName ? lastName : 'No last name provided'}`}
             style={stylesProfileScreen.textsMyProfile}>
             Last Name:{' '}
-            {lastName ? lastName : <Text style={{color: '#FF9999'}}>No last name provided</Text>}
+            {lastName ? (
+              lastName
+            ) : (
+              <Text style={{color: '#FF9999'}}>No last name provided</Text>
+            )}
           </Text>
         </View>
         <View style={stylesProfileScreen.containerButtonsProfile}>

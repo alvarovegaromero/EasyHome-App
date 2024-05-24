@@ -1,4 +1,11 @@
-import {Button, SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import generalStyles from '../../../styles/styles';
 import stylesProfileScreen from '../../../styles/stylesProfileScreens';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -31,7 +38,9 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={stylesProfileScreen.containerProfile}>
-          <Text accessibilityLabel="My Profile:" style={stylesProfileScreen.headerMyProfile}>
+          <Text
+            accessibilityLabel="My Profile:"
+            style={stylesProfileScreen.headerMyProfile}>
             My Profile:{' '}
           </Text>
 
@@ -56,7 +65,9 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             />
           </View>
           <View style={generalStyles.defaultContainerTextAndInput}>
-            <Text accessibilityLabel="First Name (optional):">First Name (optional):</Text>
+            <Text accessibilityLabel="First Name (optional):">
+              First Name (optional):
+            </Text>
             <TextInput
               style={generalStyles.defaultInput}
               value={firstName}
@@ -66,7 +77,9 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             />
           </View>
           <View style={generalStyles.defaultContainerTextAndInput}>
-            <Text accessibilityLabel="Last Name (optional):">Last Name (optional):</Text>
+            <Text accessibilityLabel="Last Name (optional):">
+              Last Name (optional):
+            </Text>
             <TextInput
               style={generalStyles.defaultInput}
               value={lastName}

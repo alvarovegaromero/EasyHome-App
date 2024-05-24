@@ -3,7 +3,10 @@ import useHomeController from './useHomeController';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../../utils/utilsTestingHooks';
 import React from 'react';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -117,7 +120,10 @@ describe('useHomeController', () => {
       });
 
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockImplementation(() => ({groupId: mockGroupId, setGroupId: mockSetGroupId}));
+      useContextSpy.mockImplementation(() => ({
+        groupId: mockGroupId,
+        setGroupId: mockSetGroupId,
+      }));
 
       const mockGroupsChanged = [
         {id: '3', name: 'group3'},
@@ -128,7 +134,9 @@ describe('useHomeController', () => {
       //mockSetGroupId('2'); - TODO: Cause rerender by changing groupId
       rerender({}); //useEffect is called again
 
-      await waitFor(() => expect(result.current.groups).toEqual(mockGroupsChanged)); //changed
+      await waitFor(() =>
+        expect(result.current.groups).toEqual(mockGroupsChanged),
+      ); //changed
 
       useContextSpy.mockRestore();
     });
@@ -209,7 +217,10 @@ describe('useHomeController', () => {
       const mockSetContextUsername = jest.fn();
       const mockSetId = jest.fn();
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setContextUsername: mockSetContextUsername, setId: mockSetId});
+      useContextSpy.mockReturnValue({
+        setContextUsername: mockSetContextUsername,
+        setId: mockSetId,
+      });
 
       mockSuccesfulFetch({message: 'Logged out successfully'});
 
@@ -236,7 +247,10 @@ describe('useHomeController', () => {
         result.current.joinGroup();
       });
 
-      expect(alertSpy).toHaveBeenCalledWith('Error', 'Join code must be filled');
+      expect(alertSpy).toHaveBeenCalledWith(
+        'Error',
+        'Join code must be filled',
+      );
     });
 
     it('should call proper endpoint when joining group', async () => {

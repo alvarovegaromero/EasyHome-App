@@ -13,6 +13,7 @@ const useGroupBoardController = () => {
   const [boardContent, setBoardContent] = useState('');
   const [isEditable, setIsEditable] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupBoardContent();
   }, []);
@@ -33,7 +34,9 @@ const useGroupBoardController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         setBoardContent(data.data);
@@ -71,7 +74,9 @@ const useGroupBoardController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(() => {
         Alert.alert('Success', 'Changes saved successfully');
@@ -85,7 +90,14 @@ const useGroupBoardController = () => {
     navigation.navigate('GroupHomeScreen' as never);
   };
 
-  return {boardContent, setBoardContent, isEditable, allowEdit, saveChanges, navigateGroupHome};
+  return {
+    boardContent,
+    setBoardContent,
+    isEditable,
+    allowEdit,
+    saveChanges,
+    navigateGroupHome,
+  };
 };
 
 export default useGroupBoardController;

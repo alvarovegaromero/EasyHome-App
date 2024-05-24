@@ -66,8 +66,14 @@ describe('RegisterScreen', () => {
   it('should update state when input is changed', () => {
     const {getByTestId} = renderScreen();
 
-    const {setUsername, setEmail, setPassword, setConfirmPassword, setFirstName, setLastName} =
-      useRegisterController();
+    const {
+      setUsername,
+      setEmail,
+      setPassword,
+      setConfirmPassword,
+      setFirstName,
+      setLastName,
+    } = useRegisterController();
 
     expect(setUsername).not.toHaveBeenCalled();
     expect(setEmail).not.toHaveBeenCalled();
@@ -79,7 +85,10 @@ describe('RegisterScreen', () => {
     fireEvent.changeText(getByTestId('UsernameInput'), 'newUsername');
     fireEvent.changeText(getByTestId('EmailInput'), 'newEmail');
     fireEvent.changeText(getByTestId('PasswordInput'), 'newPassword');
-    fireEvent.changeText(getByTestId('ConfirmPasswordInput'), 'newConfirmPassword');
+    fireEvent.changeText(
+      getByTestId('ConfirmPasswordInput'),
+      'newConfirmPassword',
+    );
     fireEvent.changeText(getByTestId('FirstNameInput'), 'newFirstName');
     fireEvent.changeText(getByTestId('LastNameInput'), 'newLastName');
 
@@ -94,8 +103,11 @@ describe('RegisterScreen', () => {
   it('should call the correct functions when buttons are pressed', () => {
     const {getByTestId} = renderScreen();
 
-    const {handleRegisterSubmit, navigateLoginScreen, navigateResetPasswordScreen} =
-      useRegisterController();
+    const {
+      handleRegisterSubmit,
+      navigateLoginScreen,
+      navigateResetPasswordScreen,
+    } = useRegisterController();
 
     expect(handleRegisterSubmit).not.toHaveBeenCalled();
     expect(navigateLoginScreen).not.toHaveBeenCalled();

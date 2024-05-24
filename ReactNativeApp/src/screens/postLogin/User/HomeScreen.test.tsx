@@ -64,8 +64,12 @@ describe('HomeScreen', () => {
   it('should call the correct functions when buttons are pressed', () => {
     const {getByTestId} = renderScreen();
 
-    const {handleLogout, navigateProfileScreen, showDialog, navigateCreateGroupScreen} =
-      useHomeController();
+    const {
+      handleLogout,
+      navigateProfileScreen,
+      showDialog,
+      navigateCreateGroupScreen,
+    } = useHomeController();
 
     expect(handleLogout).not.toHaveBeenCalled();
     expect(navigateProfileScreen).not.toHaveBeenCalled();
@@ -89,7 +93,9 @@ describe('HomeScreen', () => {
 
     // Verify that the dialog is rendered correctly
     expect(getByText('Join Group')).toBeTruthy();
-    expect(getByText('Enter the join code for the group you want to join.')).toBeTruthy();
+    expect(
+      getByText('Enter the join code for the group you want to join.'),
+    ).toBeTruthy();
 
     const {closeDialog, joinGroup} = useHomeController();
 

@@ -1,7 +1,10 @@
 import {act, renderHook, waitFor} from '@testing-library/react-native';
 import useCreateGroupController from './useCreateGroupController';
 import {Alert} from 'react-native';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../../utils/utilsTestingHooks';
 import {BASE_URL} from '../../../../config';
 import React from 'react';
 
@@ -57,12 +60,15 @@ describe('useCreateGroupController', () => {
       renderTestHookTest();
 
       await waitFor(() => {
-        expect(fetch).toHaveBeenCalledWith(`${BASE_URL}/api/groups/currencies`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
+        expect(fetch).toHaveBeenCalledWith(
+          `${BASE_URL}/api/groups/currencies`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+            },
           },
-        });
+        );
       });
     });
 
@@ -100,7 +106,10 @@ describe('useCreateGroupController', () => {
         result.current.handleCreateGroupSubmit();
       });
 
-      expect(alertSpy).toHaveBeenCalledWith('Error', 'Name and currency are required');
+      expect(alertSpy).toHaveBeenCalledWith(
+        'Error',
+        'Name and currency are required',
+      );
     });
 
     it('should handle create group submit with valid name and currency', async () => {
@@ -128,7 +137,11 @@ describe('useCreateGroupController', () => {
             'Content-Type': 'application/json',
             Authorization: `Token dummy_token`,
           },
-          body: JSON.stringify({name: 'newName', description: 'newDescription', currency: 'USD'}),
+          body: JSON.stringify({
+            name: 'newName',
+            description: 'newDescription',
+            currency: 'USD',
+          }),
         }),
       );
     });

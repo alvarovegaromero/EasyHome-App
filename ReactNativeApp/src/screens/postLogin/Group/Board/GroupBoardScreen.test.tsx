@@ -55,7 +55,9 @@ describe('GroupBoardScreen', () => {
 
       const {getByTestId} = renderScreen();
 
-      expect(getByTestId('BoardContentInput').props.value).toBe('dummy_content');
+      expect(getByTestId('BoardContentInput').props.value).toBe(
+        'dummy_content',
+      );
       expect(getByTestId('SaveChangesButton')).toBeTruthy();
     });
 

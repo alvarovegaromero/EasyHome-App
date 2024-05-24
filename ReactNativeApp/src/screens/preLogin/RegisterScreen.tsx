@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, TextInput, Button, SafeAreaView, ScrollView, Text} from 'react-native';
+import {
+  View,
+  TextInput,
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Text,
+} from 'react-native';
 import stylesRegisterScreen from '../../styles/stylesRegisterScreen';
 import generalStyles from '../../styles/styles';
 import useRegisterController from './hooks/useRegisterController';
@@ -63,7 +70,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Confirm Password:">Confirm Password:</Text>
+              <Text accessibilityLabel="Confirm Password:">
+                Confirm Password:
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 secureTextEntry
@@ -75,7 +84,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="First Name (optional):">First Name (optional):</Text>
+              <Text accessibilityLabel="First Name (optional):">
+                First Name (optional):
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 value={firstName}
@@ -86,7 +97,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Last Name (optional):">Last Name (optional):</Text>
+              <Text accessibilityLabel="Last Name (optional):">
+                Last Name (optional):
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 value={lastName}
@@ -127,7 +140,9 @@ const RegisterScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesRegisterScreen.containerResetPassword}>
-            <Text accessibilityLabel="Forgot your password?">Forgot your password?</Text>
+            <Text accessibilityLabel="Forgot your password?">
+              Forgot your password?
+            </Text>
             <View style={generalStyles.defaultContainerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button

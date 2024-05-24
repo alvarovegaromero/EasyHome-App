@@ -1,5 +1,12 @@
 import React from 'react';
-import {Button, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import useHomeController from './hooks/useHomeController';
 import {Group} from './types';
 import Dialog from 'react-native-dialog';
@@ -26,7 +33,9 @@ const HomeScreen: React.FunctionComponent = () => {
       <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesHomeScreen.containerHeaders}>
-            <Text accessibilityLabel={`Hello ${username}`} style={generalStyles.defaultHeader}>
+            <Text
+              accessibilityLabel={`Hello ${username}`}
+              style={generalStyles.defaultHeader}>
               {' '}
               Hello {username}!{' '}
             </Text>
@@ -61,9 +70,13 @@ const HomeScreen: React.FunctionComponent = () => {
                   {groups.map((group: Group) => (
                     <TouchableOpacity
                       key={group.id}
-                      onPress={() => navigateGroupHomeScreen(group.id.toString())}
+                      onPress={() =>
+                        navigateGroupHomeScreen(group.id.toString())
+                      }
                       style={stylesHomeScreen.listButton}>
-                      <Text accessibilityLabel={`Group name: ${group.name}`}>{group.name}</Text>
+                      <Text accessibilityLabel={`Group name: ${group.name}`}>
+                        {group.name}
+                      </Text>
                     </TouchableOpacity>
                   ))}
                 </>
@@ -107,7 +120,11 @@ const HomeScreen: React.FunctionComponent = () => {
                 onPress={closeDialog}
                 accessibilityLabel="Cancel button"
               />
-              <Dialog.Button label="Join" onPress={joinGroup} accessibilityLabel="Join button" />
+              <Dialog.Button
+                label="Join"
+                onPress={joinGroup}
+                accessibilityLabel="Join button"
+              />
             </Dialog.Container>
 
             <View style={stylesHomeScreen.containerButton}>

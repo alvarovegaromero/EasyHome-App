@@ -4,14 +4,18 @@ import generalStyles from '../../../styles/styles';
 import stylesGroupHomeScreen from '../../../styles/stylesGroupHomeScreen';
 
 const GroupHomeScreen: React.FunctionComponent = () => {
-  const {groupName, navigateBoard, navigateSettings, navigateHome} = useGroupHomeController();
+  const {groupName, navigateBoard, navigateSettings, navigateHome} =
+    useGroupHomeController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <Text style={stylesGroupHomeScreen.headerText}>{groupName}</Text>
-          <Text style={generalStyles.defaultSubHeader}> What do you want to do today?</Text>
+          <Text style={generalStyles.defaultSubHeader}>
+            {' '}
+            What do you want to do today?
+          </Text>
 
           <View style={stylesGroupHomeScreen.containerButtons}>
             <View style={stylesGroupHomeScreen.containerButton}>

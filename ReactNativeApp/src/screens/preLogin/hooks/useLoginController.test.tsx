@@ -2,7 +2,10 @@ import {act, renderHook} from '@testing-library/react-native';
 import useLoginController from './useLoginController';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../config';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../utils/utilsTestingHooks';
 import React from 'react';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -52,7 +55,10 @@ describe('useLoginController', () => {
         result.current.handleLoginSubmit();
       });
 
-      expect(alertSpy).toHaveBeenCalledWith('Error', 'Username and password must be filled');
+      expect(alertSpy).toHaveBeenCalledWith(
+        'Error',
+        'Username and password must be filled',
+      );
     });
 
     it('should call proper endpoint when login submit with valid username and password', async () => {
@@ -76,7 +82,10 @@ describe('useLoginController', () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({username: 'newUsername', password: 'newPassword'}),
+          body: JSON.stringify({
+            username: 'newUsername',
+            password: 'newPassword',
+          }),
         }),
       );
     });
@@ -105,7 +114,10 @@ describe('useLoginController', () => {
       const mockSetContextUsername = jest.fn();
 
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setId: mockSetId, setContextUsername: mockSetContextUsername});
+      useContextSpy.mockReturnValue({
+        setId: mockSetId,
+        setContextUsername: mockSetContextUsername,
+      });
 
       const {result} = renderTestHookTest();
 

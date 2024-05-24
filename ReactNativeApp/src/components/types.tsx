@@ -1,5 +1,10 @@
 export type EditProfileStackParamList = {
-  EditProfileScreen: {username: string; email: string; firstName: string; lastName: string};
+  EditProfileScreen: {
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+  };
 };
 
 export type MyStackParamsList = {

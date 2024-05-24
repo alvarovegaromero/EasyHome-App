@@ -44,7 +44,9 @@ const useHomeController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         setGroups(data.groups);
@@ -105,7 +107,9 @@ const useHomeController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         navigateGroupHomeScreen(String(data.id));

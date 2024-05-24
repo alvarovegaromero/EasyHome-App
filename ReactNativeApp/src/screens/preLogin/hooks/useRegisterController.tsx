@@ -20,15 +20,26 @@ const useRegisterController = () => {
 
   const handleRegisterSubmit = () => {
     //Validations:
-    if (username === '' || password === '' || email === '' || confirmPassword === '') {
-      Alert.alert('Error', 'Username, email, password and confirmation password must be filled');
+    if (
+      username === '' ||
+      password === '' ||
+      email === '' ||
+      confirmPassword === ''
+    ) {
+      Alert.alert(
+        'Error',
+        'Username, email, password and confirmation password must be filled',
+      );
       console.error(
         'Register Failed - Username, email, password and confirmation password must be filled',
       );
       return;
     }
     if (password !== confirmPassword) {
-      Alert.alert('Error', 'Passwords do not match. Please enter matching passwords.');
+      Alert.alert(
+        'Error',
+        'Passwords do not match. Please enter matching passwords.',
+      );
       console.error('Register Failed - Passwords do not match');
       return;
     }
@@ -62,7 +73,9 @@ const useRegisterController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         setId(String(data.id));

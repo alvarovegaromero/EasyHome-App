@@ -1,5 +1,12 @@
 import React from 'react';
-import {Button, SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
@@ -58,7 +65,10 @@ const CreateGroupScreen: React.FunctionComponent = () => {
                     label: currencyOption[1],
                     value: currencyOption[0],
                   }))}
-                  textInputProps={{accessibilityLabel: 'Currency picker', testID: 'CurrencyPicker'}}
+                  textInputProps={{
+                    accessibilityLabel: 'Currency picker',
+                    testID: 'CurrencyPicker',
+                  }}
                 />
               </View>
             </View>

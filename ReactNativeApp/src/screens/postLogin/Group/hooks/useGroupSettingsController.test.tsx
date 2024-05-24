@@ -30,7 +30,9 @@ const mockResponse = (body: any, status = 200) => {
   });
 };
 
-global.fetch = jest.fn(() => Promise.resolve(mockResponse({data: 'dummy data'})));
+global.fetch = jest.fn(() =>
+  Promise.resolve(mockResponse({data: 'dummy data'})),
+);
 
 const mockedNavigate = jest.fn();
 
@@ -121,12 +123,16 @@ describe('useGroupSettingsController', () => {
       expect(result.current.isOwner).toBe(false); // default value - can't be tested in next test
 
       const mockGroupUsersData = {
-        users: [{id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true}],
+        users: [
+          {id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true},
+        ],
       };
       mockSuccesfulFetch(mockGroupUsersData);
 
       await waitFor(() =>
-        expect(result.current.groupUsers).toStrictEqual(mockGroupUsersData.users),
+        expect(result.current.groupUsers).toStrictEqual(
+          mockGroupUsersData.users,
+        ),
       );
     });
 
@@ -137,7 +143,9 @@ describe('useGroupSettingsController', () => {
       useContextSpy.mockReturnValue({id: mockId});
 
       const mockGroupUsersData = {
-        users: [{id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true}],
+        users: [
+          {id: '1', name: 'dummy_name', email: 'dummy_email', is_owner: true},
+        ],
       };
       mockSuccesfulFetch(mockGroupUsersData);
 
@@ -154,7 +162,10 @@ describe('useGroupSettingsController', () => {
 
       await waitFor(() => expect(result.current.groupUsers).toStrictEqual([]));
 
-      expect(alertSpy).toHaveBeenCalledWith('Error', "Fetch group's users failed");
+      expect(alertSpy).toHaveBeenCalledWith(
+        'Error',
+        "Fetch group's users failed",
+      );
     });
   });
 
@@ -234,7 +245,10 @@ describe('useGroupSettingsController', () => {
         const mockSetGroupId = jest.fn();
 
         const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({groupId: mockGroupId, setGroupId: mockSetGroupId});
+        useContextSpy.mockReturnValue({
+          groupId: mockGroupId,
+          setGroupId: mockSetGroupId,
+        });
 
         const {result} = renderTestHookTest();
 
@@ -340,7 +354,10 @@ describe('useGroupSettingsController', () => {
         const mockSetGroupId = jest.fn();
 
         const useContextSpy = jest.spyOn(React, 'useContext');
-        useContextSpy.mockReturnValue({groupId: mockGroupId, setGroupId: mockSetGroupId});
+        useContextSpy.mockReturnValue({
+          groupId: mockGroupId,
+          setGroupId: mockSetGroupId,
+        });
 
         const {result} = renderTestHookTest();
 
@@ -626,7 +643,10 @@ describe('useGroupSettingsController', () => {
       });
 
       await waitFor(() => {
-        expect(alertSpy).toHaveBeenCalledWith('Error', 'Generate join code failed');
+        expect(alertSpy).toHaveBeenCalledWith(
+          'Error',
+          'Generate join code failed',
+        );
       });
     });
   });
@@ -645,9 +665,9 @@ describe('useGroupSettingsController', () => {
         result.current.copyJoinCodeToClipboard();
       });
 
-      expect(require('@react-native-clipboard/clipboard').setString).toHaveBeenCalledWith(
-        'dummy_code',
-      );
+      expect(
+        require('@react-native-clipboard/clipboard').setString,
+      ).toHaveBeenCalledWith('dummy_code');
     });
 
     it('should set dialogVisible to false', async () => {

@@ -1,7 +1,10 @@
 import {renderHook, waitFor} from '@testing-library/react-native';
 import useGroupHomeController from './useGroupHomeController';
 import React from 'react';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../../utils/utilsTestingHooks';
 import {BASE_URL} from '../../../../config';
 import {Alert} from 'react-native';
 
@@ -73,7 +76,9 @@ describe('useGroupHomeController', () => {
       mockSuccesfulFetch(mockGroupData);
 
       //setGroupName is also tested as it is used in the hook
-      await waitFor(() => expect(result.current.groupName).toBe(mockGroupData.name));
+      await waitFor(() =>
+        expect(result.current.groupName).toBe(mockGroupData.name),
+      );
     });
 
     it('should display error alert when fetch fails', async () => {
@@ -83,7 +88,9 @@ describe('useGroupHomeController', () => {
       jest.spyOn(Alert, 'alert');
       renderTestHookTest();
 
-      await waitFor(() => expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage));
+      await waitFor(() =>
+        expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage),
+      );
     });
   });
 

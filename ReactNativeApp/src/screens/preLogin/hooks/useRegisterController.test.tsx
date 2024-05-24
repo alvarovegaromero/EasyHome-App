@@ -2,7 +2,10 @@ import {act, renderHook} from '@testing-library/react-native';
 import useRegisterController from './useRegisterController';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../config';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../utils/utilsTestingHooks';
 import React from 'react';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -173,7 +176,10 @@ describe('useRegisterController', () => {
       const mockSetContextUsername = jest.fn();
 
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setId: mockSetId, setContextUsername: mockSetContextUsername});
+      useContextSpy.mockReturnValue({
+        setId: mockSetId,
+        setContextUsername: mockSetContextUsername,
+      });
 
       const {result} = renderTestHookTest();
 

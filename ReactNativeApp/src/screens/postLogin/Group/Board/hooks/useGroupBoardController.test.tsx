@@ -2,7 +2,10 @@ import {renderHook, waitFor} from '@testing-library/react-native';
 import useGroupBoardController from './useGroupBoardController';
 import React from 'react';
 import {BASE_URL} from '../../../../../config';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../../../utils/utilsTestingHooks';
 import {Alert} from 'react-native';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -34,7 +37,9 @@ describe('useGroupBoardController', () => {
     it('should set boardContent', async () => {
       const {result} = renderTestHookTest();
       result.current.setBoardContent('dummy_content');
-      await waitFor(() => expect(result.current.boardContent).toBe('dummy_content'));
+      await waitFor(() =>
+        expect(result.current.boardContent).toBe('dummy_content'),
+      );
     });
 
     describe('fetchGroupBoardContent', () => {
@@ -83,7 +88,9 @@ describe('useGroupBoardController', () => {
         jest.spyOn(Alert, 'alert');
         renderTestHookTest();
 
-        await waitFor(() => expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage));
+        await waitFor(() =>
+          expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage),
+        );
       });
     });
   });
@@ -155,7 +162,10 @@ describe('useGroupBoardController', () => {
         jest.spyOn(Alert, 'alert');
 
         await waitFor(() =>
-          expect(Alert.alert).toHaveBeenLastCalledWith('Success', 'Changes saved successfully'),
+          expect(Alert.alert).toHaveBeenLastCalledWith(
+            'Success',
+            'Changes saved successfully',
+          ),
         );
 
         useContextSpy.mockRestore();
@@ -176,7 +186,9 @@ describe('useGroupBoardController', () => {
           result.current.saveChanges();
         });
 
-        await waitFor(() => expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage));
+        await waitFor(() =>
+          expect(Alert.alert).toHaveBeenCalledWith('Error', mockErrorMessage),
+        );
       });
     });
   });

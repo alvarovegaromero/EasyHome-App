@@ -1,11 +1,24 @@
-import {Button, Image, SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import stylesResetPasswordScreen from '../../styles/stylesResetPasswordScreen'; //reuse styles from login screen
 import generalStyles from '../../styles/styles';
 import useResetPasswordController from './hooks/useResetPasswordController';
 
 const ResetPasswordScreen: React.FunctionComponent = () => {
-  const {email, setEmail, handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen} =
-    useResetPasswordController();
+  const {
+    email,
+    setEmail,
+    handleResetPasswordSubmit,
+    navigateLoginScreen,
+    navigateRegisterScreen,
+  } = useResetPasswordController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -23,7 +36,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
           <Text
             accessibilityLabel="Write your email so we can send you an email for resetting your password"
             style={stylesResetPasswordScreen.textHeaderResetPassword}>
-            Write your email so we can send you an email for resetting your password
+            Write your email so we can send you an email for resetting your
+            password
           </Text>
           <View style={stylesResetPasswordScreen.containerInputEmail}>
             <Text accessibilityLabel="email">Email:</Text>
@@ -49,7 +63,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
         </View>
 
         <View style={stylesResetPasswordScreen.containerOtherInfo}>
-          <View style={stylesResetPasswordScreen.containerRegisterAndResetPassword}>
+          <View
+            style={stylesResetPasswordScreen.containerRegisterAndResetPassword}>
             <View style={stylesResetPasswordScreen.containerLogin}>
               <Text accessibilityLabel="Already have an account? Use log in">
                 Already have an account? Use log in

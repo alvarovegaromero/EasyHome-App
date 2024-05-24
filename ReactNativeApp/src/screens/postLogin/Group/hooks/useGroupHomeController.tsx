@@ -13,6 +13,7 @@ const useGroupHomeController = () => {
 
   const [groupName, setGroupName] = useState(''); //could be added in groupContext
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupData();
   }, []);
@@ -33,7 +34,9 @@ const useGroupHomeController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then((data: Group) => {
         setGroupName(data.name);

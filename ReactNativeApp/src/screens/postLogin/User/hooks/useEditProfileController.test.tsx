@@ -1,7 +1,10 @@
 import {act, renderHook} from '@testing-library/react-native';
 import useEditProfileController from './useEditProfileController';
 import {Alert} from 'react-native';
-import {mockFailedFetch, mockSuccesfulFetch} from '../../../../utils/utilsTestingHooks';
+import {
+  mockFailedFetch,
+  mockSuccesfulFetch,
+} from '../../../../utils/utilsTestingHooks';
 import React from 'react';
 import {BASE_URL} from '../../../../config';
 
@@ -127,7 +130,9 @@ describe('useEditProfileController', () => {
     it('should update context username when handleEditProfileSubmit is called', async () => {
       const mockSetContextUsername = jest.fn();
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setContextUsername: mockSetContextUsername});
+      useContextSpy.mockReturnValue({
+        setContextUsername: mockSetContextUsername,
+      });
 
       mockSuccesfulFetch({});
 

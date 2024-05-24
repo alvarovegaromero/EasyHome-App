@@ -33,7 +33,9 @@ const useLoginController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         setId(String(data.id));

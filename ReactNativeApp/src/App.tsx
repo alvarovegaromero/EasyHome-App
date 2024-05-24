@@ -11,7 +11,8 @@ function App(): React.JSX.Element {
   const {groupId, setGroupId} = useGroupContext();
 
   return (
-    <UserContext.Provider value={{id, setId, contextUsername, setContextUsername}}>
+    <UserContext.Provider
+      value={{id, setId, contextUsername, setContextUsername}}>
       <GroupContext.Provider value={{groupId, setGroupId}}>
         <NavigationContainer>
           <Navigation />

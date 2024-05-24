@@ -47,7 +47,13 @@ const useResetPasswordController = () => {
     navigation.navigate('RegisterScreen' as never);
   };
 
-  return {email, setEmail, handleResetPasswordSubmit, navigateLoginScreen, navigateRegisterScreen};
+  return {
+    email,
+    setEmail,
+    handleResetPasswordSubmit,
+    navigateLoginScreen,
+    navigateRegisterScreen,
+  };
 };
 
 export default useResetPasswordController;

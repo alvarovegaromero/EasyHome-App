@@ -19,6 +19,7 @@ const useGroupSettingsController = () => {
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
   const [isOwner, setIsOwner] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupUsersData();
   }, []);
@@ -39,13 +40,20 @@ const useGroupSettingsController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then((data: {users: User[]}) => {
         setGroupUsers(data.users);
 
-        if (data.users.some(user => user.id.toString() === id && user.is_owner === true))
+        if (
+          data.users.some(
+            user => user.id.toString() === id && user.is_owner === true,
+          )
+        ) {
           setIsOwner(true);
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -81,7 +89,9 @@ const useGroupSettingsController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else navigateHome();
+        } else {
+          navigateHome();
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -117,7 +127,9 @@ const useGroupSettingsController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else navigateHome();
+        } else {
+          navigateHome();
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -125,16 +137,20 @@ const useGroupSettingsController = () => {
   };
 
   const confirmAndKickUser = async (userId: string) => {
-    Alert.alert('Confirmation', 'Are you sure you want to remove this user from the group?', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => kickUser(userId),
-      },
-    ]);
+    Alert.alert(
+      'Confirmation',
+      'Are you sure you want to remove this user from the group?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => kickUser(userId),
+        },
+      ],
+    );
   };
 
   const kickUser = async (userId: string) => {
@@ -153,7 +169,9 @@ const useGroupSettingsController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else fetchGroupUsersData();
+        } else {
+          fetchGroupUsersData();
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -161,16 +179,20 @@ const useGroupSettingsController = () => {
   };
 
   const confirmAndPromoteUser = async (userId: string) => {
-    Alert.alert('Confirmation', 'Are you sure you want to promote this user to owner?', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => promoteUser(userId),
-      },
-    ]);
+    Alert.alert(
+      'Confirmation',
+      'Are you sure you want to promote this user to owner?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => promoteUser(userId),
+        },
+      ],
+    );
   };
 
   const promoteUser = async (userId: string) => {
@@ -214,7 +236,9 @@ const useGroupSettingsController = () => {
             Alert.alert('Error', error);
             throw new Error(`${response.status} - ${error}`);
           });
-        } else return response.json();
+        } else {
+          return response.json();
+        }
       })
       .then(data => {
         setJoinCode(data.join_code);

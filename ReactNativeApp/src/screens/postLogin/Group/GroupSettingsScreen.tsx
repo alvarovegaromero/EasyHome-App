@@ -1,4 +1,12 @@
-import {Button, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import generalStyles from '../../../styles/styles';
 import useGroupSettingsController from './hooks/useGroupSettingsController';
 import Dialog from 'react-native-dialog';
@@ -30,9 +38,13 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
             <View style={stylesGroupSettingsScreen.containerUsers}>
               <ScrollView>
                 {groupUsers.map((user: User) => (
-                  <View key={user.id} style={stylesGroupSettingsScreen.listElement}>
+                  <View
+                    key={user.id}
+                    style={stylesGroupSettingsScreen.listElement}>
                     <View style={stylesGroupSettingsScreen.containerRow}>
-                      <Text style={stylesGroupSettingsScreen.textList}>{user.username}</Text>
+                      <Text style={stylesGroupSettingsScreen.textList}>
+                        {user.username}
+                      </Text>
                       {user.is_owner && (
                         <Image
                           source={require('../../../../assets/images/crownIcon.png')}
@@ -47,17 +59,23 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                         {!user.is_owner && (
                           <>
                             <TouchableOpacity
-                              onPress={() => confirmAndPromoteUser(user.id.toString())}>
+                              onPress={() =>
+                                confirmAndPromoteUser(user.id.toString())
+                              }>
                               <Image
                                 source={require('../../../../assets/images/crownIcon.png')}
-                                style={stylesGroupSettingsScreen.crownIconListElement}
+                                style={
+                                  stylesGroupSettingsScreen.crownIconListElement
+                                }
                                 testID={`PromoteUserIcon-${user.username}`}
                                 accessibilityLabel={`Promote User Icon for ${user.username}`}
                               />
                             </TouchableOpacity>
 
                             <TouchableOpacity
-                              onPress={() => confirmAndKickUser(user.id.toString())}>
+                              onPress={() =>
+                                confirmAndKickUser(user.id.toString())
+                              }>
                               <Image
                                 source={require('../../../../assets/images/crossIcon.png')}
                                 style={stylesGroupSettingsScreen.crossIconList}
@@ -121,7 +139,9 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
           </View>
 
           <Dialog.Container visible={dialogVisible}>
-            <Dialog.Title accessibilityLabel="Join Code">Join Code</Dialog.Title>
+            <Dialog.Title accessibilityLabel="Join Code">
+              Join Code
+            </Dialog.Title>
             <Dialog.Description accessibilityLabel={`Join Code: ${joinCode}`}>
               {joinCode}
             </Dialog.Description>

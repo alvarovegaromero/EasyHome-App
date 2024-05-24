@@ -1,5 +1,13 @@
 import React from 'react';
-import {Button, Image, SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
+import {
+  Button,
+  Image,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {APP_VERSION} from '../../config';
 import stylesLoginScreen from '../../styles/stylesLoginScreen';
 import generalStyles from '../../styles/styles';
@@ -83,7 +91,9 @@ const LoginScreen: React.FunctionComponent = () => {
             </View>
 
             <View style={stylesLoginScreen.containerResetPassword}>
-              <Text accessibilityLabel="Forgot your password?">Forgot your password?</Text>
+              <Text accessibilityLabel="Forgot your password?">
+                Forgot your password?
+              </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
                   <Button
@@ -98,7 +108,10 @@ const LoginScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesLoginScreen.containerVersion}>
-            <Text accessibilityLabel={'Version: ' + {APP_VERSION}}> Version: {APP_VERSION} </Text>
+            <Text accessibilityLabel={'Version: ' + {APP_VERSION}}>
+              {' '}
+              Version: {APP_VERSION}{' '}
+            </Text>
           </View>
         </View>
       </ScrollView>

@@ -7,7 +7,8 @@ import {Alert} from 'react-native';
 import {useState, useEffect} from 'react';
 
 const useProfileController = () => {
-  const navigation = useNavigation<StackNavigationProp<EditProfileStackParamList>>();
+  const navigation =
+    useNavigation<StackNavigationProp<EditProfileStackParamList>>();
 
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -55,14 +56,26 @@ const useProfileController = () => {
   };
 
   const navigateEditProfileScreen = () => {
-    navigation.navigate('EditProfileScreen', {username, email, firstName, lastName});
+    navigation.navigate('EditProfileScreen', {
+      username,
+      email,
+      firstName,
+      lastName,
+    });
   };
 
   const handleGoBack = () => {
     navigation.navigate('HomeScreen' as never);
   };
 
-  return {username, email, firstName, lastName, handleGoBack, navigateEditProfileScreen};
+  return {
+    username,
+    email,
+    firstName,
+    lastName,
+    handleGoBack,
+    navigateEditProfileScreen,
+  };
 };
 
 export default useProfileController;
