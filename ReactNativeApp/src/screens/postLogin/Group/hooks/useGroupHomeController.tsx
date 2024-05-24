@@ -13,10 +13,9 @@ const useGroupHomeController = () => {
 
   const [groupName, setGroupName] = useState(''); //could be added in groupContext
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupData();
-  }, []);
+  }); //[]
 
   const fetchGroupData = async () => {
     const token = await AsyncStorage.getItem('token');

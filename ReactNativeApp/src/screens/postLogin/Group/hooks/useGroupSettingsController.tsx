@@ -19,10 +19,9 @@ const useGroupSettingsController = () => {
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
   const [isOwner, setIsOwner] = useState(false);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupUsersData();
-  }, []);
+  }); //[]
 
   const fetchGroupUsersData = async () => {
     const token = await AsyncStorage.getItem('token');

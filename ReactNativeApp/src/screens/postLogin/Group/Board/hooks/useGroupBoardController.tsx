@@ -13,10 +13,9 @@ const useGroupBoardController = () => {
   const [boardContent, setBoardContent] = useState('');
   const [isEditable, setIsEditable] = useState(false);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchGroupBoardContent();
-  }, []);
+  }); //[]
 
   const fetchGroupBoardContent = async () => {
     const token = await AsyncStorage.getItem('token');
