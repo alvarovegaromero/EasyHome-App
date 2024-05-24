@@ -9,7 +9,7 @@ const stylesLoginScreen = StyleSheet.create({
   },
   logo: {
     width: 250,
-    height: 254, //as image is not a perfect square, height is not equal to width
+    height: 254, //as image is not a perfect square, height is not equal to width.
   },
 
   containerLoginInputs: {
