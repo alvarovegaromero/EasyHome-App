@@ -9,6 +9,7 @@ import {
 import generalStyles from '../../../../styles/styles';
 import useAddExpenseController from './hooks/useAddExpenseController';
 import Picker from 'react-native-picker-select';
+import CheckBox from '@react-native-community/checkbox';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -19,6 +20,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
     payer,
     setPayer,
     groupUsers,
+    selectedUsers,
+    handleCheckBoxChange,
   } = useAddExpenseController();
 
   return (
@@ -60,6 +63,21 @@ const AddExpenseScreen: React.FunctionComponent = () => {
               testID: 'PayerPicker',
             }}
           />
+
+          <Text accessibilityLabel="Debtors">Debtors:</Text>
+          {groupUsers.map(user => (
+            <View key={user.id}>
+              <Text>{user.username}</Text>
+              <CheckBox
+                value={selectedUsers[user.id]}
+                onValueChange={newValue =>
+                  handleCheckBoxChange(user.id, newValue)
+                }
+              />
+            </View>
+          ))}
+
+          <Text accessibilityLabel="Date paid">Date paid:</Text>
 
           <View>
             <Button title="Create Expense" onPress={() => {}} />

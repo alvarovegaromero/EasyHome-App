@@ -11,6 +11,9 @@ const useAddExpenseController = () => {
   const [concept, setConcept] = useState<string>();
   const [amount, setAmount] = useState<string>(); //TODO: change to number
   const [payer, setPayer] = useState<string>();
+  const [selectedUsers, setSelectedUsers] = useState<Record<number, boolean>>(
+    {},
+  );
 
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
 
@@ -18,6 +21,13 @@ const useAddExpenseController = () => {
     if (/^\d*\.?\d{0,2}$/.test(value)) {
       setAmount(value);
     }
+  };
+
+  const handleCheckBoxChange = (userId: number, newValue: boolean) => {
+    setSelectedUsers(prevSelectedUsers => ({
+      ...prevSelectedUsers,
+      [userId]: newValue,
+    }));
   };
 
   useEffect(() => {
@@ -46,6 +56,15 @@ const useAddExpenseController = () => {
       })
       .then((data: {users: User[]}) => {
         setGroupUsers(data.users);
+
+        const initialSelectedUsers = data.users.reduce(
+          (acc, user) => {
+            acc[user.id] = true;
+            return acc;
+          },
+          {} as Record<number, boolean>,
+        );
+        setSelectedUsers(initialSelectedUsers);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -60,6 +79,8 @@ const useAddExpenseController = () => {
     payer,
     setPayer,
     groupUsers,
+    selectedUsers,
+    handleCheckBoxChange,
   };
 };
 
