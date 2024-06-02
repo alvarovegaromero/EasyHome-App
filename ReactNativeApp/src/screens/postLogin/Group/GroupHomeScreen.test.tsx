@@ -5,11 +5,13 @@ import useGroupHomeController from './hooks/useGroupHomeController';
 jest.mock('./hooks/useGroupHomeController', () => {
   const navigateSettings = jest.fn();
   const navigateHome = jest.fn();
+  const navigateExpenses = jest.fn();
 
   return () => ({
     groupName: 'myGroupName',
     navigateSettings,
     navigateHome,
+    navigateExpenses,
   });
 });
 
@@ -37,15 +39,19 @@ describe('GroupHomeScreen', () => {
   it('should call the correct functions when buttons are pressed', () => {
     const {getByTestId} = renderScreen();
 
-    const {navigateSettings, navigateHome} = useGroupHomeController();
+    const {navigateSettings, navigateHome, navigateExpenses} =
+      useGroupHomeController();
 
     expect(navigateSettings).not.toHaveBeenCalled();
     expect(navigateHome).not.toHaveBeenCalled();
+    expect(navigateExpenses).not.toHaveBeenCalled();
 
     fireEvent.press(getByTestId('GroupSettingsButton'));
     fireEvent.press(getByTestId('GoBackToHomeButton'));
+    fireEvent.press(getByTestId('DistributeExpensesButton'));
 
     expect(navigateSettings).toHaveBeenCalled();
     expect(navigateHome).toHaveBeenCalled();
+    expect(navigateExpenses).toHaveBeenCalled();
   });
 });

@@ -117,5 +117,11 @@ describe('useGroupHomeController', () => {
 
       expect(mockSetGroupId).toHaveBeenCalledWith('');
     });
+
+    it('should navigate to ExpensesHomeScreen', () => {
+      const {result} = renderTestHookTest();
+      result.current.navigateExpenses();
+      expect(mockedNavigate).toHaveBeenCalledWith('ExpensesHomeScreen');
+    });
   });
 });
