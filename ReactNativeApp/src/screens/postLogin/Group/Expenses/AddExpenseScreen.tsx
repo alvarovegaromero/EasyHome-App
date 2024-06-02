@@ -22,6 +22,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
     groupUsers,
     selectedUsers,
     handleCheckBoxChange,
+    handleCreateExpenseSubmit,
+    navigateExpensesHomeScreen,
   } = useAddExpenseController();
 
   return (
@@ -80,8 +82,11 @@ const AddExpenseScreen: React.FunctionComponent = () => {
           <Text accessibilityLabel="Date paid">Date paid:</Text>
 
           <View>
-            <Button title="Create Expense" onPress={() => {}} />
-            <Button title="Cancel" onPress={() => {}} />
+            <Button
+              title="Create Expense"
+              onPress={handleCreateExpenseSubmit}
+            />
+            <Button title="Cancel" onPress={navigateExpensesHomeScreen} />
           </View>
         </View>
       </ScrollView>

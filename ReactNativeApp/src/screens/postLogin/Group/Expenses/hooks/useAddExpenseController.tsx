@@ -4,8 +4,11 @@ import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GroupContext} from '../../../../../contexts/GroupContext';
 import {User} from '../types';
+import {useNavigation} from '@react-navigation/native';
 
 const useAddExpenseController = () => {
+  const navigation = useNavigation();
+
   const {groupId} = useContext(GroupContext);
 
   const [concept, setConcept] = useState<string>();
@@ -71,6 +74,70 @@ const useAddExpenseController = () => {
       });
   };
 
+  const handleCreateExpenseSubmit = async () => {
+    if (!concept || !amount || !payer) {
+      Alert.alert('Error', 'Concept, amount and payer are required');
+      console.error('Error: Concept, amount and payer are required');
+      return;
+    }
+
+    if (!Object.values(selectedUsers).includes(true)) {
+      Alert.alert('Error', 'At least one debtor is required');
+      console.error('Error: At least one debtor is required');
+      return;
+    }
+
+    const debtors = Object.entries(selectedUsers)
+      .filter(([, value]) => value)
+      .map(([key]) => key);
+
+    console.log(
+      'expense:' +
+        JSON.stringify({
+          name: concept,
+          amount: Number(amount),
+          paid_by: payer,
+          debtors,
+        }),
+    );
+
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(BASE_URL + '/api/expense_distribution/' + groupId + '/expenses', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+      body: JSON.stringify({
+        name: concept,
+        amount: Number(amount),
+        paid_by: payer,
+        debtors,
+      }),
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
+        }
+      })
+      .then(() => {
+        Alert.alert('Success', 'Expense created successfully');
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  const navigateExpensesHomeScreen = () => {
+    navigation.navigate('ExpensesHomeScreen' as never);
+  };
+
   return {
     concept,
     setConcept,
@@ -81,6 +148,8 @@ const useAddExpenseController = () => {
     groupUsers,
     selectedUsers,
     handleCheckBoxChange,
+    handleCreateExpenseSubmit,
+    navigateExpensesHomeScreen,
   };
 };
 
