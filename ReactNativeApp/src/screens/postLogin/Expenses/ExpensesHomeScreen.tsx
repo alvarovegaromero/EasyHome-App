@@ -1,4 +1,5 @@
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   Text,
@@ -16,6 +17,10 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
+          <View>
+            <Text> Balances </Text>
+          </View>
+
           <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
             <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
             <View style={stylesExpenseHomeScreen.containerExpenses}>
@@ -59,6 +64,14 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                 ))}
               </ScrollView>
             </View>
+          </View>
+
+          <View>
+            <Button
+              title="Add Expense"
+              onPress={() => console.log('Add Expense')}
+            />
+            <Button title="Go Back" onPress={() => console.log('Go Back')} />
           </View>
         </View>
       </ScrollView>
