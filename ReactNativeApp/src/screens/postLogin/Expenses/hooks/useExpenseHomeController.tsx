@@ -45,7 +45,7 @@ const useExpensesHomeController = () => {
       });
   };
 
-  return {};
+  return {expenses};
 };
 
 export default useExpensesHomeController;
