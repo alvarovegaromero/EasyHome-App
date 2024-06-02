@@ -46,21 +46,21 @@ const useExpensesHomeController = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-
-    const navigateDetailExpense = (id: string) => {
-      //navigation.navigate('DetailExpenseScreen' as never);
-    };
-
-    const navigateAddExpense = () => {
-      navigation.navigate('AddExpenseScreen' as never);
-    };
-
-    const navigateGroupHome = () => {
-      navigation.navigate('GroupHomeScreen' as never);
-    };
   };
 
-  return {expenses};
+  const navigateDetailExpense = (id: string) => {
+    //navigation.navigate('DetailExpenseScreen' as never);
+  };
+
+  const navigateAddExpense = () => {
+    navigation.navigate('AddExpenseScreen' as never);
+  };
+
+  const navigateGroupHome = () => {
+    navigation.navigate('GroupHomeScreen' as never);
+  };
+
+  return {expenses, navigateAddExpense};
 };
 
 export default useExpensesHomeController;
