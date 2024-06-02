@@ -91,16 +91,6 @@ const useAddExpenseController = () => {
       .filter(([, value]) => value)
       .map(([key]) => key);
 
-    console.log(
-      'expense:' +
-        JSON.stringify({
-          name: concept,
-          amount: Number(amount),
-          paid_by: payer,
-          debtors,
-        }),
-    );
-
     const token = await AsyncStorage.getItem('token');
 
     fetch(BASE_URL + '/api/expense_distribution/' + groupId + '/expenses', {
@@ -128,6 +118,7 @@ const useAddExpenseController = () => {
       })
       .then(() => {
         Alert.alert('Success', 'Expense created successfully');
+        navigateExpensesHomeScreen();
       })
       .catch(error => {
         console.error('Error:', error);
