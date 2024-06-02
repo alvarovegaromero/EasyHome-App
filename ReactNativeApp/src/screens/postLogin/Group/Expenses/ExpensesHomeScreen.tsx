@@ -7,8 +7,8 @@ import {
   View,
 } from 'react-native';
 import useExpensesHomeController from './hooks/useExpenseHomeController';
-import generalStyles from '../../../styles/styles';
-import stylesExpenseHomeScreen from '../../../styles/stylesExpenseHomeScreen';
+import generalStyles from '../../../../styles/styles';
+import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {expenses} = useExpensesHomeController();

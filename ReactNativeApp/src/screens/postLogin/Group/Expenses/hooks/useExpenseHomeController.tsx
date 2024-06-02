@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
-import {BASE_URL} from '../../../../config';
+import {BASE_URL} from '../../../../../config';
 import {Expense} from '../types';
 import {useEffect, useState, useContext} from 'react';
-import {GroupContext} from '../../../../contexts/GroupContext';
+import {GroupContext} from '../../../../../contexts/GroupContext';
 import {useNavigation} from '@react-navigation/native';
 
 const useExpensesHomeController = () => {
