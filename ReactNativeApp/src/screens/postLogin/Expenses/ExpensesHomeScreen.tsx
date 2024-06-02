@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import useExpensesHomeController from './hooks/useExpenseHomeController';
 import generalStyles from '../../../styles/styles';
+import stylesExpenseHomeScreen from '../../../styles/stylesExpenseHomeScreen';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {expenses} = useExpensesHomeController();
@@ -15,30 +16,50 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
-          <ScrollView>
-            <View>
-              <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
-              <View>
+          <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
+            <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
+            <View style={stylesExpenseHomeScreen.containerExpenses}>
+              <View style={stylesExpenseHomeScreen.expenseDetails}>
+                <Text style={stylesExpenseHomeScreen.expenseName}>Concept</Text>
+                <Text style={stylesExpenseHomeScreen.expensePayer}>Payer</Text>
+                <Text style={stylesExpenseHomeScreen.expenseAmount}>
+                  Amount
+                </Text>
+                <Text style={stylesExpenseHomeScreen.expenseDate}>
+                  Date bought
+                </Text>
+              </View>
+              <ScrollView>
                 {expenses.map((expense, index) => (
                   <TouchableOpacity
                     key={index}
+                    style={stylesExpenseHomeScreen.expenseItem}
                     onPress={() => {
                       console.log(expense.name);
                     }}>
-                    <View>
-                      <Text>{`Amount: ${expense.amount}`}</Text>
-                      <Text>
-                        {`Date Paid: ${new Date(expense.date_paid).toLocaleDateString()}`}
-                      </Text>
-                      <Text>{`ID: ${expense.id}`}</Text>
-                      <Text>{`Name: ${expense.name}`}</Text>
-                      <Text>{`Paid By: ${expense.paid_by_username}`}</Text>
+                    <View style={stylesExpenseHomeScreen.expenseDetails}>
+                      <Text
+                        style={
+                          stylesExpenseHomeScreen.expenseName
+                        }>{`${expense.name}`}</Text>
+                      <Text
+                        style={
+                          stylesExpenseHomeScreen.expensePayer
+                        }>{`Paid By: ${expense.paid_by_username}`}</Text>
+                      <Text
+                        style={
+                          stylesExpenseHomeScreen.expenseAmount
+                        }>{`${expense.amount}€`}</Text>
+                      <Text
+                        style={
+                          stylesExpenseHomeScreen.expenseDate
+                        }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
                     </View>
                   </TouchableOpacity>
                 ))}
-              </View>
+              </ScrollView>
             </View>
-          </ScrollView>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

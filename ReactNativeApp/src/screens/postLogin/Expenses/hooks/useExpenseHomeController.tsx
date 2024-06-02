@@ -11,7 +11,7 @@ const useExpensesHomeController = () => {
 
   useEffect(() => {
     fetchExpenses();
-  }, []);
+  }); //[]
 
   const fetchExpenses = async () => {
     const token = await AsyncStorage.getItem('token');
