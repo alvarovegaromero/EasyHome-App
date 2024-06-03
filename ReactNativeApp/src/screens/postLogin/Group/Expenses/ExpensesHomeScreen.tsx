@@ -77,7 +77,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                         <Text
                           style={
                             stylesExpenseHomeScreen.expensePayer
-                          }>{`${expense.paid_by_username}`}</Text>
+                          }>{`${expense.paid_by.username}`}</Text>
                       </View>
 
                       <View style={stylesExpenseHomeScreen.containerExpense}>
