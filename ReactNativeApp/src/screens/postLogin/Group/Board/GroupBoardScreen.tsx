@@ -25,7 +25,12 @@ const GroupBoardScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesGroupBoardScreen.containerHeader}>
-            <Text style={generalStyles.defaultHeader}> Group Board </Text>
+            <Text
+              accessibilityLabel="Group Board"
+              style={generalStyles.defaultHeader}>
+              {' '}
+              Group Board{' '}
+            </Text>
           </View>
           <View style={stylesGroupBoardScreen.containerButtonAndBoard}>
             <View style={stylesGroupBoardScreen.containerBoard}>
@@ -40,7 +45,7 @@ const GroupBoardScreen: React.FunctionComponent = () => {
                     testID="BoardContentInput"
                   />
                 ) : (
-                  <Text accessibilityLabel={`Board Content ${boardContent}`}>
+                  <Text accessibilityLabel={`Board Content: ${boardContent}`}>
                     {boardContent}
                   </Text>
                 )}
