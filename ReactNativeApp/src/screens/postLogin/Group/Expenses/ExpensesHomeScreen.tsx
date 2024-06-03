@@ -18,8 +18,15 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
+          <View style={generalStyles.defaultContainerHeader}>
+            <Text style={generalStyles.defaultHeader}>
+              {' '}
+              Expense Distribution{' '}
+            </Text>
+          </View>
+
           <View>
-            <Text> Balances </Text>
+            <Text style={generalStyles.defaultSubHeader}> Balances </Text>
           </View>
 
           <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
@@ -67,9 +74,17 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View>
-            <Button title="Add Expense" onPress={navigateAddExpense} />
-            <Button title="Go Back" onPress={navigateGroupHome} />
+          <View style={stylesExpenseHomeScreen.containerButtons}>
+            <View style={stylesExpenseHomeScreen.containerButton}>
+              <View style={generalStyles.defaultButton}>
+                <Button title="Add Expense" onPress={navigateAddExpense} />
+              </View>
+            </View>
+            <View style={stylesExpenseHomeScreen.containerButton}>
+              <View style={generalStyles.defaultButton}>
+                <Button title="Go Back" onPress={navigateGroupHome} />
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>

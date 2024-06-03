@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import generalStyles from './styles';
 
 const stylesExpenseHomeScreen = StyleSheet.create({
   containerExpensesAndTitle: {},
@@ -39,6 +40,16 @@ const stylesExpenseHomeScreen = StyleSheet.create({
   expenseDate: {
     textAlign: 'left',
     flex: 1,
+  },
+
+  containerButtons: {
+    marginTop: 20,
+  },
+
+  containerButton: {
+    ...generalStyles.defaultContainerButton,
+    marginTop: 5,
+    marginBottom: 10,
   },
 });
 
