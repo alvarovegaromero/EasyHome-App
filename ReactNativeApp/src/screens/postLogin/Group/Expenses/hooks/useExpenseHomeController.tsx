@@ -49,7 +49,7 @@ const useExpensesHomeController = () => {
   };
 
   const navigateDetailExpense = (id: string) => {
-    //navigation.navigate('DetailExpenseScreen' as never);
+    navigation.navigate('ExpenseDetailScreen' as never);
   };
 
   const navigateAddExpense = () => {
@@ -60,7 +60,12 @@ const useExpensesHomeController = () => {
     navigation.navigate('GroupHomeScreen' as never);
   };
 
-  return {expenses, navigateAddExpense, navigateGroupHome};
+  return {
+    expenses,
+    navigateDetailExpense,
+    navigateAddExpense,
+    navigateGroupHome,
+  };
 };
 
 export default useExpensesHomeController;

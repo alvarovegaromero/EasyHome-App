@@ -11,8 +11,12 @@ import generalStyles from '../../../../styles/styles';
 import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
-  const {expenses, navigateAddExpense, navigateGroupHome} =
-    useExpensesHomeController();
+  const {
+    expenses,
+    navigateDetailExpense,
+    navigateAddExpense,
+    navigateGroupHome,
+  } = useExpensesHomeController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -59,7 +63,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                     key={index}
                     style={stylesExpenseHomeScreen.expenseItem}
                     onPress={() => {
-                      console.log(expense.name);
+                      navigateDetailExpense(expense.id.toString());
                     }}>
                     <View style={stylesExpenseHomeScreen.expenseDetails}>
                       <View style={stylesExpenseHomeScreen.containerExpense}>
