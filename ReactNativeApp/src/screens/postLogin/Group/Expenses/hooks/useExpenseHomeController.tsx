@@ -5,12 +5,14 @@ import {Expense} from '../types';
 import {useEffect, useState, useContext} from 'react';
 import {GroupContext} from '../../../../../contexts/GroupContext';
 import {useNavigation} from '@react-navigation/native';
+import {ExpenseContext} from '../../../../../contexts/ExpenseContext';
 
 const useExpensesHomeController = () => {
   const navigation = useNavigation();
 
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const {groupId} = useContext(GroupContext);
+  const {setExpenseId} = useContext(ExpenseContext);
 
   useEffect(() => {
     fetchExpenses();
@@ -49,6 +51,7 @@ const useExpensesHomeController = () => {
   };
 
   const navigateDetailExpense = (id: string) => {
+    setExpenseId(id);
     navigation.navigate('ExpenseDetailScreen' as never);
   };
 
