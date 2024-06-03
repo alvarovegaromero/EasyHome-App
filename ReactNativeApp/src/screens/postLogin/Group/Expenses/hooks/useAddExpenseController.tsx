@@ -17,6 +17,7 @@ const useAddExpenseController = () => {
   const [selectedUsers, setSelectedUsers] = useState<Record<number, boolean>>(
     {},
   );
+  const [date, setDate] = useState(new Date());
 
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
 
@@ -104,6 +105,7 @@ const useAddExpenseController = () => {
         amount: Number(amount),
         paid_by: payer,
         debtors,
+        date_paid: date.toISOString().split('T')[0],
       }),
     })
       .then(response => {
@@ -138,6 +140,8 @@ const useAddExpenseController = () => {
     setPayer,
     groupUsers,
     selectedUsers,
+    date,
+    setDate,
     handleCheckBoxChange,
     handleCreateExpenseSubmit,
     navigateExpensesHomeScreen,

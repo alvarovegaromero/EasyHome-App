@@ -10,6 +10,7 @@ import generalStyles from '../../../../styles/styles';
 import useAddExpenseController from './hooks/useAddExpenseController';
 import Picker from 'react-native-picker-select';
 import CheckBox from '@react-native-community/checkbox';
+import DatePicker from 'react-native-date-picker';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -21,6 +22,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
     setPayer,
     groupUsers,
     selectedUsers,
+    date,
+    setDate,
     handleCheckBoxChange,
     handleCreateExpenseSubmit,
     navigateExpensesHomeScreen,
@@ -80,6 +83,13 @@ const AddExpenseScreen: React.FunctionComponent = () => {
           ))}
 
           <Text accessibilityLabel="Date paid">Date paid:</Text>
+          <DatePicker
+            mode="date"
+            date={date}
+            onDateChange={setDate}
+            locale="en-GB"
+            testID="DatePicker"
+          />
 
           <View>
             <Button
