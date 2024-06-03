@@ -19,7 +19,9 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Expense Distribution</Text>
+            <Text style={generalStyles.defaultHeader}>
+              Expense Distribution
+            </Text>
           </View>
 
           <View>
@@ -29,15 +31,27 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
           <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
             <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
             <View style={stylesExpenseHomeScreen.containerExpenses}>
-              <View style={stylesExpenseHomeScreen.expenseDetails}>
-                <Text style={stylesExpenseHomeScreen.expenseName}>Concept</Text>
-                <Text style={stylesExpenseHomeScreen.expensePayer}>Payer</Text>
-                <Text style={stylesExpenseHomeScreen.expenseAmount}>
-                  Amount
-                </Text>
-                <Text style={stylesExpenseHomeScreen.expenseDate}>
-                  Date bought
-                </Text>
+              <View style={stylesExpenseHomeScreen.containerTitle}>
+                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
+                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                    Concept
+                  </Text>
+                </View>
+                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
+                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                    Payer
+                  </Text>
+                </View>
+                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
+                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                    Amount
+                  </Text>
+                </View>
+                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
+                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                    Date bought
+                  </Text>
+                </View>
               </View>
               <ScrollView>
                 {expenses.map((expense, index) => (
@@ -48,22 +62,32 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                       console.log(expense.name);
                     }}>
                     <View style={stylesExpenseHomeScreen.expenseDetails}>
-                      <Text
-                        style={
-                          stylesExpenseHomeScreen.expenseName
-                        }>{`${expense.name}`}</Text>
-                      <Text
-                        style={
-                          stylesExpenseHomeScreen.expensePayer
-                        }>{`Paid By: ${expense.paid_by_username}`}</Text>
-                      <Text
-                        style={
-                          stylesExpenseHomeScreen.expenseAmount
-                        }>{`${expense.amount}€`}</Text>
-                      <Text
-                        style={
-                          stylesExpenseHomeScreen.expenseDate
-                        }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
+                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                        <Text
+                          style={
+                            stylesExpenseHomeScreen.expenseName
+                          }>{`${expense.name}`}</Text>
+                      </View>
+
+                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                        <Text
+                          style={
+                            stylesExpenseHomeScreen.expensePayer
+                          }>{`${expense.paid_by_username}`}</Text>
+                      </View>
+
+                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                        <Text
+                          style={
+                            stylesExpenseHomeScreen.expenseAmount
+                          }>{`${expense.amount}€`}</Text>
+                      </View>
+                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                        <Text
+                          style={
+                            stylesExpenseHomeScreen.expenseDate
+                          }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
+                      </View>
                     </View>
                   </TouchableOpacity>
                 ))}

@@ -12,34 +12,74 @@ const stylesExpenseHomeScreen = StyleSheet.create({
   },
 
   expenseItem: {
-    borderColor: 'black',
-    borderWidth: 1,
+    height: 50,
+    //borderRightColor: 'black',
+    //borderRightWidth: 1,
     marginBottom: 10,
   },
 
+  containerTitle: {
+    marginLeft: 2,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+
+  containerTitleColumn: {
+    flex: 1,
+    marginBottom: 5,
+    marginTop: 3,
+    paddingLeft: 2,
+    paddingRight: 2,
+  },
+
+  styleTitleColumn: {
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+
   expenseDetails: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    borderTopWidth: 1,
+    borderTopColor: 'black',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
 
-  expenseName: {
-    textAlign: 'left',
+  containerExpense: {
+    height: 50,
+    justifyContent: 'center',
     flex: 1,
+  },
+
+  expenseName: {
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 2,
+    textAlign: 'left',
   },
 
   expensePayer: {
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 2,
     textAlign: 'left',
-    flex: 1,
   },
 
   expenseAmount: {
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 2,
     textAlign: 'left',
-    flex: 1,
   },
 
   expenseDate: {
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 2,
     textAlign: 'left',
-    flex: 1,
   },
 
   containerButtons: {
