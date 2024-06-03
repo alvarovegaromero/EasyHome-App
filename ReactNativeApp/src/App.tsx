@@ -18,7 +18,7 @@ function App(): React.JSX.Element {
     <UserContext.Provider
       value={{id, setId, contextUsername, setContextUsername}}>
       <GroupContext.Provider value={{groupId, setGroupId}}>
-        <ExpenseContext.Provider value={{expenseId, setExpenseId}}> 
+        <ExpenseContext.Provider value={{expenseId, setExpenseId}}>
           <NavigationContainer>
             <Navigation />
           </NavigationContainer>
