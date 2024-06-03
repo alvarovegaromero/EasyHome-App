@@ -39,7 +39,7 @@ const generalStyles = StyleSheet.create({
   },
   defaultContainerHeader: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   defaultContainerScreen: {
     flex: 1,
