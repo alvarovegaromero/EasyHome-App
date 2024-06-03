@@ -11,7 +11,8 @@ import generalStyles from '../../../../styles/styles';
 import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
-  const {expenses, navigateAddExpense} = useExpensesHomeController();
+  const {expenses, navigateAddExpense, navigateGroupHome} =
+    useExpensesHomeController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -68,7 +69,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
 
           <View>
             <Button title="Add Expense" onPress={navigateAddExpense} />
-            <Button title="Go Back" onPress={() => console.log('Go Back')} />
+            <Button title="Go Back" onPress={navigateGroupHome} />
           </View>
         </View>
       </ScrollView>

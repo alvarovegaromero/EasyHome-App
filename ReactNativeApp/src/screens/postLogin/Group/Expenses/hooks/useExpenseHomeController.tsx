@@ -60,7 +60,7 @@ const useExpensesHomeController = () => {
     navigation.navigate('GroupHomeScreen' as never);
   };
 
-  return {expenses, navigateAddExpense};
+  return {expenses, navigateAddExpense, navigateGroupHome};
 };
 
 export default useExpensesHomeController;
