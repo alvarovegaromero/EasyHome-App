@@ -18,7 +18,6 @@ const GroupHomeScreen: React.FunctionComponent = () => {
         <View style={generalStyles.defaultContainerScreen}>
           <Text style={stylesGroupHomeScreen.headerText}>{groupName}</Text>
           <Text style={generalStyles.defaultSubHeader}>
-            {' '}
             What do you want to do today?
           </Text>
 

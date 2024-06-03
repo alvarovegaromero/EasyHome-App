@@ -28,8 +28,7 @@ const GroupBoardScreen: React.FunctionComponent = () => {
             <Text
               accessibilityLabel="Group Board"
               style={generalStyles.defaultHeader}>
-              {' '}
-              Group Board{' '}
+              Group Board
             </Text>
           </View>
           <View style={stylesGroupBoardScreen.containerButtonAndBoard}>
