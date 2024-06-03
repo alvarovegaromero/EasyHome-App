@@ -60,7 +60,7 @@ const useExpenseDetailController = () => {
       });
   };
 
-  return {};
+  return {expense};
 };
 
 export default useExpenseDetailController;
