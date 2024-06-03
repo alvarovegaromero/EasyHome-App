@@ -34,7 +34,11 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesGroupSettingsScreen.containerUsersPart}>
-            <Text style={generalStyles.defaultHeader}>Members:</Text>
+            <Text
+              accessibilityLabel="Members"
+              style={generalStyles.defaultHeader}>
+              Members:
+            </Text>
             <View style={stylesGroupSettingsScreen.containerUsers}>
               <ScrollView>
                 {groupUsers.map((user: User) => (
@@ -42,7 +46,9 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                     key={user.id}
                     style={stylesGroupSettingsScreen.listElement}>
                     <View style={stylesGroupSettingsScreen.containerRow}>
-                      <Text style={stylesGroupSettingsScreen.textList}>
+                      <Text
+                        accessibilityLabel={`User: ${user.username}`}
+                        style={stylesGroupSettingsScreen.textList}>
                         {user.username}
                       </Text>
                       {user.is_owner && (
