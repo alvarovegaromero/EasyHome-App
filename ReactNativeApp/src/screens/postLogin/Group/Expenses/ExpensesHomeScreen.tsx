@@ -19,14 +19,11 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              {' '}
-              Expense Distribution{' '}
-            </Text>
+            <Text style={generalStyles.defaultHeader}>Expense Distribution</Text>
           </View>
 
           <View>
-            <Text style={generalStyles.defaultSubHeader}> Balances </Text>
+            <Text style={generalStyles.defaultSubHeader}>Balances</Text>
           </View>
 
           <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
