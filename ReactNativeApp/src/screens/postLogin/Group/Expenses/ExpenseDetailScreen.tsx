@@ -9,37 +9,56 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
-          <Text>Expense Detail Screen</Text>
-          <Text>{expense?.name}</Text>
-          <Text>{expense?.amount}</Text>
-          <Text>{expense?.date_paid.toLocaleDateString()}</Text>
-          <Text>{expense?.paid_by.username}</Text>
-          <Text>
-            {expense?.debtors.map(debtor => debtor.username).join(', ')}
-          </Text>
-          <Text>{expense?.date_added.toLocaleDateString()}</Text>
+          <View style={generalStyles.defaultContainerHeader}>
+            <Text style={generalStyles.defaultHeader}>Expense details:</Text>
+          </View>
 
-          <Button
-            title="Edit"
-            disabled={true}
-            onPress={() => {}}
-            accessibilityLabel="Edit the expense"
-            testID="editButton"
-          />
+          <View>
+            <Text>{expense?.name}</Text>
+            <Text>{expense?.amount}</Text>
+            <Text>{expense?.date_paid.toLocaleDateString()}</Text>
+            <Text>{expense?.paid_by.username}</Text>
+            <Text>
+              {expense?.debtors.map(debtor => debtor.username).join(', ')}
+            </Text>
+            <Text>{expense?.date_added.toLocaleDateString()}</Text>
+          </View>
 
-          <Button
-            title="Delete"
-            onPress={() => {}}
-            accessibilityLabel="Delete the expense"
-            testID="deleteButton"
-          />
+          <View>
+            <View>
+              <View style={generalStyles.defaultButton}>
+                <Button
+                  title="Edit"
+                  disabled={true}
+                  onPress={() => {}}
+                  accessibilityLabel="Edit the expense"
+                  testID="editButton"
+                />
+              </View>
+            </View>
 
-          <Button
-            title="Go back"
-            onPress={() => {}}
-            accessibilityLabel="Go back to the previous screen"
-            testID="goBackButton"
-          />
+            <View>
+              <View style={generalStyles.defaultButton}>
+                <Button
+                  title="Delete"
+                  onPress={() => {}}
+                  accessibilityLabel="Delete the expense"
+                  testID="deleteButton"
+                />
+              </View>
+            </View>
+
+            <View>
+              <View style={generalStyles.defaultButton}>
+                <Button
+                  title="Go back"
+                  onPress={() => {}}
+                  accessibilityLabel="Go back to the previous screen"
+                  testID="goBackButton"
+                />
+              </View>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
