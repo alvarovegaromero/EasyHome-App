@@ -89,13 +89,17 @@ const AddExpenseScreen: React.FunctionComponent = () => {
                     <View
                       key={user.id}
                       style={stylesAddExpenseScreen.containerTextAndCheckbox}>
-                      <CheckBox
-                        value={selectedUsers[user.id]}
-                        onValueChange={newValue =>
-                          handleCheckBoxChange(user.id, newValue)
-                        }
-                      />
-                      <Text style={stylesAddExpenseScreen.fontSizeCheckbox}>
+                      <View accessibilityLabel="User Selection Checkbox">
+                        <CheckBox
+                          value={selectedUsers[user.id]}
+                          onValueChange={newValue =>
+                            handleCheckBoxChange(user.id, newValue)
+                          }
+                        />
+                      </View>
+                      <Text
+                        style={stylesAddExpenseScreen.fontSizeCheckbox}
+                        accessibilityLabel={`Username: ${user.username}`}>
                         {user.username}
                       </Text>
                     </View>
@@ -106,7 +110,9 @@ const AddExpenseScreen: React.FunctionComponent = () => {
 
             <View style={stylesAddExpenseScreen.containerInput}>
               <Text accessibilityLabel="Date paid">Date paid:</Text>
-              <View style={stylesAddExpenseScreen.datePickerInput}>
+              <View
+                style={stylesAddExpenseScreen.datePickerInput}
+                accessibilityLabel="Date Picker">
                 <DatePicker
                   mode="date"
                   date={date}
