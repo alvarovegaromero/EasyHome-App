@@ -33,10 +33,30 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
             <Text style={generalStyles.defaultSubHeader}>Settlements</Text>
             <View>
               {settlements.map((settlement, index) => (
-                <View key={index} style={{}}>
-                  <Text style={{}}>
-                    {`${settlement.payer.username} owes ${settlement.receiver.username} ${settlement.amount}€`}
-                  </Text>
+                <View
+                  key={index}
+                  style={stylesExpenseHomeScreen.containerSettlementAndButton}>
+                  <View style={stylesExpenseHomeScreen.containerSettlementText}>
+                    <Text style={stylesExpenseHomeScreen.styleTextSettlement}>
+                      {`● ${settlement.payer.username}`}
+                      {` owes ${settlement.receiver.username}`}
+                      {` ${settlement.amount}€`}
+                    </Text>
+                  </View>
+                  <View
+                    style={stylesExpenseHomeScreen.containerSettlementButton}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        console.log('Paid');
+                      }}>
+                      <Text
+                        style={
+                          stylesExpenseHomeScreen.styleSettlementButtonText
+                        }>
+                        Mark as Paid
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               ))}
             </View>

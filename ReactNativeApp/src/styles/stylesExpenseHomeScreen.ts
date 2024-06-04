@@ -2,6 +2,28 @@ import {StyleSheet} from 'react-native';
 import generalStyles from './styles';
 
 const stylesExpenseHomeScreen = StyleSheet.create({
+  containerSettlementAndButton: {
+    marginBottom: 7.5,
+    flexDirection: 'row',
+  },
+
+  containerSettlementText: {
+    flex: 7,
+  },
+
+  styleTextSettlement: {
+    fontSize: 15,
+  },
+
+  containerSettlementButton: {
+    flex: 3,
+  },
+
+  styleSettlementButtonText: {
+    textAlign: 'right',
+    color: '#2d2dfc', // blue
+  },
+
   containerExpensesAndTitle: {},
 
   containerExpenses: {
