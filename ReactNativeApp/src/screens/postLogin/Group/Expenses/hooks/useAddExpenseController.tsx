@@ -3,13 +3,15 @@ import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GroupContext} from '../../../../../contexts/GroupContext';
-import {User} from '../types';
+import {Expense, User} from '../types';
 import {useNavigation} from '@react-navigation/native';
+import {ExpenseContext} from '../../../../../contexts/ExpenseContext';
 
 const useAddExpenseController = () => {
   const navigation = useNavigation();
 
   const {groupId} = useContext(GroupContext);
+  const {setExpenseId} = useContext(ExpenseContext);
 
   const [concept, setConcept] = useState<string>();
   const [amount, setAmount] = useState<string>(); //TODO: change to number
@@ -118,13 +120,18 @@ const useAddExpenseController = () => {
           return response.json();
         }
       })
-      .then(() => {
+      .then((data: Expense) => {
         Alert.alert('Success', 'Expense created successfully');
-        navigateExpensesHomeScreen();
+        navigateDetailExpense(String(data.id));
       })
       .catch(error => {
         console.error('Error:', error);
       });
+  };
+
+  const navigateDetailExpense = (id: string) => {
+    setExpenseId(id);
+    navigation.navigate('ExpenseDetailScreen' as never);
   };
 
   const navigateExpensesHomeScreen = () => {
