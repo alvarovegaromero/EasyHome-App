@@ -34,6 +34,10 @@ const renderTestHookTest = () => {
 };
 
 describe('useExpenseDetailController', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   describe('fetchExpenseDetails', () => {
     it('should call proper endpoint for fetching expenses when just render', async () => {
       mockSuccesfulFetch({});
@@ -106,11 +110,14 @@ describe('useExpenseDetailController', () => {
   });
 
   describe('confirmAndDeleteExpense', () => {
-    it('should show alert for confirming deletion', () => {
+    it('should show alert for confirming deletion', async () => {
       const {result} = renderTestHookTest();
+
+      const alertSpy = jest.spyOn(Alert, 'alert');
+
       result.current.confirmAndDeleteExpense();
 
-      expect(Alert.alert).toHaveBeenCalledWith(
+      expect(alertSpy).toHaveBeenCalledWith(
         'Delete expense',
         'Are you sure you want to delete this expense?',
         [
@@ -143,16 +150,9 @@ describe('useExpenseDetailController', () => {
 
         const alertSpy = jest.spyOn(Alert, 'alert');
 
-        await waitFor(() => {
-          result.current.confirmAndDeleteExpense();
-        });
+        result.current.confirmAndDeleteExpense();
 
-        await waitFor(() => {
-          const onPress = alertSpy.mock.calls?.[0]?.[2]?.[1]?.onPress;
-          if (typeof onPress === 'function') {
-            onPress();
-          }
-        }); // simulate OK press
+        await waitFor(() => pressSecondOptionAlert(alertSpy));
 
         expect(fetch).toHaveBeenCalledWith(
           `${BASE_URL}/api/expense_distribution/${mockGroupId}/expenses/${mockExpenseId}`,
@@ -168,12 +168,59 @@ describe('useExpenseDetailController', () => {
         useContextSpy.mockRestore();
       });
 
-      it('should show error alert when delete fails', async () => {});
+      it(
+        'should navigate to ExpensesHomeScreen and clear expenseId ' +
+          'when delete is successful',
+        async () => {
+          mockSuccesfulFetch({});
 
-      it('should navigate to ExpensesHomeScreen when delete is successful', async () => {});
+          const mockGroupId = 'dummy_id';
+          const mockExpenseId = 'dummy_id2';
+          const mockSetExpenseId = jest.fn();
+
+          const useContextSpy = jest.spyOn(React, 'useContext');
+          useContextSpy.mockReturnValue({
+            groupId: mockGroupId,
+            expenseId: mockExpenseId,
+            setExpenseId: mockSetExpenseId,
+          });
+
+          const {result} = renderTestHookTest();
+
+          const alertSpy = jest.spyOn(Alert, 'alert');
+
+          result.current.confirmAndDeleteExpense();
+
+          await waitFor(() => pressSecondOptionAlert(alertSpy));
+
+          expect(mockedNavigate).toHaveBeenCalledWith('ExpensesHomeScreen');
+          expect(mockSetExpenseId).toHaveBeenCalledWith('');
+
+          useContextSpy.mockRestore();
+        },
+      );
+
+      it('should show error alert when delete fails', async () => {
+        mockFailedFetch('Delete expense failed');
+
+        const {result} = renderTestHookTest();
+
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        result.current.confirmAndDeleteExpense();
+
+        await waitFor(() => pressSecondOptionAlert(alertSpy));
+
+        await waitFor(() =>
+          expect(alertSpy).toHaveBeenCalledWith(
+            'Error',
+            'Delete expense failed',
+          ),
+        );
+      });
     });
   });
-  /*
+
   describe('navigation', () => {
     it('should navigate to ExpensesHomeScreen', async () => {
       const {result} = renderTestHookTest();
@@ -194,5 +241,5 @@ describe('useExpenseDetailController', () => {
 
       expect(mockSetExpenseId).toHaveBeenCalledWith('');
     });
-  });*/
+  });
 });
