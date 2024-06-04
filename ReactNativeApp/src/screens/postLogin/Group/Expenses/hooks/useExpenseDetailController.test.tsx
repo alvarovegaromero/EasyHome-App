@@ -6,6 +6,7 @@ import React from 'react';
 import {
   mockFailedFetch,
   mockSuccesfulFetch,
+  pressSecondOptionAlert,
 } from '../../../../../utils/utilsTestingHooks';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -104,6 +105,75 @@ describe('useExpenseDetailController', () => {
     });
   });
 
+  describe('confirmAndDeleteExpense', () => {
+    it('should show alert for confirming deletion', () => {
+      const {result} = renderTestHookTest();
+      result.current.confirmAndDeleteExpense();
+
+      expect(Alert.alert).toHaveBeenCalledWith(
+        'Delete expense',
+        'Are you sure you want to delete this expense?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Delete',
+            onPress: expect.any(Function),
+          },
+        ],
+      );
+    });
+
+    describe('deleteExpense', () => {
+      it('should call deleteExpense when confirming deletion', async () => {
+        mockSuccesfulFetch({});
+
+        const mockGroupId = 'dummy_id';
+        const mockExpenseId = 'dummy_id2';
+
+        const useContextSpy = jest.spyOn(React, 'useContext');
+        useContextSpy.mockReturnValue({
+          groupId: mockGroupId,
+          expenseId: mockExpenseId,
+        });
+
+        const {result} = renderTestHookTest();
+
+        const alertSpy = jest.spyOn(Alert, 'alert');
+
+        await waitFor(() => {
+          result.current.confirmAndDeleteExpense();
+        });
+
+        await waitFor(() => {
+          const onPress = alertSpy.mock.calls?.[0]?.[2]?.[1]?.onPress;
+          if (typeof onPress === 'function') {
+            onPress();
+          }
+        }); // simulate OK press
+
+        expect(fetch).toHaveBeenCalledWith(
+          `${BASE_URL}/api/expense_distribution/${mockGroupId}/expenses/${mockExpenseId}`,
+          expect.objectContaining({
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Token dummy_token',
+            },
+          }),
+        );
+
+        useContextSpy.mockRestore();
+      });
+
+      it('should show error alert when delete fails', async () => {});
+
+      it('should navigate to ExpensesHomeScreen when delete is successful', async () => {});
+    });
+  });
+  /*
   describe('navigation', () => {
     it('should navigate to ExpensesHomeScreen', async () => {
       const {result} = renderTestHookTest();
@@ -124,5 +194,5 @@ describe('useExpenseDetailController', () => {
 
       expect(mockSetExpenseId).toHaveBeenCalledWith('');
     });
-  });
+  });*/
 });

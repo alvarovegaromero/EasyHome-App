@@ -71,7 +71,6 @@ const useExpenseDetailController = () => {
       [
         {
           text: 'Cancel',
-          onPress: () => {},
           style: 'cancel',
         },
         {
