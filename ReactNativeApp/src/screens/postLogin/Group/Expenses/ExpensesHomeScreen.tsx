@@ -13,6 +13,7 @@ import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen'
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {
     settlements,
+    confirmAndSettleDebt,
     expenses,
     navigateDetailExpense,
     navigateAddExpense,
@@ -47,7 +48,11 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                     style={stylesExpenseHomeScreen.containerSettlementButton}>
                     <TouchableOpacity
                       onPress={() => {
-                        console.log('Paid');
+                        confirmAndSettleDebt(
+                          settlement.payer.id.toString(),
+                          settlement.receiver.id.toString(),
+                          settlement.amount,
+                        );
                       }}>
                       <Text
                         style={
