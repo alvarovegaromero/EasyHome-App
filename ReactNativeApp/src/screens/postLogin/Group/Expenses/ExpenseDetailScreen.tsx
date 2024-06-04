@@ -3,7 +3,8 @@ import useExpenseDetailController from './hooks/useExpenseDetailController';
 import generalStyles from '../../../../styles/styles';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
-  const {expense} = useExpenseDetailController();
+  const {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen} =
+    useExpenseDetailController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -14,13 +15,19 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
           </View>
 
           <View>
+            <Text>Concept:</Text>
             <Text>{expense?.name}</Text>
+            <Text>Amount:</Text>
             <Text>{expense?.amount}</Text>
+            <Text>Date paid:</Text>
             <Text>{expense?.date_paid.toLocaleDateString()}</Text>
+            <Text>Payer:</Text>
             <Text>{expense?.paid_by.username}</Text>
+            <Text>Debtors:</Text>
             <Text>
               {expense?.debtors.map(debtor => debtor.username).join(', ')}
             </Text>
+            <Text>Date added in the system:</Text>
             <Text>{expense?.date_added.toLocaleDateString()}</Text>
           </View>
 
@@ -41,7 +48,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Delete"
-                  onPress={() => {}}
+                  onPress={confirmAndDeleteExpense}
                   accessibilityLabel="Delete the expense"
                   testID="deleteButton"
                 />
@@ -52,7 +59,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Go back"
-                  onPress={() => {}}
+                  onPress={navigateExpensesHomeScreen}
                   accessibilityLabel="Go back to the previous screen"
                   testID="goBackButton"
                 />

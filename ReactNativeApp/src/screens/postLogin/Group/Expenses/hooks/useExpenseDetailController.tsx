@@ -5,10 +5,13 @@ import {BASE_URL} from '../../../../../config';
 import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 import {DetailedExpense} from '../types';
+import {useNavigation} from '@react-navigation/native';
 
 const useExpenseDetailController = () => {
+  const navigation = useNavigation();
+
   const {groupId} = useContext(GroupContext);
-  const {expenseId} = useContext(ExpenseContext);
+  const {expenseId, setExpenseId} = useContext(ExpenseContext);
 
   const [expense, setExpense] = useState<DetailedExpense>();
 
@@ -60,7 +63,62 @@ const useExpenseDetailController = () => {
       });
   };
 
-  return {expense};
+  const confirmAndDeleteExpense = () => {
+    Alert.alert(
+      'Delete expense',
+      'Are you sure you want to delete this expense?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: 'Delete',
+          onPress: deleteExpense,
+        },
+      ],
+    );
+  };
+
+  const deleteExpense = async () => {
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(
+      BASE_URL +
+        '/api/expense_distribution/' +
+        groupId +
+        '/expenses/' +
+        expenseId,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      },
+    )
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          navigateExpensesHomeScreen();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  const navigateExpensesHomeScreen = () => {
+    setExpenseId('');
+    navigation.navigate('ExpensesHomeScreen' as never);
+  };
+
+  return {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen};
 };
 
 export default useExpenseDetailController;
