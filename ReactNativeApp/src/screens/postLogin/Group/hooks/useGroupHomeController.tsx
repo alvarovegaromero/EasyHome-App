@@ -15,6 +15,7 @@ const useGroupHomeController = () => {
 
   useEffect(() => {
     fetchGroupData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchGroupData = async () => {

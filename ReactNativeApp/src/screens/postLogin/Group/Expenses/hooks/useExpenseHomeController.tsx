@@ -19,6 +19,7 @@ const useExpensesHomeController = () => {
   useEffect(() => {
     fetchSettlements();
     fetchExpenses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [expenseId]);
 
   const fetchSettlements = async () => {

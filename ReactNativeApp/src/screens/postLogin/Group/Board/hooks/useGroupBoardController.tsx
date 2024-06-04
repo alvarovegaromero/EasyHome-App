@@ -15,6 +15,7 @@ const useGroupBoardController = () => {
 
   useEffect(() => {
     fetchGroupBoardContent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchGroupBoardContent = async () => {
