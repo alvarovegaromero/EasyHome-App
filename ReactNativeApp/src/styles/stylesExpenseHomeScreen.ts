@@ -35,13 +35,11 @@ const stylesExpenseHomeScreen = StyleSheet.create({
 
   expenseItem: {
     height: 50,
-    //borderRightColor: 'black',
-    //borderRightWidth: 1,
     marginBottom: 10,
   },
 
   containerTitle: {
-    marginLeft: 2,
+    paddingLeft: 2,
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
