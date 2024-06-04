@@ -21,19 +21,6 @@ jest.mock('react-native/Libraries/Alert/Alert', () => ({
   alert: jest.fn(),
 }));
 
-const mockResponse = (body: any, status = 200) => {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: {
-      'Content-type': 'application/json',
-    },
-  });
-};
-
-global.fetch = jest.fn(() =>
-  Promise.resolve(mockResponse({data: 'dummy data'})),
-);
-
 const mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
