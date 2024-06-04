@@ -60,6 +60,7 @@ const stylesExpenseHomeScreen = StyleSheet.create({
   },
 
   expenseDetails: {
+    paddingLeft: 2,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
     borderTopWidth: 1,
