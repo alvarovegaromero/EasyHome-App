@@ -11,6 +11,12 @@ export type DetailedExpense = Expense & {
   date_added: Date;
 };
 
+export type Settlement = {
+  amount: number;
+  receiver: User;
+  payer: User;
+};
+
 export type User = {
   id: number;
   //is_owner: boolean; //Also, this is not needed here

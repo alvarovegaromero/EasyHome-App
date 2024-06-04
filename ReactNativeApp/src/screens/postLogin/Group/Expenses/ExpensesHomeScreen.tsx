@@ -12,6 +12,7 @@ import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen'
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {
+    settlements,
     expenses,
     navigateDetailExpense,
     navigateAddExpense,
@@ -29,7 +30,16 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
           </View>
 
           <View>
-            <Text style={generalStyles.defaultSubHeader}>Balances</Text>
+            <Text style={generalStyles.defaultSubHeader}>Settlements</Text>
+            <View>
+              {settlements.map((settlement, index) => (
+                <View key={index} style={{}}>
+                  <Text style={{}}>
+                    {`${settlement.payer.username} owes ${settlement.receiver.username} ${settlement.amount}€`}
+                  </Text>
+                </View>
+              ))}
+            </View>
           </View>
 
           <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
