@@ -12,39 +12,105 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Expense details:</Text>
+            <Text
+              accessibilityLabel="Expense details:"
+              style={generalStyles.defaultHeader}>
+              Expense details:
+            </Text>
           </View>
 
           <View>
             <View style={stylesExpenseDetailScreen.containerTitleAndText}>
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Concept:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.name}</Text>
+              <Text
+                accessibilityLabel="Concept:"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Concept:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.name}`}
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.name}
+              </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Amount:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.amount !== undefined ? (expense.amount)+"€" : "-"}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Amount:"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Amount:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.amount}€`}
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.amount !== undefined ? expense.amount + '€' : '-'}
+              </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Amount per debtor:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.amount !== undefined ? (expense.amount / (expense?.debtors.length || 1)).toFixed(2)+"€" : "-"}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Amount per debtor"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Amount per debtor:
+              </Text>
+              <Text
+                accessibilityLabel={
+                  expense
+                    ? `${(expense.amount / (expense.debtors.length || 1)).toFixed(2)}€`
+                    : '-'
+                }
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.amount !== undefined
+                  ? (expense.amount / (expense?.debtors.length || 1)).toFixed(
+                      2,
+                    ) + '€'
+                  : '-'}
+              </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Date paid:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.date_paid.toLocaleDateString()}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Date paid:"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Date paid:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.date_paid.toLocaleDateString()}`}
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.date_paid.toLocaleDateString()}
+              </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Payer:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.paid_by.username}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Payer"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Payer:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.paid_by.username}`}
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.paid_by.username}
+              </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Debtors:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Debtors:"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Debtors:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.debtors.map(debtor => debtor.username).join(', ')}`}
+                style={stylesExpenseDetailScreen.styleText}>
                 {expense?.debtors.map(debtor => debtor.username).join(', ')}
               </Text>
             </View>
-            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
-              <Text style={stylesExpenseDetailScreen.styleTitle}>Date added in the system:</Text>
-              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.date_added.toLocaleDateString()}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text
+                accessibilityLabel="Date added in the system:"
+                style={stylesExpenseDetailScreen.styleTitle}>
+                Date added in the system:
+              </Text>
+              <Text
+                accessibilityLabel={`${expense?.date_added.toLocaleDateString()}`}
+                style={stylesExpenseDetailScreen.styleText}>
+                {expense?.date_added.toLocaleDateString()}
+              </Text>
             </View>
           </View>
 
