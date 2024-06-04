@@ -37,6 +37,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Manage Shopping Lists"
+                  disabled={true}
                   onPress={() => {}}
                   accessibilityLabel="Manage shopping lists button"
                   testID="ManageShoppingListsButton"
@@ -48,6 +49,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Distribute household chores"
+                  disabled={true}
                   onPress={() => {}}
                   accessibilityLabel="Distribute household chores button"
                   testID="DistributeHouseholdChoresButton"
@@ -59,6 +61,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="View the pantry"
+                  disabled={true}
                   onPress={() => {}}
                   accessibilityLabel="View the pantry button"
                   testID="ViewThePantryButton"
