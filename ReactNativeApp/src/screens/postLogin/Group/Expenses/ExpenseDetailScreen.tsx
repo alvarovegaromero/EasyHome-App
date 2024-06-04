@@ -1,6 +1,7 @@
 import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useExpenseDetailController from './hooks/useExpenseDetailController';
 import generalStyles from '../../../../styles/styles';
+import stylesExpenseDetailScreen from '../../../../styles/stylesExpenseDetailScreen';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
   const {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen} =
@@ -15,24 +16,40 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
           </View>
 
           <View>
-            <Text>Concept:</Text>
-            <Text>{expense?.name}</Text>
-            <Text>Amount:</Text>
-            <Text>{expense?.amount}</Text>
-            <Text>Date paid:</Text>
-            <Text>{expense?.date_paid.toLocaleDateString()}</Text>
-            <Text>Payer:</Text>
-            <Text>{expense?.paid_by.username}</Text>
-            <Text>Debtors:</Text>
-            <Text>
-              {expense?.debtors.map(debtor => debtor.username).join(', ')}
-            </Text>
-            <Text>Date added in the system:</Text>
-            <Text>{expense?.date_added.toLocaleDateString()}</Text>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Concept:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.name}</Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Amount:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.amount !== undefined ? (expense.amount)+"€" : "-"}</Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Amount per debtor:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.amount !== undefined ? (expense.amount / (expense?.debtors.length || 1)).toFixed(2)+"€" : "-"}</Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Date paid:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.date_paid.toLocaleDateString()}</Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Payer:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.paid_by.username}</Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Debtors:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>
+                {expense?.debtors.map(debtor => debtor.username).join(', ')}
+              </Text>
+            </View>
+            <View style={stylesExpenseDetailScreen.containerTitleAndText}>              
+              <Text style={stylesExpenseDetailScreen.styleTitle}>Date added in the system:</Text>
+              <Text style={stylesExpenseDetailScreen.styleText}>{expense?.date_added.toLocaleDateString()}</Text>
+            </View>
           </View>
 
-          <View>
-            <View>
+          <View style={stylesExpenseDetailScreen.containerButtons}>
+            <View style={stylesExpenseDetailScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Edit"
@@ -44,7 +61,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
               </View>
             </View>
 
-            <View>
+            <View style={stylesExpenseDetailScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Delete"
@@ -55,7 +72,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
               </View>
             </View>
 
-            <View>
+            <View style={stylesExpenseDetailScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Go back"
