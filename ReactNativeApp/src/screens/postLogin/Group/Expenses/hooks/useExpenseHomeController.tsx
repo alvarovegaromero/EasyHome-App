@@ -11,7 +11,7 @@ const useExpensesHomeController = () => {
   const navigation = useNavigation();
 
   const {groupId} = useContext(GroupContext);
-  const {setExpenseId} = useContext(ExpenseContext);
+  const {expenseId, setExpenseId} = useContext(ExpenseContext);
 
   const [settlements, setSettlements] = useState<Settlement[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
@@ -19,7 +19,7 @@ const useExpensesHomeController = () => {
   useEffect(() => {
     fetchSettlements();
     fetchExpenses();
-  }, []);
+  }, [expenseId]);
 
   const fetchSettlements = async () => {
     const token = await AsyncStorage.getItem('token');

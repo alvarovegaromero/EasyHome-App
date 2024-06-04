@@ -15,7 +15,7 @@ const useGroupBoardController = () => {
 
   useEffect(() => {
     fetchGroupBoardContent();
-  }); //[]
+  }, []);
 
   const fetchGroupBoardContent = async () => {
     const token = await AsyncStorage.getItem('token');

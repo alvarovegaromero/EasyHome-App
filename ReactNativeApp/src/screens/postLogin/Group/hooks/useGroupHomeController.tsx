@@ -15,7 +15,7 @@ const useGroupHomeController = () => {
 
   useEffect(() => {
     fetchGroupData();
-  }); //[]
+  }, []);
 
   const fetchGroupData = async () => {
     const token = await AsyncStorage.getItem('token');

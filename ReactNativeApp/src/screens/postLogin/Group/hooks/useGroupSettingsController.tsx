@@ -21,7 +21,7 @@ const useGroupSettingsController = () => {
 
   useEffect(() => {
     fetchGroupUsersData();
-  }); //[]
+  }, []);
 
   const fetchGroupUsersData = async () => {
     const token = await AsyncStorage.getItem('token');
