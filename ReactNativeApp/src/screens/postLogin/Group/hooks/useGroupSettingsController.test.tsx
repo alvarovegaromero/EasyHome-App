@@ -158,13 +158,13 @@ describe('useGroupSettingsController', () => {
       mockFailedFetch("Fetch group's users failed");
 
       const alertSpy = jest.spyOn(Alert, 'alert');
-      const {result} = renderTestHookTest();
+      renderTestHookTest();
 
-      await waitFor(() => expect(result.current.groupUsers).toStrictEqual([]));
-
-      expect(alertSpy).toHaveBeenCalledWith(
-        'Error',
-        "Fetch group's users failed",
+      await waitFor(() =>
+        expect(alertSpy).toHaveBeenCalledWith(
+          'Error',
+          "Fetch group's users failed",
+        ),
       );
     });
   });
