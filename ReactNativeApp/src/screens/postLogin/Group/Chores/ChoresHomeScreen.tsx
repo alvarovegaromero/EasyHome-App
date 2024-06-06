@@ -2,7 +2,14 @@ import {Button, Text, View} from 'react-native';
 import useChoresHomeScreen from './hooks/useChoresHomeController';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
-  const {isOwner, isActivated, navigateGroupHome} = useChoresHomeScreen();
+  const {
+    isOwner,
+    isActivated,
+    navigateEstablishChores,
+    navigateViewTodaysChores,
+    navigateStats,
+    navigateGroupHome,
+  } = useChoresHomeScreen();
 
   return (
     <View>
@@ -12,15 +19,18 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
         <View>
           <Button
             title="Establish and start Household Chores Process"
-            onPress={() => {}}
+            onPress={navigateEstablishChores}
           />
         </View>
       )}
 
       {isActivated ? (
         <View>
-          <Button title="View today's Houselhold Chores" onPress={() => {}} />
-          <Button title="Stats" onPress={() => {}} />
+          <Button
+            title="View today's Houselhold Chores"
+            onPress={navigateViewTodaysChores}
+          />
+          <Button title="Stats" onPress={navigateStats} />
         </View>
       ) : (
         <View>

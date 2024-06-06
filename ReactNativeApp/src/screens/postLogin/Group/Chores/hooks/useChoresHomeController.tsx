@@ -49,11 +49,30 @@ const useChoresHomeScreen = () => {
       });
   };
 
+  const navigateEstablishChores = () => {
+    // navigation.navigate('EstablishChoresScreen' as never);
+  };
+
+  const navigateViewTodaysChores = () => {
+    // navigation.navigate('TodaysChoresScreen' as never);
+  };
+
+  const navigateStats = () => {
+    // navigation.navigate('ChoresStatsScreen' as never);
+  };
+
   const navigateGroupHome = () => {
     navigation.navigate('GroupHomeScreen' as never);
   };
 
-  return {isOwner, isActivated, navigateGroupHome};
+  return {
+    isOwner,
+    isActivated,
+    navigateEstablishChores,
+    navigateViewTodaysChores,
+    navigateStats,
+    navigateGroupHome,
+  };
 };
 
 export default useChoresHomeScreen;
