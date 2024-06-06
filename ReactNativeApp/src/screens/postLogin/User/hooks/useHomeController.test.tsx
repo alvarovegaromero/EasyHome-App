@@ -360,28 +360,45 @@ describe('useHomeController', () => {
 
     it('should navigate to GroupHomeScreen', async () => {
       var mock_id = '1';
+      var mock_owner = 'owner';
       const {result} = renderTestHookTest();
 
       await act(() => {
-        result.current.navigateGroupHomeScreen(mock_id);
+        result.current.navigateGroupHomeScreen(mock_id, mock_owner);
       });
 
       expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
     });
 
-    it('should update groupId when navigating to GroupHomeScreen', async () => {
+    it('should update groupId and isOwner when navigating to GroupHomeScreen', async () => {
       const mockSetGroupId = jest.fn();
+      const mockSetIsOwner = jest.fn();
+      const mockContextUsername = 'username';
       const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setGroupId: mockSetGroupId});
+      useContextSpy.mockReturnValue({
+        contextUsername: mockContextUsername,
+        setGroupId: mockSetGroupId,
+        setIsOwner: mockSetIsOwner,
+      });
 
       const mock_id = '1';
+      var mock_owner_username = 'username';
       const {result} = renderTestHookTest();
 
       await act(() => {
-        result.current.navigateGroupHomeScreen(mock_id);
+        result.current.navigateGroupHomeScreen(mock_id, mock_owner_username);
       });
 
       expect(mockSetGroupId).toHaveBeenCalledWith(mock_id);
+      expect(mockSetIsOwner).toHaveBeenCalledWith(true);
+
+      mock_owner_username = 'not_username';
+      await act(() => {
+        result.current.navigateGroupHomeScreen(mock_id, mock_owner_username);
+      });
+
+      expect(mockSetGroupId).toHaveBeenCalledWith(mock_id);
+      expect(mockSetIsOwner).toHaveBeenCalledWith(false);
     });
   });
 });

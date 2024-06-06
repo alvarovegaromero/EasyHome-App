@@ -71,7 +71,10 @@ const HomeScreen: React.FunctionComponent = () => {
                     <TouchableOpacity
                       key={group.id}
                       onPress={() =>
-                        navigateGroupHomeScreen(group.id.toString())
+                        navigateGroupHomeScreen(
+                          group.id.toString(),
+                          group.owner,
+                        )
                       }
                       style={stylesHomeScreen.listButton}>
                       <Text accessibilityLabel={`Group name: ${group.name}`}>

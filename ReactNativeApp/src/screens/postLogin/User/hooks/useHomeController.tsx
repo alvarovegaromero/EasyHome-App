@@ -9,7 +9,7 @@ import {UserContext} from '../../../../contexts/UserContext';
 const useHomeController = () => {
   const navigation = useNavigation();
 
-  const {groupId, setGroupId} = useContext(GroupContext);
+  const {groupId, setGroupId, setIsOwner} = useContext(GroupContext);
   const {setId, contextUsername, setContextUsername} = useContext(UserContext);
 
   const [groups, setGroups] = useState([]);
@@ -112,15 +112,21 @@ const useHomeController = () => {
         }
       })
       .then(data => {
-        navigateGroupHomeScreen(String(data.id));
+        navigateGroupHomeScreen(data.id.toString(), data.owner);
       })
       .catch(error => {
         console.error('Error:', error);
       });
   };
 
-  const navigateGroupHomeScreen = (id: string) => {
+  const navigateGroupHomeScreen = (id: string, username: string) => {
     setGroupId(id);
+
+    if (username === contextUsername)
+      //todo: added - add test for this
+      setIsOwner(true);
+    else setIsOwner(false);
+
     navigation.navigate('GroupHomeScreen' as never);
   };
 
