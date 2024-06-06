@@ -10,6 +10,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
     navigateSettings,
     navigateHome,
     navigateExpenses,
+    navigateChores,
   } = useGroupHomeController();
 
   return (
@@ -48,11 +49,10 @@ const GroupHomeScreen: React.FunctionComponent = () => {
             <View style={stylesGroupHomeScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button
-                  title="Distribute household chores"
-                  disabled={true}
-                  onPress={() => {}}
-                  accessibilityLabel="Distribute household chores button"
-                  testID="DistributeHouseholdChoresButton"
+                  title="Household chores"
+                  onPress={navigateChores}
+                  accessibilityLabel="Household chores button"
+                  testID="HouseholdChoresButton"
                 />
               </View>
             </View>

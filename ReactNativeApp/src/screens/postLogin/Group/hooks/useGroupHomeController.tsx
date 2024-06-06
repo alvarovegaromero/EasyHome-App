@@ -63,12 +63,17 @@ const useGroupHomeController = () => {
     navigation.navigate('ExpensesHomeScreen' as never);
   };
 
+  const navigateChores = () => {
+    navigation.navigate('ChoresHomeScreen' as never);
+  };
+
   return {
     groupName,
     navigateBoard,
     navigateSettings,
     navigateHome,
     navigateExpenses,
+    navigateChores,
   };
 };
 
