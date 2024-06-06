@@ -8,6 +8,7 @@ const useEstablishChoresController = () => {
   const {groupId} = useContext(GroupContext);
 
   const [editMode, setEditMode] = useState(false);
+  const [addMode, setAddMode] = useState(false);
   const [tasks, setTasks] = useState<any[] | undefined>(undefined);
 
   useEffect(() => {
@@ -50,9 +51,21 @@ const useEstablishChoresController = () => {
 
   const changeToViewMode = () => {
     setEditMode(false);
+    setAddMode(false);
   };
 
-  return {tasks, editMode, changeToEditMode, changeToViewMode};
+  const changeToAddMode = () => {
+    setAddMode(true);
+  };
+
+  return {
+    tasks,
+    editMode,
+    addMode,
+    changeToEditMode,
+    changeToViewMode,
+    changeToAddMode,
+  };
 };
 
 export default useEstablishChoresController;
