@@ -9,6 +9,9 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
     tasks,
     editMode,
     addMode,
+    addInput,
+    setAddInput,
+    createTask,
     changeToEditMode,
     changeToViewMode,
     changeToAddMode,
@@ -45,14 +48,14 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
 
               {addMode ? (
                 <>
-                  <TextInput />
+                  <TextInput value={addInput} onChangeText={setAddInput} />
                   <Icon
                     reverse
                     reverseColor="white"
                     name="content-save"
                     type="material-community"
                     color="#2196F3"
-                    onPress={changeToViewMode}
+                    onPress={createTask}
                   />
                   <Icon
                     reverse
