@@ -34,15 +34,6 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                   {tasks.map(task => (
                     <Text key={task.id}>{task.title}</Text>
                   ))}
-
-                  <Icon
-                    reverse
-                    reverseColor="white"
-                    name="play"
-                    type="material-community"
-                    color="#2196F3"
-                    onPress={() => {}}
-                  />
                 </>
               )}
 
@@ -55,6 +46,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                     name="content-save"
                     type="material-community"
                     color="#2196F3"
+                    accessibilityLabel="Save new task"
                     onPress={createTask}
                   />
                   <Icon
@@ -63,6 +55,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                     name="close"
                     type="material-community"
                     color="#2196F3"
+                    accessibilityLabel="Cancel adding a new task"
                     onPress={changeToViewMode}
                   />
                 </>
@@ -74,6 +67,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                     name="pencil"
                     type="material-community"
                     color="#2196F3"
+                    accessibilityLabel="Edit tasks"
                     onPress={changeToEditMode}
                   />
 
@@ -83,10 +77,20 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                     name="plus"
                     type="material-community"
                     color="#2196F3"
+                    accessibilityLabel="Add a new task"
                     onPress={changeToAddMode}
                   />
                 </>
               )}
+              <Icon
+                reverse
+                reverseColor="white"
+                name="play"
+                type="material-community"
+                color="#2196F3"
+                accessibilityLabel="Start assignable tasks' process"
+                onPress={() => {}}
+              />
             </>
           )
         ) : (
@@ -99,6 +103,16 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
               name="content-save"
               type="material-community"
               color="#2196F3"
+              accessibilityLabel="Save changes"
+              onPress={changeToViewMode}
+            />
+            <Icon
+              reverse
+              reverseColor="white"
+              name="close"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="Cancel changes"
               onPress={changeToViewMode}
             />
           </>
