@@ -21,4 +21,5 @@ export type MyStackParamsList = {
   ExpensesHomeScreen: undefined;
   AddExpenseScreen: undefined;
   ExpenseDetailScreen: undefined;
+  GroupChoresScreen: undefined;
 };
