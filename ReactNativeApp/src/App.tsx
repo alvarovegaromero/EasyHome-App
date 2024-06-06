@@ -10,14 +10,14 @@ import useExpenseContext from './hooks/useExpenseContext';
 
 function App(): React.JSX.Element {
   const {id, setId, contextUsername, setContextUsername} = useUserContext();
-  const {groupId, setGroupId} = useGroupContext();
+  const {groupId, setGroupId, isOwner, setIsOwner} = useGroupContext();
   const {expenseId, setExpenseId} = useExpenseContext();
 
   // TODO: Implement the UserContext, GroupContext, and ExpenseContext with Redux
   return (
     <UserContext.Provider
       value={{id, setId, contextUsername, setContextUsername}}>
-      <GroupContext.Provider value={{groupId, setGroupId}}>
+      <GroupContext.Provider value={{groupId, setGroupId, isOwner, setIsOwner}}>
         <ExpenseContext.Provider value={{expenseId, setExpenseId}}>
           <NavigationContainer>
             <Navigation />
