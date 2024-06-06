@@ -9,7 +9,6 @@ const useEstablishChoresController = () => {
 
   const [tasks, setTasks] = useState<any[] | undefined>(undefined);
 
-  const [editMode, setEditMode] = useState(false);
   const [addMode, setAddMode] = useState(false);
   const [addInput, setAddInput] = useState('');
 
@@ -47,12 +46,7 @@ const useEstablishChoresController = () => {
       });
   };
 
-  const changeToEditMode = () => {
-    setEditMode(true);
-  };
-
   const changeToViewMode = () => {
-    setEditMode(false);
     setAddMode(false);
   };
 
@@ -61,6 +55,12 @@ const useEstablishChoresController = () => {
   };
 
   const createTask = async () => {
+    if (addInput === '') {
+      Alert.alert('Error', 'Title of the new task must be filled');
+      console.error('Creation Failed - title of the new task must be filled');
+      return;
+    }
+
     const token = await AsyncStorage.getItem('token');
 
     fetch(BASE_URL + '/api/household_chores/' + groupId + '/tasks', {
@@ -91,14 +91,61 @@ const useEstablishChoresController = () => {
       });
   };
 
+  const confirmAndDeleteTask = (taskId: number) => {
+    Alert.alert('Delete task', 'Are you sure you want to delete this task?', [
+      {
+        text: 'No',
+        style: 'cancel',
+      },
+      {
+        text: 'Yes',
+        onPress: () => deleteTask(taskId),
+      },
+    ]);
+  };
+
+  const deleteTask = async (taskId: number) => {
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(
+      BASE_URL +
+        '/api/household_chores/' +
+        groupId +
+        '/tasks/' +
+        taskId.toString(),
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      },
+    )
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          fetchTasks();
+        }
+      })
+      .then(() => {
+        fetchTasks();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   return {
     tasks,
-    editMode,
     addMode,
     addInput,
     setAddInput,
     createTask,
-    changeToEditMode,
+    confirmAndDeleteTask,
     changeToViewMode,
     changeToAddMode,
   };
