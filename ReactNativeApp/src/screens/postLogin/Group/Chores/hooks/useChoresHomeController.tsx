@@ -50,7 +50,7 @@ const useChoresHomeScreen = () => {
   };
 
   const navigateEstablishChores = () => {
-    // navigation.navigate('EstablishChoresScreen' as never);
+    navigation.navigate('EstablishChoresScreen' as never);
   };
 
   const navigateViewTodaysChores = () => {
