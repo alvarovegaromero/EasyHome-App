@@ -2,6 +2,7 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useChoresHomeController from './hooks/useChoresHomeController';
 import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
+import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -21,12 +22,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
             <Text style={generalStyles.defaultHeader}>Chores Home Screen</Text>
           </View>
 
-          <View
-            style={{
-              flexDirection: 'column',
-              alignItems: 'center',
-              marginTop: 20,
-            }}>
+          <View style={stylesChoresHomeScreen.containerIcons}>
             {isOwner && (
               <View>
                 <Icon
@@ -44,7 +40,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
 
             {!isActivated && (
               <View>
-                <Text style={{marginBottom: 10, marginTop: 10, fontSize: 20}}>
+                <Text style={stylesChoresHomeScreen.styleTextNoActivated}>
                   {' '}
                   The owner must start the process first!{' '}
                 </Text>
