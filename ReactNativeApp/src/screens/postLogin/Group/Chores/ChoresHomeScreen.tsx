@@ -1,5 +1,5 @@
 import {Button, Text, View} from 'react-native';
-import useChoresHomeScreen from './hooks/useChoresHomeController';
+import useChoresHomeController from './hooks/useChoresHomeController';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -9,7 +9,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
     navigateViewTodaysChores,
     navigateStats,
     navigateGroupHome,
-  } = useChoresHomeScreen();
+  } = useChoresHomeController();
 
   return (
     <View>

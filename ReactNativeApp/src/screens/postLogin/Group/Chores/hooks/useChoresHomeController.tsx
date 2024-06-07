@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BASE_URL} from '../../../../../config';
 import {Alert} from 'react-native';
 
-const useChoresHomeScreen = () => {
+const useChoresHomeController = () => {
   const navigation = useNavigation();
 
   const {groupId, isOwner} = useContext(GroupContext);
@@ -79,4 +79,4 @@ const useChoresHomeScreen = () => {
   };
 };
 
-export default useChoresHomeScreen;
+export default useChoresHomeController;
