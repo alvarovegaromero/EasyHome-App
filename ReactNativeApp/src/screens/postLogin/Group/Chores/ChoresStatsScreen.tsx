@@ -3,6 +3,7 @@ import useChoresStatsController from './hooks/useChoresStatsController';
 import {Icon} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import {PieChart} from 'react-native-gifted-charts';
+import Picker from 'react-native-picker-select';
 
 const ChoresStatsScreen: React.FunctionComponent = () => {
   const {
@@ -10,6 +11,9 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
     setStartDate,
     endDate,
     setEndDate,
+    groupUsers,
+    selectedUserId,
+    setSelectedUserId,
     fetchChoresStats,
     pieData,
     totalAssignableTasks,
@@ -33,6 +37,23 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
         onDateChange={setEndDate}
         locale="en-GB"
         testID="EndDatePicker"
+      />
+
+      <Picker
+        value={selectedUserId || 'All'}
+        onValueChange={itemValue => setSelectedUserId(itemValue)}
+        items={[
+          {label: 'All', value: undefined},
+          ...groupUsers.map(userOption => ({
+            label: userOption.username,
+            value: userOption.id,
+          })),
+        ]}
+        textInputProps={{
+          accessibilityLabel: 'Select User picker',
+          testID: 'SelectUserPicker',
+        }}
+        placeholder={{}}
       />
 
       <Icon

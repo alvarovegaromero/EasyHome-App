@@ -1,10 +1,10 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getFormatedDateForRequests} from '../../../../../utils/utils';
-import {AssignableTask} from '../types';
+import {AssignableTask, User} from '../types';
 
 const useChoresStatsController = () => {
   const {groupId} = useContext(GroupContext);
@@ -13,30 +13,68 @@ const useChoresStatsController = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [choresInfo, setChoresInfo] = useState<AssignableTask[]>([]);
 
+  const [selectedUserId, setSelectedUserId] = useState<number | undefined>(
+    undefined,
+  );
+  const [groupUsers, setGroupUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    fetchGroupUsersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fetchGroupUsersData = async () => {
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(BASE_URL + '/api/groups/' + groupId + '/users', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
+        }
+      })
+      .then((data: {users: User[]}) => {
+        setGroupUsers(data.users);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   const fetchChoresStats = async () => {
     const start_date_formatted = getFormatedDateForRequests(startDate);
     const end_date_formatted = getFormatedDateForRequests(endDate);
 
     const token = await AsyncStorage.getItem('token');
 
-    fetch(
+    const url =
       BASE_URL +
-        '/api/household_chores/' +
-        groupId +
-        '/tasks/assign/range?start_date=' +
-        start_date_formatted +
-        '&end_date=' +
-        end_date_formatted +
-        '&is_completed=' +
-        'true',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
+      '/api/household_chores/' +
+      groupId +
+      '/tasks/assign/range?start_date=' +
+      start_date_formatted +
+      '&end_date=' +
+      end_date_formatted +
+      '&is_completed=true' +
+      (selectedUserId ? '&user_id=' + selectedUserId : '');
+
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${token}`,
       },
-    )
+    })
       .then(response => {
         if (!response.ok) {
           return response.json().then(({error}) => {
@@ -48,7 +86,6 @@ const useChoresStatsController = () => {
         }
       })
       .then(data => {
-        console.log(data);
         setChoresInfo(data);
       })
       .catch(error => {
@@ -72,7 +109,6 @@ const useChoresStatsController = () => {
   );
 
   const pieData = Object.entries(taskCounts).map(([label, value]) => {
-    console.log('Label:', label);
     return {
       label,
       value,
@@ -87,6 +123,9 @@ const useChoresStatsController = () => {
     setStartDate,
     endDate,
     setEndDate,
+    groupUsers,
+    selectedUserId,
+    setSelectedUserId,
     fetchChoresStats,
     pieData,
     totalAssignableTasks,
