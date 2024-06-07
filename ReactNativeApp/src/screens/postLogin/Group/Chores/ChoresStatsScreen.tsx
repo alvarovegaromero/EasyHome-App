@@ -14,6 +14,8 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
     groupUsers,
     selectedUserId,
     setSelectedUserId,
+    selectedCompleted,
+    setSelectedCompleted,
     fetchChoresStats,
     pieData,
     totalAssignableTasks,
@@ -52,6 +54,21 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
         textInputProps={{
           accessibilityLabel: 'Select User picker',
           testID: 'SelectUserPicker',
+        }}
+        placeholder={{}}
+      />
+
+      <Picker
+        value={selectedCompleted}
+        onValueChange={itemValue => setSelectedCompleted(itemValue)}
+        items={[
+          {label: 'Completed', value: true},
+          {label: 'Uncompleted', value: false},
+          {label: 'Completed and Uncompleted', value: undefined},
+        ]}
+        textInputProps={{
+          accessibilityLabel: 'Select Completion Status picker',
+          testID: 'SelectCompletionStatusPicker',
         }}
         placeholder={{}}
       />

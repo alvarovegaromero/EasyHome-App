@@ -16,6 +16,9 @@ const useChoresStatsController = () => {
   const [selectedUserId, setSelectedUserId] = useState<number | undefined>(
     undefined,
   );
+  const [selectedCompleted, setSelectedCompleted] = useState<
+    boolean | undefined
+  >(true);
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
 
   useEffect(() => {
@@ -52,6 +55,25 @@ const useChoresStatsController = () => {
   };
 
   const fetchChoresStats = async () => {
+    if (startDate > endDate) {
+      Alert.alert('Error', 'Start date can not be bigger than End date');
+      console.error(
+        'Filtering Failed - Start date can not be bigger than End date',
+      );
+      return;
+    }
+
+    if (!selectedCompleted && selectedUserId !== undefined) {
+      Alert.alert(
+        'Error',
+        'You can not filter for not completed tasks for a user',
+      );
+      console.error(
+        'Filtering Failed - imposible to filter for not completed tasks for a user',
+      );
+      return;
+    }
+
     const start_date_formatted = getFormatedDateForRequests(startDate);
     const end_date_formatted = getFormatedDateForRequests(endDate);
 
@@ -65,7 +87,9 @@ const useChoresStatsController = () => {
       start_date_formatted +
       '&end_date=' +
       end_date_formatted +
-      '&is_completed=true' +
+      (selectedCompleted !== undefined
+        ? '&is_completed=' + selectedCompleted.toString()
+        : '') +
       (selectedUserId ? '&user_id=' + selectedUserId : '');
 
     fetch(url, {
@@ -92,6 +116,8 @@ const useChoresStatsController = () => {
         console.error('Error:', error);
       });
   };
+
+  // Stats part
 
   const taskCounts = choresInfo.reduce(
     (counts, task) => {
@@ -129,6 +155,8 @@ const useChoresStatsController = () => {
     groupUsers,
     selectedUserId,
     setSelectedUserId,
+    selectedCompleted,
+    setSelectedCompleted,
     fetchChoresStats,
     pieData,
     totalAssignableTasks,
