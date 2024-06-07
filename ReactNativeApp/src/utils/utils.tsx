@@ -7,3 +7,13 @@ export const validateEmail = (email: string) => {
 
   return true;
 };
+
+export const getCurrentDate = () => {
+  const today = new Date();
+
+  const day = ('0' + today.getDate()).slice(-2);
+  const month = ('0' + (today.getMonth() + 1)).slice(-2);
+  const year = today.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
