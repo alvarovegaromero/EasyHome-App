@@ -26,7 +26,9 @@ const useChoresStatsController = () => {
         '/tasks/assign/range?start_date=' +
         start_date_formatted +
         '&end_date=' +
-        end_date_formatted,
+        end_date_formatted +
+        '&is_completed=' +
+        'true',
       {
         method: 'GET',
         headers: {
@@ -54,8 +56,31 @@ const useChoresStatsController = () => {
       });
   };
 
-  const completedTasks = choresInfo.filter(task => task.is_completed).length;
-  const uncompletedTasks = choresInfo.filter(task => !task.is_completed).length;
+  const taskCounts = choresInfo.reduce(
+    (counts, task) => {
+      const taskType = task.task.title;
+
+      if (counts[taskType]) {
+        counts[taskType]++;
+      } else {
+        counts[taskType] = 1;
+      }
+
+      return counts;
+    },
+    {} as {[key: string]: number},
+  );
+
+  const pieData = Object.entries(taskCounts).map(([label, value]) => {
+    console.log('Label:', label);
+    return {
+      label,
+      value,
+      color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+    };
+  });
+
+  const totalAssignableTasks = choresInfo.length;
 
   return {
     startDate,
@@ -63,8 +88,8 @@ const useChoresStatsController = () => {
     endDate,
     setEndDate,
     fetchChoresStats,
-    completedTasks,
-    uncompletedTasks,
+    pieData,
+    totalAssignableTasks,
   };
 };
 

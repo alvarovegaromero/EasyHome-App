@@ -11,14 +11,9 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
     endDate,
     setEndDate,
     fetchChoresStats,
-    completedTasks,
-    uncompletedTasks,
+    pieData,
+    totalAssignableTasks,
   } = useChoresStatsController();
-
-  const pieData = [
-    {value: completedTasks, label: 'Completed Tasks', color: '#00ff00'},
-    {value: uncompletedTasks, label: 'Uncompleted Tasks', color: '#ff0000'},
-  ];
 
   return (
     <View>
@@ -50,7 +45,36 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
         onPress={fetchChoresStats}
       />
 
-      <PieChart data={pieData} />
+      <PieChart
+        data={pieData}
+        strokeWidth={4}
+        strokeColor="#333"
+        innerCircleBorderWidth={4}
+        innerCircleBorderColor="#333"
+      />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          marginTop: 20,
+        }}>
+        {pieData.map(({label, color, value}) => (
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                backgroundColor: color,
+                marginRight: 10,
+              }}
+            />
+            <Text>{`${label} - ${value}`}</Text>
+          </View>
+        ))}
+      </View>
+      <Text>Total: {totalAssignableTasks}</Text>
     </View>
   );
 };
