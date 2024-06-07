@@ -73,15 +73,26 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
         placeholder={{}}
       />
 
-      <Icon
-        name="chart-pie"
-        reverse
-        reverseColor="white"
-        type="material-community"
-        color="#2196F3"
-        accessibilityLabel="Create new chart"
-        onPress={fetchChoresStats}
-      />
+      {totalAssignableTasks === 0 ? (
+        <Icon
+          name="chart-pie"
+          reverse
+          reverseColor="white"
+          type="material-community"
+          color="#2196F3"
+          accessibilityLabel="Create new chart"
+          onPress={fetchChoresStats}
+        />
+      ) : (
+        <Icon
+          name="reload"
+          reverse
+          reverseColor="white"
+          type="material-community"
+          color="#2196F3"
+          accessibilityLabel="Reload chart"
+        />
+      )}
 
       <PieChart
         data={pieData}

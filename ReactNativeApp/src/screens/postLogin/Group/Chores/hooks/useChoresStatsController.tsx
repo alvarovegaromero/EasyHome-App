@@ -122,13 +122,7 @@ const useChoresStatsController = () => {
   const taskCounts = choresInfo.reduce(
     (counts, task) => {
       const taskType = task.task.title;
-
-      if (counts[taskType]) {
-        counts[taskType]++;
-      } else {
-        counts[taskType] = 1;
-      }
-
+      counts[taskType] = (counts[taskType] || 0) + 1;
       return counts;
     },
     {} as {[key: string]: number},
@@ -145,8 +139,6 @@ const useChoresStatsController = () => {
     };
   });
 
-  const totalAssignableTasks = choresInfo.length;
-
   return {
     startDate,
     setStartDate,
@@ -159,7 +151,7 @@ const useChoresStatsController = () => {
     setSelectedCompleted,
     fetchChoresStats,
     pieData,
-    totalAssignableTasks,
+    totalAssignableTasks: choresInfo.length,
   };
 };
 
