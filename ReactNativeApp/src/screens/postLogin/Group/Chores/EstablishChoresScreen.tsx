@@ -32,8 +32,8 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
             ) : (
               <>
                 {tasks.map(task => (
-                  <>
-                    <Text key={task.id}>{task.title}</Text>
+                  <View key={task.id}>
+                    <Text>{task.title}</Text>
                     <Icon
                       name="delete"
                       type="material-community"
@@ -43,7 +43,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                         confirmAndDeleteTask(task.id);
                       }}
                     />
-                  </>
+                  </View>
                 ))}
               </>
             )}

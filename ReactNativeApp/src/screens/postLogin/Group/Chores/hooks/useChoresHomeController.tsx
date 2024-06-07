@@ -45,7 +45,6 @@ const useChoresHomeController = () => {
         }
       })
       .then(data => {
-        console.log(data.active);
         setIsActivated(data.active);
       })
       .catch(error => {

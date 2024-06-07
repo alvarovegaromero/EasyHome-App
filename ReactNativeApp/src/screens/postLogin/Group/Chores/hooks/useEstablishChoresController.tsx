@@ -40,7 +40,6 @@ const useEstablishChoresController = () => {
         }
       })
       .then(data => {
-        console.log(data);
         setTasks(data);
       })
       .catch(error => {
@@ -72,7 +71,6 @@ const useEstablishChoresController = () => {
         }
       })
       .then(data => {
-        console.log(data.active);
         setIsActivated(data.active);
       })
       .catch(error => {
