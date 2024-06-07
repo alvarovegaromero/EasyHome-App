@@ -41,7 +41,6 @@ const useTodaysChoresController = () => {
         }
       })
       .then(data => {
-        console.log(data);
         setAssignableTasks(data);
       })
       .catch(error => {
@@ -91,7 +90,6 @@ const useTodaysChoresController = () => {
         }
       })
       .then(data => {
-        console.log(data);
         setAssignableTasks(prevTasks =>
           prevTasks?.map(task => (task.id === data.id ? data : task)),
         );
