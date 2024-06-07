@@ -109,10 +109,13 @@ const useChoresStatsController = () => {
   );
 
   const pieData = Object.entries(taskCounts).map(([label, value]) => {
+    let color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    color = color.padEnd(7, '0'); // in case doesnt have 6 digits, fill with 0s
+
     return {
       label,
       value,
-      color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+      color,
     };
   });
 
