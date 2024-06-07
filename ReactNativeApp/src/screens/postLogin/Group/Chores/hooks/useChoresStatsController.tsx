@@ -4,12 +4,14 @@ import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getFormatedDateForRequests} from '../../../../../utils/utils';
+import {AssignableTask} from '../types';
 
 const useChoresStatsController = () => {
   const {groupId} = useContext(GroupContext);
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [choresInfo, setChoresInfo] = useState<AssignableTask[]>([]);
 
   const fetchChoresStats = async () => {
     const start_date_formatted = getFormatedDateForRequests(startDate);
@@ -40,18 +42,30 @@ const useChoresStatsController = () => {
             throw new Error(`${response.status} - ${error}`);
           });
         } else {
-          return response.json();
+          return response.json() as Promise<AssignableTask[]>;
         }
       })
       .then(data => {
         console.log(data);
+        setChoresInfo(data);
       })
       .catch(error => {
         console.error('Error:', error);
       });
   };
 
-  return {startDate, setStartDate, endDate, setEndDate, fetchChoresStats};
+  const completedTasks = choresInfo.filter(task => task.is_completed).length;
+  const uncompletedTasks = choresInfo.filter(task => !task.is_completed).length;
+
+  return {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    fetchChoresStats,
+    completedTasks,
+    uncompletedTasks,
+  };
 };
 
 export default useChoresStatsController;
