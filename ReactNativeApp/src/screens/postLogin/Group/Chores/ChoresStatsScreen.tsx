@@ -122,9 +122,11 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
             <View style={stylesChoreStatsScreen.containerPicker}>
               <Picker
                 value={selectedUserId || 'All'}
-                onValueChange={itemValue => setSelectedUserId(itemValue)}
+                onValueChange={itemValue =>
+                  setSelectedUserId(itemValue === 'all' ? undefined : itemValue)
+                }
                 items={[
-                  {label: 'All', value: undefined},
+                  {label: 'All', value: 'all'},
                   ...groupUsers.map(userOption => ({
                     label: userOption.username,
                     value: userOption.id,
@@ -141,11 +143,15 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
             <View style={stylesChoreStatsScreen.containerPicker}>
               <Picker
                 value={selectedCompleted}
-                onValueChange={itemValue => setSelectedCompleted(itemValue)}
+                onValueChange={itemValue =>
+                  setSelectedCompleted(
+                    itemValue === 'both' ? undefined : itemValue,
+                  )
+                }
                 items={[
                   {label: 'Completed', value: true},
                   {label: 'Uncompleted', value: false},
-                  {label: 'Completed and Uncompleted', value: undefined},
+                  {label: 'Completed and Uncompleted', value: 'both'},
                 ]}
                 textInputProps={{
                   accessibilityLabel: 'Select Completion Status picker',
@@ -159,7 +165,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
           <View style={stylesChoreStatsScreen.containerCreateOrReloadChart}>
             {totalAssignableTasks === 0 ? (
               <Icon
-                name="home-analytics"
+                name="chart-box"
                 reverse
                 reverseColor="white"
                 type="material-community"
@@ -197,7 +203,8 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
             <View style={stylesChoreStatsScreen.containerPieChartLegendItems}>
               {pieData.map(({label, color, value}) => (
                 <View
-                  style={stylesChoreStatsScreen.containerPieChartLegendItem}>
+                  style={stylesChoreStatsScreen.containerPieChartLegendItem}
+                  key={label}>
                   <View
                     style={[
                       stylesChoreStatsScreen.colorPieChartLegendItem,

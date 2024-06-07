@@ -79,9 +79,6 @@ const useChoresStatsController = () => {
     const start_date_formatted = getFormatedDateForRequests(startDate);
     const end_date_formatted = getFormatedDateForRequests(endDate);
 
-    console.log('start_date_formatted', start_date_formatted);
-    console.log('end_date_formatted', end_date_formatted);
-
     const token = await AsyncStorage.getItem('token');
 
     const url =
