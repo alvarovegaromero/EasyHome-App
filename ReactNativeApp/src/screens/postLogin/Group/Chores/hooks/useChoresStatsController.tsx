@@ -10,7 +10,9 @@ const useChoresStatsController = () => {
   const {groupId} = useContext(GroupContext);
 
   const [startDate, setStartDate] = useState(new Date());
+  const [startDateModalOpen, setStartDateModalOpen] = useState(false);
   const [endDate, setEndDate] = useState(new Date());
+  const [endDateModalOpen, setEndDateModalOpen] = useState(false);
   const [choresInfo, setChoresInfo] = useState<AssignableTask[]>([]);
 
   const [selectedUserId, setSelectedUserId] = useState<number | undefined>(
@@ -77,6 +79,9 @@ const useChoresStatsController = () => {
     const start_date_formatted = getFormatedDateForRequests(startDate);
     const end_date_formatted = getFormatedDateForRequests(endDate);
 
+    console.log('start_date_formatted', start_date_formatted);
+    console.log('end_date_formatted', end_date_formatted);
+
     const token = await AsyncStorage.getItem('token');
 
     const url =
@@ -142,8 +147,12 @@ const useChoresStatsController = () => {
   return {
     startDate,
     setStartDate,
+    startDateModalOpen,
+    setStartDateModalOpen,
     endDate,
     setEndDate,
+    endDateModalOpen,
+    setEndDateModalOpen,
     groupUsers,
     selectedUserId,
     setSelectedUserId,
