@@ -7,11 +7,13 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
     tasks,
+    isActivated,
     addMode,
     addInput,
     setAddInput,
     createTask,
     confirmAndDeleteTask,
+    confirmAndStartAssignableTasksProcess,
     changeToViewMode,
     changeToAddMode,
   } = useEstablishChoresController();
@@ -81,15 +83,17 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                 />
               </>
             )}
-            <Icon
-              reverse
-              reverseColor="white"
-              name="play"
-              type="material-community"
-              color="#2196F3"
-              accessibilityLabel="Start assignable tasks' process"
-              onPress={() => {}}
-            />
+            {!isActivated && (
+              <Icon
+                reverse
+                reverseColor="white"
+                name="play"
+                type="material-community"
+                color="#2196F3"
+                accessibilityLabel="Start assignable tasks' process"
+                onPress={confirmAndStartAssignableTasksProcess}
+              />
+            )}
           </>
         )}
       </GestureHandlerRootView>

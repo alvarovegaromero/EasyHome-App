@@ -13,7 +13,11 @@ const useChoresHomeScreen = () => {
   const [isActivated, setIsActivated] = useState(true);
 
   useEffect(() => {
-    fetchIsActivated();
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchIsActivated();
+    });
+
+    return unsubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -11,9 +11,11 @@ const useEstablishChoresController = () => {
 
   const [addMode, setAddMode] = useState(false);
   const [addInput, setAddInput] = useState('');
+  const [isActivated, setIsActivated] = useState(false); // Same as useChoresHomeController
 
   useEffect(() => {
     fetchTasks();
+    fetchIsActivated();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,12 +48,36 @@ const useEstablishChoresController = () => {
       });
   };
 
-  const changeToViewMode = () => {
-    setAddMode(false);
-  };
+  const fetchIsActivated = async () => {
+    const token = await AsyncStorage.getItem('token');
 
-  const changeToAddMode = () => {
-    setAddMode(true);
+    fetch(
+      BASE_URL + '/api/household_chores/' + groupId + '/tasks/assign/active',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      },
+    )
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
+        }
+      })
+      .then(data => {
+        console.log(data.active);
+        setIsActivated(data.active);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const createTask = async () => {
@@ -92,16 +118,21 @@ const useEstablishChoresController = () => {
   };
 
   const confirmAndDeleteTask = (taskId: number) => {
-    Alert.alert('Delete task', 'Are you sure you want to delete this task?', [
-      {
-        text: 'No',
-        style: 'cancel',
-      },
-      {
-        text: 'Yes',
-        onPress: () => deleteTask(taskId),
-      },
-    ]);
+    Alert.alert(
+      'Delete task',
+      `Are you sure you want to delete this task?\n\nAll the assignable tasks ` +
+        `related to this task will be deleted as well.`,
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => deleteTask(taskId),
+        },
+      ],
+    );
   };
 
   const deleteTask = async (taskId: number) => {
@@ -139,13 +170,75 @@ const useEstablishChoresController = () => {
       });
   };
 
+  const confirmAndStartAssignableTasksProcess = () => {
+    Alert.alert(
+      'Start Assignable Tasks Process',
+      'Are you sure you want to start the assignable tasks process?',
+      [
+        {
+          text: 'No',
+          style: 'cancel',
+        },
+        {
+          text: 'Yes',
+          onPress: () => startAssignableTasksProcess(),
+        },
+      ],
+    );
+  };
+
+  const startAssignableTasksProcess = async () => {
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(
+      BASE_URL + '/api/household_chores/' + groupId + '/tasks/start_assignable',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      },
+    )
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          return response.json();
+        }
+      })
+      .then(() => {
+        setIsActivated(true);
+        Alert.alert(
+          'Success',
+          `Assignable tasks process started.\n\nYou can see it now in the Assignable Tasks screen.`,
+        );
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+  const changeToViewMode = () => {
+    setAddMode(false);
+  };
+
+  const changeToAddMode = () => {
+    setAddMode(true);
+  };
+
   return {
     tasks,
+    isActivated,
     addMode,
     addInput,
     setAddInput,
     createTask,
     confirmAndDeleteTask,
+    confirmAndStartAssignableTasksProcess,
     changeToViewMode,
     changeToAddMode,
   };
