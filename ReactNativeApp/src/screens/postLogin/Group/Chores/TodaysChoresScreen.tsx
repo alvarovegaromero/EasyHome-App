@@ -1,7 +1,7 @@
 import {Text, View} from 'react-native';
 import useTodaysChoresController from './hooks/useTodaysChoresController';
 
-const ChoresHomeScreen: React.FunctionComponent = () => {
+const TodaysChoresScreen: React.FunctionComponent = () => {
   const {} = useTodaysChoresController();
 
   return (
@@ -11,4 +11,4 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
   );
 };
 
-export default ChoresHomeScreen;
+export default TodaysChoresScreen;

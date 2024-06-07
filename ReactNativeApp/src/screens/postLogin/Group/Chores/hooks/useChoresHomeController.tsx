@@ -58,7 +58,7 @@ const useChoresHomeController = () => {
   };
 
   const navigateViewTodaysChores = () => {
-    // navigation.navigate('TodaysChoresScreen' as never);
+    navigation.navigate('TodaysChoresScreen' as never);
   };
 
   const navigateStats = () => {
