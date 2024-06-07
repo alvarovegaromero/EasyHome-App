@@ -61,7 +61,7 @@ const useChoresHomeController = () => {
   };
 
   const navigateStats = () => {
-    // navigation.navigate('ChoresStatsScreen' as never);
+    navigation.navigate('ChoresStatsScreen' as never);
   };
 
   const navigateGroupHome = () => {

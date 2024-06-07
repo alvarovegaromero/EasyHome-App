@@ -6,7 +6,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
 
   return (
     <View>
-      <Text>Today's Chores Screen</Text>
+      <Text>Chores Stats Screen</Text>
     </View>
   );
 };

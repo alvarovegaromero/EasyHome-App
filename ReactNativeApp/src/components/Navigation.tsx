@@ -18,6 +18,7 @@ import ExpenseDetailScreen from '../screens/postLogin/Group/Expenses/ExpenseDeta
 import ChoresHomeScreen from '../screens/postLogin/Group/Chores/ChoresHomeScreen';
 import EstablishChoresScreen from '../screens/postLogin/Group/Chores/EstablishChoresScreen';
 import TodaysChoresScreen from '../screens/postLogin/Group/Chores/TodaysChoresScreen';
+import ChoresStatsScreen from '../screens/postLogin/Group/Chores/ChoresStatsScreen';
 
 const Stack = createNativeStackNavigator<MyStackParamsList>();
 
@@ -54,6 +55,7 @@ const AuthStack = () => {
         component={EstablishChoresScreen}
       />
       <Stack.Screen name="TodaysChoresScreen" component={TodaysChoresScreen} />
+      <Stack.Screen name="ChoresStatsScreen" component={ChoresStatsScreen} />
     </Stack.Navigator>
   );
 };
