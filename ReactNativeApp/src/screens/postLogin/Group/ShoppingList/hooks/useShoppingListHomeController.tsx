@@ -4,7 +4,7 @@ const useShoppingListHomeController = () => {
   const navigation = useNavigation();
 
   const navigateEstablishProductsScreen = () => {
-    navigation.navigate('navigateEstablishProductsScreen' as never);
+    navigation.navigate('EstablishProductsScreen' as never);
   };
 
   const navigateProductsScreen = () => {
