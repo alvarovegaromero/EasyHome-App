@@ -3,7 +3,7 @@ import useEstablishProducts from './hooks/useEstablishProducts';
 import generalStyles from '../../../../styles/styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Icon} from '@rneui/themed';
-import stylesEstablishChoresScreen from '../../../../styles/stylesEstablishChoresScreen';
+import stylesEstablishProductsScreen from '../../../../styles/stylesEstablishProductsScreen';
 
 const EstablishProductsScreen: React.FunctionComponent = () => {
   const {
@@ -43,16 +43,30 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
                     {products.map(product => (
                       <View
                         key={product.id}
-                        style={stylesEstablishChoresScreen.containerTask}>
+                        style={stylesEstablishProductsScreen.containerProduct}>
                         <View
-                          style={stylesEstablishChoresScreen.containerTextTask}>
+                          style={
+                            stylesEstablishProductsScreen.containerTextProduct
+                          }>
                           <Text
-                            style={stylesEstablishChoresScreen.styleTextTask}>
+                            style={
+                              stylesEstablishProductsScreen.styleTextProduct
+                            }>
                             {product.name}
                           </Text>
                         </View>
                         <View
-                          style={stylesEstablishChoresScreen.containerIconTask}>
+                          style={
+                            stylesEstablishProductsScreen.containerIconProduct
+                          }>
+                          <Icon
+                            name="pencil"
+                            type="material-community"
+                            color="#2196F3"
+                            accessibilityLabel="Edit product"
+                            onPress={() => {}}
+                            size={40}
+                          />
                           <Icon
                             name="delete"
                             type="material-community"
@@ -76,7 +90,7 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
                     </View>
                     <View
                       style={
-                        stylesEstablishChoresScreen.containerSaveCancelNewTask
+                        stylesEstablishProductsScreen.containerSaveCancelNewProduct
                       }>
                       <Icon
                         reverse
