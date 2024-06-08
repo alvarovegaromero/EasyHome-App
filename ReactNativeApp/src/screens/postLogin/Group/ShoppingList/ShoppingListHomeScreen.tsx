@@ -24,7 +24,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
               reverseColor="white"
               type="material-community"
               color="#2196F3"
-              accessibilityLabel="Add and Edit Products"
+              accessibilityLabel="Add and Edit Available Products"
               onPress={navigateEstablishProductsScreen}
               size={50}
             />

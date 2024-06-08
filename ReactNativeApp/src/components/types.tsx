@@ -26,4 +26,5 @@ export type MyStackParamsList = {
   TodaysChoresScreen: undefined;
   ChoresStatsScreen: undefined;
   ShoppingListHomeScreen: undefined;
+  EstablishProductsScreen: undefined;
 };

@@ -2,7 +2,7 @@ import {ScrollView, SafeAreaView, Text, View} from 'react-native';
 import useEstablishProducts from './hooks/useEstablishProducts';
 import generalStyles from '../../../../styles/styles';
 
-const EstablishProductShoppingListScreen: React.FunctionComponent = () => {
+const EstablishProductsScreen: React.FunctionComponent = () => {
   const {} = useEstablishProducts();
 
   return (
@@ -16,4 +16,4 @@ const EstablishProductShoppingListScreen: React.FunctionComponent = () => {
   );
 };
 
-export default EstablishProductShoppingListScreen;
+export default EstablishProductsScreen;

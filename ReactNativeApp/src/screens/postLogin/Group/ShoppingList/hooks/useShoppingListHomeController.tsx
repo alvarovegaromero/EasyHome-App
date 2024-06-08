@@ -1,6 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
+
 const useShoppingListHomeController = () => {
+  const navigation = useNavigation();
+
   const navigateEstablishProductsScreen = () => {
-    console.log('navigateEstablishProducts');
+    navigation.navigate('navigateEstablishProductsScreen' as never);
   };
 
   const navigateProductsScreen = () => {
