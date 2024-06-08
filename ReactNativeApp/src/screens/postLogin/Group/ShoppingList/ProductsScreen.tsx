@@ -1,6 +1,4 @@
-import {Text, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView, SafeAreaView, Text, View} from 'react-native';
 import generalStyles from '../../../../styles/styles';
 import useProductsController from './hooks/useProductsController';
 

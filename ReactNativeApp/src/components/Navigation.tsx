@@ -22,6 +22,7 @@ import ChoresStatsScreen from '../screens/postLogin/Group/Chores/ChoresStatsScre
 import ShoppingListHomeScreen from '../screens/postLogin/Group/ShoppingList/ShoppingListHomeScreen';
 // eslint-disable-next-line max-len
 import EstablishProductsScreen from '../screens/postLogin/Group/ShoppingList/EstablishProductsScreen';
+import ProductsScreen from '../screens/postLogin/Group/ShoppingList/ProductsScreen';
 
 const Stack = createNativeStackNavigator<MyStackParamsList>();
 
@@ -67,6 +68,7 @@ const AuthStack = () => {
         name="EstablishProductsScreen"
         component={EstablishProductsScreen}
       />
+      <Stack.Screen name="ProductsScreen" component={ProductsScreen} />
     </Stack.Navigator>
   );
 };
