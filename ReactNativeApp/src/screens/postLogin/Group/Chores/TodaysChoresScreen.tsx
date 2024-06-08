@@ -29,13 +29,13 @@ const TodaysChoresScreen: React.FunctionComponent = () => {
                 <View style={stylesTodaysChoresScreen.containerTask}>
                   <View style={stylesTodaysChoresScreen.containerTextTask}>
                     <Text style={stylesTodaysChoresScreen.styleTitle}>
-                      Title
+                      Task
                     </Text>
                   </View>
 
                   <View style={stylesTodaysChoresScreen.containerIconTask}>
                     <Text style={stylesTodaysChoresScreen.styleTitle}>
-                      Done?
+                      Done
                     </Text>
                   </View>
                 </View>
