@@ -8,7 +8,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
     navigateEstablishProductsScreen,
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
-    navigateStatsShoppingListScreen,
+    navigateShoppingListStatsScreen,
     navigateGroupHomeScreen,
   } = useShoppingListHomeController();
 
@@ -61,7 +61,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
               type="material-community"
               color="#2196F3"
               accessibilityLabel="See shopping list stats"
-              onPress={navigateStatsShoppingListScreen}
+              onPress={navigateShoppingListStatsScreen}
               size={50}
             />
           </View>

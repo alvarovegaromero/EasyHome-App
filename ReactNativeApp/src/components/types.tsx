@@ -28,4 +28,5 @@ export type MyStackParamsList = {
   ShoppingListHomeScreen: undefined;
   EstablishProductsScreen: undefined;
   ProductsScreen: undefined;
+  ShoppingListStatsScreen: undefined;
 };

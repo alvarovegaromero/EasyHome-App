@@ -15,8 +15,8 @@ const useShoppingListHomeController = () => {
     console.log('navigateProductsShoppingListScreen');
   };
 
-  const navigateStatsShoppingListScreen = () => {
-    console.log('navigateStatsShoppingListScreen');
+  const navigateShoppingListStatsScreen = () => {
+    navigation.navigate('ShoppingListStatsScreen' as never);
   };
 
   const navigateGroupHomeScreen = () => {
@@ -27,7 +27,7 @@ const useShoppingListHomeController = () => {
     navigateEstablishProductsScreen,
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
-    navigateStatsShoppingListScreen,
+    navigateShoppingListStatsScreen,
     navigateGroupHomeScreen,
   };
 };
