@@ -77,8 +77,14 @@ const useEstablishProductsController = () => {
           return response.json();
         }
       })
-      .then(() => {
-        fetchProducts();
+      .then((data: Product) => {
+        setProducts(prevProducts => {
+          if (!prevProducts) {
+            return [data];
+          }
+
+          return [...prevProducts, data];
+        });
         setAddInput('');
         changeToViewMode();
       })
@@ -129,7 +135,13 @@ const useEstablishProductsController = () => {
             throw new Error(`${response.status} - ${error}`);
           });
         } else {
-          fetchProducts();
+          setProducts(prevProducts => {
+            if (!prevProducts) {
+              return;
+            }
+
+            return prevProducts.filter(product => product.id !== productId);
+          });
         }
       })
       .catch(error => {
@@ -187,9 +199,15 @@ const useEstablishProductsController = () => {
             throw new Error(`${response.status} - ${error}`);
           });
         } else {
-          Alert.alert('Success', 'Product edited successfully');
-          fetchProducts();
+          return response.json();
         }
+      })
+      .then((data: Product) => {
+        setProducts(prevProducts => {
+          return prevProducts!.map(product =>
+            product.id === productId ? data : product,
+          );
+        });
       })
       .catch(error => {
         console.error('Error:', error);

@@ -8,6 +8,7 @@ const stylesEstablishProductsScreen = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
     justifyContent: 'space-between',
+    height: 40,
   },
 
   containerTextProduct: {},
@@ -31,6 +32,7 @@ const stylesEstablishProductsScreen = StyleSheet.create({
   editProductInput: {
     ...generalStyles.defaultInput,
     paddingRight: 15,
+    fontSize: 16,
   },
 });
 
