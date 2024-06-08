@@ -1,15 +1,82 @@
 import {ScrollView, SafeAreaView, Text, View} from 'react-native';
 import useShoppingListHomeController from './hooks/useShoppingListHomeController';
 import generalStyles from '../../../../styles/styles';
+import {Icon} from '@rneui/themed';
 
 const ShoppingListHomeScreen: React.FunctionComponent = () => {
-  const {} = useShoppingListHomeController();
+  const {
+    navigateEstablishProductsScreen,
+    navigateProductsScreen,
+    navigateProductsShoppingListScreen,
+    navigateStatsShoppingListScreen,
+    navigateGroupHomeScreen,
+  } = useShoppingListHomeController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View>
           <Text> Shopping List Home Screen </Text>
+          <View>
+            <Icon
+              name="pencil"
+              reverse
+              reverseColor="white"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="Add and Edit Products"
+              onPress={navigateEstablishProductsScreen}
+              size={50}
+            />
+          </View>
+          <View>
+            <Icon
+              name="notebook-edit"
+              reverse
+              reverseColor="white"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="Set products to buy"
+              onPress={navigateProductsScreen}
+              size={50}
+            />
+          </View>
+          <View>
+            <Icon
+              name="cart-plus"
+              reverse
+              reverseColor="white"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="Buy products"
+              onPress={navigateProductsShoppingListScreen}
+              size={50}
+            />
+          </View>
+          <View>
+            <Icon
+              name="chart-box"
+              reverse
+              reverseColor="white"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="See shopping list stats"
+              onPress={navigateStatsShoppingListScreen}
+              size={50}
+            />
+          </View>
+          <View>
+            <Icon
+              name="arrow-left-circle"
+              reverse
+              reverseColor="white"
+              type="material-community"
+              color="#2196F3"
+              accessibilityLabel="Go back to Group Home Screen"
+              onPress={navigateGroupHomeScreen}
+              size={50}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
