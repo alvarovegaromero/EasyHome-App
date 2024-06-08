@@ -67,6 +67,10 @@ const useGroupHomeController = () => {
     navigation.navigate('ChoresHomeScreen' as never);
   };
 
+  const navigateShoppingList = () => {
+    navigation.navigate('ShoppingListHomeScreen' as never);
+  };
+
   return {
     groupName,
     navigateBoard,
@@ -74,6 +78,7 @@ const useGroupHomeController = () => {
     navigateHome,
     navigateExpenses,
     navigateChores,
+    navigateShoppingList,
   };
 };
 

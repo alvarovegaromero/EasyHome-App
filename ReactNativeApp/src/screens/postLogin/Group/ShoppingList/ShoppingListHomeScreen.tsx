@@ -1,14 +1,18 @@
-import {View} from 'react-native';
-import {Text} from 'react-native-svg';
+import {ScrollView, SafeAreaView, Text, View} from 'react-native';
 import useShoppingListHomeController from './hooks/useShoppingListHomeController';
+import generalStyles from '../../../../styles/styles';
 
 const ShoppingListHomeScreen: React.FunctionComponent = () => {
   const {} = useShoppingListHomeController();
 
   return (
-    <View>
-      <Text> Shopping List Home Screen </Text>
-    </View>
+    <SafeAreaView style={generalStyles.defaultSafeAreaView}>
+      <ScrollView style={generalStyles.defaultScrollView}>
+        <View>
+          <Text> Shopping List Home Screen </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -11,6 +11,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
     navigateHome,
     navigateExpenses,
     navigateChores,
+    navigateShoppingList,
   } = useGroupHomeController();
 
   return (
@@ -37,9 +38,8 @@ const GroupHomeScreen: React.FunctionComponent = () => {
             <View style={stylesGroupHomeScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button
-                  title="Manage Shopping Lists"
-                  disabled={true}
-                  onPress={() => {}}
+                  title="Manage Shopping List"
+                  onPress={navigateShoppingList}
                   accessibilityLabel="Manage shopping lists button"
                   testID="ManageShoppingListsButton"
                 />
