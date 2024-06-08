@@ -3,14 +3,19 @@ import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Product} from '../types';
 
 const useEstablishProductsController = () => {
   const {groupId} = useContext(GroupContext);
 
-  const [products, setProducts] = useState<any[] | undefined>(undefined);
+  const [products, setProducts] = useState<Product[] | undefined>(undefined);
 
   const [addMode, setAddMode] = useState(false);
   const [addInput, setAddInput] = useState('');
+
+  const [editMode, setEditMode] = useState(false);
+  const [editInput, setEditInput] = useState('');
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
   useEffect(() => {
     fetchProducts();
@@ -140,6 +145,57 @@ const useEstablishProductsController = () => {
     setAddMode(true);
   };
 
+  const startEditingProduct = (product: any) => {
+    setEditMode(true);
+    setEditInput(product.name);
+    setEditingProduct(product);
+  };
+
+  const saveEditedProduct = async () => {
+    editProduct(editingProduct!.id);
+    setEditMode(false);
+    setEditingProduct(null);
+  };
+
+  const cancelEditingProduct = () => {
+    setEditMode(false);
+    setEditingProduct(null);
+  };
+
+  const editProduct = async (productId: number) => {
+    const token = await AsyncStorage.getItem('token');
+
+    fetch(
+      BASE_URL +
+        '/api/shopping_list/' +
+        groupId +
+        '/products/' +
+        productId.toString(),
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+        body: JSON.stringify({name: editInput}),
+      },
+    )
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(({error}) => {
+            Alert.alert('Error', error);
+            throw new Error(`${response.status} - ${error}`);
+          });
+        } else {
+          Alert.alert('Success', 'Product edited successfully');
+          fetchProducts();
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   return {
     products,
     addMode,
@@ -149,6 +205,13 @@ const useEstablishProductsController = () => {
     confirmAndDeleteProduct,
     changeToViewMode,
     changeToAddMode,
+    editMode,
+    editInput,
+    setEditInput,
+    editingProduct,
+    startEditingProduct,
+    saveEditedProduct,
+    cancelEditingProduct,
   };
 };
 

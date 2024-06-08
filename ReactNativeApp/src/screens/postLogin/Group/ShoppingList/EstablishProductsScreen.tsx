@@ -15,6 +15,13 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
     confirmAndDeleteProduct,
     changeToViewMode,
     changeToAddMode,
+    editMode,
+    editInput,
+    editingProduct,
+    setEditInput,
+    startEditingProduct,
+    saveEditedProduct,
+    cancelEditingProduct,
   } = useEstablishProductsController();
 
   return (
@@ -48,35 +55,76 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
                           style={
                             stylesEstablishProductsScreen.containerTextProduct
                           }>
-                          <Text
-                            style={
-                              stylesEstablishProductsScreen.styleTextProduct
-                            }>
-                            {product.name}
-                          </Text>
+                          {editMode &&
+                          editingProduct &&
+                          product.id === editingProduct.id ? (
+                            <TextInput
+                              style={
+                                stylesEstablishProductsScreen.editProductInput
+                              }
+                              value={editInput}
+                              onChangeText={setEditInput}
+                            />
+                          ) : (
+                            <Text
+                              style={
+                                stylesEstablishProductsScreen.styleTextProduct
+                              }>
+                              {product.name}
+                            </Text>
+                          )}
                         </View>
                         <View
                           style={
                             stylesEstablishProductsScreen.containerIconProduct
                           }>
-                          <Icon
-                            name="pencil"
-                            type="material-community"
-                            color="#2196F3"
-                            accessibilityLabel="Edit product"
-                            onPress={() => {}}
-                            size={40}
-                          />
-                          <Icon
-                            name="delete"
-                            type="material-community"
-                            color="#ff4d4d"
-                            accessibilityLabel="Delete product"
-                            onPress={() => {
-                              confirmAndDeleteProduct(product.id);
-                            }}
-                            size={40}
-                          />
+                          {editMode &&
+                          editingProduct &&
+                          product.id === editingProduct.id ? (
+                            <>
+                              <Icon
+                                name="content-save"
+                                type="material-community"
+                                color="#2196F3"
+                                accessibilityLabel="Save edited product"
+                                onPress={saveEditedProduct}
+                                size={40}
+                              />
+                              <Icon
+                                name="close-thick"
+                                type="material-community"
+                                color="#ff4d4d"
+                                accessibilityLabel="Cancel editing product"
+                                onPress={cancelEditingProduct}
+                                size={40}
+                              />
+                            </>
+                          ) : (
+                            <>
+                              {!editMode && (
+                                <>
+                                  <Icon
+                                    name="pencil"
+                                    type="material-community"
+                                    color="#2196F3"
+                                    accessibilityLabel="Edit product"
+                                    onPress={() => startEditingProduct(product)}
+                                    size={40}
+                                  />
+                                  <Icon
+                                    name="delete"
+                                    type="material-community"
+                                    color="#ff4d4d"
+                                    accessibilityLabel="Delete product"
+                                    onPress={() => {
+                                      confirmAndDeleteProduct(product.id);
+                                    }}
+                                    size={40}
+                                  />
+                                </>
+                              )}
+                            </>
+                          )}
                         </View>
                       </View>
                     ))}

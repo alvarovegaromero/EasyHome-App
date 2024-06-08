@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import generalStyles from './styles';
 
 //maybe can be united with stylesEstablishChoresScreen
 const stylesEstablishProductsScreen = StyleSheet.create({
@@ -25,6 +26,11 @@ const stylesEstablishProductsScreen = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginTop: 20,
+  },
+
+  editProductInput: {
+    ...generalStyles.defaultInput,
+    paddingRight: 15,
   },
 });
 
