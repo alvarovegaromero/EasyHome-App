@@ -4,7 +4,7 @@ import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const useEstablishProducts = () => {
+const useEstablishProductsController = () => {
   const {groupId} = useContext(GroupContext);
 
   const [products, setProducts] = useState<any[] | undefined>(undefined);
@@ -152,4 +152,4 @@ const useEstablishProducts = () => {
   };
 };
 
-export default useEstablishProducts;
+export default useEstablishProductsController;

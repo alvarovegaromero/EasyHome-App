@@ -1,5 +1,5 @@
 import {ScrollView, SafeAreaView, Text, View, TextInput} from 'react-native';
-import useEstablishProducts from './hooks/useEstablishProducts';
+import useEstablishProductsController from './hooks/useEstablishProductsController';
 import generalStyles from '../../../../styles/styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Icon} from '@rneui/themed';
@@ -15,7 +15,7 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
     confirmAndDeleteProduct,
     changeToViewMode,
     changeToAddMode,
-  } = useEstablishProducts();
+  } = useEstablishProductsController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
