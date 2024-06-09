@@ -206,7 +206,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
 
           <View style={stylesChoreStatsScreen.containerPieChartLegend}>
             <View style={stylesChoreStatsScreen.containerPieChartLegendItems}>
-              {pieData.map(({label, color, value}) => (
+              {pieData.map(({label, color, value, total}) => (
                 <View
                   style={stylesChoreStatsScreen.containerPieChartLegendItem}
                   key={label}>
@@ -219,7 +219,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
                   <Text
                     style={
                       stylesChoreStatsScreen.styleTextPieChartLegendItem
-                    }>{`${label} - ${value} ocurrencies`}</Text>
+                    }>{`${label} - ${value} ocurrencies - Total: ${total}€`}</Text>
                 </View>
               ))}
             </View>

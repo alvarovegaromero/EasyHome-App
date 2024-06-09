@@ -115,8 +115,6 @@ const useShoppingListStatsController = () => {
       (selectedProductId ? '&product_id=' + selectedProductId : '') +
       (selectedUserId ? '&user_id=' + selectedUserId : '');
 
-    console.log(url);
-
     fetch(url, {
       method: 'GET',
       headers: {
@@ -150,24 +148,31 @@ const useShoppingListStatsController = () => {
   // Stats part
 
   const boughtProductCounts = boughtProductsInfo.reduce(
-    (counts, boughtProducts) => {
-      const productType = boughtProducts.product.name;
-      counts[productType] = (counts[productType] || 0) + 1;
+    (counts, boughtProduct) => {
+      const productType = boughtProduct.product.name;
+      if (!counts[productType]) {
+        counts[productType] = {count: 0, total: 0};
+      }
+      counts[productType].count += 1;
+      counts[productType].total += parseFloat(boughtProduct.price.toString());
       return counts;
     },
-    {} as {[key: string]: number},
+    {} as {[key: string]: {count: number; total: number}},
   );
 
-  const pieData = Object.entries(boughtProductCounts).map(([label, value]) => {
-    let color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    color = color.padEnd(7, '0'); // in case doesnt have 6 digits, fill with 0s
+  const pieData = Object.entries(boughtProductCounts).map(
+    ([label, {count, total}]) => {
+      let color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      color = color.padEnd(7, '0'); // in case doesnt have 6 digits, fill with 0s
 
-    return {
-      label,
-      value, //See how provide $ and quantity
-      color,
-    };
-  });
+      return {
+        label,
+        value: count, // quantity
+        total, // total price
+        color,
+      };
+    },
+  );
 
   return {
     startDate,
