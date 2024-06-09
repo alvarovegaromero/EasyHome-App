@@ -6,6 +6,11 @@ export type Product = {
   marked_to_buy: boolean;
 };
 
+export type ProductToBuy = {
+  id: number;
+  product: Product;
+};
+
 export type BoughtProduct = {
   id: number;
   product: Product;
