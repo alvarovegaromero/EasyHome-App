@@ -1,8 +1,9 @@
-import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useGroupHomeController from './hooks/useGroupHomeController';
 import generalStyles from '../../../styles/styles';
 import stylesGroupHomeScreen from '../../../styles/stylesGroupHomeScreen';
 import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const GroupHomeScreen: React.FunctionComponent = () => {
   const {
@@ -26,81 +27,102 @@ const GroupHomeScreen: React.FunctionComponent = () => {
 
           <View style={stylesGroupHomeScreen.containerButtons}>
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Distribute Expenses"
-                  onPress={navigateExpenses}
-                  accessibilityLabel="Distribute expenses button"
-                  testID="DistributeExpensesButton"
-                />
-              </View>
+              <Icon
+                name="currency-usd"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Expenses"
+                onPress={navigateExpenses}
+                size={60}
+                testID="DistributeExpensesIcon"
+              />
             </View>
 
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Manage Shopping List"
-                  onPress={navigateShoppingList}
-                  accessibilityLabel="Manage shopping lists button"
-                  testID="ManageShoppingListsButton"
-                />
-              </View>
+              <Icon
+                name="cart-plus"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Shopping List"
+                onPress={navigateShoppingList}
+                size={60}
+                testID="ManageShoppingListsButton"
+              />
             </View>
 
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Household chores"
-                  onPress={navigateChores}
-                  accessibilityLabel="Household chores button"
-                  testID="HouseholdChoresButton"
-                />
-              </View>
+              <Icon
+                name="broom"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Household Chores"
+                onPress={navigateChores}
+                size={60}
+                testID="HouseholdChoresButton"
+              />
             </View>
 
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="View the pantry"
-                  disabled={true}
-                  onPress={() => {}}
-                  accessibilityLabel="View the pantry button"
-                  testID="ViewThePantryButton"
-                />
-              </View>
+              <Icon
+                name="file-cabinet"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Pantry"
+                onPress={() => {}}
+                size={60}
+                disabled={true}
+                testID="ViewThePantryButton"
+              />
             </View>
 
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Group Board"
-                  onPress={navigateBoard}
-                  accessibilityLabel="Group Board button"
-                  testID="GroupBoardButton"
-                />
-              </View>
+              <Icon
+                name="bulletin-board"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Group Board"
+                onPress={navigateBoard}
+                size={60}
+                testID="GroupBoardButton"
+              />
             </View>
 
             <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Group Settings"
-                  onPress={navigateSettings}
-                  accessibilityLabel="Group Settings button"
-                  testID="GroupSettingsButton"
-                />
-              </View>
+              <Icon
+                name="cog"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Group Settings"
+                onPress={navigateSettings}
+                size={60}
+                testID="GroupSettingsButton"
+              />
             </View>
 
-            <View style={stylesGroupHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Go back to Home"
-                  onPress={navigateHome}
-                  accessibilityLabel="Go back to Home button"
-                  testID="GoBackToHomeButton"
-                />
-              </View>
+            <View style={stylesGroupHomeScreen.lastButtonContainer}>
+              <Icon
+                name="arrow-left-circle"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Home"
+                onPress={navigateHome}
+                size={60}
+                testID="GoBackToHomeButton"
+              />
             </View>
           </View>
         </View>

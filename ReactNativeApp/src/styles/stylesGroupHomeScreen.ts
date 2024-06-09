@@ -7,13 +7,27 @@ const stylesGroupSettingsScreen = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
+
   containerButtons: {
+    marginLeft: 30,
+    marginRight: 30,
     marginTop: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
+
   containerButton: {
     ...generalStyles.defaultContainerButton,
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 5,
+    marginBottom: 5,
+    width: '45%', //two buttons per row
+  },
+
+  lastButtonContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
