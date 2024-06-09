@@ -70,9 +70,7 @@ const ShoppingListScreen: React.FunctionComponent = () => {
                             color="#2196F3"
                             accessibilityLabel="Buy the product"
                             onPress={() => {
-                              confirmAndMarkProductAsBought(
-                                productMarkedToBuy.product.id,
-                              );
+                              confirmAndMarkProductAsBought(productMarkedToBuy);
                             }}
                             size={40}
                           />
@@ -100,7 +98,7 @@ const ShoppingListScreen: React.FunctionComponent = () => {
               accessibilityLabel="Cancel button"
             />
             <Dialog.Button
-              label="Join"
+              label="Confirm"
               onPress={markProductAsBought}
               accessibilityLabel="Join button"
             />
