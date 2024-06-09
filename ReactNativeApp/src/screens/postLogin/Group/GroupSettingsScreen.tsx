@@ -1,5 +1,4 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   Text,
@@ -52,9 +51,11 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                         {user.username}
                       </Text>
                       {user.is_owner && (
-                        <Image
-                          source={require('../../../../assets/images/crownIcon.png')}
-                          style={stylesGroupSettingsScreen.crownIconListElement}
+                        <Icon
+                          name="crown-circle"
+                          type="material-community"
+                          color="#ffd30f"
+                          size={32}
                           testID="CrownIconOwner"
                           accessibilityLabel="Crown Icon for owner"
                         />
@@ -68,11 +69,11 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                               onPress={() =>
                                 confirmAndPromoteUser(user.id.toString())
                               }>
-                              <Image
-                                source={require('../../../../assets/images/crownIcon.png')}
-                                style={
-                                  stylesGroupSettingsScreen.crownIconListElement
-                                }
+                              <Icon
+                                name="crown-circle-outline"
+                                type="material-community"
+                                color="#ffd30f"
+                                size={32}
                                 testID={`PromoteUserIcon-${user.username}`}
                                 accessibilityLabel={`Promote User Icon for ${user.username}`}
                               />
@@ -82,9 +83,11 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
                               onPress={() =>
                                 confirmAndKickUser(user.id.toString())
                               }>
-                              <Image
-                                source={require('../../../../assets/images/crossIcon.png')}
-                                style={stylesGroupSettingsScreen.crossIconList}
+                              <Icon
+                                name="close-thick"
+                                type="material-community"
+                                color="#ff6f3b"
+                                size={32}
                                 testID={`KickUserIcon-${user.username}`}
                                 accessibilityLabel={`Kick User Icon for ${user.username}`}
                               />

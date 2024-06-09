@@ -37,16 +37,6 @@ const stylesGroupSettingsScreen = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  crownIconListElement: {
-    height: 25,
-    width: 25,
-  },
-  crossIconList: {
-    height: 20,
-    width: 20,
-    marginLeft: 10,
-    marginTop: 2,
-  },
   textList: {
     fontSize: 20,
     marginRight: 10,
