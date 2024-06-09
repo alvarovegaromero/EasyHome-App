@@ -135,7 +135,12 @@ const useShoppingListStatsController = () => {
         }
       })
       .then(data => {
-        setBoughtProductsInfo(data);
+        if (data.length === 0) {
+          Alert.alert('Error', 'No products found with these conditions');
+          setBoughtProductsInfo([]);
+        } else {
+          setBoughtProductsInfo(data);
+        }
       })
       .catch(error => {
         console.error('Error:', error);
