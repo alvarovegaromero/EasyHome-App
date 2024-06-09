@@ -263,10 +263,6 @@ const useGroupSettingsController = () => {
     navigation.navigate('HomeScreen' as never);
   };
 
-  const navigateGroupHome = () => {
-    navigation.navigate('GroupHomeScreen' as never);
-  };
-
   return {
     confirmAndLeaveGroup,
     confirmAndDeleteGroup,
@@ -279,7 +275,6 @@ const useGroupSettingsController = () => {
     confirmAndKickUser,
     confirmAndPromoteUser,
     copyJoinCodeToClipboard,
-    navigateGroupHome,
   };
 };
 

@@ -1,5 +1,4 @@
 import {
-  Button,
   Image,
   SafeAreaView,
   ScrollView,
@@ -13,6 +12,7 @@ import Dialog from 'react-native-dialog';
 import stylesGroupSettingsScreen from '../../../styles/stylesGroupSettingsScreen';
 import {User} from './types';
 import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
   const {
@@ -27,7 +27,6 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
     copyJoinCodeToClipboard,
     groupUsers,
     isOwner,
-    navigateGroupHome,
   } = useGroupSettingsController();
 
   return (
@@ -102,46 +101,50 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
 
           <View style={stylesGroupSettingsScreen.containerButtons}>
             <View style={stylesGroupSettingsScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Leave group"
-                  onPress={confirmAndLeaveGroup}
-                  accessibilityLabel="Leave group button"
-                  testID="LeaveGroupButton"
-                />
-              </View>
+              <Icon
+                name="exit-to-app"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#FF7F50"
+                accessibilityLabel="Leave Group Button"
+                onPress={confirmAndLeaveGroup}
+                size={50}
+                testID="LeaveGroupButton"
+              />
             </View>
             {isOwner && (
               <View style={stylesGroupSettingsScreen.containerButton}>
-                <View style={generalStyles.defaultButton}>
-                  <Button
-                    title="Delete group"
-                    onPress={confirmAndDeleteGroup}
-                    accessibilityLabel="Delete group button"
-                    testID="DeleteGroupButton"
-                  />
-                </View>
+                <Icon
+                  name="delete"
+                  type="material-community"
+                  reverse
+                  reverseColor="white"
+                  color="#FF7F50"
+                  accessibilityLabel="Delete Group Button"
+                  onPress={confirmAndDeleteGroup}
+                  size={50}
+                  testID="DeleteGroupButton"
+                />
               </View>
             )}
-            <View style={stylesGroupSettingsScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Get join code"
-                  onPress={generateJoinCode}
-                  accessibilityLabel="Get join code button"
-                  testID="GetJoinCodeButton"
-                />
-              </View>
-            </View>
-            <View style={stylesGroupSettingsScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Go back to Group Home"
-                  onPress={navigateGroupHome}
-                  accessibilityLabel="Go back to Group Home button"
-                  testID="GoBackToGroupHomeButton"
-                />
-              </View>
+            <View
+              style={
+                !isOwner
+                  ? stylesGroupSettingsScreen.containerButton
+                  : stylesGroupSettingsScreen.lastButtonContainer
+              }>
+              <Icon
+                name="share-variant"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Get join code"
+                onPress={generateJoinCode}
+                size={50}
+                testID="GetJoinCodeButton"
+              />
             </View>
           </View>
 

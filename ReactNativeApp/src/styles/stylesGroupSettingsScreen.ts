@@ -12,11 +12,21 @@ const stylesGroupSettingsScreen = StyleSheet.create({
     height: 300,
     paddingTop: 12,
   },
-  containerButtons: {},
+  containerButtons: {
+    flexDirection: 'row',
+    flexWrap: 'wrap', // allow the row to wrap onto the next line
+    justifyContent: 'space-between', // distribute evenly
+  },
   containerButton: {
     ...generalStyles.defaultContainerButton,
     marginTop: 5,
     marginBottom: 10,
+    width: '45%', // 2 buttons per row
+  },
+  lastButtonContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listElement: {
     padding: 5,
