@@ -12,7 +12,7 @@ const useShoppingListHomeController = () => {
   };
 
   const navigateProductsShoppingListScreen = () => {
-    console.log('navigateProductsShoppingListScreen');
+    navigation.navigate('ShoppingListScreen' as never);
   };
 
   const navigateShoppingListStatsScreen = () => {
