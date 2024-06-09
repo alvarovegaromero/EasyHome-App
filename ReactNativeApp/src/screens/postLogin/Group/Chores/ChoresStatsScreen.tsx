@@ -6,6 +6,7 @@ import {PieChart} from 'react-native-gifted-charts';
 import Picker from 'react-native-picker-select';
 import generalStyles from '../../../../styles/styles';
 import stylesChoreStatsScreen from '../../../../styles/stylesChoreStatsScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 type CenterLabelProps = {
   totalAssignableTasks: number;
@@ -221,6 +222,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Chores" />
     </SafeAreaView>
   );
 };

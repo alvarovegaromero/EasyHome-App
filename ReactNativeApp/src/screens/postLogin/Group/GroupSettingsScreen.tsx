@@ -167,7 +167,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
           </Dialog.Container>
         </View>
       </ScrollView>
-      <GroupFooter />
+      <GroupFooter activeSection="GroupSettings" />
     </SafeAreaView>
   );
 };

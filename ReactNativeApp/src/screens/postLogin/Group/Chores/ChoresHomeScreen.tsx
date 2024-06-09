@@ -3,6 +3,7 @@ import useChoresHomeController from './hooks/useChoresHomeController';
 import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
 import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -87,6 +88,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Chores" />
     </SafeAreaView>
   );
 };

@@ -71,7 +71,7 @@ const GroupFooter: React.FunctionComponent<GroupFooterProps> = ({
       <Icon
         name="bulletin-board"
         type="material-community"
-        color={activeSection === 'GroupBoard' ? '#FF7F50' : 'white'}
+        color={activeSection === 'Board' ? '#FF7F50' : 'white'}
         accessibilityLabel="Navigate to Group Board"
         onPress={navigateToGroupBoard}
         size={40}

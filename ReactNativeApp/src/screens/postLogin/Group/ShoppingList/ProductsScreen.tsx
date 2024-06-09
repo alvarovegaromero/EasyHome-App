@@ -3,6 +3,7 @@ import generalStyles from '../../../../styles/styles';
 import useProductsController from './hooks/useProductsController';
 import stylesProductsScreen from '../../../../styles/stylesProductsScreen';
 import {Icon} from '@rneui/themed';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ProductsScreen: React.FunctionComponent = () => {
   const {products, confirmAndMarkProductToBuy} = useProductsController();
@@ -86,6 +87,7 @@ const ProductsScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="ShoppingList" />
     </SafeAreaView>
   );
 };

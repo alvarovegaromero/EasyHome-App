@@ -4,6 +4,7 @@ import generalStyles from '../../../../styles/styles';
 import {Icon} from '@rneui/themed';
 //using same styles as in ChoresHomeScreen as it follows the same pattern
 import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ShoppingListHomeScreen: React.FunctionComponent = () => {
   const {
@@ -89,6 +90,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="ShoppingList" />
     </SafeAreaView>
   );
 };

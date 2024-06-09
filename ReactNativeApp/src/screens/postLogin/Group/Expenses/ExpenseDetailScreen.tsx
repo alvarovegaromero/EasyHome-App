@@ -2,6 +2,7 @@ import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useExpenseDetailController from './hooks/useExpenseDetailController';
 import generalStyles from '../../../../styles/styles';
 import stylesExpenseDetailScreen from '../../../../styles/stylesExpenseDetailScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
   const {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen} =
@@ -151,6 +152,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Expenses" />
     </SafeAreaView>
   );
 };

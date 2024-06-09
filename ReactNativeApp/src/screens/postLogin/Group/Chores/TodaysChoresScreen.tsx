@@ -3,6 +3,7 @@ import useTodaysChoresController from './hooks/useTodaysChoresController';
 import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
 import stylesTodaysChoresScreen from '../../../../styles/stylesTodaysChoresScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const TodaysChoresScreen: React.FunctionComponent = () => {
   const {assignableTasks, currentDate, confirmAndCompleteTask} =
@@ -90,6 +91,7 @@ const TodaysChoresScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Chores" />
     </SafeAreaView>
   );
 };

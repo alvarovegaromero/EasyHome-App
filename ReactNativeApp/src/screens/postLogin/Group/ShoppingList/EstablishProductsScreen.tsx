@@ -4,6 +4,7 @@ import generalStyles from '../../../../styles/styles';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Icon} from '@rneui/themed';
 import stylesEstablishProductsScreen from '../../../../styles/stylesEstablishProductsScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const EstablishProductsScreen: React.FunctionComponent = () => {
   const {
@@ -181,6 +182,7 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
           </GestureHandlerRootView>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="ShoppingList" />
     </SafeAreaView>
   );
 };

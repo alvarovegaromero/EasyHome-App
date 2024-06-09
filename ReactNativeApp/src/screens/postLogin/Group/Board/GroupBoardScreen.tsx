@@ -9,6 +9,7 @@ import {
 import generalStyles from '../../../../styles/styles';
 import useGroupBoardController from './hooks/useGroupBoardController';
 import stylesGroupBoardScreen from '../../../../styles/stylesGroupBoardScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const GroupBoardScreen: React.FunctionComponent = () => {
   const {
@@ -84,6 +85,7 @@ const GroupBoardScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Board" />
     </SafeAreaView>
   );
 };

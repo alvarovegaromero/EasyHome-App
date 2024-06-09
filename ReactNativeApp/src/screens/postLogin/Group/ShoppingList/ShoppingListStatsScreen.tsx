@@ -6,6 +6,7 @@ import {Icon} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import Picker from 'react-native-picker-select';
 import {PieChart} from 'react-native-gifted-charts';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 type CenterLabelProps = {
   totalBoughtProducts: number;
@@ -232,6 +233,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="ShoppingList" />
     </SafeAreaView>
   );
 };

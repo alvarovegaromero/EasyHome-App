@@ -5,6 +5,7 @@ import {TextInput} from 'react-native-gesture-handler';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import generalStyles from '../../../../styles/styles';
 import stylesEstablishChoresScreen from '../../../../styles/stylesEstablishChoresScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -134,6 +135,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
           </GestureHandlerRootView>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Chores" />
     </SafeAreaView>
   );
 };

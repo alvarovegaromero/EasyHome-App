@@ -4,6 +4,7 @@ import generalStyles from '../../../../styles/styles';
 import stylesShoppingListScreen from '../../../../styles/stylesShoppingListScreen';
 import {Icon} from '@rneui/themed';
 import Dialog from 'react-native-dialog';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ShoppingListScreen: React.FunctionComponent = () => {
   const {
@@ -105,6 +106,7 @@ const ShoppingListScreen: React.FunctionComponent = () => {
           </Dialog.Container>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="ShoppingList" />
     </SafeAreaView>
   );
 };

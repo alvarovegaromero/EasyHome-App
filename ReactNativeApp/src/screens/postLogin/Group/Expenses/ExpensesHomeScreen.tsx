@@ -9,6 +9,7 @@ import {
 import useExpensesHomeController from './hooks/useExpenseHomeController';
 import generalStyles from '../../../../styles/styles';
 import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {
@@ -148,6 +149,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Expenses" />
     </SafeAreaView>
   );
 };

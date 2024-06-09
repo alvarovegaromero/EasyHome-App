@@ -2,6 +2,7 @@ import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useGroupHomeController from './hooks/useGroupHomeController';
 import generalStyles from '../../../styles/styles';
 import stylesGroupHomeScreen from '../../../styles/stylesGroupHomeScreen';
+import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
 
 const GroupHomeScreen: React.FunctionComponent = () => {
   const {
@@ -104,6 +105,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="GroupHome" />
     </SafeAreaView>
   );
 };

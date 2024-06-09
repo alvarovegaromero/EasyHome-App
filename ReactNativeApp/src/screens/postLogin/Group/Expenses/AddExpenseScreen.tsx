@@ -12,6 +12,7 @@ import Picker from 'react-native-picker-select';
 import CheckBox from '@react-native-community/checkbox';
 import DatePicker from 'react-native-date-picker';
 import stylesAddExpenseScreen from '../../../../styles/stylesAddExpenseScreen';
+import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -148,6 +149,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
           </View>
         </View>
       </ScrollView>
+      <GroupFooter activeSection="Expenses" />
     </SafeAreaView>
   );
 };
