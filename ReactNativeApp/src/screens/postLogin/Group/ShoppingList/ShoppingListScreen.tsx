@@ -100,7 +100,7 @@ const ShoppingListScreen: React.FunctionComponent = () => {
             <Dialog.Button
               label="Confirm"
               onPress={markProductAsBought}
-              accessibilityLabel="Join button"
+              accessibilityLabel="Confirm button"
             />
           </Dialog.Container>
         </View>

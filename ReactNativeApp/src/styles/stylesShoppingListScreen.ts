@@ -27,6 +27,7 @@ const stylesShoppingListScreen = StyleSheet.create({
 
   containerIconProduct: {
     flex: 6,
+    marginLeft: 10,
     alignItems: 'flex-start',
   },
 

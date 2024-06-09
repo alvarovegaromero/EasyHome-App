@@ -110,8 +110,16 @@ const useShoppingListController = () => {
           });
         } else {
           addProductBoughtAsExpense();
-          fetchProductsMarkedToBuy();
+          setProductsMarkedToBuy(prevProducts =>
+            prevProducts!.filter(
+              product => product.product.id !== productToBuy!.product.id,
+            ),
+          );
           closeDialog();
+          Alert.alert(
+            'Success',
+            'Product marked as bought and groupal expense created successfully',
+          );
         }
       })
       .catch(error => {
