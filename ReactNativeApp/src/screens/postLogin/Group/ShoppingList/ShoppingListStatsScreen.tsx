@@ -1,7 +1,7 @@
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useShoppingListStatsController from './hooks/useShoppingListStatsController';
 import generalStyles from '../../../../styles/styles';
-import stylesChoreStatsScreen from '../../../../styles/stylesChoreStatsScreen';
+import stylesShoppingListStatsScreen from '../../../../styles/stylesShoppingListStatsScreen';
 import {Icon} from '@rneui/themed';
 import DatePicker from 'react-native-date-picker';
 import Picker from 'react-native-picker-select';
@@ -14,8 +14,8 @@ type CenterLabelProps = {
 const CenterLabelComponent: React.FC<CenterLabelProps> = ({
   totalBoughtProducts,
 }) => (
-  <View style={stylesChoreStatsScreen.containerTextPieChart}>
-    <Text style={stylesChoreStatsScreen.styleTextPieChart}>
+  <View style={stylesShoppingListStatsScreen.containerTextPieChart}>
+    <Text style={stylesShoppingListStatsScreen.styleTextPieChart}>
       {totalBoughtProducts}
     </Text>
   </View>
@@ -60,8 +60,8 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
             <Text style={generalStyles.defaultSubHeader}>
               Select the start and end date to filter:
             </Text>
-            <View style={stylesChoreStatsScreen.containerDatesPickers}>
-              <View style={stylesChoreStatsScreen.containerDatePicker}>
+            <View style={stylesShoppingListStatsScreen.containerDatesPickers}>
+              <View style={stylesShoppingListStatsScreen.containerDatePicker}>
                 <Icon
                   name="calendar-start"
                   reverse
@@ -89,7 +89,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
                 />
               </View>
 
-              <View style={stylesChoreStatsScreen.containerDatePicker}>
+              <View style={stylesShoppingListStatsScreen.containerDatePicker}>
                 <Icon
                   name="calendar-end"
                   reverse
@@ -118,11 +118,11 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View style={stylesChoreStatsScreen.containerPickers}>
+          <View style={stylesShoppingListStatsScreen.containerPickers}>
             <Text style={generalStyles.defaultSubHeader}>
-              Select the user and completion status:
+              Select a user and a product:
             </Text>
-            <View style={stylesChoreStatsScreen.containerPicker}>
+            <View style={stylesShoppingListStatsScreen.containerPicker}>
               <Picker
                 value={selectedUserId || 'All'}
                 onValueChange={itemValue =>
@@ -143,7 +143,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
               />
             </View>
 
-            <View style={stylesChoreStatsScreen.containerPicker}>
+            <View style={stylesShoppingListStatsScreen.containerPicker}>
               <Picker
                 value={selectedProductId || 'All'}
                 onValueChange={itemValue =>
@@ -167,7 +167,8 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View style={stylesChoreStatsScreen.containerCreateOrReloadChart}>
+          <View
+            style={stylesShoppingListStatsScreen.containerCreateOrReloadChart}>
             {totalBoughtProducts === 0 ? (
               <Icon
                 name="chart-box"
@@ -193,7 +194,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
             )}
           </View>
 
-          <View style={stylesChoreStatsScreen.containerPieChart}>
+          <View style={stylesShoppingListStatsScreen.containerPieChart}>
             <PieChart
               data={pieData}
               strokeWidth={4}
@@ -204,21 +205,26 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
             />
           </View>
 
-          <View style={stylesChoreStatsScreen.containerPieChartLegend}>
-            <View style={stylesChoreStatsScreen.containerPieChartLegendItems}>
+          <View style={stylesShoppingListStatsScreen.containerPieChartLegend}>
+            <View
+              style={
+                stylesShoppingListStatsScreen.containerPieChartLegendItems
+              }>
               {pieData.map(({label, color, value, total}) => (
                 <View
-                  style={stylesChoreStatsScreen.containerPieChartLegendItem}
+                  style={
+                    stylesShoppingListStatsScreen.containerPieChartLegendItem
+                  }
                   key={label}>
                   <View
                     style={[
-                      stylesChoreStatsScreen.colorPieChartLegendItem,
+                      stylesShoppingListStatsScreen.colorPieChartLegendItem,
                       {backgroundColor: color},
                     ]}
                   />
                   <Text
                     style={
-                      stylesChoreStatsScreen.styleTextPieChartLegendItem
+                      stylesShoppingListStatsScreen.styleTextPieChartLegendItem
                     }>{`${label} - ${value} ocurrencies - Total: ${total}€`}</Text>
                 </View>
               ))}
