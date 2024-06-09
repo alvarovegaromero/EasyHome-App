@@ -19,7 +19,7 @@ const ProductsScreen: React.FunctionComponent = () => {
 
           <View style={stylesProductsScreen.containerProducts}>
             {products === undefined ? (
-              <Text>Loading asignable products...</Text>
+              <Text>Loading products...</Text>
             ) : (
               <>
                 {products.length === 0 ? (
