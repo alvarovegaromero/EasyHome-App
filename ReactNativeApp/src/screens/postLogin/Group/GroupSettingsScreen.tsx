@@ -12,6 +12,7 @@ import useGroupSettingsController from './hooks/useGroupSettingsController';
 import Dialog from 'react-native-dialog';
 import stylesGroupSettingsScreen from '../../../styles/stylesGroupSettingsScreen';
 import {User} from './types';
+import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
   const {
@@ -166,6 +167,7 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
           </Dialog.Container>
         </View>
       </ScrollView>
+      <GroupFooter />
     </SafeAreaView>
   );
 };
