@@ -11,6 +11,9 @@ const useShoppingListController = () => {
   const [productsMarkedToBuy, setProductsMarkedToBuy] = useState<
     ProductToBuy[] | undefined
   >(undefined);
+  const [dialogVisible, setDialogVisible] = useState(false);
+  const [price, setPrice] = useState('');
+  const [productToBuyId, setProductToBuyId] = useState<number>();
 
   useEffect(() => {
     fetchProductsMarkedToBuy();
@@ -56,13 +59,25 @@ const useShoppingListController = () => {
         },
         {
           text: 'OK',
-          onPress: () => markProductAsBought(productId),
+          onPress: () => {
+            showDialog();
+            setProductToBuyId(productId);
+          },
         },
       ],
     );
   };
 
-  const markProductAsBought = async (productId: number) => {
+  const showDialog = () => {
+    setDialogVisible(true);
+  };
+
+  const closeDialog = () => {
+    setDialogVisible(false);
+    setProductToBuyId(undefined);
+  };
+
+  const markProductAsBought = async () => {
     const token = await AsyncStorage.getItem('token');
 
     fetch(
@@ -70,7 +85,7 @@ const useShoppingListController = () => {
         '/api/shopping_list/' +
         groupId +
         '/products/' +
-        productId +
+        productToBuyId +
         '/bought',
       {
         method: 'POST',
@@ -78,7 +93,7 @@ const useShoppingListController = () => {
           'Content-Type': 'application/json',
           Authorization: `Token ${token}`,
         },
-        body: JSON.stringify({price: '10.11'}), //To define how to set the product elsewhere
+        body: JSON.stringify({price: price}), //To define how to set the product elsewhere
       },
     )
       .then(response => {
@@ -89,6 +104,7 @@ const useShoppingListController = () => {
           });
         } else {
           fetchProductsMarkedToBuy();
+          closeDialog();
         }
       })
       .catch(error => {
@@ -96,7 +112,14 @@ const useShoppingListController = () => {
       });
   };
 
-  return {productsMarkedToBuy, confirmAndMarkProductAsBought};
+  return {
+    productsMarkedToBuy,
+    confirmAndMarkProductAsBought,
+    dialogVisible,
+    closeDialog,
+    setPrice,
+    markProductAsBought,
+  };
 };
 
 export default useShoppingListController;

@@ -3,10 +3,17 @@ import useShoppingListController from './hooks/useShoppingListController';
 import generalStyles from '../../../../styles/styles';
 import stylesShoppingListScreen from '../../../../styles/stylesShoppingListScreen';
 import {Icon} from '@rneui/themed';
+import Dialog from 'react-native-dialog';
 
 const ShoppingListScreen: React.FunctionComponent = () => {
-  const {productsMarkedToBuy, confirmAndMarkProductAsBought} =
-    useShoppingListController();
+  const {
+    productsMarkedToBuy,
+    confirmAndMarkProductAsBought,
+    dialogVisible,
+    closeDialog,
+    setPrice,
+    markProductAsBought,
+  } = useShoppingListController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -77,6 +84,27 @@ const ShoppingListScreen: React.FunctionComponent = () => {
               </>
             )}
           </View>
+
+          <Dialog.Container visible={dialogVisible}>
+            <Dialog.Title>Set price</Dialog.Title>
+            <Dialog.Description>
+              Set the price for the product you bought for the group
+            </Dialog.Description>
+            <Dialog.Input
+              onChangeText={setPrice}
+              accessibilityLabel="Input for entering the price of the product"
+            />
+            <Dialog.Button
+              label="Cancel"
+              onPress={closeDialog}
+              accessibilityLabel="Cancel button"
+            />
+            <Dialog.Button
+              label="Join"
+              onPress={markProductAsBought}
+              accessibilityLabel="Join button"
+            />
+          </Dialog.Container>
         </View>
       </ScrollView>
     </SafeAreaView>
