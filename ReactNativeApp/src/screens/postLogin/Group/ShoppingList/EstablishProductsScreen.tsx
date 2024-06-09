@@ -94,7 +94,7 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
                               <Icon
                                 name="close-thick"
                                 type="material-community"
-                                color="#ff4d4d"
+                                color="#FF7F50"
                                 accessibilityLabel="Cancel editing product"
                                 onPress={cancelEditingProduct}
                                 size={40}

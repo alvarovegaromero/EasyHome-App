@@ -97,7 +97,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                         reverseColor="white"
                         name="close"
                         type="material-community"
-                        color="#2196F3"
+                        color="#FF7F50"
                         accessibilityLabel="Cancel adding a new task"
                         onPress={changeToViewMode}
                         size={40}
