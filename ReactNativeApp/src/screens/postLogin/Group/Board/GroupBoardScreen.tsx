@@ -1,15 +1,9 @@
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
 import generalStyles from '../../../../styles/styles';
 import useGroupBoardController from './hooks/useGroupBoardController';
 import stylesGroupBoardScreen from '../../../../styles/stylesGroupBoardScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const GroupBoardScreen: React.FunctionComponent = () => {
   const {
@@ -17,8 +11,8 @@ const GroupBoardScreen: React.FunctionComponent = () => {
     setBoardContent,
     isEditable,
     allowEdit,
+    discardChanges,
     saveChanges,
-    navigateGroupHome,
   } = useGroupBoardController();
 
   return (
@@ -54,34 +48,44 @@ const GroupBoardScreen: React.FunctionComponent = () => {
 
             {isEditable ? (
               <View style={stylesGroupBoardScreen.containerBoardButton}>
-                <Button
-                  title="Save"
-                  onPress={saveChanges}
+                <Icon
+                  name="content-save"
+                  type="material-community"
+                  reverse
+                  reverseColor="white"
+                  color="#2196F3"
                   accessibilityLabel="Save changes button"
+                  onPress={saveChanges}
+                  size={40}
+                  testID="SaveChangesButton"
+                />
+                <Icon
+                  name="close-thick"
+                  type="material-community"
+                  reverse
+                  reverseColor="white"
+                  color="#FF7F50"
+                  accessibilityLabel="Save changes button"
+                  onPress={discardChanges}
+                  size={40}
                   testID="SaveChangesButton"
                 />
               </View>
             ) : (
               <View style={stylesGroupBoardScreen.containerBoardButton}>
-                <Button
-                  title="Edit"
-                  onPress={allowEdit}
+                <Icon
+                  name="pencil"
+                  type="material-community"
+                  reverse
+                  reverseColor="white"
+                  color="#2196F3"
                   accessibilityLabel="Allow edition button"
+                  onPress={allowEdit}
+                  size={40}
                   testID="AllowEditionButton"
                 />
               </View>
             )}
-          </View>
-
-          <View style={generalStyles.defaultContainerButton}>
-            <View style={generalStyles.defaultButton}>
-              <Button
-                title="Go to Group Home"
-                onPress={navigateGroupHome}
-                accessibilityLabel="Go to Group Home button"
-                testID="GoToGroupHomeButton"
-              />
-            </View>
           </View>
         </View>
       </ScrollView>

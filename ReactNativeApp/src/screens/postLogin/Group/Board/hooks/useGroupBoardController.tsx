@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import {useContext, useEffect, useState} from 'react';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -6,8 +5,6 @@ import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 
 const useGroupBoardController = () => {
-  const navigation = useNavigation();
-
   const {groupId} = useContext(GroupContext);
 
   const [boardContent, setBoardContent] = useState('');
@@ -50,6 +47,11 @@ const useGroupBoardController = () => {
     setIsEditable(true);
   };
 
+  const discardChanges = () => {
+    setIsEditable(false);
+    fetchGroupBoardContent();
+  };
+
   const saveChanges = async () => {
     setIsEditable(false);
     saveChangesRequest();
@@ -86,17 +88,13 @@ const useGroupBoardController = () => {
       });
   };
 
-  const navigateGroupHome = () => {
-    navigation.navigate('GroupHomeScreen' as never);
-  };
-
   return {
     boardContent,
     setBoardContent,
     isEditable,
     allowEdit,
+    discardChanges,
     saveChanges,
-    navigateGroupHome,
   };
 };
 
