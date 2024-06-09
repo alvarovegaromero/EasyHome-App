@@ -20,7 +20,7 @@ const useShoppingListHomeController = () => {
   };
 
   const navigateGroupHomeScreen = () => {
-    console.log('navigateGroupHomeScreen');
+    navigation.navigate('GroupHomeScreen' as never);
   };
 
   return {
