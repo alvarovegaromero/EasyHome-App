@@ -12,15 +12,15 @@ const stylesHomeScreen = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     flex: 2,
-    marginBottom: 30,
+    marginBottom: 10,
     height: 300,
   },
   containerButtons: {
     flex: 0.4,
   },
-  containerButton: {
-    ...generalStyles.defaultContainerButton,
-    marginTop: 5,
+  container2Buttons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginBottom: 10,
   },
   listTitle: {

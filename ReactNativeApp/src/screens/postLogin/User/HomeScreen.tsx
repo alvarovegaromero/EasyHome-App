@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   SafeAreaView,
   ScrollView,
   Text,
@@ -12,6 +11,7 @@ import {Group} from './types';
 import Dialog from 'react-native-dialog';
 import generalStyles from '../../../styles/styles';
 import stylesHomeScreen from '../../../styles/stylesHomeScreen';
+import {Icon} from '@rneui/base';
 
 const HomeScreen: React.FunctionComponent = () => {
   const {
@@ -36,14 +36,12 @@ const HomeScreen: React.FunctionComponent = () => {
             <Text
               accessibilityLabel={`Hello ${username}`}
               style={generalStyles.defaultHeader}>
-              {' '}
-              Hello {username}!{' '}
+              Hello {username}!
             </Text>
             <Text
               accessibilityLabel="Select the group you want to see:"
               style={generalStyles.defaultSubHeader}>
-              {' '}
-              Select the group you want to see:{' '}
+              Select the group you want to see:
             </Text>
           </View>
 
@@ -54,14 +52,12 @@ const HomeScreen: React.FunctionComponent = () => {
                   <Text
                     accessibilityLabel="You are not part of any group"
                     style={stylesHomeScreen.textNoGroups}>
-                    {' '}
-                    You are not part of any group yet :({' '}
+                    You are not part of any group yet :(
                   </Text>
                   <Text
                     accessibilityLabel="Join or Create a Group to see them here"
                     style={stylesHomeScreen.textNoGroups}>
-                    {' '}
-                    Join or Create a Group to see them here{' '}
+                    Join or Create a Group to see them here
                   </Text>
                 </View>
               ) : (
@@ -88,69 +84,77 @@ const HomeScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesHomeScreen.containerButtons}>
-            <View style={stylesHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Create a Group"
-                  onPress={navigateCreateGroupScreen}
-                  accessibilityLabel="Create a Group button"
-                  testID="CreateGroupButton"
-                />
-              </View>
-            </View>
-            <View style={stylesHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Join a Group"
-                  onPress={showDialog}
-                  accessibilityLabel="Join a Group button"
-                  testID="JoinGroupButton"
-                />
-              </View>
+            <View style={stylesHomeScreen.container2Buttons}>
+              <Icon
+                name="home-group-plus"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Create a Group"
+                onPress={navigateCreateGroupScreen}
+                size={60}
+                testID="CreateGroupButton"
+              />
+              <Icon
+                name="account-multiple-plus"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Join a Group"
+                onPress={showDialog}
+                size={60}
+                testID="JoinGroupButton"
+              />
             </View>
 
-            <Dialog.Container visible={dialogVisible}>
-              <Dialog.Title>Join Group</Dialog.Title>
-              <Dialog.Description>
-                Enter the join code for the group you want to join.
-              </Dialog.Description>
-              <Dialog.Input
-                onChangeText={setJoinCode}
-                accessibilityLabel="Input for entering the join code"
+            <View style={stylesHomeScreen.container2Buttons}>
+              <Icon
+                name="account"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Navigate to Profile"
+                onPress={navigateProfileScreen}
+                size={60}
+                testID="ProfileButton"
               />
-              <Dialog.Button
-                label="Cancel"
-                onPress={closeDialog}
-                accessibilityLabel="Cancel button"
+              <Icon
+                name="logout"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#FF7F50"
+                accessibilityLabel="Logout"
+                onPress={handleLogout}
+                size={60}
+                testID="LogoutButton"
               />
-              <Dialog.Button
-                label="Join"
-                onPress={joinGroup}
-                accessibilityLabel="Join button"
-              />
-            </Dialog.Container>
-
-            <View style={stylesHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Go to Profile"
-                  onPress={navigateProfileScreen}
-                  accessibilityLabel="Go to Profile button"
-                  testID="ProfileButton"
-                />
-              </View>
-            </View>
-            <View style={stylesHomeScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Logout"
-                  onPress={handleLogout}
-                  accessibilityLabel="Logout button"
-                  testID="LogoutButton"
-                />
-              </View>
             </View>
           </View>
+
+          <Dialog.Container visible={dialogVisible}>
+            <Dialog.Title>Join Group</Dialog.Title>
+            <Dialog.Description>
+              Enter the join code for the group you want to join.
+            </Dialog.Description>
+            <Dialog.Input
+              onChangeText={setJoinCode}
+              accessibilityLabel="Input for entering the join code"
+            />
+            <Dialog.Button
+              label="Cancel"
+              onPress={closeDialog}
+              accessibilityLabel="Cancel button"
+            />
+            <Dialog.Button
+              label="Join"
+              onPress={joinGroup}
+              accessibilityLabel="Join button"
+            />
+          </Dialog.Container>
         </View>
       </ScrollView>
     </SafeAreaView>
