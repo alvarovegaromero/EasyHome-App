@@ -32,12 +32,24 @@ const stylesHomeScreen = StyleSheet.create({
     marginLeft: 5,
   },
   listButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: '#cccccc', // light gray
     padding: 10,
     margin: 10,
-    alignItems: 'center',
     borderRadius: 10,
     height: 40,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  styleTextGroup: {
+    marginLeft: 5,
   },
   containerNoGroups: {
     marginTop: 10,
