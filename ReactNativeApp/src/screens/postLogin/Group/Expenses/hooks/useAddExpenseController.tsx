@@ -135,8 +135,8 @@ const useAddExpenseController = () => {
     navigation.navigate('ExpenseDetailScreen' as never);
   };
 
-  const navigateGroupExpensesScreen = () => {
-    navigation.navigate('GroupExpensesScreen' as never);
+  const navigateExpensesHomeScreen = () => {
+    navigation.navigate('ExpensesHomeScreen' as never);
   };
 
   return {
@@ -152,7 +152,7 @@ const useAddExpenseController = () => {
     date,
     setDate,
     handleCreateExpenseSubmit,
-    navigateGroupExpensesScreen,
+    navigateExpensesHomeScreen,
   };
 };
 

@@ -152,8 +152,8 @@ const useGroupExpensesController = () => {
     navigation.navigate('AddExpenseScreen' as never);
   };
 
-  const navigateGroupHome = () => {
-    navigation.navigate('GroupHomeScreen' as never);
+  const navigateExpensesHome = () => {
+    navigation.navigate('ExpensesHomeScreen' as never);
   };
 
   return {
@@ -162,7 +162,7 @@ const useGroupExpensesController = () => {
     expenses,
     navigateDetailExpense,
     navigateAddExpense,
-    navigateGroupHome,
+    navigateExpensesHome,
   };
 };
 

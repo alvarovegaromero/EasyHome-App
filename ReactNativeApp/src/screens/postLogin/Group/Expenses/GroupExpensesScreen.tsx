@@ -18,7 +18,7 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
     expenses,
     navigateDetailExpense,
     navigateAddExpense,
-    navigateGroupHome,
+    navigateExpensesHome,
   } = useGroupExpensesController();
 
   return (
@@ -146,7 +146,7 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
             </View>
             <View style={stylesGroupExpensesScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
-                <Button title="Go Back" onPress={navigateGroupHome} />
+                <Button title="Go Back" onPress={navigateExpensesHome} />
               </View>
             </View>
           </View>

@@ -115,7 +115,7 @@ const useExpenseDetailController = () => {
 
   const navigateGroupExpensesScreen = () => {
     setExpenseId('');
-    navigation.navigate('ExpensesHomeScreen' as never);
+    navigation.navigate('GroupExpensesScreen' as never);
   };
 
   return {expense, confirmAndDeleteExpense, navigateGroupExpensesScreen};

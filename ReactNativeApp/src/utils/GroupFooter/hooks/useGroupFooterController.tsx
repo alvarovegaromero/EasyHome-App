@@ -4,7 +4,7 @@ const useGroupFooterController = () => {
   const navigation = useNavigation();
 
   const navigateToExpenses = () => {
-    navigation.navigate('GroupExpensesScreen' as never);
+    navigation.navigate('ExpensesHomeScreen' as never);
   };
 
   const navigateToChores = () => {
