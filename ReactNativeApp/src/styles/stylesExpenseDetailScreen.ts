@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import generalStyles from './styles';
 
 const stylesExpenseDetailScreen = StyleSheet.create({
   containerTitleAndText: {
@@ -16,13 +15,8 @@ const stylesExpenseDetailScreen = StyleSheet.create({
   },
 
   containerButtons: {
-    marginTop: 20,
-  },
-
-  containerButton: {
-    ...generalStyles.defaultContainerButton,
-    marginTop: 5,
-    marginBottom: 10,
+    flexDirection: 'row',
+    marginTop: 10,
   },
 });
 

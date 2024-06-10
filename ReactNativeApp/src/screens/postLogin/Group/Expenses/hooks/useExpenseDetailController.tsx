@@ -113,12 +113,14 @@ const useExpenseDetailController = () => {
       });
   };
 
+  /* Using default navigation for going back to GroupExpensesScreen. 
+    As expenseId will be also changed if navigating to other expense */
   const navigateGroupExpensesScreen = () => {
     setExpenseId('');
     navigation.navigate('GroupExpensesScreen' as never);
   };
 
-  return {expense, confirmAndDeleteExpense, navigateGroupExpensesScreen};
+  return {expense, confirmAndDeleteExpense};
 };
 
 export default useExpenseDetailController;

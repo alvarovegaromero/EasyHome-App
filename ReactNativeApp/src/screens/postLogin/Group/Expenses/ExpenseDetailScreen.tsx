@@ -1,12 +1,12 @@
-import {Button, SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useExpenseDetailController from './hooks/useExpenseDetailController';
 import generalStyles from '../../../../styles/styles';
 import stylesExpenseDetailScreen from '../../../../styles/stylesExpenseDetailScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
-  const {expense, confirmAndDeleteExpense, navigateGroupExpensesScreen} =
-    useExpenseDetailController();
+  const {expense, confirmAndDeleteExpense} = useExpenseDetailController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -16,7 +16,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
             <Text
               accessibilityLabel="Expense details:"
               style={generalStyles.defaultHeader}>
-              Expense details:
+              Expense details
             </Text>
           </View>
 
@@ -116,39 +116,30 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesExpenseDetailScreen.containerButtons}>
-            <View style={stylesExpenseDetailScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Edit"
-                  disabled={true}
-                  onPress={() => {}}
-                  accessibilityLabel="Edit the expense"
-                  testID="editButton"
-                />
-              </View>
-            </View>
+            <Icon
+              name="pencil"
+              type="material-community"
+              disabled={true}
+              reverse
+              reverseColor="white"
+              color="#2196F3"
+              accessibilityLabel="Edit the expense"
+              onPress={() => {}}
+              size={40}
+              testID="editButton"
+            />
 
-            <View style={stylesExpenseDetailScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Delete"
-                  onPress={confirmAndDeleteExpense}
-                  accessibilityLabel="Delete the expense"
-                  testID="deleteButton"
-                />
-              </View>
-            </View>
-
-            <View style={stylesExpenseDetailScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Go back"
-                  onPress={navigateGroupExpensesScreen}
-                  accessibilityLabel="Go back to the previous screen"
-                  testID="goBackButton"
-                />
-              </View>
-            </View>
+            <Icon
+              name="delete"
+              type="material-community"
+              reverse
+              reverseColor="white"
+              color="#FF7F50"
+              accessibilityLabel="Delete the expense"
+              onPress={confirmAndDeleteExpense}
+              size={40}
+              testID="deleteButton"
+            />
           </View>
         </View>
       </ScrollView>
