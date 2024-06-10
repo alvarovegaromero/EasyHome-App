@@ -79,7 +79,11 @@ const AddExpenseScreen: React.FunctionComponent = () => {
             </View>
 
             <View style={stylesAddExpenseScreen.containerInput}>
-              <Text accessibilityLabel="Debtors">Debtors:</Text>
+              <Text
+                accessibilityLabel="Debtors"
+                style={stylesAddExpenseScreen.styleTextTitleSection}>
+                Debtors:
+              </Text>
               <View style={stylesAddExpenseScreen.containerCheckboxes}>
                 <ScrollView>
                   {groupUsers.map(user => (
@@ -106,7 +110,11 @@ const AddExpenseScreen: React.FunctionComponent = () => {
             </View>
 
             <View>
-              <Text accessibilityLabel="Date paid">Date paid:</Text>
+              <Text
+                accessibilityLabel="Date paid"
+                style={stylesAddExpenseScreen.styleTextTitleSection}>
+                Date paid:
+              </Text>
               <View
                 style={stylesAddExpenseScreen.datePickerInput}
                 accessibilityLabel="Date Picker">

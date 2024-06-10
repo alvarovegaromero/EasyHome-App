@@ -32,6 +32,10 @@ const stylesAddExpenseScreen = StyleSheet.create({
   containerIcons: {
     flexDirection: 'row',
   },
+
+  styleTextTitleSection: {
+    fontSize: 16,
+  },
 });
 
 export default stylesAddExpenseScreen;
