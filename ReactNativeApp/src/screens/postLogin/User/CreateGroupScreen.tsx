@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, Text, TextInput, View} from 'react-native';
 import generalStyles from '../../../styles/styles';
 import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
 import stylesCreateGroupScreen from '../../../styles/stylesCreateGroupScreen';
+import {Icon} from '@rneui/themed';
 
 const CreateGroupScreen: React.FunctionComponent = () => {
   const {
@@ -30,11 +24,15 @@ const CreateGroupScreen: React.FunctionComponent = () => {
       <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Create a Group form</Text>
+            <Text style={generalStyles.defaultHeader}>Create a Group</Text>
           </View>
           <View style={stylesCreateGroupScreen.containerInputs}>
             <View style={stylesCreateGroupScreen.containerInputName}>
-              <Text accessibilityLabel="Group name:"> Group name: </Text>
+              <Text
+                accessibilityLabel="Group name:"
+                style={stylesCreateGroupScreen.styleTextInputTitle}>
+                Group name:
+              </Text>
               <TextInput
                 style={generalStyles.defaultInput}
                 value={name}
@@ -44,7 +42,11 @@ const CreateGroupScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={stylesCreateGroupScreen.containerInputDescription}>
-              <Text accessibilityLabel="Description:"> Description: </Text>
+              <Text
+                accessibilityLabel="Description:"
+                style={stylesCreateGroupScreen.styleTextInputTitle}>
+                Description:
+              </Text>
               <TextInput
                 style={stylesCreateGroupScreen.InputDescription}
                 value={description}
@@ -56,7 +58,11 @@ const CreateGroupScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={stylesCreateGroupScreen.containerInputCurrency}>
-              <Text accessibilityLabel="Currency:"> Currency: </Text>
+              <Text
+                accessibilityLabel="Currency:"
+                style={stylesCreateGroupScreen.styleTextInputTitle}>
+                Currency:
+              </Text>
               <View style={generalStyles.defaultInput}>
                 <Picker
                   value={currency}
@@ -73,25 +79,30 @@ const CreateGroupScreen: React.FunctionComponent = () => {
               </View>
             </View>
           </View>
-          <View style={stylesCreateGroupScreen.containerButton}>
-            <View style={generalStyles.defaultButton}>
-              <Button
-                title="Create group"
-                onPress={handleCreateGroupSubmit}
-                accessibilityLabel="Create group button"
-                testID="CreateGroupButton"
-              />
-            </View>
-          </View>
-          <View style={stylesCreateGroupScreen.containerButton}>
-            <View style={generalStyles.defaultButton}>
-              <Button
-                title="Go back"
-                onPress={handleGoBack}
-                accessibilityLabel="Go back button"
-                testID="GoBackButton"
-              />
-            </View>
+
+          <View style={stylesCreateGroupScreen.containerButtons}>
+            <Icon
+              name="plus-thick"
+              type="material-community"
+              reverse
+              reverseColor="white"
+              color="#2196F3"
+              onPress={handleCreateGroupSubmit}
+              accessibilityLabel="Create group button"
+              testID="CreateGroupButton"
+              size={40}
+            />
+            <Icon
+              name="close-thick"
+              type="material-community"
+              reverse
+              reverseColor="white"
+              color="#FF7F50"
+              onPress={handleGoBack}
+              accessibilityLabel="Cancel button"
+              testID="CancelButton"
+              size={40}
+            />
           </View>
         </View>
       </ScrollView>
