@@ -3,7 +3,7 @@ import generalStyles from './styles';
 
 const stylesAddExpenseScreen = StyleSheet.create({
   containerInputs: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
 
   containerInput: {
@@ -29,10 +29,8 @@ const stylesAddExpenseScreen = StyleSheet.create({
     alignItems: 'center',
   },
 
-  containerButton: {
-    ...generalStyles.defaultContainerButton,
-    marginTop: 5,
-    marginBottom: 10,
+  containerIcons: {
+    flexDirection: 'row',
   },
 });
 

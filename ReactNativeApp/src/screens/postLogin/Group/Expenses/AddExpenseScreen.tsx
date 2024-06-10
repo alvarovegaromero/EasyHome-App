@@ -1,11 +1,4 @@
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-  TextInput,
-} from 'react-native';
+import {SafeAreaView, ScrollView, Text, View, TextInput} from 'react-native';
 import generalStyles from '../../../../styles/styles';
 import useAddExpenseController from './hooks/useAddExpenseController';
 import Picker from 'react-native-picker-select';
@@ -13,6 +6,7 @@ import CheckBox from '@react-native-community/checkbox';
 import DatePicker from 'react-native-date-picker';
 import stylesAddExpenseScreen from '../../../../styles/stylesAddExpenseScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -36,12 +30,11 @@ const AddExpenseScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Add a Expense:</Text>
+            <Text style={generalStyles.defaultHeader}>Expense Addition</Text>
           </View>
 
           <View style={stylesAddExpenseScreen.containerInputs}>
             <View style={stylesAddExpenseScreen.containerInput}>
-              <Text accessibilityLabel="Concept">Concept:</Text>
               <TextInput
                 style={generalStyles.defaultInput}
                 value={concept}
@@ -49,11 +42,12 @@ const AddExpenseScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Concept of the expense"
                 autoCapitalize="none"
                 testID="ConceptInput"
+                placeholder="Concept of the expense"
+                placeholderTextColor={'#b3b3b3'}
               />
             </View>
 
             <View style={stylesAddExpenseScreen.containerInput}>
-              <Text accessibilityLabel="Amount">Amount:</Text>
               <TextInput
                 style={generalStyles.defaultInput}
                 value={amount}
@@ -61,13 +55,15 @@ const AddExpenseScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Amount of the expense"
                 keyboardType="numeric"
                 testID="AmountInput"
+                placeholder="Price of the expense"
+                placeholderTextColor={'#b3b3b3'}
               />
             </View>
 
             <View style={stylesAddExpenseScreen.containerInput}>
-              <Text accessibilityLabel="Payer">Payer:</Text>
               <View style={generalStyles.defaultInput}>
                 <Picker
+                  placeholder={{label: 'Select a payer', value: undefined}}
                   value={payer}
                   onValueChange={itemValue => setPayer(itemValue)}
                   items={groupUsers.map(payerOption => ({
@@ -109,7 +105,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
               </View>
             </View>
 
-            <View style={stylesAddExpenseScreen.containerInput}>
+            <View>
               <Text accessibilityLabel="Date paid">Date paid:</Text>
               <View
                 style={stylesAddExpenseScreen.datePickerInput}
@@ -125,27 +121,29 @@ const AddExpenseScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View>
-            <View style={stylesAddExpenseScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Create Expense"
-                  onPress={handleCreateExpenseSubmit}
-                  accessibilityLabel="Create expense button"
-                  testID="CreateExpenseButton"
-                />
-              </View>
-            </View>
-            <View style={stylesAddExpenseScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Cancel"
-                  onPress={navigateExpensesHomeScreen}
-                  accessibilityLabel="Cancel button"
-                  testID="CancelButton"
-                />
-              </View>
-            </View>
+          <View style={stylesAddExpenseScreen.containerIcons}>
+            <Icon
+              name="content-save"
+              type="material-community"
+              reverse
+              reverseColor="white"
+              color="#2196F3"
+              onPress={handleCreateExpenseSubmit}
+              accessibilityLabel="Create expense button"
+              testID="CreateExpenseButton"
+              size={40}
+            />
+            <Icon
+              name="close-thick"
+              type="material-community"
+              reverse
+              reverseColor="white"
+              color="#FF7F50"
+              onPress={navigateExpensesHomeScreen}
+              accessibilityLabel="Cancel button"
+              testID="CancelButton"
+              size={40}
+            />
           </View>
         </View>
       </ScrollView>
