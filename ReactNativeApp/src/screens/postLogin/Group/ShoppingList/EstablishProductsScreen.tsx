@@ -30,9 +30,7 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Establish Shopping List Screen
-            </Text>
+            <Text style={generalStyles.defaultHeader}>Establish Products</Text>
           </View>
 
           <Text style={generalStyles.defaultSubHeader}>

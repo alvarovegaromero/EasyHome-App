@@ -14,9 +14,7 @@ const TodaysChoresScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Today's Chores Screen
-            </Text>
+            <Text style={generalStyles.defaultHeader}>Today's Chores</Text>
           </View>
           <Text style={generalStyles.defaultSubHeader}>
             Today: {currentDate}

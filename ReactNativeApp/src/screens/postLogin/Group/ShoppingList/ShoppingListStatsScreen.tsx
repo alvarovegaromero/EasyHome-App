@@ -52,9 +52,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Shopping List Stats Screen
-            </Text>
+            <Text style={generalStyles.defaultHeader}>Shopping List Stats</Text>
           </View>
 
           <View>

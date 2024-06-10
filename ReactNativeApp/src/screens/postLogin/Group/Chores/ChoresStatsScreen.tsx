@@ -51,7 +51,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Chores Stats Screen</Text>
+            <Text style={generalStyles.defaultHeader}>Chores Stats</Text>
           </View>
 
           <View>

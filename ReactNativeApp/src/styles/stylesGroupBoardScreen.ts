@@ -4,10 +4,6 @@ import {Dimensions} from 'react-native';
 const screenHeight = Dimensions.get('window').height;
 
 const stylesGroupBoardScreen = StyleSheet.create({
-  containerHeader: {
-    marginTop: 30,
-  },
-
   containerButtonAndBoard: {
     marginTop: 30,
     marginBottom: 30,

@@ -36,8 +36,10 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
             <Text
               accessibilityLabel="Members"
               style={generalStyles.defaultHeader}>
-              Members:
+              Group Settings
             </Text>
+
+            <Text style={generalStyles.defaultSubHeader}>Members:</Text>
             <View style={stylesGroupSettingsScreen.containerUsers}>
               <ScrollView>
                 {groupUsers.map((user: User) => (

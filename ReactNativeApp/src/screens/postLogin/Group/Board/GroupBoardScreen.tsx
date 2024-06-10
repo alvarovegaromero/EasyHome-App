@@ -19,7 +19,7 @@ const GroupBoardScreen: React.FunctionComponent = () => {
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={stylesGroupBoardScreen.containerHeader}>
+          <View style={generalStyles.defaultContainerHeader}>
             <Text
               accessibilityLabel="Group Board"
               style={generalStyles.defaultHeader}>

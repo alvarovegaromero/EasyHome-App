@@ -26,9 +26,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Establish Chores Screen
-            </Text>
+            <Text style={generalStyles.defaultHeader}>Establish Chores</Text>
           </View>
 
           <Text style={generalStyles.defaultSubHeader}>

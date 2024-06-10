@@ -20,7 +20,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Chores Home Screen</Text>
+            <Text style={generalStyles.defaultHeader}>Chores</Text>
           </View>
 
           <View style={stylesChoresHomeScreen.containerIcons}>
