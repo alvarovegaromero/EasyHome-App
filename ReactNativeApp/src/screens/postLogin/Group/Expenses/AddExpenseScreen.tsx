@@ -28,7 +28,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
     date,
     setDate,
     handleCreateExpenseSubmit,
-    navigateExpensesHomeScreen,
+    navigateGroupExpensesScreen,
   } = useAddExpenseController();
 
   return (
@@ -140,7 +140,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Cancel"
-                  onPress={navigateExpensesHomeScreen}
+                  onPress={navigateGroupExpensesScreen}
                   accessibilityLabel="Cancel button"
                   testID="CancelButton"
                 />

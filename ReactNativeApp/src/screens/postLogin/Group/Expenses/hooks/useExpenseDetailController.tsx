@@ -105,7 +105,7 @@ const useExpenseDetailController = () => {
             throw new Error(`${response.status} - ${error}`);
           });
         } else {
-          navigateExpensesHomeScreen();
+          navigateGroupExpensesScreen();
         }
       })
       .catch(error => {
@@ -113,12 +113,12 @@ const useExpenseDetailController = () => {
       });
   };
 
-  const navigateExpensesHomeScreen = () => {
+  const navigateGroupExpensesScreen = () => {
     setExpenseId('');
     navigation.navigate('ExpensesHomeScreen' as never);
   };
 
-  return {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen};
+  return {expense, confirmAndDeleteExpense, navigateGroupExpensesScreen};
 };
 
 export default useExpenseDetailController;

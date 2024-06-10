@@ -5,7 +5,7 @@ import stylesExpenseDetailScreen from '../../../../styles/stylesExpenseDetailScr
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
-  const {expense, confirmAndDeleteExpense, navigateExpensesHomeScreen} =
+  const {expense, confirmAndDeleteExpense, navigateGroupExpensesScreen} =
     useExpenseDetailController();
 
   return (
@@ -143,7 +143,7 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
               <View style={generalStyles.defaultButton}>
                 <Button
                   title="Go back"
-                  onPress={navigateExpensesHomeScreen}
+                  onPress={navigateGroupExpensesScreen}
                   accessibilityLabel="Go back to the previous screen"
                   testID="goBackButton"
                 />
