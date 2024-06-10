@@ -3,6 +3,7 @@ import useExpensesHomeController from './hooks/useExpensesHomeController';
 import generalStyles from '../../../../styles/styles';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import stylesExpensesHomeScreen from '../../../../styles/stylesExpensesHomeScreen';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {
@@ -22,7 +23,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
             </Text>
           </View>
 
-          <View>
+          <View style={stylesExpensesHomeScreen.containerIcons}>
             <Icon
               name="plus-thick"
               reverse
