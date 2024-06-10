@@ -14,6 +14,7 @@ import GroupSettingsScreen from '../screens/postLogin/Group/GroupSettingsScreen'
 import GroupBoardScreen from '../screens/postLogin/Group/Board/GroupBoardScreen';
 import ExpensesHomeScreen from '../screens/postLogin/Group/Expenses/ExpensesHomeScreen';
 import GroupExpensesScreen from '../screens/postLogin/Group/Expenses/GroupExpensesScreen';
+import GroupDebtsScreen from '../screens/postLogin/Group/Expenses/GroupDebtsScreen';
 import AddExpenseScreen from '../screens/postLogin/Group/Expenses/AddExpenseScreen';
 import ExpenseDetailScreen from '../screens/postLogin/Group/Expenses/ExpenseDetailScreen';
 import ChoresHomeScreen from '../screens/postLogin/Group/Chores/ChoresHomeScreen';
@@ -57,6 +58,7 @@ const AuthStack = () => {
       />
       <Stack.Screen name="ExpensesHomeScreen" component={ExpensesHomeScreen} />
       <Stack.Screen name="AddExpenseScreen" component={AddExpenseScreen} />
+      <Stack.Screen name="GroupDebtsScreen" component={GroupDebtsScreen} />
       <Stack.Screen
         name="ExpenseDetailScreen"
         component={ExpenseDetailScreen}

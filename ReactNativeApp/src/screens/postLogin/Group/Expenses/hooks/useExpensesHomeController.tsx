@@ -8,7 +8,7 @@ const useExpensesHomeController = () => {
   };
 
   const navigateToGroupDebts = () => {
-    // navigation.navigate("GroupDebtsScreen" as never)
+    navigation.navigate('GroupDebtsScreen' as never);
   };
 
   const navigateToGroupExpenses = () => {

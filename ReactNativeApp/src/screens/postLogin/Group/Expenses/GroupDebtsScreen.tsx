@@ -3,7 +3,7 @@ import useGroupDebtsController from './hooks/useGroupDebtsController';
 import generalStyles from '../../../../styles/styles';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
-const GroupDebtscreen: React.FunctionComponent = () => {
+const GroupDebtsScreen: React.FunctionComponent = () => {
   const {} = useGroupDebtsController();
 
   return (
@@ -20,4 +20,4 @@ const GroupDebtscreen: React.FunctionComponent = () => {
   );
 };
 
-export default GroupDebtscreen;
+export default GroupDebtsScreen;
