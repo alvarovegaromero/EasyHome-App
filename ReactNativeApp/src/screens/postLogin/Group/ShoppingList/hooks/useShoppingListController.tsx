@@ -137,7 +137,7 @@ const useShoppingListController = () => {
         Authorization: `Token ${token}`,
       },
       body: JSON.stringify({
-        name: 'Product bought: ' + productToBuy!.product.name,
+        name: 'Bought: ' + productToBuy!.product.name,
         amount: Number(price),
         paid_by: id,
       }),

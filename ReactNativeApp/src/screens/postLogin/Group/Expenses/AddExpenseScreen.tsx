@@ -30,7 +30,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Expense Addition</Text>
+            <Text style={generalStyles.defaultHeader}>Add Expense</Text>
           </View>
 
           <View style={stylesAddExpenseScreen.containerInputs}>
@@ -131,7 +131,7 @@ const AddExpenseScreen: React.FunctionComponent = () => {
 
           <View style={stylesAddExpenseScreen.containerIcons}>
             <Icon
-              name="content-save"
+              name="plus-thick"
               type="material-community"
               reverse
               reverseColor="white"

@@ -113,12 +113,12 @@ const GroupHomeScreen: React.FunctionComponent = () => {
 
             <View style={stylesGroupHomeScreen.lastButtonContainer}>
               <Icon
-                name="arrow-left-circle"
+                name="account"
                 type="material-community"
                 reverse
                 reverseColor="white"
                 color="#2196F3"
-                accessibilityLabel="Navigate to Home"
+                accessibilityLabel="Navigate to User Home"
                 onPress={navigateHome}
                 size={60}
                 testID="GoBackToHomeButton"

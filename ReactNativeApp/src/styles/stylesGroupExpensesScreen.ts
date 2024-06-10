@@ -69,6 +69,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
     marginTop: 3,
     paddingLeft: 2,
     paddingRight: 2,
+    alignItems: 'center',
   },
 
   styleTitleColumn: {
@@ -90,6 +91,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     flex: 1,
+    alignItems: 'center',
   },
 
   expenseName: {
