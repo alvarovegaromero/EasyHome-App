@@ -4,8 +4,10 @@ import {BASE_URL} from '../../../../../config';
 import {Settlement} from '../types';
 import {useEffect, useState, useContext} from 'react';
 import {GroupContext} from '../../../../../contexts/GroupContext';
+import {UserContext} from '../../../../../contexts/UserContext';
 
 const useGroupDebtsController = () => {
+  const {id} = useContext(UserContext);
   const {groupId} = useContext(GroupContext);
 
   const [settlements, setSettlements] = useState<Settlement[]>([]);
@@ -103,7 +105,7 @@ const useGroupDebtsController = () => {
       });
   };
 
-  return {settlements, confirmAndSettleDebt};
+  return {userId: id, settlements, confirmAndSettleDebt};
 };
 
 export default useGroupDebtsController;

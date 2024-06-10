@@ -5,22 +5,36 @@ const stylesGroupExpensesScreen = StyleSheet.create({
   containerSettlementAndButton: {
     marginBottom: 7.5,
     flexDirection: 'row',
+    height: 40,
   },
 
   containerSettlementText: {
-    flex: 7,
+    flex: 8,
+    justifyContent: 'center',
+  },
+
+  styleTitleTextSettlement: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  styleTitleTextPay: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'right',
   },
 
   styleTextSettlement: {
-    fontSize: 15,
+    fontSize: 18,
+    marginLeft: 5,
   },
 
   containerSettlementButton: {
-    flex: 3,
+    flex: 1,
+    textAlign: 'right',
   },
 
   styleSettlementButtonText: {
-    textAlign: 'right',
     color: '#2d2dfc', // blue
   },
 
