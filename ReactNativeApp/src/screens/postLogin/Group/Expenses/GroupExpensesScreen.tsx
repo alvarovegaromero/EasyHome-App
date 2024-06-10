@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import useExpensesHomeController from './hooks/useExpenseHomeController';
+import useGroupExpensesController from './hooks/useGroupExpensesController';
 import generalStyles from '../../../../styles/styles';
-import stylesExpenseHomeScreen from '../../../../styles/stylesExpenseHomeScreen';
+import stylesGroupExpensesScreen from '../../../../styles/stylesGroupExpensesScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
-const ExpensesHomeScreen: React.FunctionComponent = () => {
+const GroupExpensesScreen: React.FunctionComponent = () => {
   const {
     settlements,
     confirmAndSettleDebt,
@@ -19,7 +19,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
     navigateDetailExpense,
     navigateAddExpense,
     navigateGroupHome,
-  } = useExpensesHomeController();
+  } = useGroupExpensesController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -37,16 +37,19 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
               {settlements.map((settlement, index) => (
                 <View
                   key={index}
-                  style={stylesExpenseHomeScreen.containerSettlementAndButton}>
-                  <View style={stylesExpenseHomeScreen.containerSettlementText}>
-                    <Text style={stylesExpenseHomeScreen.styleTextSettlement}>
+                  style={
+                    stylesGroupExpensesScreen.containerSettlementAndButton
+                  }>
+                  <View
+                    style={stylesGroupExpensesScreen.containerSettlementText}>
+                    <Text style={stylesGroupExpensesScreen.styleTextSettlement}>
                       {`● ${settlement.payer.username}`}
                       {` owes ${settlement.receiver.username}`}
                       {` ${settlement.amount}€`}
                     </Text>
                   </View>
                   <View
-                    style={stylesExpenseHomeScreen.containerSettlementButton}>
+                    style={stylesGroupExpensesScreen.containerSettlementButton}>
                     <TouchableOpacity
                       onPress={() => {
                         confirmAndSettleDebt(
@@ -57,7 +60,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                       }}>
                       <Text
                         style={
-                          stylesExpenseHomeScreen.styleSettlementButtonText
+                          stylesGroupExpensesScreen.styleSettlementButtonText
                         }>
                         Mark as Paid
                       </Text>
@@ -68,27 +71,27 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View style={stylesExpenseHomeScreen.containerExpensesAndTitle}>
+          <View style={stylesGroupExpensesScreen.containerExpensesAndTitle}>
             <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
-            <View style={stylesExpenseHomeScreen.containerExpenses}>
-              <View style={stylesExpenseHomeScreen.containerTitle}>
-                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
-                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+            <View style={stylesGroupExpensesScreen.containerExpenses}>
+              <View style={stylesGroupExpensesScreen.containerTitle}>
+                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
+                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
                     Concept
                   </Text>
                 </View>
-                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
-                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
+                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
                     Payer
                   </Text>
                 </View>
-                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
-                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
+                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
                     Amount
                   </Text>
                 </View>
-                <View style={stylesExpenseHomeScreen.containerTitleColumn}>
-                  <Text style={stylesExpenseHomeScreen.styleTitleColumn}>
+                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
+                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
                     Date bought
                   </Text>
                 </View>
@@ -97,35 +100,35 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                 {expenses.map((expense, index) => (
                   <TouchableOpacity
                     key={index}
-                    style={stylesExpenseHomeScreen.expenseItem}
+                    style={stylesGroupExpensesScreen.expenseItem}
                     onPress={() => {
                       navigateDetailExpense(expense.id.toString());
                     }}>
-                    <View style={stylesExpenseHomeScreen.expenseDetails}>
-                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                    <View style={stylesGroupExpensesScreen.expenseDetails}>
+                      <View style={stylesGroupExpensesScreen.containerExpense}>
                         <Text
                           style={
-                            stylesExpenseHomeScreen.expenseName
+                            stylesGroupExpensesScreen.expenseName
                           }>{`${expense.name}`}</Text>
                       </View>
 
-                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                      <View style={stylesGroupExpensesScreen.containerExpense}>
                         <Text
                           style={
-                            stylesExpenseHomeScreen.expensePayer
+                            stylesGroupExpensesScreen.expensePayer
                           }>{`${expense.paid_by.username}`}</Text>
                       </View>
 
-                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                      <View style={stylesGroupExpensesScreen.containerExpense}>
                         <Text
                           style={
-                            stylesExpenseHomeScreen.expenseAmount
+                            stylesGroupExpensesScreen.expenseAmount
                           }>{`${expense.amount}€`}</Text>
                       </View>
-                      <View style={stylesExpenseHomeScreen.containerExpense}>
+                      <View style={stylesGroupExpensesScreen.containerExpense}>
                         <Text
                           style={
-                            stylesExpenseHomeScreen.expenseDate
+                            stylesGroupExpensesScreen.expenseDate
                           }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
                       </View>
                     </View>
@@ -135,13 +138,13 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View style={stylesExpenseHomeScreen.containerButtons}>
-            <View style={stylesExpenseHomeScreen.containerButton}>
+          <View style={stylesGroupExpensesScreen.containerButtons}>
+            <View style={stylesGroupExpensesScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button title="Add Expense" onPress={navigateAddExpense} />
               </View>
             </View>
-            <View style={stylesExpenseHomeScreen.containerButton}>
+            <View style={stylesGroupExpensesScreen.containerButton}>
               <View style={generalStyles.defaultButton}>
                 <Button title="Go Back" onPress={navigateGroupHome} />
               </View>
@@ -154,4 +157,4 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
   );
 };
 
-export default ExpensesHomeScreen;
+export default GroupExpensesScreen;

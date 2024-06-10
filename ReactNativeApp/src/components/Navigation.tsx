@@ -12,7 +12,7 @@ import CreateGroupScreen from '../screens/postLogin/User/CreateGroupScreen';
 import GroupHomeScreen from '../screens/postLogin/Group/GroupHomeScreen';
 import GroupSettingsScreen from '../screens/postLogin/Group/GroupSettingsScreen';
 import GroupBoardScreen from '../screens/postLogin/Group/Board/GroupBoardScreen';
-import ExpensesHomeScreen from '../screens/postLogin/Group/Expenses/ExpensesHomeScreen';
+import ExpensesHomeScreen from '../screens/postLogin/Group/Expenses/GroupExpensesScreen';
 import AddExpenseScreen from '../screens/postLogin/Group/Expenses/AddExpenseScreen';
 import ExpenseDetailScreen from '../screens/postLogin/Group/Expenses/ExpenseDetailScreen';
 import ChoresHomeScreen from '../screens/postLogin/Group/Chores/ChoresHomeScreen';

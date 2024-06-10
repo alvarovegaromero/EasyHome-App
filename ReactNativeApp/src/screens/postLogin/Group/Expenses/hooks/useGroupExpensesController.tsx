@@ -7,7 +7,7 @@ import {GroupContext} from '../../../../../contexts/GroupContext';
 import {useNavigation} from '@react-navigation/native';
 import {ExpenseContext} from '../../../../../contexts/ExpenseContext';
 
-const useExpensesHomeController = () => {
+const useGroupExpensesController = () => {
   const navigation = useNavigation();
 
   const {groupId} = useContext(GroupContext);
@@ -166,4 +166,4 @@ const useExpensesHomeController = () => {
   };
 };
 
-export default useExpensesHomeController;
+export default useGroupExpensesController;

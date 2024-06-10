@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import generalStyles from './styles';
 
-const stylesExpenseHomeScreen = StyleSheet.create({
+const stylesGroupExpensesScreen = StyleSheet.create({
   containerSettlementAndButton: {
     marginBottom: 7.5,
     flexDirection: 'row',
@@ -114,4 +114,4 @@ const stylesExpenseHomeScreen = StyleSheet.create({
   },
 });
 
-export default stylesExpenseHomeScreen;
+export default stylesGroupExpensesScreen;
