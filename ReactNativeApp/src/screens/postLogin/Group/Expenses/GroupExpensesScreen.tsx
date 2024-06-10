@@ -1,5 +1,4 @@
 import {
-  Button,
   SafeAreaView,
   ScrollView,
   Text,
@@ -12,63 +11,14 @@ import stylesGroupExpensesScreen from '../../../../styles/stylesGroupExpensesScr
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 
 const GroupExpensesScreen: React.FunctionComponent = () => {
-  const {
-    settlements,
-    confirmAndSettleDebt,
-    expenses,
-    navigateDetailExpense,
-    navigateAddExpense,
-    navigateExpensesHome,
-  } = useGroupExpensesController();
+  const {expenses, navigateDetailExpense} = useGroupExpensesController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Expense Distribution
-            </Text>
-          </View>
-
-          <View>
-            <Text style={generalStyles.defaultSubHeader}>Settlements</Text>
-            <View>
-              {settlements.map((settlement, index) => (
-                <View
-                  key={index}
-                  style={
-                    stylesGroupExpensesScreen.containerSettlementAndButton
-                  }>
-                  <View
-                    style={stylesGroupExpensesScreen.containerSettlementText}>
-                    <Text style={stylesGroupExpensesScreen.styleTextSettlement}>
-                      {`● ${settlement.payer.username}`}
-                      {` owes ${settlement.receiver.username}`}
-                      {` ${settlement.amount}€`}
-                    </Text>
-                  </View>
-                  <View
-                    style={stylesGroupExpensesScreen.containerSettlementButton}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        confirmAndSettleDebt(
-                          settlement.payer.id.toString(),
-                          settlement.receiver.id.toString(),
-                          settlement.amount,
-                        );
-                      }}>
-                      <Text
-                        style={
-                          stylesGroupExpensesScreen.styleSettlementButtonText
-                        }>
-                        Mark as Paid
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ))}
-            </View>
+            <Text style={generalStyles.defaultHeader}>Groups's Expenses</Text>
           </View>
 
           <View style={stylesGroupExpensesScreen.containerExpensesAndTitle}>
@@ -135,19 +85,6 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                   </TouchableOpacity>
                 ))}
               </ScrollView>
-            </View>
-          </View>
-
-          <View style={stylesGroupExpensesScreen.containerButtons}>
-            <View style={stylesGroupExpensesScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button title="Add Expense" onPress={navigateAddExpense} />
-              </View>
-            </View>
-            <View style={stylesGroupExpensesScreen.containerButton}>
-              <View style={generalStyles.defaultButton}>
-                <Button title="Go Back" onPress={navigateExpensesHome} />
-              </View>
             </View>
           </View>
         </View>
