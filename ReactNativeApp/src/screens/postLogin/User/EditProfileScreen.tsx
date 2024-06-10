@@ -42,7 +42,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             <View style={generalStyles.defaultContainerTextAndInput}>
               <Text
                 accessibilityLabel="Username:"
-                style={stylesProfileScreen.styleTextTitleSection}>
+                style={stylesProfileScreen.styleTextEditTitleSection}>
                 Username:
               </Text>
               <TextInput
@@ -55,7 +55,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
               <Text
-                style={stylesProfileScreen.styleTextTitleSection}
+                style={stylesProfileScreen.styleTextEditTitleSection}
                 accessibilityLabel="Email:">
                 Email:
               </Text>
@@ -69,7 +69,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
               <Text
-                style={stylesProfileScreen.styleTextTitleSection}
+                style={stylesProfileScreen.styleTextEditTitleSection}
                 accessibilityLabel="First Name (optional):">
                 First Name (optional):
               </Text>
@@ -83,7 +83,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
               <Text
-                style={stylesProfileScreen.styleTextTitleSection}
+                style={stylesProfileScreen.styleTextEditTitleSection}
                 accessibilityLabel="Last Name (optional):">
                 Last Name (optional):
               </Text>
@@ -97,7 +97,7 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
             </View>
           </View>
 
-          <View style={stylesProfileScreen.containerIcons}>
+          <View style={stylesProfileScreen.containerEditIcons}>
             <View>
               <Icon
                 name="content-save"

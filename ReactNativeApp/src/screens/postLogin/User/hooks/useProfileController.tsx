@@ -64,16 +64,11 @@ const useProfileController = () => {
     });
   };
 
-  const handleGoBack = () => {
-    navigation.navigate('HomeScreen' as never);
-  };
-
   return {
     username,
     email,
     firstName,
     lastName,
-    handleGoBack,
     navigateEditProfileScreen,
   };
 };
