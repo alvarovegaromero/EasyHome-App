@@ -29,6 +29,18 @@ const stylesProfileScreen = StyleSheet.create({
   containerEditProfileButton: {
     marginTop: 20,
   },
+
+  styleTextTitleSection: {
+    fontSize: 18,
+    //fontWeight: 'bold',
+    marginBottom: 2,
+    marginTop: 5,
+  },
+
+  containerIcons: {
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
 });
 
 export default stylesProfileScreen;

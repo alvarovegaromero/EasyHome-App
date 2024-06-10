@@ -18,6 +18,7 @@ const generalStyles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,
+    fontSize: 16,
   },
 
   defaultLateralMargins: {
