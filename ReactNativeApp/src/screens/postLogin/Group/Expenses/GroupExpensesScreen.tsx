@@ -9,6 +9,7 @@ import useGroupExpensesController from './hooks/useGroupExpensesController';
 import generalStyles from '../../../../styles/styles';
 import stylesGroupExpensesScreen from '../../../../styles/stylesGroupExpensesScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import {Icon} from '@rneui/themed';
 
 const GroupExpensesScreen: React.FunctionComponent = () => {
   const {expenses, navigateDetailExpense} = useGroupExpensesController();
@@ -18,11 +19,10 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <View style={generalStyles.defaultContainerScreen}>
           <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Groups's Expenses</Text>
+            <Text style={generalStyles.defaultHeader}>Group's Expenses</Text>
           </View>
 
           <View style={stylesGroupExpensesScreen.containerExpensesAndTitle}>
-            <Text style={generalStyles.defaultSubHeader}>Expenses</Text>
             <View style={stylesGroupExpensesScreen.containerExpenses}>
               <View style={stylesGroupExpensesScreen.containerTitle}>
                 <View style={stylesGroupExpensesScreen.containerTitleColumn}>
@@ -43,6 +43,11 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                 <View style={stylesGroupExpensesScreen.containerTitleColumn}>
                   <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
                     Date bought
+                  </Text>
+                </View>
+                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
+                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
+                    Access
                   </Text>
                 </View>
               </View>
@@ -80,6 +85,16 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                           style={
                             stylesGroupExpensesScreen.expenseDate
                           }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
+                      </View>
+                      <View
+                        style={stylesGroupExpensesScreen.containerTitleColumn}>
+                        <Icon
+                          name="chevron-right"
+                          type="material-community"
+                          color="#2196F3"
+                          accessibilityLabel="View detail"
+                          size={40}
+                        />
                       </View>
                     </View>
                   </TouchableOpacity>

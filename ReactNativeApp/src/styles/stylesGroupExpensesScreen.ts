@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
 import generalStyles from './styles';
+import {Dimensions} from 'react-native';
+
+const screenHeight = Dimensions.get('window').height;
 
 const stylesGroupExpensesScreen = StyleSheet.create({
   containerSettlementAndButton: {
@@ -44,7 +47,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 10,
-    height: 300,
+    height: screenHeight * 0.7,
   },
 
   expenseItem: {
