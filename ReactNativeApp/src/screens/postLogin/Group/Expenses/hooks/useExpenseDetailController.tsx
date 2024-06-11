@@ -6,11 +6,13 @@ import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 import {DetailedExpense} from '../types';
 import {useNavigation} from '@react-navigation/native';
+import {UserContext} from '../../../../../contexts/UserContext';
 
 const useExpenseDetailController = () => {
   const navigation = useNavigation();
 
-  const {groupId} = useContext(GroupContext);
+  const {id} = useContext(UserContext);
+  const {groupId, isOwner} = useContext(GroupContext);
   const {expenseId, setExpenseId} = useContext(ExpenseContext);
 
   const [expense, setExpense] = useState<DetailedExpense>();
@@ -120,7 +122,7 @@ const useExpenseDetailController = () => {
     navigation.navigate('GroupExpensesScreen' as never);
   };
 
-  return {expense, confirmAndDeleteExpense};
+  return {expense, userId: id, isOwner, confirmAndDeleteExpense};
 };
 
 export default useExpenseDetailController;

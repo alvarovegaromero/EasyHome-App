@@ -6,7 +6,8 @@ import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
-  const {expense, confirmAndDeleteExpense} = useExpenseDetailController();
+  const {expense, userId, isOwner, confirmAndDeleteExpense} =
+    useExpenseDetailController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -115,32 +116,34 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
             </View>
           </View>
 
-          <View style={stylesExpenseDetailScreen.containerButtons}>
-            <Icon
-              name="pencil"
-              type="material-community"
-              disabled={true}
-              reverse
-              reverseColor="white"
-              color="#2196F3"
-              accessibilityLabel="Edit the expense"
-              onPress={() => {}}
-              size={40}
-              testID="editButton"
-            />
+          {expense && (expense.paid_by.id.toString() === userId || isOwner) && (
+            <View style={stylesExpenseDetailScreen.containerButtons}>
+              <Icon
+                name="pencil"
+                type="material-community"
+                disabled={true}
+                reverse
+                reverseColor="white"
+                color="#2196F3"
+                accessibilityLabel="Edit the expense"
+                onPress={() => {}}
+                size={40}
+                testID="editButton"
+              />
 
-            <Icon
-              name="delete"
-              type="material-community"
-              reverse
-              reverseColor="white"
-              color="#FF7F50"
-              accessibilityLabel="Delete the expense"
-              onPress={confirmAndDeleteExpense}
-              size={40}
-              testID="deleteButton"
-            />
-          </View>
+              <Icon
+                name="delete"
+                type="material-community"
+                reverse
+                reverseColor="white"
+                color="#FF7F50"
+                accessibilityLabel="Delete the expense"
+                onPress={confirmAndDeleteExpense}
+                size={40}
+                testID="deleteButton"
+              />
+            </View>
+          )}
         </View>
       </ScrollView>
       <GroupFooter activeSection="Expenses" />
