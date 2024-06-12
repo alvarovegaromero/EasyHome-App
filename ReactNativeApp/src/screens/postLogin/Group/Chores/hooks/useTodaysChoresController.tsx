@@ -3,7 +3,6 @@ import {GroupContext} from '../../../../../contexts/GroupContext';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {getCurrentDate} from '../../../../../utils/utils';
 
 const useTodaysChoresController = () => {
   const {groupId} = useContext(GroupContext);
@@ -101,7 +100,6 @@ const useTodaysChoresController = () => {
 
   return {
     assignableTasks,
-    currentDate: getCurrentDate(),
     confirmAndCompleteTask,
   };
 };

@@ -7,18 +7,13 @@ import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import Header from '../../../../utils/Header/Header';
 
 const TodaysChoresScreen: React.FunctionComponent = () => {
-  const {assignableTasks, currentDate, confirmAndCompleteTask} =
-    useTodaysChoresController();
+  const {assignableTasks, confirmAndCompleteTask} = useTodaysChoresController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
         <Header secctionText="Today's Chores" />
         <View style={generalStyles.defaultContainerScreen}>
-          <Text style={generalStyles.defaultSubHeader}>
-            Today: {currentDate}
-          </Text>
-
           <View style={stylesTodaysChoresScreen.containerTasks}>
             {assignableTasks === undefined ? (
               <Text>Loading asignable tasks...</Text>
