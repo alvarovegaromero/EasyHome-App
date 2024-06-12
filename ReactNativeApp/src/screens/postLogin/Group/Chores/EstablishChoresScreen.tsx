@@ -6,6 +6,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import generalStyles from '../../../../styles/styles';
 import stylesEstablishChoresScreen from '../../../../styles/stylesEstablishChoresScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -24,11 +25,8 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Establish Chores" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Establish Chores</Text>
-          </View>
-
           <Text style={generalStyles.defaultSubHeader}>
             Current tasks added to the system:
           </Text>

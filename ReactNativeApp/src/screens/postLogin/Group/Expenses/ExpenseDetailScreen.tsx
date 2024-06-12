@@ -4,6 +4,7 @@ import generalStyles from '../../../../styles/styles';
 import stylesExpenseDetailScreen from '../../../../styles/stylesExpenseDetailScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../../utils/Header/Header';
 
 const ExpenseDetailScreen: React.FunctionComponent = () => {
   const {expense, userId, isOwner, confirmAndDeleteExpense} =
@@ -12,15 +13,8 @@ const ExpenseDetailScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Expense details" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text
-              accessibilityLabel="Expense details:"
-              style={generalStyles.defaultHeader}>
-              Expense details
-            </Text>
-          </View>
-
           <View>
             <View style={stylesExpenseDetailScreen.containerTitleAndText}>
               <Text

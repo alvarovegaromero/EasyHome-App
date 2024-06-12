@@ -1,10 +1,11 @@
-import {ScrollView, SafeAreaView, Text, View} from 'react-native';
+import {ScrollView, SafeAreaView, View} from 'react-native';
 import useShoppingListHomeController from './hooks/useShoppingListHomeController';
 import generalStyles from '../../../../styles/styles';
 import {Icon} from '@rneui/themed';
 //using same styles as in ChoresHomeScreen as it follows the same pattern
 import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const ShoppingListHomeScreen: React.FunctionComponent = () => {
   const {
@@ -18,11 +19,8 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Shopping List Home" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Shopping List</Text>
-          </View>
-
           <View style={stylesChoresHomeScreen.containerIcons}>
             <View>
               <Icon

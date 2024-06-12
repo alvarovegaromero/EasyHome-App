@@ -5,6 +5,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {Icon} from '@rneui/themed';
 import stylesEstablishProductsScreen from '../../../../styles/stylesEstablishProductsScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const EstablishProductsScreen: React.FunctionComponent = () => {
   const {
@@ -28,11 +29,8 @@ const EstablishProductsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Establish Products" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Establish Products</Text>
-          </View>
-
           <Text style={generalStyles.defaultSubHeader}>
             Current products added to the system:
           </Text>

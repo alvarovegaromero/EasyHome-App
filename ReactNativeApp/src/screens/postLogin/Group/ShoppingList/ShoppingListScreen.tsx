@@ -5,6 +5,7 @@ import stylesShoppingListScreen from '../../../../styles/stylesShoppingListScree
 import {Icon} from '@rneui/themed';
 import Dialog from 'react-native-dialog';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const ShoppingListScreen: React.FunctionComponent = () => {
   const {
@@ -19,11 +20,8 @@ const ShoppingListScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Shopping List" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Shopping List</Text>
-          </View>
-
           <View style={stylesShoppingListScreen.containerProducts}>
             {productsMarkedToBuy === undefined ? (
               <Text>Loading products marked to buy...</Text>

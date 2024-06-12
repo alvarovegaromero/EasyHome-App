@@ -4,6 +4,7 @@ import generalStyles from '../../../styles/styles';
 import stylesGroupHomeScreen from '../../../styles/stylesGroupHomeScreen';
 import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../utils/Header/Header';
 
 const GroupHomeScreen: React.FunctionComponent = () => {
   const {
@@ -19,8 +20,8 @@ const GroupHomeScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText={groupName} />
         <View style={generalStyles.defaultContainerScreen}>
-          <Text style={stylesGroupHomeScreen.headerText}>{groupName}</Text>
           <Text style={generalStyles.defaultSubHeader}>
             What do you want to do today?
           </Text>

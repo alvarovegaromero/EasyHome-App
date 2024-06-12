@@ -4,6 +4,7 @@ import generalStyles from '../../../../styles/styles';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import stylesGroupExpensesScreen from '../../../../styles/stylesGroupExpensesScreen';
 import {Icon} from '@rneui/themed';
+import Header from '../../../../utils/Header/Header';
 
 const GroupDebtsScreen: React.FunctionComponent = () => {
   const {userId, settlements, confirmAndSettleDebt} = useGroupDebtsController();
@@ -11,11 +12,8 @@ const GroupDebtsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Group's Debts" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Group's debts</Text>
-          </View>
-
           <View>
             <View
               style={stylesGroupExpensesScreen.containerSettlementAndButton}>

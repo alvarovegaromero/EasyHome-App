@@ -5,6 +5,7 @@ import useCreateGroupController from './hooks/useCreateGroupController';
 import Picker from 'react-native-picker-select';
 import stylesCreateGroupScreen from '../../../styles/stylesCreateGroupScreen';
 import {Icon} from '@rneui/themed';
+import Header from '../../../utils/Header/Header';
 
 const CreateGroupScreen: React.FunctionComponent = () => {
   const {
@@ -22,10 +23,8 @@ const CreateGroupScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView contentContainerStyle={generalStyles.defaultScrollView}>
+        <Header secctionText="Create Group" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Create a Group</Text>
-          </View>
           <View style={stylesCreateGroupScreen.containerInputs}>
             <View style={stylesCreateGroupScreen.containerInputName}>
               <Text

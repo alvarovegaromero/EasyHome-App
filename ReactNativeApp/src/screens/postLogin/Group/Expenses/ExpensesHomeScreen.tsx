@@ -1,9 +1,10 @@
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import useExpensesHomeController from './hooks/useExpensesHomeController';
 import generalStyles from '../../../../styles/styles';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
 import stylesExpensesHomeScreen from '../../../../styles/stylesExpensesHomeScreen';
+import Header from '../../../../utils/Header/Header';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
   const {
@@ -16,13 +17,8 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Expense Distribution Home" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>
-              Expense Distribution
-            </Text>
-          </View>
-
           <View style={stylesExpensesHomeScreen.containerIcons}>
             <Icon
               name="plus-thick"

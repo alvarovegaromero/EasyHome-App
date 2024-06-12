@@ -4,6 +4,7 @@ import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
 import stylesTodaysChoresScreen from '../../../../styles/stylesTodaysChoresScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const TodaysChoresScreen: React.FunctionComponent = () => {
   const {assignableTasks, currentDate, confirmAndCompleteTask} =
@@ -12,10 +13,8 @@ const TodaysChoresScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Today's Chores" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Today's Chores</Text>
-          </View>
           <Text style={generalStyles.defaultSubHeader}>
             Today: {currentDate}
           </Text>

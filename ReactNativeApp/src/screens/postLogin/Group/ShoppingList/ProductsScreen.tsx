@@ -4,6 +4,7 @@ import useProductsController from './hooks/useProductsController';
 import stylesProductsScreen from '../../../../styles/stylesProductsScreen';
 import {Icon} from '@rneui/themed';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const ProductsScreen: React.FunctionComponent = () => {
   const {products, confirmAndMarkProductToBuy} = useProductsController();
@@ -11,11 +12,8 @@ const ProductsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Product List" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Product List</Text>
-          </View>
-
           <View style={stylesProductsScreen.containerProducts}>
             {products === undefined ? (
               <Text>Loading products...</Text>

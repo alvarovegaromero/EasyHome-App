@@ -4,6 +4,7 @@ import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
 import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 const ChoresHomeScreen: React.FunctionComponent = () => {
   const {
@@ -18,11 +19,8 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Chores Home" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Chores</Text>
-          </View>
-
           <View style={stylesChoresHomeScreen.containerIcons}>
             {isOwner && (
               <View>
@@ -42,8 +40,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
             {!isActivated && (
               <View>
                 <Text style={stylesChoresHomeScreen.styleTextNoActivated}>
-                  {' '}
-                  The owner must start the process first!{' '}
+                  The owner must start the process first!
                 </Text>
               </View>
             )}

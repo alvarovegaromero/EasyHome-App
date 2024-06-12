@@ -4,6 +4,7 @@ import useGroupBoardController from './hooks/useGroupBoardController';
 import stylesGroupBoardScreen from '../../../../styles/stylesGroupBoardScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../../utils/Header/Header';
 
 const GroupBoardScreen: React.FunctionComponent = () => {
   const {
@@ -18,14 +19,8 @@ const GroupBoardScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Group Board" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text
-              accessibilityLabel="Group Board"
-              style={generalStyles.defaultHeader}>
-              Group Board
-            </Text>
-          </View>
           <View style={stylesGroupBoardScreen.containerButtonAndBoard}>
             <View style={stylesGroupBoardScreen.containerBoard}>
               <ScrollView>

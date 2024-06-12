@@ -12,6 +12,7 @@ import stylesGroupSettingsScreen from '../../../styles/stylesGroupSettingsScreen
 import {User} from './types';
 import GroupFooter from '../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../utils/Header/Header';
 
 const GroupSettingsScreen: React.FunctionComponent = () => {
   const {
@@ -31,14 +32,9 @@ const GroupSettingsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Group Settings" />
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesGroupSettingsScreen.containerUsersPart}>
-            <Text
-              accessibilityLabel="Members"
-              style={generalStyles.defaultHeader}>
-              Group Settings
-            </Text>
-
             <Text style={generalStyles.defaultSubHeader}>Members:</Text>
             <View style={stylesGroupSettingsScreen.containerUsers}>
               <ScrollView>

@@ -10,6 +10,7 @@ import generalStyles from '../../../../styles/styles';
 import stylesGroupExpensesScreen from '../../../../styles/stylesGroupExpensesScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../../utils/Header/Header';
 
 const GroupExpensesScreen: React.FunctionComponent = () => {
   const {expenses, navigateDetailExpense} = useGroupExpensesController();
@@ -17,11 +18,8 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Group's Expenses" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Group's Expenses</Text>
-          </View>
-
           <View style={stylesGroupExpensesScreen.containerExpensesAndTitle}>
             <View style={stylesGroupExpensesScreen.containerExpenses}>
               <View style={stylesGroupExpensesScreen.containerTitle}>

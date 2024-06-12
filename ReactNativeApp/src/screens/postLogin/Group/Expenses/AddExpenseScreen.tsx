@@ -7,6 +7,7 @@ import DatePicker from 'react-native-date-picker';
 import stylesAddExpenseScreen from '../../../../styles/stylesAddExpenseScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
+import Header from '../../../../utils/Header/Header';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -28,11 +29,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Add Expense" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Add Expense</Text>
-          </View>
-
           <View style={stylesAddExpenseScreen.containerInputs}>
             <View style={stylesAddExpenseScreen.containerInput}>
               <TextInput

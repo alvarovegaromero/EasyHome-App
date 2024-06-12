@@ -5,6 +5,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {MyStackParamsList} from '../../../components/types';
 import useEditProfileController from './hooks/useEditProfileController';
 import {Icon} from '@rneui/themed';
+import Header from '../../../utils/Header/Header';
 
 type props = StackScreenProps<MyStackParamsList, 'EditProfileScreen'>;
 
@@ -31,70 +32,63 @@ const EditProfileScreen: React.FunctionComponent<props> = ({route}: props) => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Edit My Profile" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
+          <View style={generalStyles.defaultContainerTextAndInput}>
             <Text
-              accessibilityLabel="My Profile:"
-              style={generalStyles.defaultHeader}>
-              Edit My Profile:
+              accessibilityLabel="Username:"
+              style={stylesProfileScreen.styleTextEditTitleSection}>
+              Username:
             </Text>
-
-            <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text
-                accessibilityLabel="Username:"
-                style={stylesProfileScreen.styleTextEditTitleSection}>
-                Username:
-              </Text>
-              <TextInput
-                style={generalStyles.defaultInput}
-                value={username}
-                onChangeText={setUsername}
-                accessibilityLabel={`Username input field. Value ${username}`}
-                testID="UsernameInput"
-              />
-            </View>
-            <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text
-                style={stylesProfileScreen.styleTextEditTitleSection}
-                accessibilityLabel="Email:">
-                Email:
-              </Text>
-              <TextInput
-                style={generalStyles.defaultInput}
-                value={email}
-                onChangeText={setEmail}
-                accessibilityLabel={`Email input field. Value ${email}`}
-                testID="EmailInput"
-              />
-            </View>
-            <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text
-                style={stylesProfileScreen.styleTextEditTitleSection}
-                accessibilityLabel="First Name (optional):">
-                First Name (optional):
-              </Text>
-              <TextInput
-                style={generalStyles.defaultInput}
-                value={firstName}
-                onChangeText={setFirstName}
-                accessibilityLabel={`First Name input field. Value ${firstName}`}
-                testID="FirstNameInput"
-              />
-            </View>
-            <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text
-                style={stylesProfileScreen.styleTextEditTitleSection}
-                accessibilityLabel="Last Name (optional):">
-                Last Name (optional):
-              </Text>
-              <TextInput
-                style={generalStyles.defaultInput}
-                value={lastName}
-                onChangeText={setLastName}
-                accessibilityLabel={`Last Name input field. Value ${lastName}`}
-                testID="LastNameInput"
-              />
-            </View>
+            <TextInput
+              style={generalStyles.defaultInput}
+              value={username}
+              onChangeText={setUsername}
+              accessibilityLabel={`Username input field. Value ${username}`}
+              testID="UsernameInput"
+            />
+          </View>
+          <View style={generalStyles.defaultContainerTextAndInput}>
+            <Text
+              style={stylesProfileScreen.styleTextEditTitleSection}
+              accessibilityLabel="Email:">
+              Email:
+            </Text>
+            <TextInput
+              style={generalStyles.defaultInput}
+              value={email}
+              onChangeText={setEmail}
+              accessibilityLabel={`Email input field. Value ${email}`}
+              testID="EmailInput"
+            />
+          </View>
+          <View style={generalStyles.defaultContainerTextAndInput}>
+            <Text
+              style={stylesProfileScreen.styleTextEditTitleSection}
+              accessibilityLabel="First Name (optional):">
+              First Name (optional):
+            </Text>
+            <TextInput
+              style={generalStyles.defaultInput}
+              value={firstName}
+              onChangeText={setFirstName}
+              accessibilityLabel={`First Name input field. Value ${firstName}`}
+              testID="FirstNameInput"
+            />
+          </View>
+          <View style={generalStyles.defaultContainerTextAndInput}>
+            <Text
+              style={stylesProfileScreen.styleTextEditTitleSection}
+              accessibilityLabel="Last Name (optional):">
+              Last Name (optional):
+            </Text>
+            <TextInput
+              style={generalStyles.defaultInput}
+              value={lastName}
+              onChangeText={setLastName}
+              accessibilityLabel={`Last Name input field. Value ${lastName}`}
+              testID="LastNameInput"
+            />
           </View>
 
           <View style={stylesProfileScreen.containerEditIcons}>

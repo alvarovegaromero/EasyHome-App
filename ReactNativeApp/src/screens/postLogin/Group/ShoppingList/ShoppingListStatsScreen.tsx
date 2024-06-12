@@ -7,6 +7,7 @@ import DatePicker from 'react-native-date-picker';
 import Picker from 'react-native-picker-select';
 import {PieChart} from 'react-native-gifted-charts';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 type CenterLabelProps = {
   totalBoughtProducts: number;
@@ -50,11 +51,8 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Shopping List Stats" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Shopping List Stats</Text>
-          </View>
-
           <View>
             <Text style={generalStyles.defaultSubHeader}>
               Select the start and end date to filter:

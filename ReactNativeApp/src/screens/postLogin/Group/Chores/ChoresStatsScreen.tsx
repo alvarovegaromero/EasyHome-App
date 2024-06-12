@@ -7,6 +7,7 @@ import Picker from 'react-native-picker-select';
 import generalStyles from '../../../../styles/styles';
 import stylesChoreStatsScreen from '../../../../styles/stylesChoreStatsScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
+import Header from '../../../../utils/Header/Header';
 
 type CenterLabelProps = {
   totalAssignableTasks: number;
@@ -49,11 +50,8 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="Chores Stats" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text style={generalStyles.defaultHeader}>Chores Stats</Text>
-          </View>
-
           <View>
             <Text style={generalStyles.defaultSubHeader}>
               Select the start and end date to filter:

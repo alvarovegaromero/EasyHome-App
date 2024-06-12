@@ -4,6 +4,7 @@ import generalStyles from '../../../styles/styles';
 import stylesProfileScreen from '../../../styles/stylesProfileScreens';
 import useProfileController from './hooks/useProfileController';
 import {Icon} from '@rneui/themed';
+import Header from '../../../utils/Header/Header';
 
 const ProfileScreen: React.FunctionComponent = () => {
   const {username, email, firstName, lastName, navigateEditProfileScreen} =
@@ -12,15 +13,8 @@ const ProfileScreen: React.FunctionComponent = () => {
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
       <ScrollView style={generalStyles.defaultScrollView}>
+        <Header secctionText="My Profile" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={generalStyles.defaultContainerHeader}>
-            <Text
-              accessibilityLabel="My Profile:"
-              style={generalStyles.defaultHeader}>
-              My Profile:
-            </Text>
-          </View>
-
           <View style={stylesProfileScreen.containerProfileScreen}>
             <View style={stylesProfileScreen.containerSection}>
               <Text
