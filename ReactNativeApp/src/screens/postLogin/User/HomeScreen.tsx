@@ -100,7 +100,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 testID="CreateGroupButton"
               />
               <Icon
-                name="account-multiple-plus"
+                name="link-variant"
                 type="material-community"
                 reverse
                 reverseColor="white"
