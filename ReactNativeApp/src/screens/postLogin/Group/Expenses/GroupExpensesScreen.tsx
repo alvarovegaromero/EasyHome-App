@@ -60,9 +60,9 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                     <View style={stylesGroupExpensesScreen.expenseDetails}>
                       <View style={stylesGroupExpensesScreen.containerExpense}>
                         <Text
-                          style={
-                            stylesGroupExpensesScreen.expenseName
-                          }>{`${expense.name}`}</Text>
+                          style={stylesGroupExpensesScreen.expenseName}
+                          numberOfLines={2}
+                          ellipsizeMode="tail">{`${expense.name}`}</Text>
                       </View>
 
                       <View style={stylesGroupExpensesScreen.containerExpense}>
