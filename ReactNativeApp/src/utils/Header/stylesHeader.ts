@@ -9,6 +9,7 @@ const stylesHeader = StyleSheet.create({
     backgroundColor: '#2196F3',
     height: 60,
     marginBottom: 10,
+    paddingRight: 10,
   },
 
   iconArrowBack: {
@@ -18,6 +19,7 @@ const stylesHeader = StyleSheet.create({
 
   styleTextHeader: {
     ...generalStyles.defaultHeader,
+    flex: 1,
     color: 'white',
   },
 });

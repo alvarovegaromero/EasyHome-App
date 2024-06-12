@@ -21,7 +21,12 @@ const Header: React.FunctionComponent<HeaderProps> = ({secctionText}) => {
         style={stylesHeader.iconArrowBack}
         onPress={navigateBack}
       />
-      <Text style={stylesHeader.styleTextHeader}>{secctionText}</Text>
+      <Text
+        style={stylesHeader.styleTextHeader}
+        numberOfLines={1}
+        ellipsizeMode="tail">
+        {secctionText}
+      </Text>
     </View>
   );
 };
