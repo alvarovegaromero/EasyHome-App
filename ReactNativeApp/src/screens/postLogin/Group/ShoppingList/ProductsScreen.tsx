@@ -55,7 +55,7 @@ const ProductsScreen: React.FunctionComponent = () => {
                               name="check-circle-outline"
                               type="material-community"
                               color="#2196F3"
-                              accessibilityLabel="Marked to buy the product"
+                              accessibilityLabel="Mark to buy the product"
                               onPress={() => {
                                 confirmAndMarkProductToBuy(product.id);
                               }}
