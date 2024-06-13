@@ -47,7 +47,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Navigate to Shopping List"
                 onPress={navigateShoppingList}
                 size={60}
-                testID="ManageShoppingListsButton"
+                testID="ManageShoppingListsIcon"
               />
             </View>
 
@@ -61,7 +61,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Navigate to Household Chores"
                 onPress={navigateChores}
                 size={60}
-                testID="HouseholdChoresButton"
+                testID="HouseholdChoresIcon"
               />
             </View>
 
@@ -76,7 +76,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 onPress={() => {}}
                 size={60}
                 disabled={true}
-                testID="ViewThePantryButton"
+                testID="ViewThePantryIcon"
               />
             </View>
 
@@ -90,7 +90,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Navigate to Group Board"
                 onPress={navigateBoard}
                 size={60}
-                testID="GroupBoardButton"
+                testID="GroupBoardIcon"
               />
             </View>
 
@@ -104,7 +104,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Navigate to Group Settings"
                 onPress={navigateSettings}
                 size={60}
-                testID="GroupSettingsButton"
+                testID="GroupSettingsIcon"
               />
             </View>
 
@@ -118,7 +118,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Navigate to User Home"
                 onPress={navigateHome}
                 size={60}
-                testID="GoBackToHomeButton"
+                testID="GoBackToHomeIcon"
               />
             </View>
           </View>
