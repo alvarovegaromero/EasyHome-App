@@ -31,7 +31,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                   color="#2196F3"
                   accessibilityLabel="Add and Edit task"
                   onPress={navigateEstablishChores}
-                  size={50}
+                  size={60}
                 />
               </View>
             )}
@@ -53,7 +53,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See today's tasks"
                 onPress={navigateViewTodaysChores}
-                size={50}
+                size={60}
                 disabled={!isActivated}
               />
               <Icon
@@ -64,7 +64,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See stats"
                 onPress={navigateStats}
-                size={50}
+                size={60}
                 disabled={!isActivated}
               />
             </View>

@@ -10,7 +10,7 @@ const stylesChoresHomeScreen = StyleSheet.create({
   containerIcons: {
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 25,
   },
 });
 

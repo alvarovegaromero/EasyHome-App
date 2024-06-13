@@ -30,7 +30,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Add and Edit Available Products"
                 onPress={navigateEstablishProductsScreen}
-                size={50}
+                size={60}
               />
             </View>
             <View>
@@ -42,7 +42,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Set products to buy"
                 onPress={navigateProductsScreen}
-                size={50}
+                size={60}
               />
             </View>
             <View>
@@ -54,7 +54,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Buy products"
                 onPress={navigateProductsShoppingListScreen}
-                size={50}
+                size={60}
               />
             </View>
             <View>
@@ -66,7 +66,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See shopping list stats"
                 onPress={navigateShoppingListStatsScreen}
-                size={50}
+                size={60}
               />
             </View>
           </View>
