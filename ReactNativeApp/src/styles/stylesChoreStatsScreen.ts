@@ -5,6 +5,7 @@ const stylesChoreStatsScreen = StyleSheet.create({
   containerDatesPickers: {
     flexDirection: 'row',
     height: 100,
+    marginTop: 10,
   },
 
   containerDatePicker: {
@@ -15,7 +16,7 @@ const stylesChoreStatsScreen = StyleSheet.create({
 
   containerPickers: {
     marginBottom: 5,
-    marginTop: 5,
+    marginTop: 15,
   },
 
   containerPicker: {
@@ -70,6 +71,10 @@ const stylesChoreStatsScreen = StyleSheet.create({
   },
 
   styleTextPieChartLegendItem: {
+    fontSize: 16,
+  },
+
+  styleTextDates: {
     fontSize: 16,
   },
 });

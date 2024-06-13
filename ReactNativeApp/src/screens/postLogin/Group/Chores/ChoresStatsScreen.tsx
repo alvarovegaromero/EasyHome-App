@@ -69,7 +69,9 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                   size={40}
                 />
 
-                <Text> {startDate.toLocaleDateString('en-GB')} </Text>
+                <Text style={stylesChoreStatsScreen.styleTextDates}>
+                  {startDate.toLocaleDateString('en-GB')}
+                </Text>
 
                 <DatePicker
                   mode="date"
@@ -99,7 +101,9 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                   size={40}
                 />
 
-                <Text> {endDate.toLocaleDateString('en-GB')} </Text>
+                <Text style={stylesChoreStatsScreen.styleTextDates}>
+                  {endDate.toLocaleDateString('en-GB')}
+                </Text>
 
                 <DatePicker
                   mode="date"
@@ -119,9 +123,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesChoreStatsScreen.containerPickers}>
-            <Text style={generalStyles.defaultSubHeader}>
-              Select the user and completion status:
-            </Text>
+            <Text style={generalStyles.defaultSubHeader}>Select the user:</Text>
             <View style={stylesChoreStatsScreen.containerPicker}>
               <Picker
                 value={selectedUserId || 'All'}
@@ -143,6 +145,9 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
               />
             </View>
 
+            <Text style={generalStyles.defaultSubHeader}>
+              Select the completion status:
+            </Text>
             <View style={stylesChoreStatsScreen.containerPicker}>
               <Picker
                 value={selectedCompleted}

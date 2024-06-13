@@ -70,7 +70,9 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
                   size={40}
                 />
 
-                <Text> {startDate.toLocaleDateString('en-GB')} </Text>
+                <Text style={stylesShoppingListStatsScreen.styleTextDates}>
+                  {startDate.toLocaleDateString('en-GB')}
+                </Text>
 
                 <DatePicker
                   mode="date"
@@ -100,7 +102,9 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
                   size={40}
                 />
 
-                <Text> {endDate.toLocaleDateString('en-GB')} </Text>
+                <Text style={stylesShoppingListStatsScreen.styleTextDates}>
+                  {endDate.toLocaleDateString('en-GB')}
+                </Text>
 
                 <DatePicker
                   mode="date"
