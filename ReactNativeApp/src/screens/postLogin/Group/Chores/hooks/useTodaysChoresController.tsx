@@ -49,7 +49,7 @@ const useTodaysChoresController = () => {
 
   const confirmAndCompleteTask = (taskId: number) => {
     Alert.alert(
-      'Complete task',
+      'Confirmation',
       `Are you sure you want to set this task as completed by you?\n\n` +
         `You won't be able to undo your action unless you contact with support`,
       [

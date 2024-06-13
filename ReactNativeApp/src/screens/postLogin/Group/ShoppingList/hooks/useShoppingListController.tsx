@@ -56,7 +56,7 @@ const useShoppingListController = () => {
 
   const confirmAndMarkProductAsBought = (product: ProductToBuy) => {
     Alert.alert(
-      'Mark product as bought',
+      'Confirmation',
       'Are you sure you want to mark this product as bought?',
       [
         {

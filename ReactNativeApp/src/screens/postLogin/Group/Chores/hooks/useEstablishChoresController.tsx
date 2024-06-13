@@ -117,7 +117,7 @@ const useEstablishChoresController = () => {
 
   const confirmAndDeleteTask = (taskId: number) => {
     Alert.alert(
-      'Delete task',
+      'Confirmation',
       `Are you sure you want to delete this task?\n\nAll the assignable tasks ` +
         `related to this task will be deleted as well.`,
       [
@@ -170,7 +170,7 @@ const useEstablishChoresController = () => {
 
   const confirmAndStartAssignableTasksProcess = () => {
     Alert.alert(
-      'Start Assignable Tasks Process',
+      'Confirmation',
       'Are you sure you want to start the assignable tasks process?',
       [
         {

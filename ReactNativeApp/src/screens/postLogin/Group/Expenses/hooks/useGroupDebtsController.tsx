@@ -51,7 +51,7 @@ const useGroupDebtsController = () => {
     amount: number,
   ) => {
     Alert.alert(
-      'Settle Debt',
+      'Confirmation',
       `Are you sure you want to settle the debt of ${amount}€?`,
       [
         {

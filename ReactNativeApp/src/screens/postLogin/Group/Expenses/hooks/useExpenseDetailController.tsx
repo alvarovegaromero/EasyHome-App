@@ -68,7 +68,7 @@ const useExpenseDetailController = () => {
 
   const confirmAndDeleteExpense = () => {
     Alert.alert(
-      'Delete expense',
+      'Confirmation',
       'Are you sure you want to delete this expense?',
       [
         {

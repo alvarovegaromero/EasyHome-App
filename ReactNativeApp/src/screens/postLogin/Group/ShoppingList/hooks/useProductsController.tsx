@@ -45,7 +45,7 @@ const useProductsController = () => {
 
   const confirmAndMarkProductToBuy = (productId: number) => {
     Alert.alert(
-      'Mark product to buy',
+      'Confirmation',
       'Are you sure you want to mark this product to buy?',
       [
         {

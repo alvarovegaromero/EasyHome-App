@@ -95,9 +95,8 @@ const useEstablishProductsController = () => {
 
   const confirmAndDeleteProduct = (productId: number) => {
     Alert.alert(
-      'Delete Product',
-      `Are you sure you want to delete this product?\n\nAll the products bought` +
-        `will be deleted.`,
+      'Confirmation',
+      `Are you sure you want to delete this product?`,
       [
         {
           text: 'No',
