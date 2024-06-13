@@ -112,7 +112,12 @@ const useChoresStatsController = () => {
         }
       })
       .then(data => {
-        setChoresInfo(data);
+        if (data.length === 0) {
+          Alert.alert('Info', 'No tasks found for the selected filters');
+          setChoresInfo([]);
+        } else {
+          setChoresInfo(data);
+        }
       })
       .catch(error => {
         console.error('Error:', error);
