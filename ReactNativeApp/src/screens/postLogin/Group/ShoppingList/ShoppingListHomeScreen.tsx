@@ -2,8 +2,8 @@ import {ScrollView, SafeAreaView, View} from 'react-native';
 import useShoppingListHomeController from './hooks/useShoppingListHomeController';
 import generalStyles from '../../../../styles/styles';
 import {Icon} from '@rneui/themed';
-//using same styles as in ChoresHomeScreen as it follows the same pattern
-import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
+//using same styles as in GroupHome
+import stylesGroupHomeScreen from '../../../../styles/stylesGroupHomeScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import Header from '../../../../utils/Header/Header';
 
@@ -20,8 +20,8 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <Header secctionText="Shopping List Home" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={stylesChoresHomeScreen.containerIcons}>
-            <View>
+          <View style={stylesGroupHomeScreen.containerButtons}>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="pencil"
                 reverse
@@ -33,7 +33,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 size={60}
               />
             </View>
-            <View>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="notebook-edit"
                 reverse
@@ -45,7 +45,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 size={60}
               />
             </View>
-            <View>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="cart-plus"
                 reverse
@@ -57,7 +57,7 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 size={60}
               />
             </View>
-            <View>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="chart-box"
                 reverse

@@ -2,7 +2,7 @@ import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import useChoresHomeController from './hooks/useChoresHomeController';
 import {Icon} from '@rneui/themed';
 import generalStyles from '../../../../styles/styles';
-import stylesChoresHomeScreen from '../../../../styles/stylesChoresHomeScreen';
+import stylesGroupHomeScreen from '../../../../styles/stylesGroupHomeScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import Header from '../../../../utils/Header/Header';
 
@@ -20,9 +20,9 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <Header secctionText="Chores Home" />
         <View style={generalStyles.defaultContainerScreen}>
-          <View style={stylesChoresHomeScreen.containerIcons}>
+          <View style={stylesGroupHomeScreen.containerButtons}>
             {isOwner && (
-              <View>
+              <View style={stylesGroupHomeScreen.containerButton}>
                 <Icon
                   name="pencil"
                   reverse
@@ -38,13 +38,13 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
 
             {!isActivated && (
               <View>
-                <Text style={stylesChoresHomeScreen.styleTextNoActivated}>
+                <Text style={{margin: 10, fontSize: 20}}>
                   The owner must start the process first!
                 </Text>
               </View>
             )}
 
-            <View>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="calendar-today"
                 reverse
@@ -56,6 +56,8 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                 size={60}
                 disabled={!isActivated}
               />
+            </View>
+            <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="chart-box"
                 reverse
