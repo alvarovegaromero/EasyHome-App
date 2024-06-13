@@ -43,11 +43,9 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                     Date bought
                   </Text>
                 </View>
-                <View style={stylesGroupExpensesScreen.containerTitleColumn}>
-                  <Text style={stylesGroupExpensesScreen.styleTitleColumn}>
-                    Access
-                  </Text>
-                </View>
+                <View
+                  style={stylesGroupExpensesScreen.containerAccessIconColumn}
+                />
               </View>
               <ScrollView>
                 {expenses.map((expense, index) => (
@@ -82,10 +80,12 @@ const GroupExpensesScreen: React.FunctionComponent = () => {
                         <Text
                           style={
                             stylesGroupExpensesScreen.expenseDate
-                          }>{`${expense.date_paid.toLocaleDateString()}`}</Text>
+                          }>{`${expense.date_paid.toLocaleDateString('en-GB')}`}</Text>
                       </View>
                       <View
-                        style={stylesGroupExpensesScreen.containerTitleColumn}>
+                        style={
+                          stylesGroupExpensesScreen.containerAccessIconColumn
+                        }>
                         <Icon
                           name="chevron-right"
                           type="material-community"

@@ -72,6 +72,15 @@ const stylesGroupExpensesScreen = StyleSheet.create({
     alignItems: 'center',
   },
 
+  containerAccessIconColumn: {
+    flex: 0.4,
+    marginBottom: 5,
+    marginTop: 3,
+    paddingLeft: 2,
+    paddingRight: 2,
+    alignItems: 'center',
+  },
+
   styleTitleColumn: {
     fontWeight: 'bold',
     fontSize: 15,

@@ -38,7 +38,7 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
 
             {!isActivated && (
               <View>
-                <Text style={{margin: 10, fontSize: 20}}>
+                <Text style={stylesGroupHomeScreen.styleTextStartProcessError}>
                   The owner must start the process first!
                 </Text>
               </View>

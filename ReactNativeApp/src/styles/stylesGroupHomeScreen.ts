@@ -29,6 +29,11 @@ const stylesGroupSettingsScreen = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  styleTextStartProcessError: {
+    margin: 10,
+    fontSize: 20,
+  },
 });
 
 export default stylesGroupSettingsScreen;
