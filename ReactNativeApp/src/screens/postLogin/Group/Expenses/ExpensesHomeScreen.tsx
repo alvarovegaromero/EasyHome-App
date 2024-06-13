@@ -7,12 +7,8 @@ import stylesExpensesHomeScreen from '../../../../styles/stylesExpensesHomeScree
 import Header from '../../../../utils/Header/Header';
 
 const ExpensesHomeScreen: React.FunctionComponent = () => {
-  const {
-    navigateToAddExpense,
-    navigateToGroupDebts,
-    navigateToGroupExpenses,
-    navigateGroupHomeScreen,
-  } = useExpensesHomeController();
+  const {navigateToAddExpense, navigateToGroupDebts, navigateToGroupExpenses} =
+    useExpensesHomeController();
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
@@ -50,17 +46,6 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
               color="#2196F3"
               accessibilityLabel="See group's expenses"
               onPress={navigateToGroupExpenses}
-              size={50}
-            />
-
-            <Icon
-              name="arrow-left-circle"
-              reverse
-              reverseColor="white"
-              type="material-community"
-              color="#2196F3"
-              accessibilityLabel="Go back to Group Home Screen"
-              onPress={navigateGroupHomeScreen}
               size={50}
             />
           </View>

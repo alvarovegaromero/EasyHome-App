@@ -13,7 +13,6 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
     navigateShoppingListStatsScreen,
-    navigateGroupHomeScreen,
   } = useShoppingListHomeController();
 
   return (
@@ -67,18 +66,6 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See shopping list stats"
                 onPress={navigateShoppingListStatsScreen}
-                size={50}
-              />
-            </View>
-            <View>
-              <Icon
-                name="arrow-left-circle"
-                reverse
-                reverseColor="white"
-                type="material-community"
-                color="#2196F3"
-                accessibilityLabel="Go back to Group Home Screen"
-                onPress={navigateGroupHomeScreen}
                 size={50}
               />
             </View>

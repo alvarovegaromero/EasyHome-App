@@ -64,17 +64,12 @@ const useChoresHomeController = () => {
     navigation.navigate('ChoresStatsScreen' as never);
   };
 
-  const navigateGroupHome = () => {
-    navigation.navigate('GroupHomeScreen' as never);
-  };
-
   return {
     isOwner,
     isActivated,
     navigateEstablishChores,
     navigateViewTodaysChores,
     navigateStats,
-    navigateGroupHome,
   };
 };
 

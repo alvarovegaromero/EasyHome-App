@@ -15,15 +15,10 @@ const useExpensesHomeController = () => {
     navigation.navigate('GroupExpensesScreen' as never);
   };
 
-  const navigateGroupHomeScreen = () => {
-    navigation.navigate('GroupHomeScreen' as never);
-  };
-
   return {
     navigateToAddExpense,
     navigateToGroupDebts,
     navigateToGroupExpenses,
-    navigateGroupHomeScreen,
   };
 };
 

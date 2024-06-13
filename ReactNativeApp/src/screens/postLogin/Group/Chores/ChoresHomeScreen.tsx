@@ -13,7 +13,6 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
     navigateEstablishChores,
     navigateViewTodaysChores,
     navigateStats,
-    navigateGroupHome,
   } = useChoresHomeController();
 
   return (
@@ -67,19 +66,6 @@ const ChoresHomeScreen: React.FunctionComponent = () => {
                 onPress={navigateStats}
                 size={50}
                 disabled={!isActivated}
-              />
-            </View>
-
-            <View>
-              <Icon
-                name="arrow-left-circle"
-                reverse
-                reverseColor="white"
-                type="material-community"
-                color="#2196F3"
-                accessibilityLabel="Go back to Group Home Screen"
-                onPress={navigateGroupHome}
-                size={50}
               />
             </View>
           </View>

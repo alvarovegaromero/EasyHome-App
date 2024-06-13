@@ -19,16 +19,11 @@ const useShoppingListHomeController = () => {
     navigation.navigate('ShoppingListStatsScreen' as never);
   };
 
-  const navigateGroupHomeScreen = () => {
-    navigation.navigate('GroupHomeScreen' as never);
-  };
-
   return {
     navigateEstablishProductsScreen,
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
     navigateShoppingListStatsScreen,
-    navigateGroupHomeScreen,
   };
 };
 
