@@ -32,6 +32,7 @@ const generalStyles = StyleSheet.create({
   defaultHeader: {
     fontSize: 26,
     fontWeight: 'bold',
+    flex: 1,
   },
   defaultSubHeader: {
     marginBottom: 5,

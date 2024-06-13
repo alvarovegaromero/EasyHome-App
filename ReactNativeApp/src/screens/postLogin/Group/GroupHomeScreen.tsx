@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, View} from 'react-native';
 import useGroupHomeController from './hooks/useGroupHomeController';
 import generalStyles from '../../../styles/styles';
 import stylesGroupHomeScreen from '../../../styles/stylesGroupHomeScreen';
@@ -22,10 +22,6 @@ const GroupHomeScreen: React.FunctionComponent = () => {
       <ScrollView style={generalStyles.defaultScrollView}>
         <Header secctionText={groupName} />
         <View style={generalStyles.defaultContainerScreen}>
-          <Text style={generalStyles.defaultSubHeader}>
-            What do you want to do today?
-          </Text>
-
           <View style={stylesGroupHomeScreen.containerButtons}>
             <View style={stylesGroupHomeScreen.containerButton}>
               <Icon

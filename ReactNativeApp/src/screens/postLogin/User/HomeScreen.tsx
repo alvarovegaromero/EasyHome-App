@@ -35,13 +35,10 @@ const HomeScreen: React.FunctionComponent = () => {
           <View style={stylesHomeScreen.containerHeaders}>
             <Text
               accessibilityLabel={`Hello ${username}`}
-              style={generalStyles.defaultHeader}>
+              style={generalStyles.defaultHeader}
+              numberOfLines={1}
+              ellipsizeMode="tail">
               Hello {username}!
-            </Text>
-            <Text
-              accessibilityLabel="Select the group you want to see:"
-              style={generalStyles.defaultSubHeader}>
-              Select the group you want to see:
             </Text>
           </View>
 

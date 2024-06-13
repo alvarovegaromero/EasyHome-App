@@ -11,7 +11,7 @@ const stylesGroupSettingsScreen = StyleSheet.create({
   containerButtons: {
     marginLeft: 30,
     marginRight: 30,
-    marginTop: 20,
+    marginTop: 25,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

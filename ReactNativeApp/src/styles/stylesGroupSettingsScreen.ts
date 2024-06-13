@@ -3,7 +3,7 @@ import generalStyles from './styles';
 
 const stylesGroupSettingsScreen = StyleSheet.create({
   containerUsersPart: {
-    ...generalStyles.defaultContainerHeader,
+    marginBottom: 10,
   },
   containerUsers: {
     borderColor: 'black',
