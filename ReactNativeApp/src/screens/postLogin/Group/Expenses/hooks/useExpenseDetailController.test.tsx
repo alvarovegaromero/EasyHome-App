@@ -118,7 +118,7 @@ describe('useExpenseDetailController', () => {
       result.current.confirmAndDeleteExpense();
 
       expect(alertSpy).toHaveBeenCalledWith(
-        'Delete expense',
+        'Confirmation',
         'Are you sure you want to delete this expense?',
         [
           {
@@ -169,7 +169,7 @@ describe('useExpenseDetailController', () => {
       });
 
       it(
-        'should navigate to ExpensesHomeScreen and clear expenseId ' +
+        'should navigate to GroupExpensesScreen and clear expenseId ' +
           'when delete is successful',
         async () => {
           mockSuccesfulFetch({});
@@ -193,7 +193,7 @@ describe('useExpenseDetailController', () => {
 
           await waitFor(() => pressSecondOptionAlert(alertSpy));
 
-          expect(mockedNavigate).toHaveBeenCalledWith('ExpensesHomeScreen');
+          expect(mockedNavigate).toHaveBeenCalledWith('GroupExpensesScreen');
           expect(mockSetExpenseId).toHaveBeenCalledWith('');
 
           useContextSpy.mockRestore();
@@ -218,28 +218,6 @@ describe('useExpenseDetailController', () => {
           ),
         );
       });
-    });
-  });
-
-  describe('navigation', () => {
-    it('should navigate to ExpensesHomeScreen', async () => {
-      const {result} = renderTestHookTest();
-
-      result.current.navigateExpensesHomeScreen();
-
-      expect(mockedNavigate).toHaveBeenCalledWith('ExpensesHomeScreen');
-    });
-
-    it('should update expensesId when navigating to ExpensesHomeScreen', () => {
-      const mockSetExpenseId = jest.fn();
-      const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({setExpenseId: mockSetExpenseId});
-
-      const {result} = renderTestHookTest();
-
-      result.current.navigateExpensesHomeScreen();
-
-      expect(mockSetExpenseId).toHaveBeenCalledWith('');
     });
   });
 });
