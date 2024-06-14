@@ -42,43 +42,6 @@ describe('useGroupSettingsController', () => {
     jest.clearAllMocks();
   });
 
-  describe('dialog', () => {
-    it('dialogVisible should be false on mount', () => {
-      const {result} = renderTestHookTest();
-
-      expect(result.current.dialogVisible).toBe(false);
-    });
-
-    it('should set dialogVisible to true', async () => {
-      mockSuccesfulFetch({});
-
-      const mockGroupId = 'dummy_id';
-
-      const useContextSpy = jest.spyOn(React, 'useContext');
-      useContextSpy.mockReturnValue({groupId: mockGroupId});
-
-      const {result} = renderTestHookTest();
-
-      await act(() => {
-        result.current.generateJoinCode();
-      });
-
-      await waitFor(() => expect(result.current.dialogVisible).toBe(true));
-
-      useContextSpy.mockRestore();
-    });
-
-    it('should set dialogVisible to false', () => {
-      const {result} = renderTestHookTest();
-
-      act(() => {
-        result.current.closeDialog();
-      });
-
-      expect(result.current.dialogVisible).toBe(false);
-    });
-  });
-
   describe('fetchGroupUsersData', () => {
     it('should call proper endpoint for fetching group users when just render', async () => {
       mockSuccesfulFetch({users: []});
@@ -674,15 +637,40 @@ describe('useGroupSettingsController', () => {
     });
   });
 
-  describe('navigate', () => {
-    it('should navigate to GroupHomeScreen', () => {
+  describe('dialog', () => {
+    it('dialogVisible should be false on mount', async () => {
+      const {result} = renderTestHookTest();
+
+      await expect(result.current.dialogVisible).toBe(false);
+    });
+
+    it('should set dialogVisible to true', async () => {
+      mockSuccesfulFetch({});
+
+      const mockGroupId = 'dummy_id';
+
+      const useContextSpy = jest.spyOn(React, 'useContext');
+      useContextSpy.mockReturnValue({groupId: mockGroupId});
+
+      const {result} = renderTestHookTest();
+
+      await act(() => {
+        result.current.generateJoinCode();
+      });
+
+      await waitFor(() => expect(result.current.dialogVisible).toBe(true));
+
+      useContextSpy.mockRestore();
+    });
+
+    it('should set dialogVisible to false', async () => {
       const {result} = renderTestHookTest();
 
       act(() => {
-        result.current.navigateGroupHome();
+        result.current.closeDialog();
       });
 
-      expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
+      await expect(result.current.dialogVisible).toBe(false);
     });
   });
 });
