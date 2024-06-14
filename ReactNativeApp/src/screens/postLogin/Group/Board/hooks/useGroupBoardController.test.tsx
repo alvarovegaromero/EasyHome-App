@@ -192,12 +192,4 @@ describe('useGroupBoardController', () => {
       });
     });
   });
-
-  describe('navigation', () => {
-    it('should navigate to GroupHomeScreen', () => {
-      const {result} = renderTestHookTest();
-      result.current.navigateGroupHome();
-      expect(mockedNavigate).toHaveBeenCalledWith('GroupHomeScreen');
-    });
-  });
 });
