@@ -1,6 +1,7 @@
 import {render, fireEvent} from '@testing-library/react-native';
 import CreateGroupScreen from './CreateGroupScreen';
 import useCreateGroupController from './hooks/useCreateGroupController';
+import {NavigationContainer} from '@react-navigation/native';
 
 jest.mock('./hooks/useCreateGroupController', () => {
   const setName = jest.fn();
@@ -22,21 +23,28 @@ jest.mock('./hooks/useCreateGroupController', () => {
   });
 });
 
+const TestComponent = () => (
+  <NavigationContainer>
+    <CreateGroupScreen />
+  </NavigationContainer>
+);
+
 const renderScreen = () => {
-  return render(<CreateGroupScreen />);
+  return render(<TestComponent />);
 };
 
 describe('CreateGroupScreen', () => {
   it('should render all components', () => {
     const {getByText, getByTestId} = renderScreen();
 
-    expect(getByText('Create a Group form')).toBeTruthy();
-
+    expect(getByText('Create Group')).toBeTruthy();
     expect(getByTestId('NameInput')).toBeTruthy();
+    expect(getByText('Description:')).toBeTruthy();
     expect(getByTestId('DescriptionInput')).toBeTruthy();
+    expect(getByText('Currency:')).toBeTruthy();
     expect(getByTestId('CurrencyPicker')).toBeTruthy();
 
-    expect(getByTestId('GoBackButton')).toBeTruthy();
+    expect(getByTestId('CancelButton')).toBeTruthy();
     expect(getByTestId('CreateGroupButton')).toBeTruthy();
   });
 
@@ -68,7 +76,7 @@ describe('CreateGroupScreen', () => {
     expect(handleGoBack).not.toHaveBeenCalled();
     expect(handleCreateGroupSubmit).not.toHaveBeenCalled();
 
-    fireEvent.press(getByTestId('GoBackButton'));
+    fireEvent.press(getByTestId('CancelButton'));
     fireEvent.press(getByTestId('CreateGroupButton'));
 
     expect(handleGoBack).toHaveBeenCalled();
