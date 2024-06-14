@@ -1,5 +1,8 @@
 import {renderHook, waitFor} from '@testing-library/react-native';
 import useAddExpenseController from './useAddExpenseController';
+import {mockSuccesfulFetch} from '../../../../../utils/utilsTestingHooks';
+import React from 'react';
+import {BASE_URL} from '../../../../../config';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(() => Promise.resolve('dummy_token')),
@@ -26,6 +29,37 @@ const renderTestHookTest = () => {
 };
 
 describe('useAddExpenseController', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  describe('fetchGroupUsersData', () => {
+    mockSuccesfulFetch([]);
+
+    it('should call proper endpoint for fetching group users when just render', async () => {
+      const mockGroupId = 'dummy_id';
+
+      const useContextSpy = jest.spyOn(React, 'useContext');
+      useContextSpy.mockReturnValue({
+        groupId: mockGroupId,
+      });
+
+      renderTestHookTest();
+
+      await waitFor(() => {
+        expect(fetch).toHaveBeenCalledWith(
+          `${BASE_URL}/api/groups/${mockGroupId}/users`,
+          expect.objectContaining({
+            method: 'GET',
+            headers: expect.objectContaining({
+              Authorization: 'Token dummy_token',
+            }),
+          }),
+        );
+      });
+    });
+  });
+
   describe('initialStates and setStates', () => {
     it('should update concept, payer', async () => {
       const {result} = renderTestHookTest();
@@ -93,8 +127,6 @@ describe('useAddExpenseController', () => {
       });
     });
   });
-
-  describe('fetchGroupUsersData', () => {});
 
   describe('handleCreateExpenseSubmit', () => {});
 
