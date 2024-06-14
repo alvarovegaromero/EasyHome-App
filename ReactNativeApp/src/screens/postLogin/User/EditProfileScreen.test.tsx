@@ -4,6 +4,7 @@ import useEditProfileController from './hooks/useEditProfileController';
 import {RouteProp} from '@react-navigation/native';
 import {MyStackParamsList} from '../../../components/types';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
 const initialUsername = 'myUsername';
 const initialEmail = 'myEmail';
@@ -49,24 +50,29 @@ const renderScreen = () => {
     },
   ] as const;
 
-  return render(
-    <EditProfileScreen
-      route={route as RouteProp<MyStackParamsList, 'EditProfileScreen'>}
-      navigation={
-        navigation as unknown as StackNavigationProp<
-          MyStackParamsList,
-          'EditProfileScreen'
-        >
-      }
-    />,
+  const TestComponent = () => (
+    <NavigationContainer>
+      <EditProfileScreen
+        route={route as RouteProp<MyStackParamsList, 'EditProfileScreen'>}
+        navigation={
+          navigation as unknown as StackNavigationProp<
+            MyStackParamsList,
+            'EditProfileScreen'
+          >
+        }
+      />
+      ,
+    </NavigationContainer>
   );
+
+  return render(<TestComponent />);
 };
 
-describe('ProfileScreen', () => {
+describe('EditProfileScreen', () => {
   it('should render all components', () => {
     const {getByText, getByTestId} = renderScreen();
 
-    expect(getByText('My Profile:')).toBeTruthy();
+    expect(getByText('Edit My Profile')).toBeTruthy();
 
     expect(getByTestId('UsernameInput')).toBeTruthy();
     expect(getByTestId('EmailInput')).toBeTruthy();
