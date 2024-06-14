@@ -39,38 +39,6 @@ describe('useHomeController', () => {
     jest.clearAllMocks();
   });
 
-  describe('dialog', () => {
-    it('dialogVisible should be false on mount', () => {
-      const {result} = renderTestHookTest();
-
-      expect(result.current.dialogVisible).toBe(false);
-    });
-
-    it('should set dialogVisible to true', () => {
-      const {result} = renderTestHookTest();
-
-      act(() => {
-        result.current.showDialog();
-      });
-
-      expect(result.current.dialogVisible).toBe(true);
-    });
-
-    it('should set dialogVisible to false', () => {
-      const {result} = renderTestHookTest();
-
-      act(() => {
-        result.current.showDialog();
-      });
-
-      act(() => {
-        result.current.closeDialog();
-      });
-
-      expect(result.current.dialogVisible).toBe(false);
-    });
-  });
-
   describe('fetchGroups', () => {
     it('should call proper endpoint for fetching groups', async () => {
       mockSuccesfulFetch({});
@@ -399,6 +367,38 @@ describe('useHomeController', () => {
 
       expect(mockSetGroupId).toHaveBeenCalledWith(mock_id);
       expect(mockSetIsOwner).toHaveBeenCalledWith(false);
+    });
+  });
+
+  describe('dialog', () => {
+    it('dialogVisible should be false on mount', () => {
+      const {result} = renderTestHookTest();
+
+      expect(result.current.dialogVisible).toBe(false);
+    });
+
+    it('should set dialogVisible to true', () => {
+      const {result} = renderTestHookTest();
+
+      act(() => {
+        result.current.showDialog();
+      });
+
+      expect(result.current.dialogVisible).toBe(true);
+    });
+
+    it('should set dialogVisible to false', () => {
+      const {result} = renderTestHookTest();
+
+      act(() => {
+        result.current.showDialog();
+      });
+
+      act(() => {
+        result.current.closeDialog();
+      });
+
+      expect(result.current.dialogVisible).toBe(false);
     });
   });
 });

@@ -35,24 +35,6 @@ const renderTestHookTest = () => {
 };
 
 describe('useCreateGroupController', () => {
-  it('should update name, description and currency states', () => {
-    const {result} = renderTestHookTest();
-
-    expect(result.current.name).toBe('');
-    expect(result.current.description).toBe('');
-    expect(result.current.currency).toBe('');
-
-    act(() => {
-      result.current.setName('newName');
-      result.current.setDescription('newDescription');
-      result.current.setCurrency('newCurrency');
-    });
-
-    expect(result.current.name).toBe('newName');
-    expect(result.current.description).toBe('newDescription');
-    expect(result.current.currency).toBe('newCurrency');
-  });
-
   describe('fetchCurrencies', () => {
     it('should call proper endpoint for retrieving currencies', async () => {
       mockSuccesfulFetch({});
@@ -94,6 +76,24 @@ describe('useCreateGroupController', () => {
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
       });
     });
+  });
+
+  it('should update name, description and currency states', () => {
+    const {result} = renderTestHookTest();
+
+    expect(result.current.name).toBe('');
+    expect(result.current.description).toBe('');
+    expect(result.current.currency).toBe('');
+
+    act(() => {
+      result.current.setName('newName');
+      result.current.setDescription('newDescription');
+      result.current.setCurrency('newCurrency');
+    });
+
+    expect(result.current.name).toBe('newName');
+    expect(result.current.description).toBe('newDescription');
+    expect(result.current.currency).toBe('newCurrency');
   });
 
   describe('handleCreateGroupSubmit', () => {

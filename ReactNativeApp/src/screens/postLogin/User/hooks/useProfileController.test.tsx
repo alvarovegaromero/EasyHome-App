@@ -35,15 +35,6 @@ const renderTestHookTest = () => {
 };
 
 describe('useProfileController', () => {
-  it('should be undefined while fetchData has not been done', () => {
-    const {result} = renderTestHookTest();
-
-    expect(result.current.username).toBe('');
-    expect(result.current.email).toBe('');
-    expect(result.current.firstName).toBe('');
-    expect(result.current.lastName).toBe('');
-  });
-
   describe('fetchData', () => {
     it('should call proper endpoint for retrieving profile data', async () => {
       mockSuccesfulFetch({});
@@ -91,6 +82,15 @@ describe('useProfileController', () => {
         expect(alertSpy).toHaveBeenCalledWith('Error', 'Error');
       });
     });
+  });
+
+  it('should be undefined while fetchData has not been done', () => {
+    const {result} = renderTestHookTest();
+
+    expect(result.current.username).toBe('');
+    expect(result.current.email).toBe('');
+    expect(result.current.firstName).toBe('');
+    expect(result.current.lastName).toBe('');
   });
 
   describe('navigate', () => {
