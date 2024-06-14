@@ -1,13 +1,14 @@
 import {fireEvent, render} from '@testing-library/react-native';
 import GroupBoardScreen from './GroupBoardScreen';
 import useGroupBoardController from './hooks/useGroupBoardController';
+import {NavigationContainer} from '@react-navigation/native';
 
 let mockIsEditable = false;
 jest.mock('./hooks/useGroupBoardController', () => {
   const mockAllowEdit = jest.fn();
   const mockSaveChanges = jest.fn();
-  const mockNavigateGroupHome = jest.fn();
   const mockSetBoardContent = jest.fn();
+  const mockDiscardChanges = jest.fn();
 
   return () => ({
     boardContent: 'dummy_content',
@@ -15,12 +16,18 @@ jest.mock('./hooks/useGroupBoardController', () => {
     isEditable: mockIsEditable,
     allowEdit: mockAllowEdit,
     saveChanges: mockSaveChanges,
-    navigateGroupHome: mockNavigateGroupHome,
+    discardChanges: mockDiscardChanges,
   });
 });
 
+const TestComponent = () => (
+  <NavigationContainer>
+    <GroupBoardScreen />
+  </NavigationContainer>
+);
+
 const renderScreen = () => {
-  return render(<GroupBoardScreen />);
+  return render(<TestComponent />);
 };
 
 describe('GroupBoardScreen', () => {
@@ -30,22 +37,18 @@ describe('GroupBoardScreen', () => {
 
       expect(getByText('dummy_content')).toBeTruthy();
       expect(getByTestId('AllowEditionButton')).toBeTruthy();
-      expect(getByTestId('GoToGroupHomeButton')).toBeTruthy();
     });
 
-    it('should call the correct functions when button are pressed', () => {
+    it('should call the correct functions when buttons are pressed', () => {
       const {getByTestId} = renderScreen();
 
-      const {allowEdit, navigateGroupHome} = useGroupBoardController();
+      const {allowEdit} = useGroupBoardController();
 
       expect(allowEdit).not.toHaveBeenCalled();
-      expect(navigateGroupHome).not.toHaveBeenCalled();
 
       fireEvent.press(getByTestId('AllowEditionButton'));
-      fireEvent.press(getByTestId('GoToGroupHomeButton'));
 
       expect(allowEdit).toHaveBeenCalled();
-      expect(navigateGroupHome).toHaveBeenCalled();
     });
   });
 
@@ -59,6 +62,7 @@ describe('GroupBoardScreen', () => {
         'dummy_content',
       );
       expect(getByTestId('SaveChangesButton')).toBeTruthy();
+      expect(getByTestId('DiscardChangesButton')).toBeTruthy();
     });
 
     it('should update states when inputs are changed', () => {
@@ -80,11 +84,13 @@ describe('GroupBoardScreen', () => {
 
       const {getByTestId} = renderScreen();
 
-      const {saveChanges} = useGroupBoardController();
+      const {saveChanges, discardChanges} = useGroupBoardController();
 
       fireEvent.press(getByTestId('SaveChangesButton'));
+      fireEvent.press(getByTestId('DiscardChangesButton'));
 
       expect(saveChanges).toHaveBeenCalled();
+      expect(discardChanges).toHaveBeenCalled();
     });
   });
 });

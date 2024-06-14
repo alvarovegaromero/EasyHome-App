@@ -60,10 +60,10 @@ const GroupBoardScreen: React.FunctionComponent = () => {
                   reverse
                   reverseColor="white"
                   color="#FF7F50"
-                  accessibilityLabel="Save changes button"
+                  accessibilityLabel="Discard changes button"
                   onPress={discardChanges}
                   size={40}
-                  testID="SaveChangesButton"
+                  testID="DiscardChangesButton"
                 />
               </View>
             ) : (
