@@ -1,4 +1,4 @@
-import {act, renderHook} from '@testing-library/react-native';
+import {act, renderHook, waitFor} from '@testing-library/react-native';
 import useLoginController from './useLoginController';
 import {Alert} from 'react-native';
 import {BASE_URL} from '../../../config';
@@ -10,6 +10,7 @@ import React from 'react';
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   setItem: jest.fn(),
+  getItem: jest.fn(() => Promise.resolve('dummy_token')),
 }));
 
 jest.mock('react-native/Libraries/Alert/Alert', () => ({
@@ -33,6 +34,25 @@ const renderTestHookTest = () => {
 };
 
 describe('useLoginController', () => {
+  it('should automatically login when token is present', async () => {
+    mockSuccesfulFetch([]);
+
+    renderTestHookTest();
+
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledWith(
+        `${BASE_URL}/api/users/my-info`,
+        expect.objectContaining({
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Token dummy_token',
+          },
+        }),
+      );
+    });
+  });
+
   it('should update username and password states', () => {
     const {result} = renderTestHookTest();
 
