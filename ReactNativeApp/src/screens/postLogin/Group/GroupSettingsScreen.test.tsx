@@ -1,6 +1,7 @@
 import {fireEvent, render} from '@testing-library/react-native';
 import GroupSettingsScreen from './GroupSettingsScreen';
 import useGroupSettingsController from './hooks/useGroupSettingsController';
+import {NavigationContainer} from '@react-navigation/native';
 
 let mockDialogVisible = false;
 let mockIsOwner = true;
@@ -13,7 +14,6 @@ jest.mock('./hooks/useGroupSettingsController', () => {
   const mockConfirmAndKickUser = jest.fn();
   const mockConfirmAndPromoteUser = jest.fn();
   const mockCopyJoinCodeToClipboard = jest.fn();
-  const mockNavigateGroupHome = jest.fn();
 
   return () => ({
     confirmAndLeaveGroup: mockConfirmAndLeaveGroup,
@@ -38,12 +38,17 @@ jest.mock('./hooks/useGroupSettingsController', () => {
       },
     ],
     isOwner: mockIsOwner,
-    navigateGroupHome: mockNavigateGroupHome,
   });
 });
 
+const TestComponent = () => (
+  <NavigationContainer>
+    <GroupSettingsScreen />
+  </NavigationContainer>
+);
+
 const renderScreen = () => {
-  return render(<GroupSettingsScreen />);
+  return render(<TestComponent />);
 };
 
 describe('GroupSettingsScreen', () => {
@@ -66,7 +71,6 @@ describe('GroupSettingsScreen', () => {
     expect(getByTestId('LeaveGroupButton')).toBeTruthy();
     expect(getByTestId('DeleteGroupButton')).toBeTruthy();
     expect(getByTestId('GetJoinCodeButton')).toBeTruthy();
-    expect(getByTestId('GoBackToGroupHomeButton')).toBeTruthy();
 
     expect(queryByText('myJoinCode1234')).toBeNull(); //dialog not visible
   });
@@ -95,7 +99,6 @@ describe('GroupSettingsScreen', () => {
       generateJoinCode,
       closeDialog,
       copyJoinCodeToClipboard,
-      navigateGroupHome,
       confirmAndKickUser,
       confirmAndPromoteUser,
     } = useGroupSettingsController();
@@ -105,7 +108,6 @@ describe('GroupSettingsScreen', () => {
     expect(generateJoinCode).not.toHaveBeenCalled();
     expect(closeDialog).not.toHaveBeenCalled(); //dialog is visible from last test
     expect(copyJoinCodeToClipboard).not.toHaveBeenCalled();
-    expect(navigateGroupHome).not.toHaveBeenCalled();
     expect(confirmAndKickUser).not.toHaveBeenCalled();
     expect(confirmAndPromoteUser).not.toHaveBeenCalled();
 
@@ -114,7 +116,6 @@ describe('GroupSettingsScreen', () => {
     fireEvent.press(getByTestId('GetJoinCodeButton'));
     fireEvent.press(getByTestId('CloseDialogutton'));
     fireEvent.press(getByTestId('CopyJoinCodeButton'));
-    fireEvent.press(getByTestId('GoBackToGroupHomeButton'));
     fireEvent.press(getByTestId('PromoteUserIcon-otherUser'));
     fireEvent.press(getByTestId('KickUserIcon-otherUser'));
 
@@ -123,7 +124,6 @@ describe('GroupSettingsScreen', () => {
     expect(generateJoinCode).toHaveBeenCalled();
     expect(closeDialog).toHaveBeenCalled();
     expect(copyJoinCodeToClipboard).toHaveBeenCalled();
-    expect(navigateGroupHome).toHaveBeenCalled();
     expect(confirmAndKickUser).toHaveBeenCalled();
     expect(confirmAndPromoteUser).toHaveBeenCalled();
 
