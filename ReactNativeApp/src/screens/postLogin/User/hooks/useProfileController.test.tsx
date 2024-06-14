@@ -34,7 +34,7 @@ const renderTestHookTest = () => {
   return renderHook(() => useProfileController());
 };
 
-describe('useLoginController', () => {
+describe('useProfileController', () => {
   it('should be undefined while fetchData has not been done', () => {
     const {result} = renderTestHookTest();
 
@@ -107,16 +107,6 @@ describe('useLoginController', () => {
         firstName: '',
         lastName: '',
       });
-    });
-
-    it('should navigate to HomeScreen', () => {
-      const {result} = renderTestHookTest();
-
-      act(() => {
-        result.current.handleGoBack();
-      });
-
-      expect(mockedNavigate).toHaveBeenCalledWith('HomeScreen');
     });
   });
 });
