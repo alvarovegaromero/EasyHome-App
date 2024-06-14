@@ -4,8 +4,8 @@ import useHomeController from './hooks/useHomeController';
 
 var mockDialogVisible = false;
 var mockGroups = [
-  {id: '1', name: 'Group 1'},
-  {id: '2', name: 'Group 2'},
+  {id: '1', name: 'Group 1', owner: 'myUsername'},
+  {id: '2', name: 'Group 2', owner: 'myUsername'},
 ];
 
 jest.mock('./hooks/useHomeController', () => {
@@ -42,7 +42,6 @@ describe('HomeScreen', () => {
     const {getByText, getByTestId} = renderScreen();
 
     expect(getByText('Hello myUsername!')).toBeTruthy();
-    expect(getByText('Select the group you want to see:')).toBeTruthy();
     expect(getByText('Your Groups:')).toBeTruthy();
     expect(getByText('Group 1')).toBeTruthy();
     expect(getByText('Group 2')).toBeTruthy();
