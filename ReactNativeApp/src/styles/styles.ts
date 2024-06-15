@@ -51,6 +51,10 @@ const generalStyles = StyleSheet.create({
   redColor: {
     color: '#FF9999',
   },
+  defaultTextStyleLoginRegisterReset: {
+    fontSize: 16,
+    marginBottom: 2.5,
+  },
 });
 
 export default generalStyles;

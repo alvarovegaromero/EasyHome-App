@@ -36,7 +36,11 @@ const RegisterScreen: React.FunctionComponent = () => {
         <View style={stylesRegisterScreen.containerRegisterInputsAndButton}>
           <View style={stylesRegisterScreen.containerRegisterInputs}>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Username:">Username:</Text>
+              <Text
+                accessibilityLabel="Username:"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
+                Username:
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 value={username}
@@ -47,7 +51,11 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Email:">Email:</Text>
+              <Text
+                accessibilityLabel="Email:"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
+                Email:
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 value={email}
@@ -58,7 +66,11 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Password:">Password:</Text>
+              <Text
+                accessibilityLabel="Password:"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
+                Password:
+              </Text>
               <TextInput
                 style={stylesRegisterScreen.registerInputs}
                 secureTextEntry
@@ -70,7 +82,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Confirm Password:">
+              <Text
+                accessibilityLabel="Confirm Password:"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
                 Confirm Password:
               </Text>
               <TextInput
@@ -84,7 +98,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="First Name (optional):">
+              <Text
+                accessibilityLabel="First Name (optional):"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
                 First Name (optional):
               </Text>
               <TextInput
@@ -97,7 +113,9 @@ const RegisterScreen: React.FunctionComponent = () => {
               />
             </View>
             <View style={generalStyles.defaultContainerTextAndInput}>
-              <Text accessibilityLabel="Last Name (optional):">
+              <Text
+                accessibilityLabel="Last Name (optional):"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
                 Last Name (optional):
               </Text>
               <TextInput
@@ -124,8 +142,10 @@ const RegisterScreen: React.FunctionComponent = () => {
 
         <View style={stylesRegisterScreen.containerOtherInfo}>
           <View style={stylesRegisterScreen.containerLogin}>
-            <Text accessibilityLabel="Do you have an account already? Login instead!">
-              Do you have an account already? Login instead!
+            <Text
+              accessibilityLabel="Do you have an account already? Login instead!"
+              style={generalStyles.defaultTextStyleLoginRegisterReset}>
+              Already have an account? Login instead!
             </Text>
             <View style={generalStyles.defaultContainerButton}>
               <View style={generalStyles.defaultButton}>
@@ -140,7 +160,9 @@ const RegisterScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesRegisterScreen.containerResetPassword}>
-            <Text accessibilityLabel="Forgot your password?">
+            <Text
+              accessibilityLabel="Forgot your password?"
+              style={generalStyles.defaultTextStyleLoginRegisterReset}>
               Forgot your password?
             </Text>
             <View style={generalStyles.defaultContainerButton}>

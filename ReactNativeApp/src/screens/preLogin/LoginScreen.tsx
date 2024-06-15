@@ -32,13 +32,18 @@ const LoginScreen: React.FunctionComponent = () => {
             source={require('../../../assets/images/logoWithTextNoBackground.png')}
             style={stylesLoginScreen.logo}
             accessibilityLabel="EasyHome logo"
+            alt="EasyHome logo"
             testID="Logo"
           />
         </View>
 
         <View style={stylesLoginScreen.containerLoginInputs}>
           <View style={stylesLoginScreen.containerInputUsername}>
-            <Text accessibilityLabel="Username">Username:</Text>
+            <Text
+              accessibilityLabel="Username"
+              style={generalStyles.defaultTextStyleLoginRegisterReset}>
+              Username:
+            </Text>
             <TextInput
               style={generalStyles.defaultInput}
               value={username}
@@ -49,7 +54,11 @@ const LoginScreen: React.FunctionComponent = () => {
             />
           </View>
           <View style={stylesLoginScreen.containerInputPassword}>
-            <Text accessibilityLabel="Password">Password:</Text>
+            <Text
+              style={generalStyles.defaultTextStyleLoginRegisterReset}
+              accessibilityLabel="Password">
+              Password:
+            </Text>
             <TextInput
               style={generalStyles.defaultInput}
               secureTextEntry
@@ -75,7 +84,9 @@ const LoginScreen: React.FunctionComponent = () => {
         <View style={stylesLoginScreen.containerOtherInfo}>
           <View style={stylesLoginScreen.containerRegisterAndResetPassword}>
             <View style={stylesLoginScreen.containerRegister}>
-              <Text accessibilityLabel="Don't you have an account? Register now!">
+              <Text
+                style={generalStyles.defaultTextStyleLoginRegisterReset}
+                accessibilityLabel="Don't you have an account? Register now!">
                 Don't you have an account? Register now!
               </Text>
               <View style={generalStyles.defaultContainerButton}>
@@ -91,7 +102,9 @@ const LoginScreen: React.FunctionComponent = () => {
             </View>
 
             <View style={stylesLoginScreen.containerResetPassword}>
-              <Text accessibilityLabel="Forgot your password?">
+              <Text
+                accessibilityLabel="Forgot your password?"
+                style={generalStyles.defaultTextStyleLoginRegisterReset}>
                 Forgot your password?
               </Text>
               <View style={generalStyles.defaultContainerButton}>
@@ -108,9 +121,10 @@ const LoginScreen: React.FunctionComponent = () => {
           </View>
 
           <View style={stylesLoginScreen.containerVersion}>
-            <Text accessibilityLabel={'Version: ' + {APP_VERSION}}>
-              {' '}
-              Version: {APP_VERSION}{' '}
+            <Text
+              style={generalStyles.defaultTextStyleLoginRegisterReset}
+              accessibilityLabel={'Version: ' + {APP_VERSION}}>
+              Version: {APP_VERSION}
             </Text>
           </View>
         </View>
