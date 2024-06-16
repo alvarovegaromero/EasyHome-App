@@ -25,7 +25,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Add an expense"
                 onPress={navigateToAddExpense}
-                size={60}
+                size={55}
               />
             </View>
 
@@ -38,7 +38,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See group's debts"
                 onPress={navigateToGroupDebts}
-                size={60}
+                size={55}
               />
             </View>
 
@@ -51,7 +51,7 @@ const ExpensesHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="See group's expenses"
                 onPress={navigateToGroupExpenses}
-                size={60}
+                size={55}
               />
             </View>
           </View>

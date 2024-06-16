@@ -22,6 +22,8 @@ const stylesHomeScreen = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 10,
+    marginRight: 20,
+    marginLeft: 20,
   },
   listTitle: {
     fontSize: 20,

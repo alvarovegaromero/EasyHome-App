@@ -9,7 +9,7 @@ const stylesGroupSettingsScreen = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
-    height: 300,
+    height: 270,
     paddingTop: 12,
   },
   containerButtons: {

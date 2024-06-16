@@ -32,7 +32,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Expenses"
                 onPress={navigateExpenses}
-                size={60}
+                size={55}
                 testID="DistributeExpensesIcon"
               />
             </View>
@@ -46,7 +46,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Shopping List"
                 onPress={navigateShoppingList}
-                size={60}
+                size={55}
                 testID="ManageShoppingListsIcon"
               />
             </View>
@@ -60,7 +60,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Household Chores"
                 onPress={navigateChores}
-                size={60}
+                size={55}
                 testID="HouseholdChoresIcon"
               />
             </View>
@@ -74,7 +74,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Pantry"
                 onPress={() => {}}
-                size={60}
+                size={55}
                 disabled={true}
                 testID="ViewThePantryIcon"
               />
@@ -89,7 +89,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Group Board"
                 onPress={navigateBoard}
-                size={60}
+                size={55}
                 testID="GroupBoardIcon"
               />
             </View>
@@ -103,7 +103,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Group Settings"
                 onPress={navigateSettings}
-                size={60}
+                size={55}
                 testID="GroupSettingsIcon"
               />
             </View>
@@ -117,7 +117,7 @@ const GroupHomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to User Home"
                 onPress={navigateHome}
-                size={60}
+                size={55}
                 testID="GoBackToHomeIcon"
               />
             </View>

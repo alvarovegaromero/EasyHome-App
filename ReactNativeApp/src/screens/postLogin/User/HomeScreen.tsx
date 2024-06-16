@@ -93,7 +93,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Create a Group"
                 onPress={navigateCreateGroupScreen}
-                size={60}
+                size={55}
                 testID="CreateGroupButton"
               />
               <Icon
@@ -104,7 +104,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Join a Group"
                 onPress={showDialog}
-                size={60}
+                size={55}
                 testID="JoinGroupButton"
               />
             </View>
@@ -118,7 +118,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 color="#2196F3"
                 accessibilityLabel="Navigate to Profile"
                 onPress={navigateProfileScreen}
-                size={60}
+                size={55}
                 testID="ProfileButton"
               />
               <Icon
@@ -129,7 +129,7 @@ const HomeScreen: React.FunctionComponent = () => {
                 color="#FF7F50"
                 accessibilityLabel="Logout"
                 onPress={handleLogout}
-                size={60}
+                size={55}
                 testID="LogoutButton"
               />
             </View>
