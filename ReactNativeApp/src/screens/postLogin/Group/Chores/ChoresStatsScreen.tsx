@@ -182,7 +182,6 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Create new chart"
                 onPress={() => {
                   fetchChoresStats();
-                  scrollViewRef.current?.scrollToEnd({animated: true});
                 }}
                 size={50}
               />
@@ -196,7 +195,6 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                 accessibilityLabel="Reload chart"
                 onPress={() => {
                   fetchChoresStats();
-                  scrollViewRef.current?.scrollToEnd({animated: true});
                 }}
                 size={30}
               />

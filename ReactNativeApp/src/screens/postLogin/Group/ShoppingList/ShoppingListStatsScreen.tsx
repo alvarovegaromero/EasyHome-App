@@ -42,6 +42,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
     fetchBoughtProductsStats,
     pieData,
     totalBoughtProducts,
+    scrollViewRef,
   } = useShoppingListStatsController();
 
   const renderCenterLabelComponent = () => (
@@ -50,7 +51,7 @@ const ShoppingListStatsScreen: React.FunctionComponent = () => {
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
-      <ScrollView style={generalStyles.defaultScrollView}>
+      <ScrollView style={generalStyles.defaultScrollView} ref={scrollViewRef}>
         <Header secctionText="Shopping List Stats" />
         <View style={generalStyles.defaultContainerScreen}>
           <View>

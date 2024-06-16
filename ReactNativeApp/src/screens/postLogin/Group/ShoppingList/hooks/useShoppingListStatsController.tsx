@@ -1,6 +1,6 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {GroupContext} from '../../../../../contexts/GroupContext';
-import {Alert} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getFormatedDateForRequests} from '../../../../../utils/utils';
@@ -27,6 +27,12 @@ const useShoppingListStatsController = () => {
 
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollToEnd({animated: true});
+  }, [boughtProductsInfo]);
 
   useEffect(() => {
     fetchProducts();
@@ -192,6 +198,7 @@ const useShoppingListStatsController = () => {
     fetchBoughtProductsStats,
     pieData,
     totalBoughtProducts: boughtProductsInfo.length,
+    scrollViewRef,
   };
 };
 
