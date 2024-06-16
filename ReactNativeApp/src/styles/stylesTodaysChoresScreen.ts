@@ -13,7 +13,7 @@ const stylesTodaysChoresScreen = StyleSheet.create({
   },
 
   containerTextTask: {
-    flex: 4,
+    flex: 5,
   },
 
   styleTitle: {
@@ -22,11 +22,12 @@ const stylesTodaysChoresScreen = StyleSheet.create({
   },
 
   styleTextTask: {
-    fontSize: 20,
+    fontSize: 19,
+    marginRight: 5,
   },
 
   containerIconTask: {
-    flex: 6,
+    flex: 5,
     alignItems: 'flex-start',
   },
 
@@ -36,9 +37,9 @@ const stylesTodaysChoresScreen = StyleSheet.create({
   },
 
   styleTextTaskCompleted: {
-    marginLeft: 10,
+    marginLeft: 5,
     fontStyle: 'italic',
-    fontSize: 15,
+    fontSize: 14,
   },
 });
 
