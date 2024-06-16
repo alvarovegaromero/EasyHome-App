@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  View,
-  TextInput,
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Text,
-} from 'react-native';
+import {View, TextInput, SafeAreaView, ScrollView, Text} from 'react-native';
 import stylesRegisterScreen from '../../styles/stylesRegisterScreen';
 import generalStyles from '../../styles/styles';
 import useRegisterController from './hooks/useRegisterController';
+import ButtonWithIcon from '../../utils/ButtonWithIcon/ButtonWithIcon';
 
 const RegisterScreen: React.FunctionComponent = () => {
   const {
@@ -130,11 +124,12 @@ const RegisterScreen: React.FunctionComponent = () => {
           </View>
           <View style={generalStyles.defaultContainerButton}>
             <View style={generalStyles.defaultButton}>
-              <Button
-                title="Register"
+              <ButtonWithIcon
+                title="REGISTER"
                 onPress={handleRegisterSubmit}
                 accessibilityLabel="Register button"
                 testID="RegisterButton"
+                name="account-plus"
               />
             </View>
           </View>
@@ -149,11 +144,12 @@ const RegisterScreen: React.FunctionComponent = () => {
             </Text>
             <View style={generalStyles.defaultContainerButton}>
               <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Login"
+                <ButtonWithIcon
+                  title="LOGIN"
                   onPress={navigateLoginScreen}
-                  accessibilityLabel="Button for redirection to login page"
-                  testID="LoginButton"
+                  accessibilityLabel="Login"
+                  testID="Button for redirection to login page"
+                  name="login"
                 />
               </View>
             </View>
@@ -167,11 +163,12 @@ const RegisterScreen: React.FunctionComponent = () => {
             </Text>
             <View style={generalStyles.defaultContainerButton}>
               <View style={generalStyles.defaultButton}>
-                <Button
-                  title="Reset Password"
+                <ButtonWithIcon
+                  title="RESET PASSWORD"
                   onPress={navigateResetPasswordScreen}
                   accessibilityLabel="Button for redirection to reset password page"
                   testID="ResetPasswordButton"
+                  name="lock-reset"
                 />
               </View>
             </View>

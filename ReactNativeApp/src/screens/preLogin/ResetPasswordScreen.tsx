@@ -1,5 +1,4 @@
 import {
-  Button,
   Image,
   SafeAreaView,
   ScrollView,
@@ -10,6 +9,7 @@ import {
 import stylesResetPasswordScreen from '../../styles/stylesResetPasswordScreen';
 import generalStyles from '../../styles/styles';
 import useResetPasswordController from './hooks/useResetPasswordController';
+import ButtonWithIcon from '../../utils/ButtonWithIcon/ButtonWithIcon';
 
 const ResetPasswordScreen: React.FunctionComponent = () => {
   const {
@@ -57,11 +57,12 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
           </View>
           <View style={generalStyles.defaultContainerButton}>
             <View style={generalStyles.defaultButton}>
-              <Button
-                title="Send email"
+              <ButtonWithIcon
+                title="RESET PASSWORD"
                 onPress={handleResetPasswordSubmit}
-                accessibilityLabel="Send email to reset password"
+                accessibilityLabel="Reset password button"
                 testID="ResetPasswordButton"
+                name="lock-reset"
               />
             </View>
           </View>
@@ -78,11 +79,12 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
-                  <Button
-                    title="Login"
+                  <ButtonWithIcon
+                    title="LOGIN"
                     onPress={navigateLoginScreen}
-                    accessibilityLabel="Button for redirection to login page"
-                    testID="LoginButton"
+                    accessibilityLabel="Login"
+                    testID="Button for redirection to login page"
+                    name="login"
                   />
                 </View>
               </View>
@@ -96,11 +98,12 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
-                  <Button
-                    title="Register"
+                  <ButtonWithIcon
+                    title="REGISTER"
                     onPress={navigateRegisterScreen}
                     accessibilityLabel="Button for redirection to register page"
                     testID="RegisterButton"
+                    name="account-plus"
                   />
                 </View>
               </View>
