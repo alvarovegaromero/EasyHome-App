@@ -134,8 +134,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
                   testID="DatePicker"
                   modal={true}
                   open={dateModalOpen}
-                  onConfirm={date => {
-                    setDate(date);
+                  onConfirm={selectedDate => {
+                    setDate(selectedDate);
                     setDateModalOpen(false);
                   }}
                   onCancel={() => setDateModalOpen(false)}
