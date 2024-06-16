@@ -60,18 +60,13 @@ const ProductsScreen: React.FunctionComponent = () => {
                               size={40}
                             />
                           ) : (
-                            <View
-                              style={
-                                stylesProductsScreen.containerIconProductCompleted
-                              }>
-                              <Icon
-                                name="check-circle"
-                                type="material-community"
-                                color="#2196F3"
-                                accessibilityLabel="Product marked to buy"
-                                size={40}
-                              />
-                            </View>
+                            <Icon
+                              name="check-circle"
+                              type="material-community"
+                              color="#2196F3"
+                              accessibilityLabel="Product marked to buy"
+                              size={40}
+                            />
                           )}
                         </View>
                       </View>

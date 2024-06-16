@@ -13,7 +13,7 @@ const stylesProductsScreen = StyleSheet.create({
   },
 
   containerTextProduct: {
-    flex: 4,
+    flex: 8,
   },
 
   styleTitle: {
@@ -26,19 +26,8 @@ const stylesProductsScreen = StyleSheet.create({
   },
 
   containerIconProduct: {
-    flex: 6,
-    alignItems: 'flex-start',
-  },
-
-  containerIconProductCompleted: {
-    flexDirection: 'row',
+    flex: 2.5,
     alignItems: 'center',
-  },
-
-  styleTextProductCompleted: {
-    marginLeft: 10,
-    fontStyle: 'italic',
-    fontSize: 15,
   },
 });
 
