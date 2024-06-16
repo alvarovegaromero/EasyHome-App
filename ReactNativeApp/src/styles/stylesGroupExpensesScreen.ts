@@ -24,7 +24,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
   styleTitleTextPay: {
     fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'right',
+    textAlign: 'center',
   },
 
   styleTextSettlement: {
@@ -33,8 +33,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
   },
 
   containerSettlementButton: {
-    flex: 1,
-    textAlign: 'right',
+    flex: 2,
   },
 
   styleSettlementButtonText: {
