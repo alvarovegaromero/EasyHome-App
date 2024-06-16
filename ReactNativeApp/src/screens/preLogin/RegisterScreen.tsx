@@ -138,9 +138,9 @@ const RegisterScreen: React.FunctionComponent = () => {
         <View style={stylesRegisterScreen.containerOtherInfo}>
           <View style={stylesRegisterScreen.containerLogin}>
             <Text
-              accessibilityLabel="Do you have an account already? Login instead!"
+              accessibilityLabel="Already joined? Use log in"
               style={generalStyles.defaultTextStyleLoginRegisterReset}>
-              Already have an account? Login instead!
+              Already joined? Use log in
             </Text>
             <View style={generalStyles.defaultContainerButton}>
               <View style={generalStyles.defaultButton}>

@@ -87,8 +87,8 @@ const LoginScreen: React.FunctionComponent = () => {
             <View style={stylesLoginScreen.containerRegister}>
               <Text
                 style={generalStyles.defaultTextStyleLoginRegisterReset}
-                accessibilityLabel="Don't you have an account? Register now!">
-                Don't you have an account? Register now!
+                accessibilityLabel="Want to join? Register!">
+                Want to join? Register!
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>

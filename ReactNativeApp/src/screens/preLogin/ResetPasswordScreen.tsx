@@ -74,8 +74,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
             <View style={stylesResetPasswordScreen.containerLogin}>
               <Text
                 style={generalStyles.defaultTextStyleLoginRegisterReset}
-                accessibilityLabel="Already have an account? Use log in">
-                Already have an account? Use log in
+                accessibilityLabel="Already joined? Use log in">
+                Already joined? Use log in
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
@@ -93,8 +93,8 @@ const ResetPasswordScreen: React.FunctionComponent = () => {
             <View style={stylesResetPasswordScreen.containerRegister}>
               <Text
                 style={generalStyles.defaultTextStyleLoginRegisterReset}
-                accessibilityLabel="Don't you have an account? Register now!">
-                Don't you have an account? Register now!
+                accessibilityLabel="Want to join? Register!">
+                Want to join? Register!
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
