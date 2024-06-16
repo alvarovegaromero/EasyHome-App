@@ -1,6 +1,6 @@
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import {GroupContext} from '../../../../../contexts/GroupContext';
-import {Alert} from 'react-native';
+import {Alert, ScrollView} from 'react-native';
 import {BASE_URL} from '../../../../../config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getFormatedDateForRequests} from '../../../../../utils/utils';
@@ -22,6 +22,12 @@ const useChoresStatsController = () => {
     boolean | undefined
   >(true);
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
+
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    scrollViewRef.current?.scrollToEnd({animated: true});
+  }, [choresInfo]);
 
   useEffect(() => {
     fetchGroupUsersData();
@@ -163,6 +169,7 @@ const useChoresStatsController = () => {
     fetchChoresStats,
     pieData,
     totalAssignableTasks: choresInfo.length,
+    scrollViewRef,
   };
 };
 

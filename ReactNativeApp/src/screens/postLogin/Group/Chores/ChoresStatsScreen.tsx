@@ -41,6 +41,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
     fetchChoresStats,
     pieData,
     totalAssignableTasks,
+    scrollViewRef,
   } = useChoresStatsController();
 
   const renderCenterLabelComponent = () => (
@@ -49,7 +50,7 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
 
   return (
     <SafeAreaView style={generalStyles.defaultSafeAreaView}>
-      <ScrollView style={generalStyles.defaultScrollView}>
+      <ScrollView style={generalStyles.defaultScrollView} ref={scrollViewRef}>
         <Header secctionText="Chores Stats" />
         <View style={generalStyles.defaultContainerScreen}>
           <View>
@@ -179,7 +180,10 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                 type="material-community"
                 color="#2196F3"
                 accessibilityLabel="Create new chart"
-                onPress={fetchChoresStats}
+                onPress={() => {
+                  fetchChoresStats();
+                  scrollViewRef.current?.scrollToEnd({animated: true});
+                }}
                 size={50}
               />
             ) : (
@@ -190,7 +194,10 @@ const ChoresStatsScreen: React.FunctionComponent = () => {
                 type="material-community"
                 color="#2196F3"
                 accessibilityLabel="Reload chart"
-                onPress={fetchChoresStats}
+                onPress={() => {
+                  fetchChoresStats();
+                  scrollViewRef.current?.scrollToEnd({animated: true});
+                }}
                 size={30}
               />
             )}
