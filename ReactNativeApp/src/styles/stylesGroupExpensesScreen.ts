@@ -8,7 +8,6 @@ const stylesGroupExpensesScreen = StyleSheet.create({
   containerSettlementAndButton: {
     marginBottom: 7.5,
     flexDirection: 'row',
-    height: 40,
   },
 
   containerSettlementText: {
@@ -34,6 +33,7 @@ const stylesGroupExpensesScreen = StyleSheet.create({
 
   containerSettlementButton: {
     flex: 2,
+    justifyContent: 'center',
   },
 
   styleSettlementButtonText: {
