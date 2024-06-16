@@ -23,7 +23,7 @@ const stylesLoginScreen = StyleSheet.create({
     flex: 0.3,
   },
   containerInputEmail: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
 
   containerOtherInfo: {

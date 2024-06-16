@@ -52,7 +52,7 @@ const generalStyles = StyleSheet.create({
     color: '#FF9999',
   },
   defaultTextStyleLoginRegisterReset: {
-    fontSize: 16,
+    fontSize: 15,
     marginBottom: 2.5,
   },
 });

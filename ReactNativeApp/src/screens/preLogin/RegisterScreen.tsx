@@ -106,7 +106,7 @@ const RegisterScreen: React.FunctionComponent = () => {
                 testID="FirstNameInput"
               />
             </View>
-            <View style={generalStyles.defaultContainerTextAndInput}>
+            <View style={stylesRegisterScreen.containerLastNameInput}>
               <Text
                 accessibilityLabel="Last Name (optional):"
                 style={generalStyles.defaultTextStyleLoginRegisterReset}>

@@ -17,10 +17,10 @@ const stylesLoginScreen = StyleSheet.create({
     flex: 0.3,
   },
   containerInputUsername: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   containerInputPassword: {
-    marginBottom: 20,
+    marginBottom: 10,
   },
   containerOtherInfo: {
     ...generalStyles.defaultLateralMargins,
