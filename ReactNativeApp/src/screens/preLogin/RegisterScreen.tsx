@@ -147,8 +147,8 @@ const RegisterScreen: React.FunctionComponent = () => {
                 <ButtonWithIcon
                   title="LOGIN"
                   onPress={navigateLoginScreen}
-                  accessibilityLabel="Login"
-                  testID="Button for redirection to login page"
+                  accessibilityLabel="Button for redirection to login page"
+                  testID="LoginButton"
                   name="login"
                 />
               </View>

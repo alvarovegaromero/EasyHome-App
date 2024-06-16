@@ -74,7 +74,7 @@ const LoginScreen: React.FunctionComponent = () => {
               <ButtonWithIcon
                 title="LOGIN"
                 onPress={handleLoginSubmit}
-                accessibilityLabel="Login"
+                accessibilityLabel="Button for redirection to login page"
                 testID="LoginButton"
                 name="login"
               />
