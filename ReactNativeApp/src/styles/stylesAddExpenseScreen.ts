@@ -25,8 +25,9 @@ const stylesAddExpenseScreen = StyleSheet.create({
   },
 
   datePickerInput: {
-    ...generalStyles.defaultInput,
-    alignItems: 'center',
+    marginTop: 2.5,
+    marginBottom: 30,
+    width: '50%',
   },
 
   containerIcons: {

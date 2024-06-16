@@ -19,7 +19,9 @@ const useAddExpenseController = () => {
   const [selectedUsers, setSelectedUsers] = useState<Record<number, boolean>>(
     {},
   );
+
   const [date, setDate] = useState(new Date());
+  const [dateModalOpen, setDateModalOpen] = useState(false);
 
   const [groupUsers, setGroupUsers] = useState<User[]>([]);
 
@@ -151,6 +153,8 @@ const useAddExpenseController = () => {
     handleCheckBoxChange,
     date,
     setDate,
+    dateModalOpen,
+    setDateModalOpen,
     handleCreateExpenseSubmit,
     navigateExpensesHomeScreen,
   };

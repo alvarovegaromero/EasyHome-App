@@ -8,6 +8,7 @@ import stylesAddExpenseScreen from '../../../../styles/stylesAddExpenseScreen';
 import GroupFooter from '../../../../utils/GroupFooter/GroupFooter';
 import {Icon} from '@rneui/themed';
 import Header from '../../../../utils/Header/Header';
+import ButtonWithIcon from '../../../../utils/ButtonWithIcon/ButtonWithIcon';
 
 const AddExpenseScreen: React.FunctionComponent = () => {
   const {
@@ -22,6 +23,8 @@ const AddExpenseScreen: React.FunctionComponent = () => {
     handleCheckBoxChange,
     date,
     setDate,
+    dateModalOpen,
+    setDateModalOpen,
     handleCreateExpenseSubmit,
     navigateExpensesHomeScreen,
   } = useAddExpenseController();
@@ -111,17 +114,31 @@ const AddExpenseScreen: React.FunctionComponent = () => {
               <Text
                 accessibilityLabel="Date paid"
                 style={stylesAddExpenseScreen.styleTextTitleSection}>
-                Date paid:
+                Date paid: {date.toLocaleDateString('en-GB')}
               </Text>
               <View
                 style={stylesAddExpenseScreen.datePickerInput}
                 accessibilityLabel="Date Picker">
+                <ButtonWithIcon
+                  title="SET DATE"
+                  onPress={() => setDateModalOpen(true)}
+                  accessibilityLabel="Open Date Picker"
+                  testID="OpenDatePickerButton"
+                  name="calendar"
+                />
                 <DatePicker
                   mode="date"
                   date={date}
                   onDateChange={setDate}
                   locale="en-GB"
                   testID="DatePicker"
+                  modal={true}
+                  open={dateModalOpen}
+                  onConfirm={date => {
+                    setDate(date);
+                    setDateModalOpen(false);
+                  }}
+                  onCancel={() => setDateModalOpen(false)}
                 />
               </View>
             </View>
