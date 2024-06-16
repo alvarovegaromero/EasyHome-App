@@ -160,7 +160,11 @@ const useShoppingListStatsController = () => {
         counts[productType] = {count: 0, total: 0};
       }
       counts[productType].count += 1;
-      counts[productType].total += parseFloat(boughtProduct.price.toString());
+      counts[productType].total = parseFloat(
+        (
+          counts[productType].total + parseFloat(boughtProduct.price.toString())
+        ).toFixed(2),
+      );
       return counts;
     },
     {} as {[key: string]: {count: number; total: number}},
