@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Image,
   SafeAreaView,
   ScrollView,
@@ -12,6 +11,7 @@ import {APP_VERSION} from '../../config';
 import stylesLoginScreen from '../../styles/stylesLoginScreen';
 import generalStyles from '../../styles/styles';
 import useLoginController from './hooks/useLoginController';
+import ButtonWithIcon from '../../utils/ButtonWithIcon/ButtonWithIcon';
 
 const LoginScreen: React.FunctionComponent = () => {
   const {
@@ -71,11 +71,12 @@ const LoginScreen: React.FunctionComponent = () => {
           </View>
           <View style={generalStyles.defaultContainerButton}>
             <View style={generalStyles.defaultButton}>
-              <Button
-                title="Login"
+              <ButtonWithIcon
+                title="LOGIN"
                 onPress={handleLoginSubmit}
                 accessibilityLabel="Login"
                 testID="LoginButton"
+                name="login"
               />
             </View>
           </View>
@@ -91,11 +92,12 @@ const LoginScreen: React.FunctionComponent = () => {
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
-                  <Button
-                    title="Register"
+                  <ButtonWithIcon
+                    title="REGISTER"
                     onPress={navigateRegisterScreen}
                     accessibilityLabel="Button for redirection to register page"
                     testID="RegisterButton"
+                    name="account-plus"
                   />
                 </View>
               </View>
@@ -109,11 +111,12 @@ const LoginScreen: React.FunctionComponent = () => {
               </Text>
               <View style={generalStyles.defaultContainerButton}>
                 <View style={generalStyles.defaultButton}>
-                  <Button
-                    title="Reset Password"
+                  <ButtonWithIcon
+                    title="RESET PASSWORD"
                     onPress={navigateResetPasswordScreen}
                     accessibilityLabel="Button for redirection to reset password page"
                     testID="ResetPasswordButton"
+                    name="lock-reset"
                   />
                 </View>
               </View>
