@@ -8,6 +8,7 @@ const stylesButtonWithIcon = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 5,
+    borderRadius: 10,
   },
   textButtonWithIcon: {
     color: 'white',
