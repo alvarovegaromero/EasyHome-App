@@ -9,6 +9,7 @@ import Header from '../../../../utils/Header/Header';
 
 const ShoppingListHomeScreen: React.FunctionComponent = () => {
   const {
+    isOwner,
     navigateEstablishProductsScreen,
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
@@ -22,16 +23,18 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesGroupHomeScreen.containerButtons}>
             <View style={stylesGroupHomeScreen.containerButton}>
-              <Icon
-                name="pencil"
-                reverse
-                reverseColor="white"
-                type="material-community"
-                color="#2196F3"
-                accessibilityLabel="Add and Edit Available Products"
-                onPress={navigateEstablishProductsScreen}
-                size={55}
-              />
+              {isOwner && (
+                <Icon
+                  name="pencil"
+                  reverse
+                  reverseColor="white"
+                  type="material-community"
+                  color="#2196F3"
+                  accessibilityLabel="Add and Edit Available Products"
+                  onPress={navigateEstablishProductsScreen}
+                  size={55}
+                />
+              )}
             </View>
             <View style={stylesGroupHomeScreen.containerButton}>
               <Icon

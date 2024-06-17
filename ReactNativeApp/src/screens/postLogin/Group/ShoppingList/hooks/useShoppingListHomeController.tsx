@@ -1,7 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
+import {useContext} from 'react';
+import {GroupContext} from '../../../../../contexts/GroupContext';
 
 const useShoppingListHomeController = () => {
   const navigation = useNavigation();
+
+  const {isOwner} = useContext(GroupContext);
 
   const navigateEstablishProductsScreen = () => {
     navigation.navigate('EstablishProductsScreen' as never);
@@ -20,6 +24,7 @@ const useShoppingListHomeController = () => {
   };
 
   return {
+    isOwner,
     navigateEstablishProductsScreen,
     navigateProductsScreen,
     navigateProductsShoppingListScreen,
