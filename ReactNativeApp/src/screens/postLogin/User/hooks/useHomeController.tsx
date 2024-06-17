@@ -12,7 +12,7 @@ const useHomeController = () => {
   const {groupId, setGroupId, setIsOwner} = useContext(GroupContext);
   const {setId, contextUsername, setContextUsername} = useContext(UserContext);
 
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState<[] | undefined>(undefined);
   const [dialogVisible, setDialogVisible] = useState(false);
   const [joinCode, setJoinCode] = useState('');
 

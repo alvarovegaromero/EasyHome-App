@@ -44,40 +44,51 @@ const HomeScreen: React.FunctionComponent = () => {
 
           <View style={stylesHomeScreen.containerGroups}>
             <ScrollView>
-              {groups.length === 0 ? (
+              {groups === undefined ? (
                 <View style={stylesHomeScreen.containerNoGroups}>
-                  <Text
-                    accessibilityLabel="You are not part of any group"
-                    style={stylesHomeScreen.textNoGroups}>
-                    You are not part of any group yet :(
-                  </Text>
-                  <Text
-                    accessibilityLabel="Join or Create a Group to see them here"
-                    style={stylesHomeScreen.textNoGroups}>
-                    Join or Create a Group to see them here
-                  </Text>
+                  <Text style={stylesHomeScreen.textNoGroups}>Loading...</Text>
                 </View>
               ) : (
                 <>
-                  <Text style={stylesHomeScreen.listTitle}> Your Groups: </Text>
-                  {groups.map((group: Group) => (
-                    <TouchableOpacity
-                      key={group.id}
-                      style={stylesHomeScreen.listButton}
-                      onPress={() =>
-                        navigateGroupHomeScreen(
-                          group.id.toString(),
-                          group.owner,
-                        )
-                      }>
-                      <Icon name="group" size={24} color="#000" />
+                  {groups.length === 0 ? (
+                    <View style={stylesHomeScreen.containerNoGroups}>
                       <Text
-                        accessibilityLabel={`Group name: ${group.name}`}
-                        style={stylesHomeScreen.styleTextGroup}>
-                        {group.name}
+                        accessibilityLabel="You are not part of any group"
+                        style={stylesHomeScreen.textNoGroups}>
+                        You are not part of any group yet :(
                       </Text>
-                    </TouchableOpacity>
-                  ))}
+                      <Text
+                        accessibilityLabel="Join or Create a Group to see them here"
+                        style={stylesHomeScreen.textNoGroups}>
+                        Join or Create a Group to see them here
+                      </Text>
+                    </View>
+                  ) : (
+                    <>
+                      <Text style={stylesHomeScreen.listTitle}>
+                        {' '}
+                        Your Groups:{' '}
+                      </Text>
+                      {groups.map((group: Group) => (
+                        <TouchableOpacity
+                          key={group.id}
+                          style={stylesHomeScreen.listButton}
+                          onPress={() =>
+                            navigateGroupHomeScreen(
+                              group.id.toString(),
+                              group.owner,
+                            )
+                          }>
+                          <Icon name="group" size={24} color="#000" />
+                          <Text
+                            accessibilityLabel={`Group name: ${group.name}`}
+                            style={stylesHomeScreen.styleTextGroup}>
+                            {group.name}
+                          </Text>
+                        </TouchableOpacity>
+                      ))}
+                    </>
+                  )}
                 </>
               )}
             </ScrollView>
