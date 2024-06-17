@@ -22,8 +22,8 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
         <Header secctionText="Shopping List Home" />
         <View style={generalStyles.defaultContainerScreen}>
           <View style={stylesGroupHomeScreen.containerButtons}>
-            <View style={stylesGroupHomeScreen.containerButton}>
-              {isOwner && (
+            {isOwner && (
+              <View style={stylesGroupHomeScreen.containerButton}>
                 <Icon
                   name="pencil"
                   reverse
@@ -34,8 +34,8 @@ const ShoppingListHomeScreen: React.FunctionComponent = () => {
                   onPress={navigateEstablishProductsScreen}
                   size={55}
                 />
-              )}
-            </View>
+              </View>
+            )}
             <View style={stylesGroupHomeScreen.containerButton}>
               <Icon
                 name="notebook-edit"
