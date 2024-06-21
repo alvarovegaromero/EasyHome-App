@@ -115,7 +115,7 @@ describe('useHomeController', () => {
 
       const {result} = renderTestHookTest();
 
-      await waitFor(() => expect(result.current.groups).toEqual([]));
+      await waitFor(() => expect(result.current.groups).toEqual(undefined)); //initial value
 
       expect(alertSpy).toHaveBeenCalledWith('Error', 'Fetch groups failed');
     });
