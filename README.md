@@ -1,3 +1,3 @@
 # EasyHome-App
 
-Repository created for the final project of the Computer Science's degree. The app created with React Native will be found here
+A React Native app done to facilitate cohabitation in shared apartments (sharing expenses, shopping lists...) 
